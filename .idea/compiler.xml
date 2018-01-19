@@ -6,15 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="colour-palette-generator" />
         <module name="electronic-handover" />
-        <module name="spring-boot-file-upload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="colour-palette-generator" target="1.8" />
       <module name="electronic-handover" target="1.8" />
-      <module name="spring-boot-file-upload" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
