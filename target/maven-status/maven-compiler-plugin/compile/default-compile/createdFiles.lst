@@ -1,0 +1,14 @@
+com\quantech\business\data\Doctor.class
+com\quantech\controller\HandoverController.class
+com\quantech\business\data\Handover.class
+com\quantech\business\data\DoctorRepository.class
+com\quantech\controller\PatientsController.class
+com\quantech\business\data\Patient.class
+com\quantech\business\data\DatabaseServiceImpl.class
+com\quantech\business\data\PatientRepository.class
+com\quantech\controller\MainController.class
+com\quantech\business\data\Title.class
+com\quantech\business\data\DatabaseService.class
+com\quantech\business\data\Ward.class
+com\quantech\SpringBootWebApplication.class
+com\quantech\business\data\Team.class

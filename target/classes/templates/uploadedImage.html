@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Uploaded Image</title>
+
+    <link th:href="@{../css/main.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma" rel="stylesheet"/>
+
+</head>
+<body>
+
+<h1 class="logo">Colour Palette Picker</h1>
+
+<div class="container">
+    <!--/*@thymesVar id="uploadMessage" type=""*/-->
+    <h2 th:text="${uploadMessage}" class="upload-message"></h2>
+    <!--/*@thymesVar id="uploadedImage" type=""*/-->
+    <!--img th:src="@{/public/images/uploaded.jpg}" height="500"/-->
+    <img th:src="@{'/images/'+'uploaded.jpg'}" class="uploaded-image"/>
+
+    <!--/*@thymesVar id="colours" type=""*/-->
+    <div class="palette">
+        <span th:each="colour : ${colours}"
+              th:style="'width: '+${( 100 / #lists.size(colours) - 0.5)}+'%; background-color:'+${colour}+';'"
+              class="colour">
+            <span th:text="${colour}" class="colour-text"></span>
+        </span>
+    </div>
+
+    <div class="go-back">
+        <a href="/">Go back</a>
+    </div>
+</div>
+
+</body>
+</html>

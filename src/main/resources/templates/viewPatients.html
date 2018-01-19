@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header2 :: head (title='Patient')">
+</head>
+
+<body>
+<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        My Patients
+    </div>
+    <div id="bodywrap">
+        <!-- Accordion -->
+        <div class="ac-container agileits w3layouts">
+            <div  th:each="patient,iterStat : ${patients}">
+                <input th:id="'ac-' + ${iterStat.count}" name="accordion-1" type="checkbox" />
+                <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">Bed <span th:text="${patient.bed}"/> , <span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
+                <article class="ac-small agileits w3layouts">
+                    <ul>
+                        <li>Diagosis: <span th:text="${patient.diagnosis}"/></li>
+                        <li>Relevant History: <span th:text="${patient.relevantHistory}"/></li>
+                        <li>Recommendations: <span th:text="${patient.recommendations}"/></li>
+                        <li>Risks: <span th:text="${patient.risks}"/></li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+        <!-- //Accordion -->
+        <a class="btn btn-default" href="/addPatient">Add a new patient</a>
+    </div>
+</div>
+<div th:replace="fragments/footer2 :: footer">...</div>
+</body>
+</html>

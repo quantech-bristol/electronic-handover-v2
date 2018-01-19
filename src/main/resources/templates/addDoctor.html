@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header2 :: head (title='Add Patient')">
+</head>
+
+<body>
+<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        Add Doctor
+    </div>
+    <div id="bodywrap">
+        <h1>New Doctor</h1>
+        <table>
+        <form action="#" th:action="@{/doctor}" th:object="${doctor}" method="post" class="form-inline">
+            <div class="form-group"><tr>
+                <td><label for="patienttitle">Title(s)</label></td>
+                <td><input type="text" th:field="*{title}" class="form-control" id="patienttitle" placeholder="Enter first name(s)"/></td>
+            </tr></div>
+            <div class="form-group"><tr>
+                <td><label for="patientFirstName">First Name(s)</label></td>
+                <td><input type="text" th:field="*{firstName}" class="form-control" id="patientFirstName" placeholder="Enter first name(s)"/></td>
+            </tr></div>
+            <div class="form-group"><tr>
+                <td><label for="patientlastName">Last Name(s)</label></td>
+                <td><input type="text" th:field="*{lastName}" class="form-control" id="patientLastName" placeholder="Enter Last name(s)"/></td>
+            </tr></div>
+    
+            <div class="form-group"><tr>
+                <td><label for="patientFirstName">Email</label></td>
+                <td><input type="text" th:field="*{email}" class="form-control" id="patientDoctor" placeholder="Email"/></td>
+            </tr></div>
+    
+            <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+        </form>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer2 :: footer">...</div>
+</body>
+</html>

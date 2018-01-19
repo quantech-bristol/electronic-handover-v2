@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:include="fragments/header2 :: head (title='Create Handover')">
+</head>
+
+
+<body>
+<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        <i class="fa fa-handshake-o" aria-hidden="true"></i>New Handover
+    </div>
+    <div id="bodywrap">
+        <form action="#" th:action="@{/handover}" th:object="${handover}" method="post" class="form-inline">
+
+            <div class="form-group">
+                <label for="patient">Step 1: Patient</label>
+                <select id="patient" class="form-control" th:field="${handover.patient}">
+                    <option value="default">Select a Patient</option>
+                    <option th:each="patient: ${patients}" th:value="${patient.id}" th:text="${patient.firstName}+' '+${patient.lastName}"></option>
+                </select>
+
+
+            </div><br/>
+
+            <!--<div class="form-group">-->
+                <!--<label for="patientDiagnosis">Diagnosis</label>-->
+                <!--<input type="text" th:field="*{diagnosis}" class="form-control" id="patientDiagnosis" placeholder="Enter Diagnosis"/>-->
+            <!--</div><br/>-->
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/footer2 :: footer">...</div>
+</body>
+</html>
+
+

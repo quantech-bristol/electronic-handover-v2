@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header2 :: head (title='Add Patient')">
+</head>
+
+<body>
+<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        Add Patient
+    </div>
+    <div id="bodywrap">
+        <h1>New Patient</h1>
+        <table>
+        <form action="#" th:action="@{/patient}" th:object="${patient}" method="post" class="form-inline">
+            <div class="form-group"><tr>
+                <td><label for="patienttitle">Title(s)</label></td>
+                <td><input type="text" th:field="*{title}" class="form-control" id="patienttitle" placeholder="Enter first name(s)"/></td>
+            </tr></div>
+            <div class="form-group"><tr>
+                <td><label for="patientFirstName">First Name(s)</label></td>
+                <td><input type="text" th:field="*{firstName}" class="form-control" id="patientFirstName" placeholder="Enter first name(s)"/></td>
+            </tr></div>
+            <div class="form-group"><tr>
+                <td><label for="patientlastName">Last Name(s)</label></td>
+                <td><input type="text" th:field="*{lastName}" class="form-control" id="patientLastName" placeholder="Enter Last name(s)"/></td>
+            </tr></div>
+
+            <div class="form-group"><tr>
+                <td><label for="doctor">Doctor</label></td>
+                <td><select id="doctor" class="form-control" th:field="*{doctor}">
+                    <option th:each="dr: ${doctors}" th:value="${dr.id}" th:text="${dr.title}+' '+${dr.firstName}+' '+${dr.lastName}"></option>
+                </select></td>
+            </tr></div>
+
+            <div class="form-group"><tr>
+                <td><label for="patientBirthdate">Birthdate</label></td>
+                <td><input type="datetime" th:field="*{birthDate}" class="form-control" id="patientBirthdate" placeholder="Enter BirthDate"/></td>
+            </tr></div>
+    
+            <div class="form-group"><tr>
+                <td><label for="patientNHSNumber">NHSNumber</label></td>
+                <td><input type="number" min ="11111111111" th:field="*{NHSNumber}" class="form-control" id="patientNHSNumber" placeholder="Enter NHS Number"/></td>
+            </tr></div>
+            
+            <div class="form-group"><tr>
+                <td><label for="patientHospitalNumber">HospitalNumber</label></td>
+                <td><input type="number" th:field="*{hospitalNumber}" class="form-control" id="patientHospitalNumber" placeholder="Enter Hospital Number"/></td>
+            </tr></div>
+    
+           <!-- <div class="form-group"><tr>
+                <td><label for="patientWard">Ward</label></td>
+                <td><input type="text" th:field="*{ward}" class="form-control" id="patientWard" placeholder="Enter Ward"/></td>
+            </tr></div> -->
+    
+    
+            <div class="form-group"><tr>
+                <td><label for="patientBed">Bed</label></td>
+                <td><input type="text" th:field="*{bed}" class="form-control" id="patientBed" placeholder="Enter Bed"/></td>
+            </tr></div>
+    
+    
+            <div class="form-group"><tr>
+                <td><label for="patientDateofadmission">Date of Admission</label></td>
+                <td><input type="datetime" th:field="*{dateOfAdmission}" class="form-control" id="patientDateofadmission" placeholder="Enter Date of Admission"/></td>
+            </tr></div>
+    
+    
+            <div class="form-group"><tr>
+                <td><label for="patientRelevantHistory">Relevant History</label></td>
+                <td><input type="text" th:field="*{relevantHistory}" class="form-control" id="patientRelevantHistory" placeholder="Enter Relevant History"/></td>
+            </tr></div>
+    
+    
+            <div class="form-group"><tr>
+                <td><label for="patientSocialIssues">Social Issues</label></td>
+                <td><input type="text" th:field="*{socialIssues}" class="form-control" id="patientSocialIssues" placeholder="Enter Social Issues"/></td>
+            </tr></div>
+    
+            
+            <div class="form-group"><tr>
+                <td><label for="patientRisks">Risks</label></td>
+                <td><input type="text" th:field="*{risks}" class="form-control" id="patientRisks" placeholder="Enter Risks"/></td>
+            </tr></div>
+
+            <div class="form-group"><tr>
+                <td><label for="patientRecommendations">Recommendations</label></td>
+                <td><input type="text" th:field="*{recommendations}" class="form-control" id="patientRecommendations" placeholder="Enter Recommendations"/></td>
+            </tr></div>
+    
+    
+            <div class="form-group"><tr>
+                <td><label for="patientDiagnosis">Diagnosis</label></td>
+                <td><input type="text" th:field="*{diagnosis}" class="form-control" id="patientDiagnosis" placeholder="Enter Diagnosis"/></td>
+            </tr></div>
+    
+            <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+        </form>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer2 :: footer">...</div>
+</body>
+</html>

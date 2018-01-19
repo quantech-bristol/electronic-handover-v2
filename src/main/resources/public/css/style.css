@@ -1,0 +1,265 @@
+/*-- My Code --*/
+h1 {
+	color:#8397b0;
+}
+h2 {
+	color:#8397b0;
+}
+h3 {
+	color:#8397b0;
+}
+h4{
+	color:#FFF;
+	font-size:40px;
+	margin:0;
+}
+body{
+	background-color:#FFF;
+	margin-top: 0px;
+ 	margin-right: 0px;
+ 	margin-bottom: 0px;
+ 	margin-left: 0px
+}
+#mainwindow{
+	background-color:#a5bae3;
+	height:100%;
+}
+.mainwindow{ /* These classes are to control menu opening in and out for the main window*/
+	float:right;
+	width:100%;
+    height: 100%;
+}
+.sidebar-mainwindow{
+	width:80%;
+}
+#topbar{
+	background-color:#7698d4;
+	height:8vh;
+	width:100%;
+	font-size:2.4vw;
+	color:#FFF;
+    padding-left: 3vw;
+}
+#bodywrap{
+	padding:3vw;
+	min-height: 84vh;
+}
+#bodywrap input{
+	background-color:#f0f2f4;
+	width:80%;
+	height:40px;
+}
+#header{
+	background-color:#5c84cc;
+	height:8vh;
+	width:100%;
+}
+#sidebar{
+	background-color: #FFF;
+	float: left;
+	width: 20%;
+    min-height: 92vh;
+	height: 100%;
+	position: fixed;
+}
+.sidebar {
+	left: -20%;
+}
+.sidebar-open { /* These classes are to control menu opening in and out for the sidebar*/
+	left: 0px;
+}
+/* Makes it a smooth transition */
+#sidebar,#mainwindow{
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+#sidebarwrap{
+	padding-left:10%;
+	padding-right: 10%;
+    font-size: 1vw;
+}
+#sidebarwrap h1{
+    font-size: 2.1vw;
+}
+#sidebarwrap h2{
+    font-size: 1.9vw;
+}
+#sidebarwrap h3{
+    font-size: 1.4vw;
+}
+
+.handoverbutton{
+	width:80%;
+}
+#sidebar input{
+	background-color:#f0f2f4;
+	width:80%;
+}
+.headshot{
+	padding:5%;
+}
+.headshot img {
+  border-radius: 80%;
+  cursor:pointer;
+  -webkit-border-radius: 80%;
+  -moz-border-radius: 80%;
+  -o-border-radius: 80%;
+}
+#rightalign{
+	float:right;
+	margin-right:3vw;
+    border-bottom: 0px; /*overrides inheritance */
+}
+/*-- //My Code --*/
+.roundedbutton {
+    padding: 10px 0;
+    width: 36%;
+    font-size: 1em;
+    border: none;
+    color: #fff;
+    background:#000;
+    outline: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+	-webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.agileits_signin_form input[type="submit"]:hover {
+    background:#4cd4b0;
+}
+/*-- Accordion --*/
+.ac-container div {
+	border-bottom: 2px ridge #272b2d;
+}
+.ac-container label {
+	padding: .7em 2em;
+	position: relative;
+	z-index: 20;
+	display: block;
+	cursor: pointer;
+	color:#555555;
+	letter-spacing: 1px;
+	line-height: 33px;
+	font-size: 1em;
+	background: #ffffff;
+}
+.ac-container label:hover {
+	background:#f0f2f4;
+	color: #000;
+}
+.ac-container input:checked + label, .ac-container input:checked + label:hover {
+	color: #000;
+	text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 2px 2px rgba(0,0,0,0.1);
+	background: #f0f2f4;
+}
+.ac-container label:after, .ac-container input:checked + label:hover:after {
+	content: '';
+	position: absolute;
+	right: 25px;
+	top: 22px;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-top: 6px dashed;
+	border-right: 6px solid transparent;
+	border-left: 6px solid transparent;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+.ac-container input:checked + label:after {
+	content: '';
+	position: absolute;
+	right: 25px;
+	top: 22px;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-top: 6px dashed;
+	border-right: 6px solid transparent;
+	border-left: 6px solid transparent;
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+}
+.ac-container input {
+	display: none;
+}
+.ac-container article {
+	background: #fff;
+	margin-top: -1px;
+	overflow: hidden;
+	height: 0px;
+	position: relative;
+	z-index: 10;
+	-webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+	-moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+	-o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+	-ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+	transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+}
+.ac-container article p {
+	line-height: 23px;
+	font-size: 14px;
+	padding: 15px 20px;
+	color: #999;
+	background-color: #fff;
+}
+.ac-container input:checked ~ article {
+	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+}
+.ac-container input:checked ~ article.ac-small {
+	height: 220px;
+}
+
+.ac-container input:checked ~ article.ac-medium {
+	height: 180px;
+}
+.ac-container input:checked ~ article.ac-large {
+	height: 230px;
+}
+.login-form p {
+	font-size: 0.9em;
+	text-align: center;
+	line-height: 1.9em;
+	color: #fff;
+	margin-top: 1em;
+}
+.ac-small ul {
+	padding: 0;
+	border-bottom: 2px solid #bc202b;
+}
+.ac-small ul li {
+	list-style-type: none;
+	font-size: 14px;
+	color: #999;
+	text-decoration: none;
+	text-transform: capitalize;
+	display: block;
+	padding: 0.9em 0 0.9em 2em;
+	background: #ffffff;
+}
+
+.ac-small ul li a:hover {
+	background: #93f3d9;
+	color: #fff;
+}
+.w3l-accordion-mk {
+    padding-right: 0;
+}
+/*-- //Accordion --*/
