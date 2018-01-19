@@ -1,7 +1,11 @@
-package com.quantech.business.data;
+package com.quantech.doctor;
+
+import com.quantech.team.Team;
+import com.quantech.misc.Title;
+import com.quantech.patient.Patient;
+import com.quantech.handover.Handover;
 
 import javax.persistence.*;
-import javax.print.Doc;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;

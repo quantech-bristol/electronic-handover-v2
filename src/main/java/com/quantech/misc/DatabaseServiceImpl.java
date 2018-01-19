@@ -1,5 +1,10 @@
-package com.quantech.business.data;
+package com.quantech.misc;
 
+import com.quantech.team.Team;
+import com.quantech.doctor.Doctor;
+import com.quantech.doctor.DoctorRepository;
+import com.quantech.patient.Patient;
+import com.quantech.patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

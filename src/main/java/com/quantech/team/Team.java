@@ -1,4 +1,6 @@
-package com.quantech.business.data;
+package com.quantech.team;
+
+import com.quantech.doctor.Doctor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

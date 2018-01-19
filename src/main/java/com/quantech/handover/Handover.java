@@ -1,4 +1,7 @@
-package com.quantech.business.data;
+package com.quantech.handover;
+
+import com.quantech.doctor.Doctor;
+import com.quantech.patient.Patient;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

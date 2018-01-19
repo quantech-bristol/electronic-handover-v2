@@ -1,7 +1,6 @@
-package com.quantech.controller;
+package com.quantech.handover;
 
-import com.quantech.business.data.DatabaseService;
-import com.quantech.business.data.Handover;
+import com.quantech.misc.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

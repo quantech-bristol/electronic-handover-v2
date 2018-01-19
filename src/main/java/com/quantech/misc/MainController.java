@@ -1,7 +1,7 @@
-package com.quantech.controller;
+package com.quantech.misc;
 
-import com.quantech.business.data.DatabaseService;
-import com.quantech.business.data.Doctor;
+import com.quantech.misc.DatabaseService;
+import com.quantech.doctor.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ public class MainController {
     @Autowired
     private DatabaseService dbs;
 
-    // TODO: I'm using this controller as a placeholder for a lot of these mappings - separate out later.
+    // TODO: I'm using this admin as a placeholder for a lot of these mappings - separate out later.
     // TODO: Decide what URLS + mappings we need.
     // TODO: Login.
 

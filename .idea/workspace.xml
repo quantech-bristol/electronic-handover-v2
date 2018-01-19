@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="20ac1a7c-7580-4f77-91dd-a6998b57f81d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
@@ -49,6 +50,62 @@
       <change beforePath="$PROJECT_DIR$/target/classes/templates/uploadedImage.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+=======
+    <list default="true" id="ca9beac6-902e-4c86-9956-43978ba7c98b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/DatabaseService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/DatabaseServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Doctor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/DoctorRepository.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Handover.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Patient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/PatientRepository.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Team.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Title.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/business/data/Ward.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/controller/HandoverController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/quantech/controller/PatientsController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/2a20151c6e340648a99d24f0f3cd7cfb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/300px-Bouguereau_first_kiss.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/3236099333_d20d308ec8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/P7 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/2a20151c6e340648a99d24f0f3cd7cfb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/300px-Bouguereau_first_kiss.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/3236099333_d20d308ec8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/M3i6EinH.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/P7 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/P7 (2).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/P7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/Untitled-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/cat 3 eyes ooooooooo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/cat 3 eyes ooooooooo.jpg.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/hamsa.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/tumblr_oicyrubn501rx1zuco1_1280.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/tumblr_ozuhdwFg591wibb4no1_540.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/public/images/uploaded.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/2a20151c6e340648a99d24f0f3cd7cfb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/300px-Bouguereau_first_kiss.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/3236099333_d20d308ec8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/allPalettes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/upload.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/uploadError.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/templates/uploadedImage.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DatabaseService.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/misc/DatabaseService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DatabaseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/misc/DatabaseServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Doctor.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/doctor/Doctor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DoctorRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/doctor/DoctorRepository.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Handover.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/handover/Handover.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Patient.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/patient/Patient.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/PatientRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientRepository.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Team.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/team/Team.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Title.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/misc/Title.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Ward.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/ward/Ward.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/controller/HandoverController.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/handover/HandoverController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/misc/MainController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/quantech/controller/PatientsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/quantech/controller/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/quantech/controller/MainController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,6 +162,7 @@
     <favorites_list name="electronic-handover" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf>
       <file leaf-file-name="addDoctor.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addDoctor.html">
@@ -132,10 +190,22 @@
             <state relative-caret-position="1515">
               <caret line="135" column="5" lean-forward="true" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
               <folding />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/misc/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="HandoverController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/HandoverController.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -152,22 +222,88 @@
             <state relative-caret-position="299">
               <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
               <folding />
+=======
+      <file leaf-file-name="PatientsController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="PatientsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/PatientsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding />
+=======
+      <file leaf-file-name="PatientRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>uploadStatus</find>
+      <find>data</find>
+      <find>upload</find>
+      <find>4</find>
+      <find>filter</find>
+      <find>/upload</find>
+      <find>/star</find>
+      <find>star</find>
+      <find>Lato</find>
+      <find>writefile</find>
+      <find>isInteger</find>
+      <find>br</find>
+      <find>go</find>
+      <find>radius</find>
+      <find>margin</find>
+      <find>palette</find>
+      <find>dbs</find>
+      <find>firstNames</find>
+      <find>ward</find>
+      <find>calendar</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\resources\public\images</dir>
+      <dir>$PROJECT_DIR$/src/main/java/com/quantech</dir>
+    </dirStrings>
+  </component>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -179,9 +315,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/resources/templates/addDoctor.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Patient.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/addPatient.html" />
+=======
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/controller/practice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/controller/Solution.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/ImageUploadService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/ImageUploadServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/AllPalettesServiceInpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/AllPalettesService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/AllPalettesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/SortComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/upload.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/controller/UploadController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/allPalettes.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/css/main.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/PaletteImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nuha/service/test.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/SpringBootWebApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/allPatientsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/createHandoverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Title.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DoctorRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/AllPatientsController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addDoctor.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/patientView.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/viewPatients.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/createhandover.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addPatient.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DatabaseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/DatabaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/CreateHandoverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Team.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Handover.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Doctor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Patient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/PatientRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/business/data/Ward.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/PatientsController.java" />
+        <option value="$PROJECT_DIR$/.idea/.name" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/controller/HandoverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/handover/HandoverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/handover/Handover.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/Patient/PatientRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/Patient/PatientsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/doctor/DoctorRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/ward/Ward.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/misc/Title.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/misc/DatabaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quantech/misc/MainController.java" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
       </list>
     </option>
   </component>
@@ -191,9 +381,29 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
+=======
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="797" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -211,23 +421,39 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+=======
+      <pane id="Scope" />
+      <pane id="Scratches" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
               <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+=======
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
               <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
+=======
               <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
@@ -254,6 +480,59 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="quantech" type="462c0819:PsiDirectoryNode" />
+              <item name="doctor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quantech" type="462c0819:PsiDirectoryNode" />
+              <item name="handover" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quantech" type="462c0819:PsiDirectoryNode" />
+              <item name="misc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+              <item name="quantech" type="462c0819:PsiDirectoryNode" />
+              <item name="patient" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quantech" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
+            </path>
+            <path>
+              <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electronic-handover" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quantech" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -264,6 +543,9 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="quantech" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="ward" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
             </path>
             <path>
               <item name="electronic-handover" type="b2602c69:ProjectViewProjectNode" />
@@ -284,19 +566,44 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
+<<<<<<< HEAD
+=======
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="JAVA" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/resources/public/css" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RequestMappingsPanelOrder2" value="2" />
+<<<<<<< HEAD
+=======
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Documents\CS Y2\practicing_spring\color-palette-generator\src\main\resources\public" />
+      <recent name="C:\Users\pc\Documents\CS Y2\practicing_spring\color-palette-generator\src\main\resources\public\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\resources\public\css" />
+      <recent name="C:\Users\pc\Documents\CS Y2\practicing_spring\color-palette-generator\src\main\resources\templates\fragments" />
+      <recent name="C:\Users\pc\Documents\CS Y2\practicing_spring\color-palette-generator\src\main\resources" />
+    </key>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -411,12 +718,38 @@
       <created>1516383070356</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1516383070356</updated>
       <workItem from="1516383073852" duration="2338000" />
+=======
+      <updated>1514153304703</updated>
+      <workItem from="1514153308054" duration="1027000" />
+      <workItem from="1514282873477" duration="2022000" />
+      <workItem from="1514285154319" duration="16550000" />
+      <workItem from="1514485428655" duration="14836000" />
+      <workItem from="1514627449456" duration="10619000" />
+      <workItem from="1514750484377" duration="11828000" />
+      <workItem from="1514896917850" duration="18770000" />
+      <workItem from="1514928617341" duration="2401000" />
+      <workItem from="1515076867844" duration="7815000" />
+      <workItem from="1515085133563" duration="8719000" />
+      <workItem from="1515103747335" duration="4563000" />
+      <workItem from="1515150118013" duration="22440000" />
+      <workItem from="1515188700954" duration="1470000" />
+      <workItem from="1515359633118" duration="4788000" />
+      <workItem from="1515407643930" duration="6701000" />
+      <workItem from="1515684247251" duration="6796000" />
+      <workItem from="1516282568221" duration="3509000" />
+      <workItem from="1516308792537" duration="3664000" />
+      <workItem from="1516315838190" duration="108000" />
+      <workItem from="1516315999212" duration="20666000" />
+      <workItem from="1516378277289" duration="6103000" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="2338000" />
   </component>
   <component name="ToolWindowManager">
@@ -448,6 +781,47 @@
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5053333" order="-1" side_tool="true" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="175395000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="797" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.01368301" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19586207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44965518" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22986111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827586" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -500,22 +874,87 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="das://role:/6efecb92/40506695-27e0-453d-a219-47350e9973b7/quantech">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d437ed16-5434-43de-bef8-922cf229b86b/console.sql" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nuha/controller/PaletteImage.java" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nuha/controller/Solution.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/ImageUploadServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/AllPalettesService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/AllPalettesServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/SortComparator.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/allPalettes.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/upload.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/uploadedImage.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/PaletteImage.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/business/data/PaletteRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/business/data/Palette.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/ImageUploadService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/service/test.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/AdditionalResourceWebConfiguration.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/AllPalettesController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/GlobalExceptionHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/UploadController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/css/main.css" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/createhandover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="23" column="112" lean-forward="false" selection-start-line="23" selection-start-column="112" selection-end-line="23" selection-end-column="112" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/quantech.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/viewPatients.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="20" column="61" lean-forward="true" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="das://role:/6efecb92/40506695-27e0-453d-a219-47350e9973b7/pg_signal_backend">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patientView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/electronic-handover.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -528,6 +967,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+=======
+    <entry file="file://$PROJECT_DIR$/.idea/.name">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-131">
+          <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
@@ -542,14 +1005,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/business/data/DoctorRepository.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="60">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+=======
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/SpringBootWebApplication.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="60">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
@@ -582,6 +1051,21 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+=======
+        <state relative-caret-position="285">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/SpringBootWebApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
         </state>
       </provider>
     </entry>
@@ -592,6 +1076,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/business/data/Doctor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
@@ -612,34 +1097,94 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+=======
+    <entry file="file://$PROJECT_DIR$/electronic-handover.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="66" lean-forward="true" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/controller/HandoverController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/business/data/Patient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1515">
           <caret line="135" column="5" lean-forward="true" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/handover/HandoverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addDoctor.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/handover/Handover.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/patient/Patient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/team/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/doctor/Doctor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addPatient.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -648,6 +1193,94 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/ward/Ward.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/misc/Title.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/misc/DatabaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/misc/DatabaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/doctor/DoctorRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addPatient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="99" column="46" lean-forward="false" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/misc/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quantech/patient/PatientsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 3f49447b8595d20d26502ce27b72413c9c2d799f
   </component>
   <component name="masterDetails">
     <states>

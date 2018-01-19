@@ -1,5 +1,8 @@
-package com.quantech.business.data;
+package com.quantech.misc;
 
+import com.quantech.team.Team;
+import com.quantech.doctor.Doctor;
+import com.quantech.patient.Patient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,14 +81,14 @@ public interface DatabaseService {
     /**
      *
      * @param id ID of patient in database.
-     * @return Patient corresponding to ID if found, null otherwise.
+     * @return patient corresponding to ID if found, null otherwise.
      */
     public Patient getPatientById(Long id);
 
     /**
      *
      * @param id The hospital number of patient in database.
-     * @return Patient corresponding to number if found, null otherwise.
+     * @return patient corresponding to number if found, null otherwise.
      */
     public Patient getPatientByHospitalNumber(Long id);
 }

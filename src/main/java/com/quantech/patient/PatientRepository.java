@@ -1,5 +1,6 @@
-package com.quantech.business.data;
+package com.quantech.patient;
 
+import com.quantech.ward.Ward;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
