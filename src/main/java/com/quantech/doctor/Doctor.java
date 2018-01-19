@@ -52,14 +52,14 @@ public class Doctor {
 
     @OneToMany(mappedBy = "recipientDoctor")
     @NotNull
-    private List<Handover> recievedHandovers;
+    private List<Handover> receivedHandovers;
 
     public Doctor() {
         this.teams = new ArrayList<>();
         this.patients = new ArrayList<>();
         this.lastRenewed = java.util.Calendar.getInstance();
         this.sentHandovers = new ArrayList<>();
-        this.recievedHandovers = new ArrayList<>();
+        this.receivedHandovers = new ArrayList<>();
     }
 
     public void addPatient(Patient patient) {
@@ -128,5 +128,21 @@ public class Doctor {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+    }
+
+    public List<Handover> getSentHandovers() {
+        return sentHandovers;
+    }
+
+    public void setSentHandovers(List<Handover> sentHandovers) {
+        this.sentHandovers = sentHandovers;
+    }
+
+    public List<Handover> getReceivedHandovers() {
+        return receivedHandovers;
+    }
+
+    public void setReceivedHandovers(List<Handover> receivedHandovers) {
+        this.receivedHandovers = receivedHandovers;
     }
 }
