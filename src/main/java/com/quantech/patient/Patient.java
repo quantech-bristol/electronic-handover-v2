@@ -139,6 +139,14 @@ public class Patient {
         this.hospitalNumber = hospitalNumber;
     }
 
+    public Ward getWard() {
+        return ward;
+    }
+
+    public void setWard(Ward ward) {
+        this.ward = ward;
+    }
+
     public String getBed() {
         return bed;
     }
