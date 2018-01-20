@@ -34,9 +34,12 @@ public class Ward {
 
 
     public Ward() {
-        this.name = "Undefined";
+        this.capacity = 0;
+        this.department = "Undefined";
         this.patients = new ArrayList<>();
     }
+
+    public Long getId() { return id;}
 
     public String getName() {
         return name;

@@ -2,6 +2,7 @@ package com.quantech.misc;
 
 import com.quantech.misc.DatabaseService;
 import com.quantech.doctor.Doctor;
+import com.quantech.ward.Ward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,20 @@ public class MainController {
     @PostMapping("/doctor")
     public String submitDoctor(@ModelAttribute Doctor doctor) {
         dbs.saveDoctor(doctor);
+        return "quantech";
+    }
+
+    // Add new ward.
+    @GetMapping("/addWard")
+    public String addWard(Model model) {
+        model.addAttribute("ward", new Ward());
+        return "addWard";
+    }
+
+    // Submit the new ward.
+    @PostMapping("/ward")
+    public String submitWard(@ModelAttribute Ward ward) {
+        dbs.saveWard(ward);
         return "quantech";
     }
 

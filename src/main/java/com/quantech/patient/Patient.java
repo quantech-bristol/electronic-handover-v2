@@ -143,9 +143,7 @@ public class Patient {
         return ward;
     }
 
-    public void setWard(Ward ward) {
-        this.ward = ward;
-    }
+    public void setWard(Ward ward) { this.ward = ward; }
 
     public String getBed() {
         return bed;

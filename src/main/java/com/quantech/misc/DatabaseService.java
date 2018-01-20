@@ -3,6 +3,7 @@ package com.quantech.misc;
 import com.quantech.team.Team;
 import com.quantech.doctor.Doctor;
 import com.quantech.patient.Patient;
+import com.quantech.ward.Ward;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,4 +92,18 @@ public interface DatabaseService {
      * @return patient corresponding to number if found, null otherwise.
      */
     public Patient getPatientByHospitalNumber(Long id);
+
+    /**
+     * Saves the ward object into the database, making sure that all of it's fields are valid and do not conflict with
+     * existing ward objects saved.
+     * @param ward The ward object to be saved.
+     * @return true if the ward was successfully saved, false otherwise.
+     * @throws Exception If there are any problems.
+     */
+    public boolean saveWard(Ward ward);
+
+    /**
+     * @return a list of all wards stored in the database.
+     */
+    public List<Ward> allWards();
 }

@@ -22,6 +22,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     public String addPatient(Model model) {
         model.addAttribute("doctors",dbs.allDoctors());
         model.addAttribute("patient", new Patient());
+        model.addAttribute("wards", dbs.allWards());
         return "addPatient";
     }
 

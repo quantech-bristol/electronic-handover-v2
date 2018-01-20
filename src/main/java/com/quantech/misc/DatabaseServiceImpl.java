@@ -5,6 +5,8 @@ import com.quantech.doctor.Doctor;
 import com.quantech.doctor.DoctorRepository;
 import com.quantech.patient.Patient;
 import com.quantech.patient.PatientRepository;
+import com.quantech.ward.Ward;
+import com.quantech.ward.WardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private WardRepository wardRepository;
 
     @Override
     public boolean saveDoctor(Doctor doctor) {
@@ -83,4 +88,19 @@ public class DatabaseServiceImpl implements DatabaseService {
     public Patient getPatientByHospitalNumber(Long id) {
         return patientRepository.findByHospitalNumber(id);
     }
+
+    @Override
+    public boolean saveWard(Ward ward) {
+        wardRepository.save(ward);
+        return true;
+    }
+
+    @Override
+    public List<Ward> allWards() {
+        List<Ward> list = new ArrayList<>();
+        for (Ward w : wardRepository.findAll())
+            list.add(w);
+        return list;
+    }
+
 }
