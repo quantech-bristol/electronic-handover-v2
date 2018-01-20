@@ -1,6 +1,6 @@
-package com.quantech.doctor;
+package com.quantech.entities.doctor;
 
-import com.quantech.team.Team;
+import com.quantech.entities.team.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

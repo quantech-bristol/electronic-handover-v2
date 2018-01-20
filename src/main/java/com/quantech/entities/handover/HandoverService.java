@@ -1,14 +1,12 @@
-package com.quantech.handover;
+package com.quantech.entities.handover;
 
-import com.quantech.doctor.Doctor;
-import com.quantech.doctor.DoctorRepository;
-import com.quantech.patient.Patient;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class HandoverService {

@@ -1,6 +1,7 @@
-package com.quantech.patient;
+package com.quantech.controller;
 
-import com.quantech.misc.DatabaseService;
+import com.quantech.facade.FacadeService;
+import com.quantech.entities.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // TODO: Decide what URLS + mappings we need.
 
     @Autowired
-    private DatabaseService dbs;
+    private FacadeService dbs;
 
     // Go to page to add patient.
     @GetMapping("/addPatient")

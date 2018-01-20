@@ -1,6 +1,6 @@
-package com.quantech.team;
+package com.quantech.entities.team;
 
-import com.quantech.doctor.Doctor;
+import com.quantech.entities.doctor.Doctor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

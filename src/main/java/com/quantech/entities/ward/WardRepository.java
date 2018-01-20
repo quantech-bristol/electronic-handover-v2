@@ -1,4 +1,4 @@
-package com.quantech.ward;
+package com.quantech.entities.ward;
 
 import org.springframework.data.repository.CrudRepository;
 

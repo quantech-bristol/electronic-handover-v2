@@ -1,4 +1,4 @@
-package com.quantech.team;
+package com.quantech.entities.team;
 
 import org.springframework.data.repository.CrudRepository;
 

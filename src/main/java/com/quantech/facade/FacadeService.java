@@ -1,9 +1,9 @@
-package com.quantech.misc;
+package com.quantech.facade;
 
-import com.quantech.team.Team;
-import com.quantech.doctor.Doctor;
-import com.quantech.patient.Patient;
-import com.quantech.ward.Ward;
+import com.quantech.entities.team.Team;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.patient.Patient;
+import com.quantech.entities.ward.Ward;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * Contains all methods that may be needed in accessing the database.
  */
 @Service
-public interface DatabaseService {
+public interface FacadeService {
     // TODO: Decide what methods we need to use and what conditions/exceptions need to hold for each one.
 
     /**

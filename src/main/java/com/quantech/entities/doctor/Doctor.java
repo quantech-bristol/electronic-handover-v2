@@ -1,9 +1,9 @@
-package com.quantech.doctor;
+package com.quantech.entities.doctor;
 
-import com.quantech.team.Team;
+import com.quantech.entities.team.Team;
 import com.quantech.misc.Title;
-import com.quantech.patient.Patient;
-import com.quantech.handover.Handover;
+import com.quantech.entities.patient.Patient;
+import com.quantech.entities.handover.Handover;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -52,6 +52,7 @@ public class Doctor {
 
     @OneToMany(mappedBy = "recipientDoctor")
     @NotNull
+
     private List<Handover> receivedHandovers;
 
     public Doctor() {
@@ -60,6 +61,18 @@ public class Doctor {
         this.lastRenewed = java.util.Calendar.getInstance();
         this.sentHandovers = new ArrayList<>();
         this.receivedHandovers = new ArrayList<>();
+    }
+
+    public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams, List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers, List<Handover> receivedHandovers) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.teams = teams;
+        this.patients = patients;
+        this.lastRenewed = lastRenewed;
+        this.sentHandovers = sentHandovers;
+        this.receivedHandovers = receivedHandovers;
     }
 
     public void addPatient(Patient patient) {

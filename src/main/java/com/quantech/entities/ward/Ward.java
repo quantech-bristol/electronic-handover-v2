@@ -1,6 +1,6 @@
-package com.quantech.ward;
+package com.quantech.entities.ward;
 
-import com.quantech.patient.Patient;
+import com.quantech.entities.patient.Patient;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,11 +32,17 @@ public class Ward {
     @OneToMany(mappedBy = "ward")
     private List<Patient> patients;
 
-
     public Ward() {
         this.capacity = 0;
         this.department = "Undefined";
         this.patients = new ArrayList<>();
+    }
+
+    public Ward(String name, Integer capacity, String department, List<Patient> patients) {
+        this.name = name;
+        this.capacity = capacity;
+        this.department = department;
+        this.patients = patients;
     }
 
     public Long getId() { return id;}

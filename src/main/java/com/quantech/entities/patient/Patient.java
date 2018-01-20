@@ -1,8 +1,8 @@
-package com.quantech.patient;
+package com.quantech.entities.patient;
 
-import com.quantech.doctor.Doctor;
+import com.quantech.entities.doctor.Doctor;
 import com.quantech.misc.Title;
-import com.quantech.ward.Ward;
+import com.quantech.entities.ward.Ward;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

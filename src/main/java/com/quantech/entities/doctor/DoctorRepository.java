@@ -1,4 +1,4 @@
-package com.quantech.doctor;
+package com.quantech.entities.doctor;
 
 import org.springframework.data.repository.CrudRepository;
 

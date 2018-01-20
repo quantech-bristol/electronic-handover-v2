@@ -1,8 +1,8 @@
-package com.quantech.misc;
+package com.quantech.controller;
 
-import com.quantech.misc.DatabaseService;
-import com.quantech.doctor.Doctor;
-import com.quantech.ward.Ward;
+import com.quantech.facade.FacadeService;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.ward.Ward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
     @Autowired
-    private DatabaseService dbs;
+    private FacadeService dbs;
 
     // TODO: I'm using this admin as a placeholder for a lot of these mappings - separate out later.
     // TODO: Decide what URLS + mappings we need.

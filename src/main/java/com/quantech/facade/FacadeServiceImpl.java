@@ -1,12 +1,12 @@
-package com.quantech.misc;
+package com.quantech.facade;
 
-import com.quantech.team.Team;
-import com.quantech.doctor.Doctor;
-import com.quantech.doctor.DoctorRepository;
-import com.quantech.patient.Patient;
-import com.quantech.patient.PatientRepository;
-import com.quantech.ward.Ward;
-import com.quantech.ward.WardRepository;
+import com.quantech.entities.team.Team;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.doctor.DoctorRepository;
+import com.quantech.entities.patient.Patient;
+import com.quantech.entities.patient.PatientRepository;
+import com.quantech.entities.ward.Ward;
+import com.quantech.entities.ward.WardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("dbs")
-public class DatabaseServiceImpl implements DatabaseService {
+public class FacadeServiceImpl implements FacadeService {
     @Autowired
     private DoctorRepository doctorRepository;
 

@@ -1,6 +1,7 @@
-package com.quantech.handover;
+package com.quantech.controller;
 
-import com.quantech.misc.DatabaseService;
+import com.quantech.facade.FacadeService;
+import com.quantech.entities.handover.Handover;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ public class HandoverController extends WebMvcConfigurerAdapter{
     // TODO: Decide what URLS + mappings we need.
 
     @Autowired
-    private DatabaseService dbs;
+    private FacadeService dbs;
 
     // Go to view to create new handover.
     @GetMapping("/createHandover")
