@@ -47,7 +47,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @GetMapping("/patient/hospitalNumber={id}")
     public String viewAllPatients(@PathVariable Long id, Model model) {
         model.addAttribute("patient", dbs.getPatientByHospitalNumber(id));
-        return "patientView";
+        return "viewPatient";
     }
 
     //Methods to edit patient's information/flag them.
