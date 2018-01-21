@@ -29,9 +29,10 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // Submit a new patient.
     @PostMapping("/patient")
-    public String submitPatient(@ModelAttribute Patient patient) {
+    public String submitPatient(@ModelAttribute Patient patient, Model model) {
         dbs.savePatient(patient);
-        return "patientView";
+        model.addAttribute("patients", dbs.allPatients());
+        return "viewPatients";
     }
 
     // View all patients in the system.
