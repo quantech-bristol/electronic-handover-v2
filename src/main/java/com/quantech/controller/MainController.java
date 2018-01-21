@@ -1,7 +1,6 @@
 package com.quantech.controller;
 
 import com.quantech.facade.FacadeService;
-import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.ward.Ward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,20 +20,6 @@ public class MainController {
 
     @GetMapping("/")
     public String viewHome() {
-        return "quantech";
-    }
-
-    // Add new ward.
-    @GetMapping("/addWard")
-    public String addWard(Model model) {
-        model.addAttribute("ward", new Ward());
-        return "addWard";
-    }
-
-    // Submit the new ward.
-    @PostMapping("/ward")
-    public String submitWard(@ModelAttribute Ward ward) {
-        dbs.saveWard(ward);
         return "quantech";
     }
 
