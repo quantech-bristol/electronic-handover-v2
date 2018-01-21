@@ -24,21 +24,6 @@ public class MainController {
         return "quantech";
     }
 
-    // Go to page to add a new doctor.
-    @GetMapping("/addDoctor")
-    public String addDoctor(Model model) {
-        model.addAttribute("doctor", new Doctor());
-        return "addDoctor";
-    }
-
-    // Submit the new doctor.
-    // TODO: Do not go to /doctor, instead redirect to the home page.
-    @PostMapping("/doctor")
-    public String submitDoctor(@ModelAttribute Doctor doctor) {
-        dbs.saveDoctor(doctor);
-        return "quantech";
-    }
-
     // Add new ward.
     @GetMapping("/addWard")
     public String addWard(Model model) {
@@ -52,16 +37,6 @@ public class MainController {
         dbs.saveWard(ward);
         return "quantech";
     }
-
-    // Search doctors.
-
-    // Sort doctors.
-
-    // Filter doctors.
-
-    // Remove doctor status (?) from a doctor.
-
-    // Methods to edit doctor information.
 
     // Create new team.
 
