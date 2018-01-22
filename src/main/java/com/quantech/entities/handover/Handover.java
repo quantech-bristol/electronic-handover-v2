@@ -36,6 +36,10 @@ public class Handover {
     @NotNull
     private Boolean accepted;
 
+    public Handover() {
+        this.accepted = false;
+    }
+
     public Long getId() {
         return id;
     }
@@ -67,7 +71,6 @@ public class Handover {
     public void setRecipientDoctor(Doctor recipientDoctor) {
         this.recipientDoctor = recipientDoctor;
     }
-
 
     public String getNote() {
         return note;

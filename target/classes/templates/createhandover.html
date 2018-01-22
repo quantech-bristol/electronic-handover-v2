@@ -23,14 +23,28 @@
                     <option value="default">Select a Patient</option>
                     <option th:each="patient: ${patients}" th:value="${patient.id}" th:text="${patient.firstName}+' '+${patient.lastName}"></option>
                 </select>
-
-
             </div><br/>
 
-            <!--<div class="form-group">-->
-                <!--<label for="patientDiagnosis">Diagnosis</label>-->
-                <!--<input type="text" th:field="*{diagnosis}" class="form-control" id="patientDiagnosis" placeholder="Enter Diagnosis"/>-->
-            <!--</div><br/>-->
+            <div class="form-group">
+                <label for="originDoctor">Step 2: Originating Doctor</label>
+                <select id="originDoctor" class="form-control" th:field="${handover.originDoctor}">
+                    <option value="default">Select a Doctor</option>
+                    <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
+                </select>
+            </div><br/>
+
+            <div class="form-group">
+                <label for="recipientDoctor">Step 2: Receiving Doctor</label>
+                <select id="recipientDoctor" class="form-control" th:field="${handover.originDoctor}">
+                    <option value="default">Select a Doctor</option>
+                    <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
+                </select>
+            </div><br/>
+
+            <div class="form-group">
+                <label for="patientNote">Notes</label>
+                <input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter Patient Notes"/>
+            </div><br/>
 
             <button type="submit" class="btn btn-primary">Submit</button>
 
