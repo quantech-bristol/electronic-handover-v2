@@ -36,9 +36,9 @@ body{
 #topbar{
 	background-color:#7698d4;
 	height:8vh;
-	width:100%;
 	font-size:2.4vw;
 	color:#FFF;
+    padding-left: 3vw;
 }
 #bodywrap{
 	padding:3vw;
