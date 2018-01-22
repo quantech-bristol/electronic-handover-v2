@@ -15,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Controller
 public class HandoverController extends WebMvcConfigurerAdapter {
-    // TODO: Decide what URLS + mappings we need.
 
     @Autowired
     private DoctorService doctorService;
