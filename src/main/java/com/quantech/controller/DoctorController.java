@@ -24,10 +24,15 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     }
 
     // Submit the new doctor.
-    // TODO: Do not go to /doctor, instead redirect to the home page.
     @PostMapping("/doctor")
     public String submitDoctor(@ModelAttribute Doctor doctor) {
         dbs.saveDoctor(doctor);
+        return "quantech";
+    }
+
+    // Send to homepage 
+    @GetMapping("/doctor")
+    public String doctor() {
         return "quantech";
     }
 
