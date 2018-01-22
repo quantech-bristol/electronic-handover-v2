@@ -66,6 +66,23 @@ public interface FacadeService {
     public List<Doctor> allDoctors();
 
     /**
+     * A list of all doctors only satisfying the given predicate.
+     * @param filter All of the doctors on this list need to satisfy this.
+     * @return A list of all doctors only satisfying the given predicate.
+     */
+    public List<Doctor> allDoctorsFilteredBy(Boolean filter);
+
+    /**
+     * @return A list of doctors sorted alphabetically by their first name.
+     */
+    public List<Doctor> allDoctorsSortedByFirstName();
+
+    /**
+     * @return A list of doctors sorted alphabetically by their last name.
+     */
+    public List<Doctor> allDoctorsSortedByListName();
+
+    /**
      * Saves the patient object into the database, making sure that all of it's fields are valid and do not conflict with
      * existing patient objects saved. Also updates the corresponding doctor in the database.
      * @param patient The patient object to be saved into the database.

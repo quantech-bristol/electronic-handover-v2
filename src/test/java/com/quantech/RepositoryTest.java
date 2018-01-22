@@ -61,7 +61,7 @@ public class RepositoryTest {
 
     @Test
     // Just checking that I know how to write tests properly - an example:
-    public void createDoctorTest() { 
+    public void createDoctorTest() {
         Doctor doctor = new Doctor();
         doctor.setFirstName("Neal");
         doctor.setLastName("the Doctor");

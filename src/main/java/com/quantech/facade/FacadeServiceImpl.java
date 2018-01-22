@@ -68,6 +68,24 @@ public class FacadeServiceImpl implements FacadeService {
     }
 
     @Override
+    public List<Doctor> allDoctorsFilteredBy(Boolean filter) {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public List<Doctor> allDoctorsSortedByFirstName() {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public List<Doctor> allDoctorsSortedByListName() {
+        // TODO
+        return null;
+    }
+
+    @Override
     public boolean savePatient(Patient patient) {
         patientRepository.save(patient);
         Doctor doctor = doctorRepository.findOne(patient.getDoctor().getId());
