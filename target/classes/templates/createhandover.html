@@ -3,12 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<head th:include="fragments/header2 :: head (title='Create Handover')">
+<head th:include="fragments/header :: head (title='Create Handover')">
 </head>
 
 
 <body>
-<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/header :: header">&nbsp;</div>
 <div th:replace="fragments/layout :: sidebar">&nbsp;</div>
 <div id="mainwindow" class="mainwindow">
     <div id="topbar">
@@ -51,7 +51,7 @@
         </form>
     </div>
 </div>
-<div th:replace="fragments/footer2 :: footer">...</div>
+<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>
 

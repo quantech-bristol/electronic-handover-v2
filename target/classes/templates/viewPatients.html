@@ -2,11 +2,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments/header2 :: head (title='Patient')">
+<head th:include="fragments/header :: head (title='Patient')">
 </head>
 
 <body>
-<div th:replace="fragments/header2 :: header">&nbsp;</div>
+<div th:replace="fragments/header :: header">&nbsp;</div>
 <div th:replace="fragments/layout :: sidebar">&nbsp;</div>
 <div id="mainwindow" class="mainwindow">
     <div id="topbar">
@@ -32,6 +32,6 @@
         <a class="btn btn-default" href="/addPatient">Add a new patient</a>
     </div>
 </div>
-<div th:replace="fragments/footer2 :: footer">...</div>
+<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>
