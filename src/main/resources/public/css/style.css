@@ -22,7 +22,8 @@ body{
 }
 #mainwindow{
 	background-color:#a5bae3;
-	height:100%;
+	min-height:84vh;
+	height: 100%;
 }
 .mainwindow{ /* These classes are to control menu opening in and out for the main window*/
 	float:right;
