@@ -32,7 +32,7 @@
                             <li>Date of Birth: <span th:text="${patient.birthDate}"/></li>
                             <li>NHS Number: <span th:text="${patient.nHSNumber}"/></li>
                             <li>Hospital Number: <span th:text="${patient.hospitalNumber}"/></li>
-                            <li>Ward: <span th:text="${patient.ward.name}"/></li>
+                            <li><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></li>
                         </ul>
                     </div>
                 </article>
