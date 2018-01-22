@@ -58,7 +58,7 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
-    /*
+    /**
 
     RE: maintaining a list of patients
         - should we just look at the Teams the Doctor is in, and then call team.getPatients(), rather than
