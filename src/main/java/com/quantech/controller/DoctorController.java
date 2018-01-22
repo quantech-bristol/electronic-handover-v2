@@ -2,7 +2,7 @@ package com.quantech.controller;
 
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
-import com.quantech.facade.FacadeService;
+//import com.quantech.facade.FacadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
