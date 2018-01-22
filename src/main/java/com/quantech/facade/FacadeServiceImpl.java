@@ -132,4 +132,12 @@ public class FacadeServiceImpl implements FacadeService {
         return true;
     }
 
+    @Override
+    public List<Handover> allHandovers() {
+        List<Handover> list = new ArrayList<>();
+        for (Handover h : handoverRepository.findAll())
+            list.add(h);
+        return list;
+    }
+
 }

@@ -30,6 +30,7 @@ public class Patient {
     @NotNull
     private String lastName;
 
+    // TODO: sort date format as it's currently going in wrong
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date birthDate;
@@ -50,6 +51,7 @@ public class Patient {
     @NotNull
     private String bed;
 
+    // TODO: sort date format as it's currently inputting wrong
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date dateOfAdmission;

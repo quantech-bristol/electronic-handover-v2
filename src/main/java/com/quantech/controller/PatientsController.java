@@ -56,7 +56,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         return "viewPatient";
     }
 
-    //Methods to edit patient's information/flag them.
+    // Methods to edit patient's information/flag them.
 
     // Filter list of patients.
 

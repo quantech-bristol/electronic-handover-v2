@@ -29,9 +29,17 @@ public class HandoverController extends WebMvcConfigurerAdapter {
 
     // Submit the new handover
     @PostMapping("/handover")
-    public String submitHandover(@ModelAttribute Handover handover) {
+    public String submitHandover(@ModelAttribute Handover handover, Model model) {
         dbs.saveHandover(handover);
-        return "quantech";
+        model.addAttribute("handovers", dbs.allHandovers());
+        return "viewHandovers";
+    }
+
+    // View all handovers, uses the viewPatients template
+    @GetMapping("/viewHandovers")
+    public String viewHandovers(Model model) {
+        model.addAttribute("handovers", dbs.allHandovers());
+        return "viewHandovers";
     }
 
     // View all sent handovers.

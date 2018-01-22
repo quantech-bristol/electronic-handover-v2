@@ -132,4 +132,9 @@ public interface FacadeService {
      */
     public boolean saveHandover(Handover handover);
 
+    /**
+     * @return list of all handovers stored in the database
+     */
+    public List<Handover> allHandovers();
+
 }
