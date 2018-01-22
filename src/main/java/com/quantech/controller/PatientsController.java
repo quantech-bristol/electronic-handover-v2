@@ -35,6 +35,12 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         return "viewPatients";
     }
 
+    // Send to homepage
+    @GetMapping("/patient")
+    public String patient() {
+        return "viewPatients";
+    }
+
     // View all patients in the system.
     @GetMapping("/patient/all")
     public String viewPatient(Model model) {
