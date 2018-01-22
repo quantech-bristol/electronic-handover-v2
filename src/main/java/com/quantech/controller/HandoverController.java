@@ -19,8 +19,9 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @GetMapping("/createHandover")
     public String createHandover(Model model) {
         //TODO: Need to refine this to only the doctors patients, not all patients.
-        model.addAttribute("patients",dbs.allPatients());
+        model.addAttribute("patients", dbs.allPatients());
         model.addAttribute("handover", new Handover());
+        model.addAttribute("doctors", dbs.allPatients());
         return "createHandover";
     }
 
