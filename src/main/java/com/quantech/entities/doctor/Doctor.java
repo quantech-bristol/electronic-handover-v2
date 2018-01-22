@@ -62,7 +62,9 @@ public class Doctor {
         this.receivedHandovers = new ArrayList<>();
     }
 
-    public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams, List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers, List<Handover> receivedHandovers) {
+    public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams,
+                  List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers,
+                  List<Handover> receivedHandovers) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;

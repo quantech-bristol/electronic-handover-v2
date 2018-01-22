@@ -42,7 +42,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         return "viewHandovers";
     }
 
-    // View all sent handovers.
+    // View all handovers given NHS, hospital, name etc ...
 
     // Cancel sent handover.
 
