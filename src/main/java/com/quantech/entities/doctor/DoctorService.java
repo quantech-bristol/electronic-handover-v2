@@ -1,5 +1,6 @@
 package com.quantech.entities.doctor;
 
+import com.quantech.entities.patient.Patient;
 import com.quantech.entities.team.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,11 @@ public class DoctorService {
         List<Team> teams = doctor.getTeams();
         teams.remove(team);
         doctor.setTeams(teams);
+        doctorRepository.save(doctor);
+    }
+
+    public void addPatient(Patient patient, Doctor doctor) {
+        doctor.addPatient(patient);
         doctorRepository.save(doctor);
     }
 

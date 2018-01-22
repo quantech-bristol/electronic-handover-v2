@@ -39,6 +39,10 @@ public class PatientService {
         return patients;
     }
 
+    public Patient getPatientByHospitalNumber(Long id) {
+        return patientRepository.findByHospitalNumber(id);
+    }
+
     public void savePatient(Patient patient) {
         patientRepository.save(patient);
     }
