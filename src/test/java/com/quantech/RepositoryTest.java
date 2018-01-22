@@ -8,6 +8,7 @@ import com.quantech.entities.handover.HandoverRepository;
 import com.quantech.entities.patient.PatientRepository;
 import com.quantech.entities.team.TeamRepository;
 import com.quantech.entities.ward.WardRepository;
+import com.quantech.misc.Title;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,17 +65,15 @@ public class RepositoryTest {
         Doctor doctor = new Doctor();
         doctor.setFirstName("Neal");
         doctor.setLastName("the Doctor");
+        doctor.setTitle(Title.Dr);
         doctor.setEmail("doctoremail@email.com");
 
+        doctorRepository.save(doctor);
 
-        Grotto grotto = new Grotto();
-        grotto.setName("Test Grotto");
-        grotto.setAddress("Finland");
-        grottoRepository.save(grotto);
+        Doctor doctor2 = doctorRepository.findByFirstNameAndLastName("Neal","the Doctor").get(0);
 
-        Grotto g2 = grottoRepository.findOne(1L);
-        Assert.assertTrue(grotto.getName().equals(g2.getName()));
-
+        Assert.assertTrue(doctor2.getEmail().equals(doctor.getEmail()));
+        Assert.assertTrue(doctor2.getTitle().equals(doctor.getTitle()));
     }
 
 }

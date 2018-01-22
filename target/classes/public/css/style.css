@@ -22,7 +22,8 @@ body{
 }
 #mainwindow{
 	background-color:#a5bae3;
-	height:100%;
+	min-height:84vh;
+	height: 100%;
 }
 .mainwindow{ /* These classes are to control menu opening in and out for the main window*/
 	float:right;
@@ -35,7 +36,6 @@ body{
 #topbar{
 	background-color:#7698d4;
 	height:8vh;
-	width:100%;
 	font-size:2.4vw;
 	color:#FFF;
     padding-left: 3vw;

@@ -1,5 +1,7 @@
 package com.quantech.facade;
 
+import com.quantech.entities.handover.Handover;
+import com.quantech.entities.handover.HandoverRepository;
 import com.quantech.entities.team.Team;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorRepository;
@@ -23,6 +25,9 @@ public class FacadeServiceImpl implements FacadeService {
 
     @Autowired
     private WardRepository wardRepository;
+
+    @Autowired
+    private HandoverRepository handoverRepository;
 
     @Override
     public boolean saveDoctor(Doctor doctor) {
@@ -101,6 +106,12 @@ public class FacadeServiceImpl implements FacadeService {
         for (Ward w : wardRepository.findAll())
             list.add(w);
         return list;
+    }
+
+    @Override
+    public boolean saveHandover(Handover handover) {
+        handoverRepository.save(handover);
+        return true;
     }
 
 }
