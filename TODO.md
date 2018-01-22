@@ -1,5 +1,6 @@
 # TODO LIST
 
+- Test existing methods by unit testing to make sure they work properly and have no dodgy side effects
 - Workout where to store completed handovers
 - Doctor input error handling for getters and setters
 - Finalise what attributes Doctor should have
