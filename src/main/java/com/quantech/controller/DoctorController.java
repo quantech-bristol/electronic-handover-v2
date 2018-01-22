@@ -30,7 +30,7 @@ public class DoctorController extends WebMvcConfigurerAdapter {
         return "quantech";
     }
 
-    // Send to homepage 
+    // Send to homepage
     @GetMapping("/doctor")
     public String doctor() {
         return "quantech";
