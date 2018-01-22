@@ -52,7 +52,6 @@ public class Doctor {
 
     @OneToMany(mappedBy = "recipientDoctor")
     @NotNull
-
     private List<Handover> receivedHandovers;
 
     public Doctor() {

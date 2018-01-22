@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <doctor id="1"
+            title="0"
+            first_name="Neal"
+            last_name="The Doctor"
+            email="doctor1@doctor.com"/>
+    <doctor id="2"
+            title="0"
+            first_name="Neal II"
+            last_name="The Doctor"
+            email="doctor2@doctor.com"/>
+    <ward id="6"
+          name="ward"
+          capacity="10"
+          department="department"/>
+    <patient id="3"
+             doctor_id="1"
+             title="0"
+             first_name="name"
+             last_name="name"
+             birth_date="2017-12-03"
+             nhsnumber="111111111111111111"
+             hospital_number="111111111111111111"
+             ward_id="6"
+             bed="bed"
+             date_of_admission="2017-12-03"
+             relevant_history="ill"
+             social_issues="none"
+             risks="none"
+             recommendations="medicine"
+             diagnosis="ill"/>
+    <handover id="5"
+              patient_id="3"
+              origin_doctor_id="1"
+              recipient_doctor_id="2"
+              note="ill"
+              accepted="false"/>
+
+    <team id = "7"
+          department="department"/>
+</dataset>
