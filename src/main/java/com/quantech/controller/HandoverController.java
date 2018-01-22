@@ -54,9 +54,15 @@ public class HandoverController extends WebMvcConfigurerAdapter {
 
     // View all incoming handovers.
 
+    // Sort incoming handovers.
+
+    // Filter incoming handovers.
+
     // Accept incoming handover.
 
     // Reject incoming handover.
 
     // Reroute incoming handover(?)
+
+
 }
