@@ -53,6 +53,7 @@ public class Handover {
     }
 
     public void setPatient(Patient patient) {
+        System.out.println("PATIENT");
         this.patient = patient;
     }
 
@@ -61,6 +62,7 @@ public class Handover {
     }
 
     public void setOriginDoctor(Doctor originDoctor) {
+        System.out.println("ORIGIN");
         this.originDoctor = originDoctor;
     }
 
@@ -69,6 +71,7 @@ public class Handover {
     }
 
     public void setRecipientDoctor(Doctor recipientDoctor) {
+        System.out.println("RECEIVE");
         this.recipientDoctor = recipientDoctor;
     }
 
