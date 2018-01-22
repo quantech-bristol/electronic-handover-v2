@@ -34,15 +34,15 @@
             </div><br/>
 
             <div class="form-group">
-                <label for="recipientDoctor">Step 2: Receiving Doctor</label>
-                <select id="recipientDoctor" class="form-control" th:field="${handover.originDoctor}">
+                <label for="recipientDoctor">Step 3: Receiving Doctor</label>
+                <select id="recipientDoctor" class="form-control" th:field="${handover.recipientDoctor}">
                     <option value="default">Select a Doctor</option>
                     <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
                 </select>
             </div><br/>
 
             <div class="form-group">
-                <label for="patientNote">Notes</label>
+                <label for="patientNote">Step 4: Notes</label>
                 <input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter Patient Notes"/>
             </div><br/>
 

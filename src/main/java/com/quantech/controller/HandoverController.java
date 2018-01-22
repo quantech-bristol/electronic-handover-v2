@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Controller
@@ -21,8 +23,15 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         //TODO: Need to refine this to only the doctors patients, not all patients.
         model.addAttribute("patients", dbs.allPatients());
         model.addAttribute("handover", new Handover());
-        model.addAttribute("doctors", dbs.allPatients());
+        model.addAttribute("doctors", dbs.allDoctors());
         return "createHandover";
+    }
+
+    // Submit the new handover
+    @PostMapping("/handover")
+    public String submitHandover(@ModelAttribute Handover handover) {
+        dbs.saveHandover(handover);
+        return "quantech";
     }
 
     // View all sent handovers.

@@ -1,5 +1,6 @@
 package com.quantech.facade;
 
+import com.quantech.entities.handover.Handover;
 import com.quantech.entities.team.Team;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.patient.Patient;
@@ -106,4 +107,12 @@ public interface FacadeService {
      * @return a list of all wards stored in the database.
      */
     public List<Ward> allWards();
+
+    /**
+     * Saves handover object into database
+     * @param handover The handover object to be saved
+     * @return true if the handover successfully saved, false otherwise.
+     */
+    public boolean saveHandover(Handover handover);
+
 }
