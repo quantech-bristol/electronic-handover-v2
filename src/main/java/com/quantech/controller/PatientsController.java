@@ -1,6 +1,9 @@
 package com.quantech.controller;
 
-import com.quantech.facade.FacadeService;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.patient.PatientService;
+import com.quantech.entities.ward.WardService;
 import com.quantech.entities.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,22 +19,27 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // TODO: Decide what URLS + mappings we need.
 
     @Autowired
-    private FacadeService dbs;
+    private DoctorService doctorService;
+    @Autowired
+    private PatientService patientService;
+    @Autowired
+    private WardService wardService;
 
     // Go to page to add patient.
     @GetMapping("/addPatient")
     public String addPatient(Model model) {
-        model.addAttribute("doctors",dbs.allDoctors());
+        model.addAttribute("doctors",doctorService.getAllDoctors());
         model.addAttribute("patient", new Patient());
-        model.addAttribute("wards", dbs.allWards());
+        model.addAttribute("wards", wardService.getAllWards());
         return "addPatient";
     }
 
     // Submit a new patient.
     @PostMapping("/patient")
     public String submitPatient(@ModelAttribute Patient patient, Model model) {
-        dbs.savePatient(patient);
-        model.addAttribute("patients", dbs.allPatients());
+        patientService.savePatient(patient);
+        doctorService.addPatient(patient, patient.getDoctor());
+        model.addAttribute("patients", patientService.getAllPatients());
         return "viewPatients";
     }
 
@@ -44,7 +52,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // View all patients in the system.
     @GetMapping("/patient/all")
     public String viewPatient(Model model) {
-        model.addAttribute("patients",dbs.allPatients());
+        model.addAttribute("patients", patientService.getAllPatients());
         return "viewPatients";
     }
 
@@ -52,7 +60,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // View patient of specific id
     @GetMapping("/patient/hospitalNumber={id}")
     public String viewAllPatients(@PathVariable Long id, Model model) {
-        model.addAttribute("patient", dbs.getPatientByHospitalNumber(id));
+        model.addAttribute("patient", patientService.getPatientByHospitalNumber(id));
         return "viewPatient";
     }
 

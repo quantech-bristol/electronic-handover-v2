@@ -1,6 +1,7 @@
 package com.quantech.controller;
 
 import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.doctor.DoctorService;
 import com.quantech.facade.FacadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class DoctorController extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private FacadeService dbs;
+    private DoctorService doctorService;
 
     // Go to page to add a new doctor.
     @GetMapping("/addDoctor")
@@ -26,7 +27,7 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     // Submit the new doctor.
     @PostMapping("/doctor")
     public String submitDoctor(@ModelAttribute Doctor doctor) {
-        dbs.saveDoctor(doctor);
+        doctorService.saveDoctor(doctor);
         return "quantech";
     }
 

@@ -1,7 +1,7 @@
 package com.quantech.controller;
 
 import com.quantech.entities.ward.Ward;
-import com.quantech.facade.FacadeService;
+import com.quantech.entities.ward.WardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WardController extends WebMvcConfigurerAdapter {
 
     @Autowired
-    FacadeService dbs;
+    WardService wardService;
 
     // Add new ward.
     @GetMapping("/addWard")
@@ -26,7 +26,7 @@ public class WardController extends WebMvcConfigurerAdapter {
     // Submit the new ward.
     @PostMapping("/ward")
     public String submitWard(@ModelAttribute Ward ward) {
-        dbs.saveWard(ward);
+        wardService.saveWard(ward);
         return "quantech";
     }
 
