@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +24,51 @@ public class PatientService {
         patientRepository.findAll().forEach(patients::add);
         return patients;
     }
+
+    /**
+     * Sort the given list of patients by their first name, alphabetically.
+     * @param list The list of patients.
+     * @return A sorted list of patients, by first name.
+     */
+    public List<Patient> sortPatientsByFirstName(List<Patient> list) {
+        return sortList(list,firstNameAlphabeticalComparator());
+    }
+
+    // A comparator that can be used to sort the patients by their first name, alphabetically.
+    private Comparator<Patient> firstNameAlphabeticalComparator() {
+        return (o1, o2) -> {
+            if(o1.getFirstName() != null && o2.getFirstName() != null){
+                return o1.getFirstName().compareTo(o2.getFirstName());
+            }
+            return 0;
+        };
+    }
+
+    /**
+     * Sort the given list of patients by their last name, alphabetically.
+     * @param list The list of patients.
+     * @return A sorted list of patients, by last name.
+     */
+    public List<Patient> sortPatientsByLastName(List<Patient> list) {
+        return sortList(list,lastNameAlphabeticalComparator());
+    }
+
+    // A comparator that can be used to sort the patients by their first name, alphabetically.
+    private Comparator<Patient> lastNameAlphabeticalComparator() {
+        return (o1, o2) -> {
+            if(o1.getLastName() != null && o2.getLastName() != null){
+                return o1.getLastName().compareTo(o2.getLastName());
+            }
+            return 0;
+        };
+    }
+
+    // Returns a list sorted using the input comparator.
+    private List<Patient> sortList(List<Patient> l, Comparator<Patient> c) {
+        l.sort(c);
+        return l;
+    }
+
 
     /**
      * Finds a patient stored in the repository corresponding to a unique id.
