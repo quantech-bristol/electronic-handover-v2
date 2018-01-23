@@ -18,3 +18,4 @@
 - Add Validation to data coming from forms.
 - Create tools to modify users + allow multiple authorities.
 - (Future) Set security to hash passwords (plain atm for ease of sec debug)
+- Sort out HTTPS
