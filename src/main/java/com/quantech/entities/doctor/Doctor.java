@@ -13,12 +13,8 @@ import java.util.Calendar;
 import java.util.List;
 
 @Entity
-public class Doctor
-{
-    // TODO: Do error detection/prevention on these getters/setters.
-    // TODO: Decide what fields the Doctor entity should have.
-    // TODO: Have a rough idea of how the user hierarchy would be made in practice so we don't run into trouble later.
-    // May need other ones like "job title/role" and staff number?
+public class Doctor {
+
     @Id
     private Long id;
 

@@ -2,9 +2,7 @@ com\quantech\entities\patient\PatientRepository.class
 com\quantech\controller\HandoverController.class
 com\quantech\entities\doctor\DoctorService.class
 com\quantech\entities\handover\HandoverRepository.class
-com\quantech\facade\FacadeServiceImpl.class
 com\quantech\entities\doctor\DoctorRepository.class
-com\quantech\facade\FacadeService.class
 com\quantech\entities\team\TeamService.class
 com\quantech\entities\doctor\Doctor.class
 com\quantech\entities\team\Team.class

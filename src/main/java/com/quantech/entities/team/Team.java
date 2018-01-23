@@ -9,8 +9,6 @@ import java.util.List;
 
 @Entity
 public class Team {
-    // TODO: Decide what fields we want to use.
-    // TODO: Decide what exceptions are thrown/conditions are held when using getters and setters.
 
     @Id
     @GeneratedValue

@@ -12,8 +12,6 @@ import java.util.List;
 
 @Entity
 public class Ward {
-    // TODO: Decide what fields we want to use.
-    // TODO: Decide what exceptions are thrown/conditions are held when using getters and setters.
 
     @Id
     @GeneratedValue

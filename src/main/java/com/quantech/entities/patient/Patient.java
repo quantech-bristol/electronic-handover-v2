@@ -10,8 +10,6 @@ import java.util.Date;
 
 @Entity
 public class Patient {
-    // TODO: Decide what fields we want to use.
-    // TODO: Decide what exceptions are thrown/conditions are held when using getters and setters.
 
     @Id
     @GeneratedValue

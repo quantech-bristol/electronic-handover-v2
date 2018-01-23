@@ -2,7 +2,6 @@ package com.quantech.controller;
 
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
-//import com.quantech.facade.FacadeService;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DoctorController extends WebMvcConfigurerAdapter {
@@ -41,7 +41,7 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     // Send to homepage
     @GetMapping("/doctor")
     public String doctor() {
-        return "quantech";
+        return "redirect:/";
     }
 
     // Search doctors.

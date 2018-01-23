@@ -101,6 +101,7 @@ body{
 	padding:5%;
 }
 .headshot img {
+  width: 7vw;
   border-radius: 80%;
   cursor:pointer;
   -webkit-border-radius: 80%;
