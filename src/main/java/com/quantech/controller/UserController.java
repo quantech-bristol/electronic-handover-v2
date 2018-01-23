@@ -1,6 +1,5 @@
 package com.quantech.controller;
 
-import com.quantech.entities.handover.Handover;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UserController  extends WebMvcConfigurerAdapter
-{
+public class UserController  extends WebMvcConfigurerAdapter {
+
     @Autowired
     UserService userService;
 
@@ -24,12 +23,12 @@ public class UserController  extends WebMvcConfigurerAdapter
     }
 
     @PostMapping("/Admin/createUser")
-    public String createUser(@ModelAttribute UserCore user, RedirectAttributes model)
-    {
+    public String createUser(@ModelAttribute UserCore user, RedirectAttributes model) {
         userService.saveUser(user);
         return "redirect:/Admin";
     }
+
     @RequestMapping(value = "/Admin")
-    public String adminPage(){return "/Admin/adminScreen";}
+    public String adminPage() { return "/Admin/adminScreen"; }
 
 }

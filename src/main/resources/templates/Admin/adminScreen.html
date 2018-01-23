@@ -6,17 +6,21 @@
 </head>
 
 <body>
-<br id="mainwindow" class="mainwindow">
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
     <div id="topbar">
         Admin Page
     </div>
-    <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [CREATE ADMINS]</a></p>
-    <p> <a style="color:blue" th:href="@{/addDoctor}">Go to Doctor Creation Page! [CREATE DOCTORS]</a></p>
-<p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-</br>
+    <div id="bodywrap">
+        <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [CREATE ADMINS]</a></p>
+        <p> <a style="color:blue" th:href="@{/addDoctor}">Go to Doctor Creation Page! [CREATE DOCTORS]</a></p>
+        <p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
 <div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>

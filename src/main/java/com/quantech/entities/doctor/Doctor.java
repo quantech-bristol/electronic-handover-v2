@@ -18,7 +18,7 @@ public class Doctor {
     @Id
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)//Matches ID with UserCore
+    @OneToOne(fetch = FetchType.LAZY) // Matches ID with UserCore
     @MapsId
     private UserCore user;
 
@@ -159,7 +159,6 @@ public class Doctor {
     public void setReceivedHandovers(List<Handover> receivedHandovers) {
         this.receivedHandovers = receivedHandovers;
     }
-
 
     public UserCore getUser()
     {

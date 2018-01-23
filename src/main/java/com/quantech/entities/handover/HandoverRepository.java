@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface HandoverRepository extends CrudRepository<Handover,Long>{
+public interface HandoverRepository extends CrudRepository<Handover,Long> {
 
     public List<Handover> findByPatient(Patient p);
 

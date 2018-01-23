@@ -18,12 +18,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserService userService;//Not sure why its unhappy, runs correctly.
+    UserService userService; //Not sure why its unhappy, runs correctly.
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
-
     }
 
     @Override
