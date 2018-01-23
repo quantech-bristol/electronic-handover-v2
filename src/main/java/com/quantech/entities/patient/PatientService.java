@@ -112,6 +112,18 @@ public class PatientService {
     /**
      * Saves a given patient to the repository.
      * @param patient The patient to be saved into the repository.
+     * @throws NullPointerException If the:
+     *                                     - doctor,
+     *                                     - title,
+     *                                     - first name,
+     *                                     - last name,
+     *                                     - NHS number,
+     *                                     - hospital,
+     *                                     - ward,
+     *                                     - bed,
+     *                                     - recommendations,
+     *                                     - diagnosis
+     *                               has not been set, that is, is null.
      */
     public void savePatient(Patient patient) {
         patientRepository.save(patient);
