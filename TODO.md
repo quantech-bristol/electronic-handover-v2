@@ -18,3 +18,4 @@
 - (Future) Set security to hash passwords (plain atm for ease of sec debug)
 - Sort out HTTPS
 - Sort red/blue lines on the dropdown of viewing patients
+- Functionality to print out a particular patients details
