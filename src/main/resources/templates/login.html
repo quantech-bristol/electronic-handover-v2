@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <title>>Welcome Security with Spring Boot!</title>
-</head>
-<body>
-<div th:if="${param.error}">
-    <h1 style="color:red">Username or Password is wrong. Please check again</h1>
 
+<head th:include="fragments/header :: head (title='Login')">
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        Login
+    </div>
+    <div id="bodywrap">
+        <form th:action="@{/login}" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/>    </div>
+        </form>
+        <div th:if="${param.error}">
+            Username or Password is wrong. Please check again
+        </div>
+        <div th:if="${param.logout}">
+            Logged out
+        </div>
+    </div>
 </div>
-<div th:if="${param.logout}">
-    <h1 style="color:blue">Logged out.</h1>
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/>    </div>
-</form>
 </body>
 </html>
