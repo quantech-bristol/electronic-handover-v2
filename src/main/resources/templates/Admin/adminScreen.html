@@ -10,11 +10,9 @@
     <div id="topbar">
         Admin Page
     </div>
-    <div id="bodywrap">
-        <h1>Admin Page</h1>
-    </div>
     <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [CREATE ADMINS]</a></p>
     <p> <a style="color:blue" th:href="@{/addDoctor}">Go to Doctor Creation Page! [CREATE DOCTORS]</a></p>
+<p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>

@@ -24,10 +24,10 @@ public class WardController extends WebMvcConfigurerAdapter {
     }
 
     // Submit the new ward.
-    @PostMapping("/ward")
+    @PostMapping("/addWard")
     public String submitWard(@ModelAttribute Ward ward) {
         wardService.saveWard(ward);
-        return "quantech";
+        return "redirect:/Admin";
     }
 
     // View all wards

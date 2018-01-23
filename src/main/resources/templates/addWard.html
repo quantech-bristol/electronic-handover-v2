@@ -15,7 +15,7 @@
     <div id="bodywrap">
         <h1>New Ward</h1>
         <table>
-            <form action="#" th:action="@{/ward}" th:object="${ward}" method="post" class="form-inline">
+            <form action="#" th:action="@{/addWard}" th:object="${ward}" method="post" class="form-inline">
                 <div class="form-group"><tr>
                     <td><label for="patienttitle">Title(s)</label></td>
                     <td><input type="text" th:field="*{name}" class="form-control" id="patienttitle" placeholder="Enter ward name"/></td>
