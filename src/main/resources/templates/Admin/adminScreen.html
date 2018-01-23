@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header :: head (title='Admin Page')">
+</head>
+
+<body>
+<br id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        Admin Page
+    </div>
+    <div id="bodywrap">
+        <h1>Admin Page</h1>
+    </div>
+    <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [CREATE ADMINS]</a></p>
+    <p> <a style="color:blue" th:href="@{/addDoctor}">Go to Doctor Creation Page! [CREATE DOCTORS]</a></p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</br>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.quantech.entities.doctor;
 
 import com.quantech.entities.team.Team;
+import com.quantech.entities.user.UserCore;
 import com.quantech.misc.Title;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.handover.Handover;
@@ -12,15 +13,18 @@ import java.util.Calendar;
 import java.util.List;
 
 @Entity
-public class Doctor {
+public class Doctor
+{
     // TODO: Do error detection/prevention on these getters/setters.
     // TODO: Decide what fields the Doctor entity should have.
     // TODO: Have a rough idea of how the user hierarchy would be made in practice so we don't run into trouble later.
     // May need other ones like "job title/role" and staff number?
-
     @Id
-    @GeneratedValue
     private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)//Matches ID with UserCore
+    @MapsId
+    private UserCore user;
 
     @NotNull
     private Title title;
@@ -158,5 +162,16 @@ public class Doctor {
 
     public void setReceivedHandovers(List<Handover> receivedHandovers) {
         this.receivedHandovers = receivedHandovers;
+    }
+
+
+    public UserCore getUser()
+    {
+        return user;
+    }
+
+    public void setUser(UserCore user)
+    {
+        this.user = user;
     }
 }

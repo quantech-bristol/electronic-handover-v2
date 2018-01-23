@@ -2,6 +2,7 @@ package com.quantech.entities.doctor;
 
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.team.Team;
+import com.quantech.entities.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Service
 public class DoctorService {
-
     @Autowired
     DoctorRepository doctorRepository;
 
