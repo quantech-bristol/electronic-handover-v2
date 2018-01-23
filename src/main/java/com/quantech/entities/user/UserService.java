@@ -1,5 +1,6 @@
 package com.quantech.entities.user;
 
+import com.quantech.Configurations.SecurityRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -68,7 +69,7 @@ public class UserService implements UserDetailsService {
 
     private UserDetails rootUser() {
         List<GrantedAuthority> authorities  = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("Admin"));
+        authorities.add(new SimpleGrantedAuthority(SecurityRoles.Admin.toString()));
         return new User("quantech", "quantech", authorities);
     }
 }
