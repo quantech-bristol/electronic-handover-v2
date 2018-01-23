@@ -28,7 +28,7 @@ public class MainController {
                 return "redirect:/Admin";
             }
             else if (g.getAuthority().matches( "Doctor")) {
-                return "redirect:/quantech";
+                return "redirect:/patient/all";
             }
         }
         return "redirect:/login";
