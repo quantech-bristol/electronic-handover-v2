@@ -24,20 +24,12 @@ public class UserController  extends WebMvcConfigurerAdapter
     }
 
     @PostMapping("/Admin/createUser")
-    public String createUser(@ModelAttribute UserCore user, RedirectAttributes model) {
+    public String createUser(@ModelAttribute UserCore user, RedirectAttributes model)
+    {
         userService.saveUser(user);
-        if (user.hasAuth("Doctor"))//This is within the user core object
-        {
-            model.addFlashAttribute("id",user.getId());
-            return "redirect:/addDoctor";
-        }
-        else
-        {
-            userService.saveUser(user);
-            return "redirect:/admin";
-        }
+        return "redirect:/Admin";
     }
-    @RequestMapping(value = "/admin")
+    @RequestMapping(value = "/Admin")
     public String adminPage(){return "/Admin/adminScreen";}
 
 }

@@ -18,7 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-UserService userService;
+UserService userService;//Not sure why its unhappy, runs correctly.
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,10 +29,10 @@ UserService userService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/addWard").hasAuthority("Admin")
-                .antMatchers(HttpMethod.GET, "/addDoctor").hasAuthority("Admin")
-                .antMatchers(HttpMethod.POST, "/doctor").hasAuthority("Admin")
-                .anyRequest().authenticated()
+                .antMatchers("/Admin", "/Admin/**", "/addWard", "/addDoctor").hasAuthority("Admin")
+                .antMatchers("/doctor","/createHandover","/viewHandovers", "/viewPatient*").hasAuthority("Doctor")
+                .antMatchers("/**").authenticated()
+                .anyRequest().authenticated().anyRequest().denyAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
         http.exceptionHandling().accessDeniedPage("/403");

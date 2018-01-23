@@ -15,7 +15,15 @@
     <div id="bodywrap">
         <h1>New Doctor</h1>
         <table>
-        <form action="#" th:action="@{/doctor}" method="post" class="form-inline">
+        <form action="#" th:action="@{/addDoctor}" method="post" class="form-inline">
+            <div class="form-group"><tr>
+                <td><label for="username">Username</label></td>
+                <td><input type="text" th:field="*{usercore.username}" class="form-control" id="username" placeholder="Enter username"/></td>
+            </tr></div>
+            <div class="form-group"><tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" th:field="*{usercore.password}" class="form-control" id="password" placeholder="Enter password"/></td>
+            </tr></div>
             <div class="form-group"><tr>
                 <td><label for="patienttitle">Title(s)</label></td>
                 <td><input type="text" th:field="*{doctor.title}" class="form-control" id="patienttitle" placeholder="Enter first name(s)"/></td>
@@ -33,19 +41,6 @@
                 <td><label for="patientFirstName">Email</label></td>
                 <td><input type="text" th:field="*{doctor.email}" class="form-control" id="patientDoctor" placeholder="Email"/></td>
             </tr></div>
-            <div class="form-group"><tr>
-                <td><label for="username">Username</label></td>
-                <td><input type="text" th:field="*{usercore.username}" class="form-control" id="username" placeholder="Enter username"/></td>
-            </tr></div>
-            <div class="form-group"><tr>
-                <td><label for="password">Password</label></td>
-                <td><input type="password" th:field="*{usercore.password}" class="form-control" id="password" placeholder="Enter password"/></td>
-            </tr></div>
-            <div class="form-group"><tr>
-                <td><label for="auth">Authorization Level</label></td>
-                <td><input type="text" th:field="*{usercore.authorities[0]}" class="form-control" id="auth" placeholder="Enter authorization"/></td>
-            </tr></div>
-
             <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
 
         </form>

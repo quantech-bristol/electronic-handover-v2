@@ -30,18 +30,19 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     }
 
     // Submit the new doctor.
-    @PostMapping("/doctor")
+    @PostMapping("/addDoctor")
     public String submitDoctor(@ModelAttribute UserCore user, @ModelAttribute Doctor doctor) {
+        user.addAuth("Doctor");
         userService.saveUser(user);
         doctor.setUser(user);
         doctorService.saveDoctor(doctor);
-        return "quantech";
+        return "redirect:/Admin";
     }
 
     // Send to homepage
     @GetMapping("/doctor")
     public String doctor() {
-        return "redirect:/";
+        return "redirect:/quantech";
     }
 
     // Search doctors.
