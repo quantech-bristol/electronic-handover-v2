@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <head>
 </head>
 <body>
 
 
-<div id="sidebar" class="sidebar" th:fragment="sidebar (displayname)">
+<div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
-        <h1 th:text = "${username}"></h1>
+        <h1 th:text="${#authentication.name}">test</h1>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">

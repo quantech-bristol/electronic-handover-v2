@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:include="fragments/header :: head (title='Admin Page')">
 </head>
 
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
-<div th:replace="fragments/layout :: sidebar ('${username}')">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
 <div id="mainwindow" class="mainwindow">
     <div id="topbar">
         Admin Page
