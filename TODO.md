@@ -12,7 +12,6 @@
 - Finalise what attributes Team should have
 - Ward input error handling for getters and setters
 - Finalise what attributes Ward should have
-- Convert Authorities into enum rather than text 
 - Add Validation to data coming from forms.
 - Create tools to modify users + allow multiple authorities.
 - (Future) Set security to hash passwords (plain atm for ease of sec debug)
