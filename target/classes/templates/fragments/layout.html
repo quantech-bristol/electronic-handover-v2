@@ -18,6 +18,9 @@
         <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
         <h3>To Do</h3>
         <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
     </div>
 </div>
 
