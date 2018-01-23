@@ -112,6 +112,25 @@ public class PatientService {
     /**
      * Saves a given patient to the repository.
      * @param patient The patient to be saved into the repository.
+     * @throws NullPointerException If the:
+     *                                     - doctor,
+     *                                     - title,
+     *                                     - first name,
+     *                                     - last name,
+     *                                     - NHS number,
+     *                                     - hospital,
+     *                                     - ward,
+     *                                     - bed,
+     *                                     - recommendations,
+     *                                     - diagnosis.
+     * @throws NullPointerException If the last name field hasn't been set.
+     * @throws NullPointerException If the NHS number field hasn't been set.
+     * @throws NullPointerException If the hospital number field hasn't been set.
+     * @throws NullPointerException If the ward field hasn't been set.
+     * @throws NullPointerException If the bed field hasn't been set.
+     * @throws NullPointerException If the relevant history field hasn't been set.
+     * @throws NullPointerException If the social issues field hasn't been set.
+     * @throws NullPointerException If the recommendations and diagnosis field hasn't been set.
      */
     public void savePatient(Patient patient) {
         patientRepository.save(patient);
