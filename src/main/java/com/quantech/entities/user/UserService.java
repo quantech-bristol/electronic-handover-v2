@@ -21,8 +21,7 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
 
     @Autowired
-    public UserService()
-    {
+    public UserService() {
 
     }
 
@@ -39,21 +38,22 @@ public class UserService implements UserDetailsService {
 
     //Enables userService to authenticate its users for the Security config.
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException
-    {
-        if (s.matches("quantech")) { return rootUser();}
-
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        if (s.matches("quantech")) {
+            return rootUser();
+        }
         UserCore newUser = userRepository.findUserCoreByUsername(s);
-        if (newUser==null){throw new UsernameNotFoundException(s);}
-
+        if (newUser==null) {
+            throw new UsernameNotFoundException(s);
+        }
         List<GrantedAuthority> authorities  = new ArrayList<GrantedAuthority>();
-        for(String auth : newUser.getAuthorities()) {authorities.add(new SimpleGrantedAuthority(auth));}
-
+        for(String auth : newUser.getAuthorities()) {
+            authorities.add(new SimpleGrantedAuthority(auth));
+        }
         return new User(newUser.getUsername(), newUser.getPassword(), authorities);
     }
 
-    private UserDetails rootUser()
-    {
+    private UserDetails rootUser() {
         List<GrantedAuthority> authorities  = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("Admin"));
         return new User("quantech", "quantech", authorities);

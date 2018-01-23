@@ -64,5 +64,4 @@ public class HandoverController extends WebMvcConfigurerAdapter {
 
     // Reroute incoming handover(?)
 
-
 }

@@ -26,19 +26,21 @@ public class MainController {
     IAuthenticationFacade authenticator;
 
     @GetMapping("/")
-    public String viewHome(HttpServletRequest request)
-    {
+    public String viewHome(HttpServletRequest request) {
         UserDetails userInfo =  (UserDetails)authenticator.getAuthentication().getPrincipal();
-        for (GrantedAuthority g: userInfo.getAuthorities())
-        {
-            if (g.getAuthority().matches("Admin")){ return "redirect:/Admin";}
-            else if (g.getAuthority().matches( "Doctor")){return "redirect:/quantech";}
+        for (GrantedAuthority g: userInfo.getAuthorities()) {
+            if (g.getAuthority().matches("Admin")) {
+                return "redirect:/Admin";
+            }
+            else if (g.getAuthority().matches( "Doctor")) {
+                return "redirect:/quantech";
+            }
         }
         return "redirect:/login";
     }
 
     @RequestMapping(value="/quantech")
-    public String docHome() {return "/quantech";}
+    public String docHome() { return "/quantech"; }
 
     @RequestMapping(value={"/login"})
     public String login()
