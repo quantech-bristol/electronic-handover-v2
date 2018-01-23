@@ -21,3 +21,10 @@
 - Functionality to print out a particular patients details
 - Change date inputs to date month year drop downs
 - Maybe change it so that for all users, their homepage is denoted by the :/ URL
+- When a doctor sends a handover, set it so that the originating doctor is actually automatically set to the one who is creating it.
+- Enable the "view all patients" button on the sidebar to actually view just the doctor's own patients.
+- Filtering patients options (implementation and front end additions)
+- Sorting patients (implementation and front end additions)
+- Add pending and sent handovers to UI
+- Carry out unit testing on all data-accessing services.
+- Maybe come up with a good dashboard layout for the "Overview" tab (probably optional at this stage)
