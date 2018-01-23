@@ -20,3 +20,4 @@
 - Sort red/blue lines on the dropdown of viewing patients
 - Functionality to print out a particular patients details
 - Change date inputs to date month year drop downs
+- Maybe change it so that for all users, their homepage is denoted by the :/ URL
