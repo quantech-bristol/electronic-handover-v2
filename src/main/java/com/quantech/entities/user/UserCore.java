@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class UserCore
-{
+public class UserCore {
 
     @Column(unique = true, nullable = false)
     @NotNull
@@ -34,8 +33,8 @@ public class UserCore
     @NotNull
     private List<String> authorities;
 
-    public UserCore(String username, String password, String baseAuth)
-    {
+    public UserCore(String username, String password, String baseAuth) {
+
         this.username = username;
         this.password = password;
         authorities = new ArrayList<>();
@@ -43,8 +42,7 @@ public class UserCore
 
     }
 
-    public UserCore()
-    {
+    public UserCore() {
         enabled = true;
         authorities = new ArrayList<String>();
     }
@@ -69,27 +67,25 @@ public class UserCore
         this.password = password;
     }
 
-    public void addAuth(String auth)
-    {
-        if (!hasAuth(auth))
-        {
+    public void addAuth(String auth) {
+        if (!hasAuth(auth)) {
             authorities.add(auth);
         }
     }
 
-    public void removeAuth(String auth)
-    {
-        for (int i = 0; i < authorities.size(); i++)
-        {
-            if (authorities.get(i).equalsIgnoreCase(auth)){
-                authorities.remove(i); break;}
+    public void removeAuth(String auth) {
+        for (int i = 0; i < authorities.size(); i++) {
+            if (authorities.get(i).equalsIgnoreCase(auth)) {
+                authorities.remove(i); break;
+            }
         }
     }
-    public boolean hasAuth(String auth)
-    {
-        for (int i = 0; i < authorities.size(); i++)
-        {
-            if (authorities.get(i).equalsIgnoreCase(auth)){return true;}
+
+    public boolean hasAuth(String auth) {
+        for (int i = 0; i < authorities.size(); i++) {
+            if (authorities.get(i).equalsIgnoreCase(auth)){
+                return true;
+            }
         }
         return false;
     }
