@@ -1,7 +1,6 @@
 package com.quantech.entities.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,17 @@ public class UserService implements UserDetailsService {
 
     }
 
+    public void delUser(String user) {
+        userRepository.deleteUserCoreByUsername(user);
+    }
+
+    public void editPassword(String user, String newPass)
+    {
+        UserCore userToEdit = userRepository.findUserCoreByUsername(user);
+        userToEdit.setPassword(newPass);
+        userRepository.save(userToEdit);
+
+    }
     //TODO add sanity checks
     public boolean saveUser(UserCore user) {
         userRepository.save(user);
@@ -36,6 +45,10 @@ public class UserService implements UserDetailsService {
         return newUser;
     }
 
+    public UserCore findUserByUsername(String username) {
+        UserCore newUser = userRepository.findUserCoreByUsername(username);
+        return newUser;
+    }
     //Enables userService to authenticate its users for the Security config.
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
