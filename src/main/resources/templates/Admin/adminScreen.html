@@ -7,7 +7,7 @@
 
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
-<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar ('${username}')">&nbsp;</div>
 <div id="mainwindow" class="mainwindow">
     <div id="topbar">
         Admin Page

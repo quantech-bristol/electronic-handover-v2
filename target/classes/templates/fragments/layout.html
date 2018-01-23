@@ -5,9 +5,9 @@
 <body>
 
 
-<div id="sidebar" class="sidebar" th:fragment="sidebar">
+<div id="sidebar" class="sidebar" th:fragment="sidebar (displayname)">
     <div id="sidebarwrap">
-        <h1>Dr Smith, M.D.</h1>
+        <h1 th:text = "${username}"></h1>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">
