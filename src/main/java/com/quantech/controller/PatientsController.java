@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.ArrayList;
-
 @Controller
 public class PatientsController extends WebMvcConfigurerAdapter {
     // TODO: Decide what URLS + mappings we need.
@@ -62,7 +60,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     public String viewPatient(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         if (userInfo.hasAuth(SecurityRoles.Doctor)){
-            model.addAttribute("patients", new ArrayList<>());
+            model.addAttribute("patients", doctorService.getPatients(userInfo.getId()));
         }
         else { // For now; this should really only be when the user is an admin.
             model.addAttribute("patients", patientService.getAllPatients());
