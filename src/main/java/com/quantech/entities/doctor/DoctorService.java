@@ -90,7 +90,15 @@ public class DoctorService {
     }
 
     /**
-
+     * Returns a list of patients under the doctor's care.
+     * @param id The id of the given doctor.
+     * @return A list of patients under the doctor's care.
+     * @throws NullPointerException When the given id doesn't exist in the database.
+     */
+    public List<Patient> getPatients(Long id) {
+        return doctorRepository.findById(id).getPatients();
+    }
+    /*
     RE: maintaining a list of patients
         - should we just look at the Teams the Doctor is in, and then call team.getPatients(), rather than
           overlapping ?

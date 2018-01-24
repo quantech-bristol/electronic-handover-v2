@@ -125,7 +125,7 @@ public class PatientService {
      *                                     - diagnosis
      *                               has not been set, that is, is null.
      */
-    public void savePatient(Patient patient) {
+    public void savePatient(Patient patient) throws NullPointerException {
         patientRepository.save(patient);
     }
 

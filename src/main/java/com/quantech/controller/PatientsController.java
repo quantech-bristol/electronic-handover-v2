@@ -1,10 +1,13 @@
 package com.quantech.controller;
 
+import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.patient.PatientService;
+import com.quantech.entities.user.UserCore;
 import com.quantech.entities.ward.WardService;
 import com.quantech.entities.patient.Patient;
+import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.ArrayList;
 
 @Controller
 public class PatientsController extends WebMvcConfigurerAdapter {
@@ -24,6 +29,9 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     private PatientService patientService;
     @Autowired
     private WardService wardService;
+
+    @Autowired
+    IAuthenticationFacade authenticator;
 
     // Go to page to add patient.
     @GetMapping("/addPatient")
@@ -52,7 +60,13 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // View all patients in the system.
     @GetMapping("/patient/all")
     public String viewPatient(Model model) {
-        model.addAttribute("patients", patientService.getAllPatients());
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        if (userInfo.hasAuth(SecurityRoles.Doctor)){
+            model.addAttribute("patients", new ArrayList<>());
+        }
+        else { // For now; this should really only be when the user is an admin.
+            model.addAttribute("patients", patientService.getAllPatients());
+        }
         return "viewPatients";
     }
 
