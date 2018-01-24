@@ -9,7 +9,7 @@
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
-        <h1 th:text="${#authentication.name}">test</h1>
+        <h1 th:text="${#authentication.principal.username}">test</h1>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">

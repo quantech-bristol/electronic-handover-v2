@@ -12,14 +12,13 @@
 - Finalise what attributes Team should have
 - Ward input error handling for getters and setters
 - Finalise what attributes Ward should have
-- Add Validation to data coming from forms.
+- Add Validation to data coming from forms [FIXED USERS]
 - Create tools to modify users + allow multiple authorities.
 - (Future) Set security to hash passwords (plain atm for ease of sec debug)
 - Sort out HTTPS
 - Sort red/blue lines on the dropdown of viewing patients
 - Functionality to print out a particular patients details
 - Change date inputs to date month year drop downs
-- Maybe change it so that for all users, their homepage is denoted by the :/ URL
 - When a doctor sends a handover, set it so that the originating doctor is actually automatically set to the one who is creating it.
 - Enable the "view all patients" button on the sidebar to actually view just the doctor's own patients.
 - Filtering patients options (implementation and front end additions)

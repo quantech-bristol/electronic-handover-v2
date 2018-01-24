@@ -1,5 +1,6 @@
 package com.quantech.controller;
 
+import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.user.UserCore;
@@ -33,7 +34,7 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     // Submit the new doctor.
     @PostMapping("/addDoctor")
     public String submitDoctor(@ModelAttribute UserCore user, @ModelAttribute Doctor doctor) {
-        user.addAuth("Doctor");
+        user.addAuth(SecurityRoles.Doctor);
         userService.saveUser(user);
         doctor.setUser(user);
         doctorService.saveDoctor(doctor);

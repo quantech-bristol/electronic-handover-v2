@@ -1,5 +1,7 @@
 package com.quantech.controller;
 
+import com.quantech.Configurations.SecurityRoles;
+import com.quantech.entities.user.UserCore;
 import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,15 +24,14 @@ public class MainController {
 
     @GetMapping("/")
     public String viewHome(HttpServletRequest request) {
-        UserDetails userInfo =  (UserDetails)authenticator.getAuthentication().getPrincipal();
-        for (GrantedAuthority g: userInfo.getAuthorities()) {
-            if (g.getAuthority().matches("Admin")) {
-                return "redirect:/Admin";
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+            if (userInfo.hasAuth(SecurityRoles.Admin)){
+                return "/Admin/adminScreen";
             }
-            else if (g.getAuthority().matches( "Doctor")) {
-                return "redirect:/patient/all";
+            else if (userInfo.hasAuth(SecurityRoles.Doctor)) {
+                return "viewPatients";
             }
-        }
+
         return "redirect:/login";
     }
 
@@ -42,7 +43,6 @@ public class MainController {
     {
         return "login";
     }
-
 
     @RequestMapping(value="/403")
     public String Error403()

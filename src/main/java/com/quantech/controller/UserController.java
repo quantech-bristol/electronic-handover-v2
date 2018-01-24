@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController  extends WebMvcConfigurerAdapter {
@@ -28,9 +32,12 @@ public class UserController  extends WebMvcConfigurerAdapter {
     }
 
     @PostMapping("/Admin/createUser")
-    public String createUser(@ModelAttribute UserCore user, RedirectAttributes model) {
-        userService.saveUser(user);
-        return "redirect:/Admin";
+    public String createUser(@Valid @ModelAttribute("usercore") UserCore user, BindingResult result, RedirectAttributes model, Errors errors) {
+        if (errors.hasErrors()) {return "/Admin/createUser";}
+        else {
+            userService.saveUser(user);
+            return "redirect:/Admin";
+        }
     }
 
     @RequestMapping(value = "/Admin")

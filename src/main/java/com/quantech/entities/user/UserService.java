@@ -37,7 +37,10 @@ public class UserService implements UserDetailsService {
     }
     //TODO add sanity checks
     public boolean saveUser(UserCore user) {
-        userRepository.save(user);
+        if (user.getUsername() != "quantech") {
+            userRepository.save(user);
+            return false;
+        }
         return true;
     }
 
@@ -60,16 +63,11 @@ public class UserService implements UserDetailsService {
         if (newUser==null) {
             throw new UsernameNotFoundException(s);
         }
-        List<GrantedAuthority> authorities  = new ArrayList<GrantedAuthority>();
-        for(String auth : newUser.getAuthorities()) {
-            authorities.add(new SimpleGrantedAuthority(auth));
-        }
-        return new User(newUser.getUsername(), newUser.getPassword(), authorities);
+        return newUser;
     }
 
-    private UserDetails rootUser() {
-        List<GrantedAuthority> authorities  = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority(SecurityRoles.Admin.toString()));
-        return new User("quantech", "quantech", authorities);
+    private UserCore rootUser() {
+        UserCore rootUser = new UserCore("quantech","quantech", SecurityRoles.Admin.toString());
+        return rootUser;
     }
 }
