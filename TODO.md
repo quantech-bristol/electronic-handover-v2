@@ -21,6 +21,7 @@
 - Change date inputs to date month year drop downs
 - When a doctor sends a handover, set it so that the originating doctor is actually automatically set to the one who is creating it.
 - Enable the "view all patients" button on the sidebar to actually view just the doctor's own patients.
+- Maybe find a way to remember whether sidebar is shown or hidden when changing pages
 - Filtering patients options (implementation and front end additions)
 - Sorting patients (implementation and front end additions)
 - Add pending and sent handovers to UI
