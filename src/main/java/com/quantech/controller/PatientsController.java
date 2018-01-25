@@ -101,5 +101,6 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         model.addAttribute("patients", patientList);
         return "viewPatients";
     }
+
     // Search list of patients.
 }
