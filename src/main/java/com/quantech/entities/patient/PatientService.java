@@ -35,7 +35,10 @@ public class PatientService {
     private Comparator<Patient> firstNameAlphabeticalComparator() {
         return (o1, o2) -> {
             if(o1.getFirstName() != null && o2.getFirstName() != null){
-                return o1.getFirstName().compareTo(o2.getFirstName());
+                if (o1.getFirstName().compareTo(o2.getFirstName()) == 0)
+                    return lastNameAlphabeticalComparator().compare(o1,o2);
+                else
+                    return o1.getFirstName().compareTo(o2.getFirstName());
             }
             return 0;
         };

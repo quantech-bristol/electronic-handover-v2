@@ -42,6 +42,7 @@ public class PatientServiceTest {
         l1.add(patientRepository.findById(3L));
         l1.add(patientRepository.findById(4L));
         l1.add(patientRepository.findById(5L));
+        l1.add(patientRepository.findById(6L));
 
         List<Patient> l2 = patientService.getAllPatients();
         Assert.assertEquals(l1,l2);
@@ -55,12 +56,14 @@ public class PatientServiceTest {
 
     @Test
     @DatabaseSetup("/patientServiceTest-dataSet1.xml")
-    // Check that the service does actually properly sort the patients alphabetically by their first names.
-    public void sortPatientsByFirstName() {
+    // Check that the service does actually properly sort the patients alphabetically by their first names, even when
+    // some of the first names have the same value.
+    public void sortPatientsByFirstNameCorrectOrder() {
         List<Patient> l1 = new ArrayList<>();
-        l1.add(patientRepository.findByFirstName("A").get(0));
-        l1.add(patientRepository.findByFirstName("Ab").get(0));
-        l1.add(patientRepository.findByFirstName("C").get(0));
+        l1.add(patientRepository.findById(6L));
+        l1.add(patientRepository.findById(3L));
+        l1.add(patientRepository.findById(5L));
+        l1.add(patientRepository.findById(4L));
 
         List<Patient> l2 = patientService.getAllPatients();
         l2 = patientService.sortPatientsByFirstName(l2);
