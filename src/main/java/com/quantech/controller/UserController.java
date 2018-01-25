@@ -39,7 +39,6 @@ public class UserController  extends WebMvcConfigurerAdapter {
     public String createUser(@Valid @ModelAttribute("usercore") UserCore user, BindingResult result, Model model, Errors errors) {
         if (errors.hasErrors())
         {
-            model.addAttribute("usercore", new UserCore());
             model.addAttribute("postUrl", "/Admin/createUser");
             model.addAttribute("title", "CreateUser");
             return "/Admin/createUser";
@@ -75,7 +74,6 @@ public class UserController  extends WebMvcConfigurerAdapter {
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/MyUser");
-            model.addAttribute("usercore",user);
             model.addAttribute("title", "Edit My Settings");
             return "/Admin/createUser";
         }
@@ -105,7 +103,6 @@ public class UserController  extends WebMvcConfigurerAdapter {
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/Admin/EditUser");
-            model.addAttribute("usercore",user);
             model.addAttribute("title", "Edit " + user.getUsername() + " settings");
             return "/Admin/createUser";
         }

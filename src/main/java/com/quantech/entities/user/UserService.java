@@ -70,4 +70,10 @@ public class UserService implements UserDetailsService {
         UserCore rootUser = new UserCore("quantech","quantech", SecurityRoles.Admin.toString());
         return rootUser;
     }
+
+    public boolean nameIsValid(String s)
+    {
+        if (userRepository.countByUsername(s) == 0){return true;}
+        return false;
+    }
 }

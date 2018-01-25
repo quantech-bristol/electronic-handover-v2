@@ -1,6 +1,7 @@
 package com.quantech.misc.UniqueNameValidation;
 
 import com.quantech.entities.user.UserRepository;
+import com.quantech.entities.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,14 +15,14 @@ import java.util.List;
 public class UniqueStringValidator implements ConstraintValidator<ValidateStringUnique, String> {
 
     @Autowired
-    UserRepository users;
+    UserService users;
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context)
     {
         if (users == null){return true;}
-        if (users.countByUsername(value) != 0) {return false;}
-        return true;
+        else if (users.nameIsValid(value)) {return true;}
+        return false;
     }
 
 
