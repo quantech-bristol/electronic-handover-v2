@@ -2,6 +2,7 @@ package com.quantech.entities.user;
 
 import com.quantech.Configurations.SecurityRoles;
 import com.quantech.misc.StringEnumValidation.ValidateString;
+import com.quantech.misc.UniqueNameValidation.ValidateStringUnique;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 public class UserCore implements UserDetails{
 
+    @ValidateStringUnique()
     @Size(min = 4, max = 20)
     @Column(unique = true, nullable = false)
     @NotNull

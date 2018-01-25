@@ -36,6 +36,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
         if (errors.hasErrors()) {return "/Admin/createUser";}
         else {
             userService.saveUser(user);
+
             return "redirect:/Admin";
         }
     }
