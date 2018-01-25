@@ -70,8 +70,41 @@ public class Patient {
     @NotNull
     private String diagnosis;
 
+    // Empty constructor.
     public Patient() {
+    }
 
+    // Constructor to create new patient based on existing values.
+    public Patient(Doctor doctor,
+                   Title title,
+                   String firstName,
+                   String lastName,
+                   Date birthDate,
+                   Long nHSNumber,
+                   Long hospitalNumber,
+                   Ward ward,
+                   String bed,
+                   Date dateOfAdmission,
+                   String relevantHistory,
+                   String socialIssues,
+                   String risks,
+                   String recommendations,
+                   String diagnosis) {
+        this.doctor = doctor;
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.nHSNumber = nHSNumber;
+        this.hospitalNumber = hospitalNumber;
+        this.ward = ward;
+        this.bed = bed;
+        this.dateOfAdmission = dateOfAdmission;
+        this.relevantHistory = relevantHistory;
+        this.socialIssues = socialIssues;
+        this.risks = risks;
+        this.recommendations = recommendations;
+        this.diagnosis = diagnosis;
     }
 
     // TODO: Carry out error detection/prevention on these getters and setters.

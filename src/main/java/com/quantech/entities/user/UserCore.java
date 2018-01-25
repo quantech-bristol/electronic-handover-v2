@@ -39,6 +39,7 @@ public class UserCore implements UserDetails{
     @ElementCollection(fetch = FetchType.EAGER)
     @NotNull
     private List<String> authorityStrings;
+
     public UserCore(String username, String password, String baseAuth) {
 
         this.username = username;

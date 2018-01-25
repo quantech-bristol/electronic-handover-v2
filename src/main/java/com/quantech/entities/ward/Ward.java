@@ -36,6 +36,13 @@ public class Ward {
         this.patients = new ArrayList<>();
     }
 
+    public Ward(String name, Integer capacity, String department) {
+        this.name = name;
+        this.capacity = capacity;
+        this.department = department;
+        this.patients = new ArrayList<>();
+    }
+
     public Ward(String name, Integer capacity, String department, List<Patient> patients) {
         this.name = name;
         this.capacity = capacity;

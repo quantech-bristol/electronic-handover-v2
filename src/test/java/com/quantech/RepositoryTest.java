@@ -52,14 +52,14 @@ public class RepositoryTest {
     @DatabaseSetup("/database_test.xml") // Reads data set from file - these are temporary values for the database.
     // Making sure that I've set up the file properly and all the things that should be there actually are.
     public void basic_test() {
-        Assert.assertTrue(patientRepository.count() == 1L);
-        Assert.assertTrue(handoverRepository.count() == 1L);
+        Assert.assertTrue(patientRepository.count() == 3L);
+        Assert.assertTrue(handoverRepository.count() == 0L);
         Assert.assertTrue(teamRepository.count() == 1L);
         Assert.assertTrue(wardRepository.count() == 1L);
         Assert.assertTrue(doctorRepository.count() == 2L);
     }
 
-    @Test
+  /*  @Test
     // Just checking that I know how to write tests properly - an example:
     public void createDoctorTest() {
         Doctor doctor = new Doctor();
@@ -74,6 +74,6 @@ public class RepositoryTest {
 
         Assert.assertTrue(doctor2.getEmail().equals(doctor.getEmail()));
         Assert.assertTrue(doctor2.getTitle().equals(doctor.getTitle()));
-    }
+    } */
 
 }

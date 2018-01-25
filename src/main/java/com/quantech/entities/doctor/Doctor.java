@@ -62,6 +62,19 @@ public class Doctor {
         this.receivedHandovers = new ArrayList<>();
     }
 
+    public Doctor(UserCore user, Title title, String firstName, String lastName, String email) {
+        this.user = user;
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.teams = new ArrayList<>();
+        this.patients = new ArrayList<>();
+        this.lastRenewed = java.util.Calendar.getInstance();
+        this.sentHandovers = new ArrayList<>();
+        this.receivedHandovers = new ArrayList<>();
+    }
+
     public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams,
                   List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers,
                   List<Handover> receivedHandovers) {

@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PatientRepository extends CrudRepository<Patient,Long> {
+    public Patient findById(Long id);
 
     public List<Patient> findByLastName(String lastName);
 
