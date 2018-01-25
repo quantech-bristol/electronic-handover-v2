@@ -48,11 +48,10 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     public String submitPatient(@ModelAttribute Patient patient, Model model) {
         patientService.savePatient(patient);
         doctorService.addPatient(patient, patient.getDoctor());
-        model.addAttribute("patients", patientService.getAllPatients());
-        return "viewPatients";
+        return ("redirect:/patient/all");
     }
 
-    // Send to homepage
+    // Send to homepage - should we get rid of this?
     @GetMapping("/patient")
     public String patient() {
         return "viewPatients";
