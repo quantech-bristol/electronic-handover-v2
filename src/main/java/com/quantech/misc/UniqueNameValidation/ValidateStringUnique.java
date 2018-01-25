@@ -1,5 +1,7 @@
 package com.quantech.misc.UniqueNameValidation;
 
+import com.quantech.entities.user.UserRepository;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
@@ -17,6 +19,7 @@ import java.lang.annotation.Target;
 @NotNull(message = "Value cannot be null")
 @ReportAsSingleViolation
 public @interface ValidateStringUnique {
+
 
     String message() default "Entry is already taken";
 

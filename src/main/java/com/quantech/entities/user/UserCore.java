@@ -24,6 +24,10 @@ public class UserCore implements UserDetails{
     @NotNull
     private String username;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -164,6 +168,13 @@ public class UserCore implements UserDetails{
 
     public void setAuthorityStrings(List<String> authorityStrings) {
         this.authorityStrings = authorityStrings;
+    }
+
+    public void updateValues(UserCore user)
+    {
+        this.authorityStrings = user.getAuthorityStrings();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
     }
 
 }
