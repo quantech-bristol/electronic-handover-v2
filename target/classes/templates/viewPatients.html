@@ -14,8 +14,8 @@
     </div>
 
     <div id="bodywrap">
-        <a href="/patient/allSortedBy=lastName">Sort by last name (A to Z)</a>
-        <a href="/patient/allSortedBy=firstName">Sort by first name (A to Z)</a>
+        <a href="/patient/all?sortBy=lastName">Sort by last name (A to Z)</a>
+        <a href="/patient/all?sortBy=firstName">Sort by first name (A to Z)</a>
         <!-- Accordion -->
         <div class="ac-container agileits w3layouts">
             <div  th:each="patient,iterStat : ${patients}">

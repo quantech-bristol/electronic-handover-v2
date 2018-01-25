@@ -12,10 +12,7 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
@@ -59,14 +56,25 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // View all patients in the system.
     @GetMapping("/patient/all")
-    public String viewAllPatients(Model model) {
+    public String viewAllPatients(@RequestParam(value = "sortBy", required=false) String sort, Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        List<Patient> patients;
         if (userInfo.hasAuth(SecurityRoles.Doctor)){
-            model.addAttribute("patients", doctorService.getPatients(userInfo.getId()));
+            patients = doctorService.getPatients(userInfo.getId());
         }
         else { // For now; this should really only be when the user is an admin.
-            model.addAttribute("patients", patientService.getAllPatients());
+            patients = patientService.getAllPatients();
         }
+
+        // Sort the values if the sort parameter is provided.
+        if (sort != null) {
+            if (sort.equals("firstName"))
+                patients = patientService.sortPatientsByFirstName(patients);
+            if (sort.equals("lastName"))
+                patients = patientService.sortPatientsByLastName(patients);
+        }
+
+        model.addAttribute("patients",patients);
         return "viewPatients";
     }
 
@@ -82,23 +90,5 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // Filter list of patients.
 
-    // Sort list of patients.
-    @GetMapping("/patient/allSortedBy={sort}")
-    public String viewAllPatientsSorted(@PathVariable String sort, Model model) {
-        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        List<Patient> patientList;
-        if (userInfo.hasAuth(SecurityRoles.Doctor))
-            patientList = doctorService.getPatients(userInfo.getId());
-        else
-            patientList = patientService.getAllPatients();
-
-        if (sort.equals("firstName"))
-            patientList = patientService.sortPatientsByFirstName(patientList);
-        else if (sort.equals("lastName"))
-            patientList = patientService.sortPatientsByLastName(patientList);
-
-        model.addAttribute("patients",patientList);
-        return "viewPatients";
-    }
     // Search list of patients.
 }
