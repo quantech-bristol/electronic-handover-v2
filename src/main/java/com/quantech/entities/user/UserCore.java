@@ -146,11 +146,6 @@ public class UserCore implements UserDetails{
         return id;
     }
 
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
     public String getBaseAuth()//Used for setting initial authorization... Trying to get this work was a *$%*%@!
     {
         if (authorityStrings.isEmpty()){return "";}
