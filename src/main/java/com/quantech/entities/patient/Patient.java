@@ -157,8 +157,16 @@ public class Patient {
         return birthDate;
     }
 
+    /**
+     * Setter for DOB
+     * @param birthDate Date of birth.
+     * @throws NullPointerException if null.
+     * @throws IllegalArgumentException if birth date after patient's date of admission.
+     */
     public void setBirthDate(Date birthDate) {
         nullCheck(birthDate,"date of birth");
+        if (this.dateOfAdmission != null && dateOfAdmission.before(birthDate))
+            throw new IllegalArgumentException("Error: patient's date of admission cannot be before birth date");
         this.birthDate = birthDate;
     }
 
@@ -176,7 +184,7 @@ public class Patient {
     }
 
     public void setHospitalNumber(Long hospitalNumber) {
-        nullCheck(ward,"ward");
+        nullCheck(hospitalNumber,"hospital number");
         this.hospitalNumber = hospitalNumber;
     }
 
@@ -202,8 +210,16 @@ public class Patient {
         return dateOfAdmission;
     }
 
-    public void setDateOfAdmission(Date dateOfAdmission) {
+    /**
+     * Setter for DOA.
+     * @param dateOfAdmission The patient's date of admission.
+     * @throws NullPointerException if the value is null.
+     * @throws IllegalArgumentException if the date of admission is before the patient's date of birth.
+     */
+    public void setDateOfAdmission(Date dateOfAdmission) throws NullPointerException, IllegalArgumentException {
         nullCheck(dateOfAdmission, "date of admission");
+        if (birthDate != null && birthDate.after(dateOfAdmission))
+            throw new IllegalArgumentException("Error: date of admission cannot be after patient's date of birth.");
         this.dateOfAdmission = dateOfAdmission;
     }
 
@@ -252,6 +268,7 @@ public class Patient {
         this.diagnosis = diagnosis;
     }
 
+    // Throws NullPointerException with custom error message.
     private void nullCheck(Object obj, String name) throws NullPointerException {
         if (obj == null)
             throw new NullPointerException("Error: " + name + " cannot be assigned null value.");
