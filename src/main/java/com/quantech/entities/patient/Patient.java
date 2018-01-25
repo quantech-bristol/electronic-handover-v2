@@ -112,6 +112,7 @@ public class Patient {
         return id;
     }
 
+    // Should this method actually be here?
     public void setId(Long id) {
         this.id = id;
     }
@@ -121,6 +122,7 @@ public class Patient {
     }
 
     public void setDoctor(Doctor doctor) {
+        nullCheck(doctor,"doctor");
         this.doctor = doctor;
     }
 
@@ -129,6 +131,7 @@ public class Patient {
     }
 
     public void setTitle(Title title) {
+        nullCheck(title,"title");
         this.title = title;
     }
 
@@ -137,6 +140,7 @@ public class Patient {
     }
 
     public void setFirstName(String firstName) {
+        nullCheck(firstName, "first name");
         this.firstName = firstName;
     }
 
@@ -145,6 +149,7 @@ public class Patient {
     }
 
     public void setLastName(String lastName) {
+        nullCheck(lastName,"last name");
         this.lastName = lastName;
     }
 
@@ -153,6 +158,7 @@ public class Patient {
     }
 
     public void setBirthDate(Date birthDate) {
+        nullCheck(birthDate,"date of birth");
         this.birthDate = birthDate;
     }
 
@@ -161,6 +167,7 @@ public class Patient {
     }
 
     public void setNHSNumber(Long NHSNumber) {
+        nullCheck(NHSNumber,"NHS number");
         this.nHSNumber = NHSNumber;
     }
 
@@ -169,6 +176,7 @@ public class Patient {
     }
 
     public void setHospitalNumber(Long hospitalNumber) {
+        nullCheck(ward,"ward");
         this.hospitalNumber = hospitalNumber;
     }
 
@@ -176,13 +184,17 @@ public class Patient {
         return ward;
     }
 
-    public void setWard(Ward ward) { this.ward = ward; }
+    public void setWard(Ward ward) {
+        nullCheck(ward,"ward");
+        this.ward = ward;
+    }
 
     public String getBed() {
         return bed;
     }
 
     public void setBed(String bed) {
+        nullCheck(bed,"bed");
         this.bed = bed;
     }
 
@@ -191,6 +203,7 @@ public class Patient {
     }
 
     public void setDateOfAdmission(Date dateOfAdmission) {
+        nullCheck(dateOfAdmission, "date of admission");
         this.dateOfAdmission = dateOfAdmission;
     }
 
@@ -199,6 +212,7 @@ public class Patient {
     }
 
     public void setRelevantHistory(String relevantHistory) {
+        nullCheck(relevantHistory,"relevantHistory");
         this.relevantHistory = relevantHistory;
     }
 
@@ -207,6 +221,7 @@ public class Patient {
     }
 
     public void setSocialIssues(String socialIssues) {
+        nullCheck(socialIssues,"socialIssues");
         this.socialIssues = socialIssues;
     }
 
@@ -215,6 +230,7 @@ public class Patient {
     }
 
     public void setRisks(String risks) {
+        nullCheck(risks,"risks");
         this.risks = risks;
     }
 
@@ -223,6 +239,7 @@ public class Patient {
     }
 
     public void setRecommendations(String recommendations) {
+        nullCheck(recommendations,"recommendations");
         this.recommendations = recommendations;
     }
 
@@ -231,6 +248,13 @@ public class Patient {
     }
 
     public void setDiagnosis(String diagnosis) {
+        nullCheck(diagnosis,"diagnosis");
         this.diagnosis = diagnosis;
+    }
+
+    private void nullCheck(Object obj, String name) throws NullPointerException {
+        if (obj == null)
+            throw new NullPointerException("Error: " + name + " cannot be assigned null value.");
+
     }
 }
