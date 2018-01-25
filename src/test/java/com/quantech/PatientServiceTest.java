@@ -2,9 +2,12 @@ package com.quantech;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.patient.PatientRepository;
 import com.quantech.entities.patient.PatientService;
+import com.quantech.entities.ward.Ward;
+import com.quantech.misc.Title;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +37,14 @@ public class PatientServiceTest {
     PatientService patientService;
     @Autowired
     PatientRepository patientRepository;
+
+    @Test
+    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    // Making sure the service obtains patients by ID properly.
+    public void samePatientReturnedByIdTest() {
+        Patient p = patientRepository.findById(3L);
+        Assert.assertTrue(p.equals(patientService.getPatientById(3L)));
+    }
 
     @Test
     @DatabaseSetup("/patientServiceTest-dataSet1.xml")
@@ -85,4 +97,68 @@ public class PatientServiceTest {
         Assert.assertEquals(l1,l2);
     }
 
+    @Test
+    // Check that the patient service detects when all fields of the patient are null, and the patient isn't in the DB.
+    public void checkAllNullFieldsDetectedInPatient() {
+        Patient p = new Patient();
+        boolean thrown = false;
+        try {
+            patientService.savePatient(p);
+        } catch (NullPointerException e) {
+            thrown = true;
+        }
+        Long id = p.getId();
+        Assert.assertTrue(thrown);
+        Assert.assertTrue(patientRepository.findById(id) == null);
+    }
+
+    @Test
+    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    // Make sure that no null fields are detected when there aren't any.
+    public void checkNoNullFieldsDetectedInPatient() {
+        boolean thrown = false;
+        Patient p = patientRepository.findById(3L);
+        p.setBed("1");
+        try {
+            patientRepository.save(p);
+        } catch (NullPointerException e) {
+            thrown = true;
+        }
+        Assert.assertFalse(thrown);
+    }
+
+    @Test
+    // Should be able to detect when only some of the fields of the patient are null.
+    public void checkTwoNullFieldsDetectedInPatient() {
+        boolean thrown = false;
+        Patient p = new Patient();
+        p.setDoctor(new Doctor());
+        p.setTitle(Title.Mr);
+        p.setFirstName("Name");
+        p.setLastName("Name");
+        p.setNHSNumber(111L);
+        p.setHospitalNumber(111L);
+        p.setWard(new Ward());
+        p.setBed("1");
+        p.setRecommendations("reccs");
+        p.setDiagnosis("diag");
+        p.setSocialIssues("soc");
+        p.setRelevantHistory("rel");
+
+        try {
+            patientService.savePatient(p);
+        } catch (NullPointerException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+    }
+
+    @Test
+    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    // Making sure patients are deleted properly.
+    public void deletePatientTest() {
+        Patient p = patientRepository.findById(3L);
+        patientService.deletePatient(p);
+        Assert.assertTrue(patientRepository.findById(3L) == null);
+    }
 }

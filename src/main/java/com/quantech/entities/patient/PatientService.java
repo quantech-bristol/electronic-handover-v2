@@ -76,7 +76,7 @@ public class PatientService {
      * @return  A patient corresponding to the id if it exists, null otherwise.
      */
     public Patient getPatientById(Long id) {
-        return patientRepository.findOne(id);
+        return patientRepository.findById(id);
     }
 
     /**
@@ -118,20 +118,72 @@ public class PatientService {
      *                                     - first name,
      *                                     - last name,
      *                                     - NHS number,
-     *                                     - hospital,
+     *                                     - hospital number,
      *                                     - ward,
      *                                     - bed,
      *                                     - recommendations,
-     *                                     - diagnosis
+     *                                     - diagnosis,
+     *                                     - social issues,
+     *                                     - relevant history
      *                               has not been set, that is, is null.
-     *  @throws java.util.IllegalFormatException If:
-     *                                     - The NHS number is in an illegal form.
-     *                                     - Birth date is after admission date.
-     *                                     - Birth date or admission date is in the future.
      */
-    public void savePatient(Patient patient) throws NullPointerException, IllegalFormatException {
-        // TODO:
-        patientRepository.save(patient);
+    public void savePatient(Patient patient) throws NullPointerException {
+        List<String> fields = Arrays.asList("doctor",
+                                            "title",
+                                            "first name",
+                                            "last name",
+                                            "NHS number",
+                                            "hospital number",
+                                            "ward",
+                                            "bed",
+                                            "recommendations",
+                                            "diagnosis",
+                                            "social issues",
+                                            "relevant history",
+                                            "birthday",
+                                            "admission date");
+        List<Object> actualValues = Arrays.asList(patient.getDoctor(),
+                                                  patient.getTitle(),
+                                                  patient.getFirstName(),
+                                                  patient.getLastName(),
+                                                  patient.getNHSNumber(),
+                                                  patient.getHospitalNumber(),
+                                                  patient.getWard(),
+                                                  patient.getBed(),
+                                                  patient.getRecommendations(),
+                                                  patient.getDiagnosis(),
+                                                  patient.getSocialIssues(),
+                                                  patient.getRelevantHistory(),
+                                                  patient.getBirthDate(),
+                                                  patient.getDateOfAdmission());
+
+        List<Integer> nullValues = new ArrayList<>();
+
+        //Check for null fields.
+        for (int i = 0; i < actualValues.size(); i++) {
+            if (actualValues.get(i) == null)
+                nullValues.add(i);
+        }
+        // If patient object is valid save into the database.
+        if (nullValues.isEmpty())
+            patientRepository.save(patient);
+        else {
+            // Generate a custom error message (useful to put on page)
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(fields.get(nullValues.get(0)));
+            if (nullValues.size() != 1) {
+                for (int i = 1; i < nullValues.size() - 1; i++) {
+                    errorMessage.append(", ").append(fields.get(nullValues.get(i)));
+                }
+                errorMessage.append(" and ").append(fields.get(nullValues.get(nullValues.size() - 1))).append(" have");
+            }
+            else
+                errorMessage.append(" has");
+            errorMessage.append(" not been set for the patient.");
+
+            String e = errorMessage.toString();
+            throw new NullPointerException(e);
+        }
     }
     /**
      * Deletes a given patient from the repository.
