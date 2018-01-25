@@ -84,7 +84,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // Filter list of patients.
 
     // Sort list of patients.
-    @GetMapping("/patient/all/sortBy={sort}")
+    @GetMapping("/patient/allSortedBy={sort}")
     public String viewAllPatientsSorted(@PathVariable String sort, Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         List<Patient> patientList;
@@ -95,12 +95,11 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
         if (sort.equals("firstName"))
             patientList = patientService.sortPatientsByFirstName(patientList);
-        if (sort.equals("lastName"))
+        else if (sort.equals("lastName"))
             patientList = patientService.sortPatientsByLastName(patientList);
 
-        model.addAttribute("patients", patientList);
+        model.addAttribute("patients",patientList);
         return "viewPatients";
     }
-
     // Search list of patients.
 }
