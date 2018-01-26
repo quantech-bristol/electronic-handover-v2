@@ -91,6 +91,7 @@ body{
 
 .handoverbutton{
 	width:80%;
+	margin: 5vh;
 }
 #sidebar input{
 	background-color:#f0f2f4;
@@ -112,18 +113,19 @@ body{
 	margin-right:3vw;
     border-bottom: 0px; /*overrides inheritance */
 }
-#overviewboxleft{
+#boxleft{
 	float: left;
-	width: 44%;
-    margin: 3%;
-    background: #999999;
 }
-#overviewboxright{
+#boxright{
 	float: right;
-	width: 44%;
-    margin: 3%;
-    background: #999999;
 }
+.overviewbox{
+	width: 44%;
+	min-height: 10vh;
+	margin: 3%;
+	background: #E8EDEE;
+}
+
 /*-- //My Code --*/
 .roundedbutton {
     padding: 10px 0;
