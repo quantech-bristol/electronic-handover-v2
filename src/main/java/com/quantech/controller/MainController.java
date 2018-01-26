@@ -29,7 +29,7 @@ public class MainController {
                 return "/Admin/adminScreen";
             }
             else if (userInfo.hasAuth(SecurityRoles.Doctor)) {
-                return "viewPatients";
+                return "/quantech";
             }
 
         return "redirect:/login";

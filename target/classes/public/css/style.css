@@ -1,12 +1,12 @@
 /*-- My Code --*/
 h1 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h2 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h3 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h4{
 	color:#FFF;
@@ -33,6 +33,11 @@ body{
 .sidebar-mainwindow{
 	width:80%;
 }
+#header{
+    background-color:#005EB8;
+    height:8vh;
+    width:100%;
+}
 #topbar{
 	background-color:#7698d4;
 	height:8vh;
@@ -49,17 +54,11 @@ body{
 	width:80%;
 	height:40px;
 }
-#header{
-	background-color:#5c84cc;
-	height:8vh;
-	width:100%;
-}
 #sidebar{
 	background-color: #FFF;
 	float: left;
 	width: 20%;
-    min-height: 92vh;
-	height: 100%;
+    height: 92vh;
 	position: fixed;
 }
 .sidebar {
@@ -92,6 +91,7 @@ body{
 
 .handoverbutton{
 	width:80%;
+	margin: 5vh;
 }
 #sidebar input{
 	background-color:#f0f2f4;
@@ -113,6 +113,19 @@ body{
 	margin-right:3vw;
     border-bottom: 0px; /*overrides inheritance */
 }
+#boxleft{
+	float: left;
+}
+#boxright{
+	float: right;
+}
+.overviewbox{
+	width: 44%;
+	min-height: 10vh;
+	margin: 3%;
+	background: #E8EDEE;
+}
+
 /*-- //My Code --*/
 .roundedbutton {
     padding: 10px 0;
@@ -135,7 +148,7 @@ body{
 }
 /*-- Accordion --*/
 .ac-container div {
-	border-bottom: 2px ridge #272b2d;
+	/*--  border-bottom: 2px ridge #272b2d; --*/
 }
 .ac-container label {
 	padding: .7em 2em;
@@ -147,10 +160,10 @@ body{
 	letter-spacing: 1px;
 	line-height: 33px;
 	font-size: 1em;
-	background: #ffffff;
+	background: #E8EDEE;
 }
 .ac-container label:hover {
-	background:#f0f2f4;
+	background: #bdc1c2;
 	color: #000;
 }
 .ac-container input:checked + label, .ac-container input:checked + label:hover {
@@ -197,7 +210,7 @@ body{
 	display: none;
 }
 .ac-container article {
-	background: #fff;
+	background: #FFFFFF;
 	margin-top: -1px;
 	overflow: hidden;
 	height: 0px;
@@ -214,7 +227,7 @@ body{
 	font-size: 14px;
 	padding: 15px 20px;
 	color: #999;
-	background-color: #fff;
+	background-color: #E8EDEE;
 }
 .ac-container input:checked ~ article {
 	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
@@ -243,7 +256,7 @@ body{
 }
 .ac-small ul {
 	padding: 0;
-	border-bottom: 2px solid #bc202b;
+	/*-- border-bottom: 2px solid #272b2d; --*/
 }
 .ac-small ul li {
 	list-style-type: none;
@@ -253,11 +266,11 @@ body{
 	text-transform: capitalize;
 	display: block;
 	padding: 0.9em 0 0.9em 2em;
-	background: #ffffff;
+	background: #FFFFFF;
 }
 
 .ac-small ul li a:hover {
-	background: #93f3d9;
+	background: #bdc1c2;
 	color: #fff;
 }
 .w3l-accordion-mk {
