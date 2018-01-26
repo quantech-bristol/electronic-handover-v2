@@ -35,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated().anyRequest().denyAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
-       // http.exceptionHandling().accessDeniedPage("/403");
+        http.exceptionHandling().accessDeniedPage("/403");
+        http.formLogin().defaultSuccessUrl("/quantech", true);
     }
 
 }
