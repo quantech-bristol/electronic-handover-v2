@@ -148,7 +148,7 @@ body{
 }
 /*-- Accordion --*/
 .ac-container div {
-	border-bottom: 2px ridge #272b2d;
+	/*--  border-bottom: 2px ridge #272b2d; --*/
 }
 .ac-container label {
 	padding: .7em 2em;
@@ -160,10 +160,10 @@ body{
 	letter-spacing: 1px;
 	line-height: 33px;
 	font-size: 1em;
-	background: #ffffff;
+	background: #E8EDEE;
 }
 .ac-container label:hover {
-	background:#f0f2f4;
+	background: #bdc1c2;
 	color: #000;
 }
 .ac-container input:checked + label, .ac-container input:checked + label:hover {
@@ -210,7 +210,7 @@ body{
 	display: none;
 }
 .ac-container article {
-	background: #fff;
+	background: #FFFFFF;
 	margin-top: -1px;
 	overflow: hidden;
 	height: 0px;
@@ -227,7 +227,7 @@ body{
 	font-size: 14px;
 	padding: 15px 20px;
 	color: #999;
-	background-color: #fff;
+	background-color: #E8EDEE;
 }
 .ac-container input:checked ~ article {
 	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
@@ -256,7 +256,7 @@ body{
 }
 .ac-small ul {
 	padding: 0;
-	border-bottom: 2px solid #bc202b;
+	/*-- border-bottom: 2px solid #272b2d; --*/
 }
 .ac-small ul li {
 	list-style-type: none;
@@ -266,11 +266,11 @@ body{
 	text-transform: capitalize;
 	display: block;
 	padding: 0.9em 0 0.9em 2em;
-	background: #ffffff;
+	background: #FFFFFF;
 }
 
 .ac-small ul li a:hover {
-	background: #93f3d9;
+	background: #bdc1c2;
 	color: #fff;
 }
 .w3l-accordion-mk {
