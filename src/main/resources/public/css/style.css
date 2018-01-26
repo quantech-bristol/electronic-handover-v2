@@ -112,6 +112,14 @@ body{
 	margin-right:3vw;
     border-bottom: 0px; /*overrides inheritance */
 }
+#overviewboxleft{
+	float: left;
+	width: 49%;
+}
+#overviewboxright{
+	float: right;
+	width: 49%;
+}
 /*-- //My Code --*/
 .roundedbutton {
     padding: 10px 0;
