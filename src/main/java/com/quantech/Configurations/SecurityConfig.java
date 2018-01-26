@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/Admin", "/Admin/**", "/addWard", "/addDoctor").hasAuthority(SecurityRoles.Admin.toString())
                 .antMatchers("/doctor","/createHandover","/viewHandovers", "/viewPatient*","/quantech").hasAuthority(SecurityRoles.Doctor.toString())
+                .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .anyRequest().authenticated().anyRequest().denyAll()
                 .and().formLogin().loginPage("/login").permitAll()
