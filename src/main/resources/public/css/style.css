@@ -114,11 +114,15 @@ body{
 }
 #overviewboxleft{
 	float: left;
-	width: 49%;
+	width: 44%;
+    padding: 3%;
+    background: #999999;
 }
 #overviewboxright{
 	float: right;
-	width: 49%;
+	width: 44%;
+    padding: 3%;
+    background: #999999;
 }
 /*-- //My Code --*/
 .roundedbutton {
