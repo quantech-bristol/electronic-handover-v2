@@ -1,12 +1,12 @@
 /*-- My Code --*/
 h1 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h2 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h3 {
-	color:#8397b0;
+	color:#005EB8;
 }
 h4{
 	color:#FFF;
@@ -33,6 +33,11 @@ body{
 .sidebar-mainwindow{
 	width:80%;
 }
+#header{
+    background-color:#005EB8;
+    height:8vh;
+    width:100%;
+}
 #topbar{
 	background-color:#7698d4;
 	height:8vh;
@@ -48,11 +53,6 @@ body{
 	background-color:#f0f2f4;
 	width:80%;
 	height:40px;
-}
-#header{
-	background-color:#5c84cc;
-	height:8vh;
-	width:100%;
 }
 #sidebar{
 	background-color: #FFF;
@@ -114,11 +114,15 @@ body{
 }
 #overviewboxleft{
 	float: left;
-	width: 49%;
+	width: 44%;
+    margin: 3%;
+    background: #999999;
 }
 #overviewboxright{
 	float: right;
-	width: 49%;
+	width: 44%;
+    margin: 3%;
+    background: #999999;
 }
 /*-- //My Code --*/
 .roundedbutton {
