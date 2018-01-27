@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
@@ -47,8 +45,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @PostMapping("/handover")
     public String submitHandover(@ModelAttribute Handover handover, Model model) {
         handoverService.saveHandover(handover);
-        model.addAttribute("handovers", handoverService.getAllHandovers());
-        return "viewHandovers";
+        return "redirect:/viewHandovers";
     }
 
     // View all handovers, uses the viewPatients template
@@ -71,6 +68,19 @@ public class HandoverController extends WebMvcConfigurerAdapter {
 
         return "viewHandovers";
     }
+
+    //Accept Pending Handover Requests
+    @RequestMapping("/handover/accept")
+    public String viewAllPatients(@RequestParam(value = "id", required=true) Long id, Model model) {
+        Handover handover = handoverService.getHandover(id);
+        handover.getPatient().setDoctor(handover.getRecipientDoctor());
+        handover.setAccepted(true);
+        handoverService.saveHandover(handover);
+        return "redirect:/patient/all";
+    }
+
+
+
 
     // View all handovers given NHS, hospital, name etc ...
 
