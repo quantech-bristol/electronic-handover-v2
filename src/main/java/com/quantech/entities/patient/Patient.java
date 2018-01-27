@@ -75,6 +75,7 @@ public class Patient {
     }
 
     // Constructor to create new patient based on existing values.
+    // TODO: Error checking.
     public Patient(Doctor doctor,
                    Title title,
                    String firstName,
@@ -174,9 +175,37 @@ public class Patient {
         return nHSNumber;
     }
 
-    public void setNHSNumber(Long NHSNumber) {
+    /**
+     * Sets the NHS number of the patient.
+     * @param NHSNumber The NHS number to provide the patient.
+     * @throws NullPointerException If the NHS number provided is null.
+     * @throws IllegalArgumentException If either the number doesn't have 10 digits, or the checksum doesn't match.
+     */
+    public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
         nullCheck(NHSNumber,"NHS number");
+
+        /* TODO: complete this; have not uncommented yet because changes to validity checks may cause errors in existing databases.
+        int digits = NHSNumber.toString().length();
+
+        if (digits < 10)
+            throw new NullPointerException("Error: NHS number has too few digits.");
+        if (digits > 10)
+            throw new NullPointerException("Error: NHS number has too many digits.");
+
+        // Pull last digit.
+        long checksum = NHSNumber % 10;
+        // Check that the checksum is correct.
+        if ( modulus11alg(NHSNumber / 10) != checksum )
+            throw new NullPointerException("Error: NHS number is not valid (checksum does not match)");
+        */
+
         this.nHSNumber = NHSNumber;
+    }
+
+    // Used for working out the checksum of an NHS number.
+    private long modulus11alg(long n) {
+        // TODO: implement this algorithm: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
+        return 0;
     }
 
     public Long getHospitalNumber() {
