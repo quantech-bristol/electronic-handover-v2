@@ -1,6 +1,7 @@
 package com.quantech.controller;
 
 import com.quantech.Configurations.SecurityRoles;
+import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.Patient;
@@ -53,7 +54,10 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     // View all handovers, uses the viewPatients template
     @GetMapping("/viewHandovers")
     public String viewHandovers(Model model) {
-        model.addAttribute("handovers", handoverService.getAllHandovers());
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
+        model.addAttribute("doctor",currentDoctor);
+        model.addAttribute("handovers", handoverService.getAllFromDoctor(currentDoctor));
         return "viewHandovers";
     }
 
@@ -61,7 +65,10 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @GetMapping("/viewPendingHandovers")
     public String viewPendingHandovers(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        model.addAttribute("handovers",handoverService.getAllToDoctor(doctorService.getDoctor(userInfo.getId())));
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
+        model.addAttribute("doctor",currentDoctor);
+        model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
+
         return "viewHandovers";
     }
 
