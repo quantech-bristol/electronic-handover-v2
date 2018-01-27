@@ -15,7 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 @Controller
 public class PatientsController extends WebMvcConfigurerAdapter {
@@ -56,7 +59,13 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // View all patients in the system.
     @GetMapping("/patient/all")
-    public String viewAllPatients(@RequestParam(value = "sortBy", required=false) String sort, Model model) {
+    public String viewAllPatients(@RequestParam(value = "sortBy", required=false) String sort,
+                                  @RequestParam(value = "filterByFNPrefix", required = false) String fNameFilter,
+                                  @RequestParam(value = "filterByLNPrefix", required = false) String lNameFilter,
+                                  @RequestParam(value = "filterByWard", required = false) Long wardId,
+                                  @RequestParam(value = "filterByBed", required = false) String bed,
+                                  @RequestParam(value = "filterByDoc", required = false) Long docId,
+                                  Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         List<Patient> patients;
         if (userInfo.hasAuth(SecurityRoles.Doctor)){
@@ -73,6 +82,22 @@ public class PatientsController extends WebMvcConfigurerAdapter {
             if (sort.equals("lastName"))
                 patients = patientService.sortPatientsByLastName(patients);
         }
+
+        // Create a set of predicates corresponding to the filters specified.
+        Set<Predicate<Patient>> predicates = new HashSet<>();
+        if (fNameFilter != null)
+            predicates.add(patientService.patientsFirstNameStartsWith(fNameFilter));
+        if (lNameFilter != null)
+            predicates.add(patientService.patientsLastNameStartsWith(lNameFilter));
+        if (wardId != null)
+            predicates.add(patientService.patientsWardIs(wardService.getWard(wardId)));
+        if (bed != null)
+            predicates.add(patientService.patientsBedIs(bed));
+        if (docId != null)
+            predicates.add(patientService.patientsDoctorIs(doctorService.getDoctor(docId)));
+
+        // Use the filter generated.
+        patients = patientService.filterPatientsBy(patients,predicates);
 
         model.addAttribute("patients",patients);
         return "viewPatients";
