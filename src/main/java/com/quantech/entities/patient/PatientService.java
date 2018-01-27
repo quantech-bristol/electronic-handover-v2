@@ -1,5 +1,6 @@
 package com.quantech.entities.patient;
 
+import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.ward.Ward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
@@ -189,7 +190,7 @@ public class PatientService {
             throw new NullPointerException(e);
         }
     }
-    
+
     /**
      * Deletes a given patient from the repository.
      * @param patient The patient to be removed from the repository.
@@ -223,7 +224,7 @@ public class PatientService {
     }
 
     // Checks if a patient's first name starts with the given string.
-    public Predicate<Patient> patientFirstNameStartsWith(String str) {
+    public Predicate<Patient> patientsFirstNameStartsWith(String str) {
         return new Predicate<Patient>() {
             @Override
             public boolean test(Patient patient) {
@@ -258,6 +259,16 @@ public class PatientService {
             @Override
             public boolean test(Patient patient) {
                 return patient.getBed().equals(str);
+            }
+        };
+    }
+
+    // Checks if a patient is currently under the care of a certain doctor.
+    public Predicate<Patient> patientsDoctorIs(Doctor doc) {
+        return new Predicate<Patient>() {
+            @Override
+            public boolean test(Patient patient) {
+                return patient.getDoctor().equals(doc);
             }
         };
     }
