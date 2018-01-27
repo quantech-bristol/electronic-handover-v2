@@ -55,7 +55,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @GetMapping("/viewHandovers")
     public String viewHandovers(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId();
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         model.addAttribute("doctor",currentDoctor);
         model.addAttribute("handovers", handoverService.getAllFromDoctor(currentDoctor));
         return "viewHandovers";
@@ -65,7 +65,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @GetMapping("/viewPendingHandovers")
     public String viewPendingHandovers(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId();
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         model.addAttribute("doctor",currentDoctor);
         model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
 
