@@ -79,6 +79,19 @@ public class HandoverService {
     }
 
     /**
+     * Finds a list of handovers that concern a specific patient that are active.
+     * @param patient The patient for which the handovers concern.
+     * @return A list of active handovers that involve the input patient.
+     */
+    public List<Handover> getAllActiveForPatient(Patient patient) {
+        List<Handover> handovers = handoverRepository.findByPatient(patient);
+        List<Handover> activeHandovers = new ArrayList<>();
+        for(Handover handover:handovers){
+            if(handover.getAccepted() == false) activeHandovers.add(handover);
+        }
+        return activeHandovers;
+    }
+    /**
      * Saves the given handover into the repository.
      * @param handover The handover to be saved.
      */

@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -37,7 +39,12 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         model.addAttribute("currentDr",currentDoctor);
-        model.addAttribute("patients",patientService.getAllDoctorsPatients(currentDoctor));
+        List<Patient> ps = patientService.getAllDoctorsPatients(currentDoctor);
+        List<Patient> patients = new ArrayList<>();
+        for(Patient p : ps){
+            if(handoverService.getAllActiveForPatient(p).isEmpty()) patients.add(p);
+        }
+        model.addAttribute("patients",patients);
         model.addAttribute("handover", new Handover());
         model.addAttribute("doctors", doctorService.getAllDoctors());
         return "createHandover";
