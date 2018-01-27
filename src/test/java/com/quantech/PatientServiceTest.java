@@ -20,9 +20,11 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 @RunWith(SpringRunner.class)  // junit test runner
 @SpringBootTest               // read app context
@@ -39,7 +41,7 @@ public class PatientServiceTest {
     PatientRepository patientRepository;
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Making sure the service obtains patients by ID properly.
     public void samePatientReturnedByIdTest() {
         Patient p = patientRepository.findById(3L);
@@ -47,15 +49,10 @@ public class PatientServiceTest {
     }
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Make sure that the service returns all patients actually in the database.
     public void allPatientsReturnedTest() {
-        List<Patient> l1 = new ArrayList<>();
-        l1.add(patientRepository.findById(3L));
-        l1.add(patientRepository.findById(4L));
-        l1.add(patientRepository.findById(5L));
-        l1.add(patientRepository.findById(6L));
-
+        List<Patient> l1 = getPatientsFromRepository(new long[]{3L,4L,5L,6L});
         List<Patient> l2 = patientService.getAllPatients();
         Assert.assertEquals(l1,l2);
     }
@@ -67,31 +64,21 @@ public class PatientServiceTest {
     }
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Check that the service does actually properly sort the patients alphabetically by their first names, even when
     // some of the first names have the same value.
     public void sortPatientsByFirstNameCorrectOrder() {
-        List<Patient> l1 = new ArrayList<>();
-        l1.add(patientRepository.findById(6L));
-        l1.add(patientRepository.findById(3L));
-        l1.add(patientRepository.findById(5L));
-        l1.add(patientRepository.findById(4L));
-
+        List<Patient> l1 = getPatientsFromRepository(new long[]{6L,3L,5L,4L});
         List<Patient> l2 = patientService.getAllPatients();
         l2 = patientService.sortPatientsByFirstName(l2);
         Assert.assertEquals(l1,l2);
     }
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Check that the service does actually properly sort the patients alphabetically by their last names.
     public void sortPatientsByLastNameCorrectOrder() {
-        List<Patient> l1 = new ArrayList<>();
-        l1.add(patientRepository.findById(5L));
-        l1.add(patientRepository.findById(4L));
-        l1.add(patientRepository.findById(6L));
-        l1.add(patientRepository.findById(3L));
-
+        List<Patient> l1 = getPatientsFromRepository(new long[]{5L,4L,6L,3L});
         List<Patient> l2 = patientService.getAllPatients();
         l2 = patientService.sortPatientsByLastName(l2);
         Assert.assertEquals(l1,l2);
@@ -113,7 +100,7 @@ public class PatientServiceTest {
     }
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Make sure that no null fields are detected when there aren't any.
     public void checkNoNullFieldsDetectedInPatient() {
         boolean thrown = false;
@@ -128,7 +115,7 @@ public class PatientServiceTest {
     }
 
     @Test
-    // Should be able to detect when only some of the fields of the patient are null.
+    // Should be able to detect when only some of the fields of the patient are null. (In this case it's the birth and admission dates)
     public void checkTwoNullFieldsDetectedInPatient() {
         boolean thrown = false;
         Patient p = new Patient();
@@ -154,11 +141,169 @@ public class PatientServiceTest {
     }
 
     @Test
-    @DatabaseSetup("/patientServiceTest-dataSet1.xml")
+    @DatabaseSetup("/dataSet1.xml")
     // Making sure patients are deleted properly.
     public void deletePatientTest() {
         Patient p = patientRepository.findById(3L);
         patientService.deletePatient(p);
         Assert.assertTrue(patientRepository.findById(3L) == null);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Making sure that the method of filtering the patients by the start of their first name works.
+    public void filterPatientsByStartOfFirstNameIsATest() {
+        List<Patient> l1 = getPatientsFromRepository(new long[]{3L,5L,6L,7L,9L});
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsFirstNameStartsWith("A"));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Making sure that the method of filtering the patients by the start of their first name works.
+    public void filterPatientsByStartOfFirstNameIsChaTest() {
+        List<Patient> l1 = getPatientsFromRepository(new long[]{8L});
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsFirstNameStartsWith("Cha"));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @DatabaseSetup("/dataSet2.xml")
+    // Making sure that filtering for "Cha" and "C" only gives strings that match "Cha", and ordering of predicates
+    // doesn't matter.
+    public void filterPatientsByStartOfFirstNameIsChaAndCTest() {
+        Set<Predicate<Patient>> p1 = new HashSet<>();
+        p1.add(patientService.patientsFirstNameStartsWith("C"));
+        p1.add(patientService.patientsFirstNameStartsWith("Cha"));
+
+        Set<Predicate<Patient>> p2 = new HashSet<>();
+        p2.add(patientService.patientsFirstNameStartsWith("Cha"));
+        p2.add(patientService.patientsFirstNameStartsWith("C"));
+
+        List<Patient> l1 = getPatientsFromRepository(new long[]{8L});
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p1);
+        List<Patient> l3 = patientService.filterPatientsBy(patientService.getAllPatients(),p2);
+
+        Assert.assertEquals(l1,l2);
+        Assert.assertEquals(l1,l3);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // When predicates conflict one another, the filter should yield an empty list.
+    public void filterPatientsByStartOfDifferentFirstNameTest() {
+        Set<Predicate<Patient>> p = new HashSet<>();
+        p.add(patientService.patientsFirstNameStartsWith("A"));
+        p.add(patientService.patientsFirstNameStartsWith("C"));
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
+        Assert.assertEquals(new ArrayList<>(),l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Making sure last name filter is working properly.
+    public void filterPatientsByStartOfLastNameHaTest() {
+        List<Patient> l1 = getPatientsFromRepository(new long[]{6L,8L});
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsLastNameStartsWith("Ha"));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // When patient fulfilling predicate isn't found, return empty list.
+    public void filterPatientsByStartOfLastNameNoneFoundTest() {
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsLastNameStartsWith("Tumia"));
+        Assert.assertEquals(new ArrayList<>(),l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Different filters working in conjunction should be fine.
+    public void filterPatientsByStartOfFirstAndLastNameTest() {
+        List<Patient> l1 = getPatientsFromRepository(new long[]{5L});
+
+        Set<Predicate<Patient>> p = new HashSet<>();
+        p.add(patientService.patientsFirstNameStartsWith("Ab"));
+        p.add(patientService.patientsLastNameStartsWith("Bee"));
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // When a patient that doesn't fulfil multiple predicates isn't found, return empty list.
+    public void filterPatientsByStartOfFirstAndLastNameNoneFoundTest() {
+        Set<Predicate<Patient>> p = new HashSet<>();
+        p.add(patientService.patientsFirstNameStartsWith("Nuha"));
+        p.add(patientService.patientsLastNameStartsWith("Tumia"));
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
+        Assert.assertEquals(new ArrayList<>(),l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Filtering by ward.
+    public void filterPatientsByWardTest() {
+        Ward ward = patientRepository.findById(3L).getWard();
+        List<Patient> l1 = getPatientsFromRepository(new long[]{3L,4L,5L});
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsWardIs(ward));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Filtering by ward and bed.
+    public void filterPatientsByWardAndBedTest() {
+        Ward ward = patientRepository.findById(3L).getWard();
+        List<Patient> l1 = getPatientsFromRepository(new long[]{3L});
+
+        Set<Predicate<Patient>> p = new HashSet<>();
+        p.add(patientService.patientsWardIs(ward));
+        p.add(patientService.patientsBedIs("1"));
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Filtering by doctor.
+    public void filterPatientsByDoctorTest() {
+        Doctor d = patientRepository.findById(3L).getDoctor();
+        List<Patient> l1 = getPatientsFromRepository(new long[]{3L,4L,7L,9L,11L});
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),patientService.patientsDoctorIs(d));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet2.xml")
+    // Filtering by a combination of predicates (conjunctive).
+    public void filterPatientsByFirstNameLastNameDoctorTest() {
+        Doctor d = patientRepository.findById(10L).getDoctor();
+        List<Patient> l1 = getPatientsFromRepository(new long[]{10L});
+
+        Set<Predicate<Patient>> p = new HashSet<>();
+        p.add(patientService.patientsFirstNameStartsWith("Jane"));
+        p.add(patientService.patientsLastNameStartsWith("Name"));
+        p.add(patientService.patientsDoctorIs(d));
+
+        List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
+        Assert.assertEquals(l1,l2);
+    }
+
+    // Use this to create a list of patients with a certain sequence of IDs.
+    private List<Patient> getPatientsFromRepository(long[] ids) {
+        List<Patient> l1 = new ArrayList<>();
+        for (long id : ids) {
+            l1.add(patientRepository.findById(id));
+        }
+        return l1;
     }
 }
