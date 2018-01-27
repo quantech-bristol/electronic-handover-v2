@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PatientService {
@@ -188,6 +189,7 @@ public class PatientService {
             throw new NullPointerException(e);
         }
     }
+    
     /**
      * Deletes a given patient from the repository.
      * @param patient The patient to be removed from the repository.
@@ -206,8 +208,22 @@ public class PatientService {
         return list.stream().filter(predicate).collect(Collectors.toList());
     }
 
+    /**
+     * Filter list of a patients by a given predicate.
+     * @param list A list of patients.
+     * @param predicates A collection of predicates to test the patients against.
+     * @return A list of patients filtered by the given predicate.
+     */
+    public List<Patient> filterPatientsBy(List<Patient> list, Iterable<Predicate<Patient>> predicates) {
+        Stream<Patient> stream = list.stream();
+        for (Predicate<Patient> p : predicates) {
+            stream = stream.filter(p);
+        }
+        return stream.collect(Collectors.toList());
+    }
+
     // Checks if a patient's first name starts with the given string.
-    private Predicate<Patient> patientFirstNameStartsWith(String str) {
+    public Predicate<Patient> patientFirstNameStartsWith(String str) {
         return new Predicate<Patient>() {
             @Override
             public boolean test(Patient patient) {
@@ -217,7 +233,7 @@ public class PatientService {
     }
 
     // Checks if a patient's last name starts with a given string.
-    private Predicate<Patient> patientsLastNameStartsWith(String str) {
+    public Predicate<Patient> patientsLastNameStartsWith(String str) {
         return new Predicate<Patient>() {
             @Override
             public boolean test(Patient patient) {
@@ -227,7 +243,7 @@ public class PatientService {
     }
 
     // Checks if the patient is currently staying at a given ward.
-    private Predicate<Patient> patientsWardIs(Ward ward) {
+    public Predicate<Patient> patientsWardIs(Ward ward) {
         return new Predicate<Patient>() {
             @Override
             public boolean test(Patient patient) {
@@ -237,7 +253,7 @@ public class PatientService {
     }
 
     // Checks if a patient is currently at a given bed.
-    private Predicate<Patient> patientsBedIs(String str) {
+    public Predicate<Patient> patientsBedIs(String str) {
         return new Predicate<Patient>() {
             @Override
             public boolean test(Patient patient) {
