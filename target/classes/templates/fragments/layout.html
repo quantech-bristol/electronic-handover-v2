@@ -7,6 +7,26 @@
 <body>
 
 
+<div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
+    <div id="sidebarwrap">
+        <h1 th:text="${#authentication.principal.username}">test</h1>
+        <h2>Cardiology</h2>
+        <h2>Bristol Royal Infirmary</h2>
+        <div class="headshot">
+            <a th:href="@{/patient/all}"><img th:src="@{/images/headshot.jpg}" alt="" class="img-responsive"/></a>
+        </div>
+        <input type="text" value="Search" /><i class="fa fa-search" aria-hidden="true"></i>
+        <a th:href="@{/}"><h3>Overview</h3></a>
+        <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
+        <a th:href="@{/viewHandovers}"><h3>My Handovers</h3></a>
+        <h3>To Do</h3>
+        <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
         <h1 th:text="${#authentication.principal.username}">test</h1>
