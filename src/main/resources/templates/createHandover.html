@@ -25,13 +25,13 @@
                 </select></td>
             </div></tr><br/>
 
-            <input type="hidden" id ="originDoctor" th:field="*{originDoctor}" th:value="${currentDoctor.id}"/>
+            <input type="hidden" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
 
             <tr><div class="form-group">
                 <td><label for="recipientDoctor">Step 2: Receiving Doctor</label></td>
                 <td><select id="recipientDoctor" class="form-control" th:field="${handover.recipientDoctor}">
                     <option value="default">Select a Doctor</option>
-                    <option th:each="doctor: ${doctors}" th:if="${currentDoctor.id} != ${doctor.id}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
+                    <option th:each="doctor: ${doctors}" th:if="${currentDr.id} != ${doctor.id}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
                 </select></td>
             </div><br/></tr>
 

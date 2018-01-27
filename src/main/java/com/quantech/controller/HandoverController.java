@@ -35,9 +35,9 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @GetMapping("/createHandover")
     public String createHandover(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        model.addAttribute("currentDoctor",doctorService.getDoctor(userInfo.getId()));
-        //TODO: Need to refine this to only the doctors patients, not all patients.
-        model.addAttribute("patients",patientService.getAllPatients());
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
+        model.addAttribute("currentDr",currentDoctor);
+        model.addAttribute("patients",patientService.getAllDoctorsPatients(currentDoctor));
         model.addAttribute("handover", new Handover());
         model.addAttribute("doctors", doctorService.getAllDoctors());
         return "createHandover";
