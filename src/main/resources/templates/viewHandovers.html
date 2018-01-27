@@ -21,10 +21,11 @@
                 <article class="ac-small agileits w3layouts">
                     <div style="float: left;">
                         <ul>
-                            <li>Diagosis: <span th:text="${handover.patient.diagnosis}"/></li>
+                            <li>Doctors: <span th:text="${handover.originDoctor.firstName}"/> ---> <span th:text="${handover.recipientDoctor.firstName}"/></li>
                             <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
                             <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
-                            <li>Risks: <span th:text="${handover.patient.risks}"/></li>
+                            <li>Risks: <span th:text="${handover.patient.risks}"/>
+
                         </ul>
                     </div>
                 </article>
