@@ -146,6 +146,8 @@ public class PatientService {
      *                                     - social issues,
      *                                     - relevant history
      *                               has not been set, that is, is null.
+     * @throws IllegalArgumentException If there's already a patient in the same bed of the given ward.
+     * // TODO: implement this check.
      */
     public void savePatient(Patient patient) throws NullPointerException {
         List<String> fields = Arrays.asList("doctor",

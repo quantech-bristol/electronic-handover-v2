@@ -227,12 +227,6 @@ public class Patient {
         return (checkSum == checkDigit);
     }
 
-    // Used for working out the checksum of an NHS number.
-    private long modulus11alg(long n) {
-        // TODO: implement this algorithm: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
-        return 0;
-    }
-
     public Long getHospitalNumber() {
         return hospitalNumber;
     }
