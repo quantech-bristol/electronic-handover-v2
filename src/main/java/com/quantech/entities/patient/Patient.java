@@ -192,14 +192,39 @@ public class Patient {
         if (digits > 10)
             throw new NullPointerException("Error: NHS number has too many digits.");
 
-        // Pull last digit.
-        long checksum = NHSNumber % 10;
         // Check that the checksum is correct.
-        if ( modulus11alg(NHSNumber / 10) != checksum )
+        if ( checksumCorrect(digits) )
             throw new NullPointerException("Error: NHS number is not valid (checksum does not match)");
         */
 
         this.nHSNumber = NHSNumber;
+    }
+
+    // Checks that the checksum of the NHS number is correct.
+    private boolean checksumCorrect(Long n) {
+        String digits = n.toString();
+        int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
+
+        // Applying Modulus 11 algorithm:
+        // Source: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
+        // 1- Apply factors:
+        int sum = 0; int factor = 10;
+        for (int i = 0; i < 9; i++) {
+            int dig = Character.getNumericValue(digits.charAt(i));
+            sum += dig*factor;
+            factor--;
+        }
+        // 2- Find the remainder of dividing by 11.
+        int r = sum % 11;
+        // 3- Take the remainder away from 11 to get the check digit.
+        int checkDigit = 11 - r;
+        // 4- If the value is 10 then the check digit used is 0. If it is 0, then the number is invalid.
+        if (checkDigit == 0)
+            return false;
+        if (checkDigit == 10)
+            checkDigit = 0;
+        // 5- Check the remainder matches the check digit.
+        return (checkSum == checkDigit);
     }
 
     // Used for working out the checksum of an NHS number.

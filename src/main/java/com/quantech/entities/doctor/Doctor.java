@@ -200,7 +200,7 @@ public class Doctor {
     {
         nullCheck(user,"user");
         if (!user.getAuthorities().contains(SecurityRoles.Doctor))
-            throw new IllegalArgumentException("Error: user assigned to doctor has not got Doctor privileges").
+            throw new IllegalArgumentException("Error: user assigned to doctor has not got Doctor privileges");
         this.user = user;
     }
 
