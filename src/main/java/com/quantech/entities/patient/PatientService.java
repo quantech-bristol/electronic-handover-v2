@@ -28,6 +28,21 @@ public class PatientService {
     }
 
     /**
+     * Returns all patients currently stored in the repository belonging to the doctor
+     * * @param doctor The doctor to filter by.
+     * @return A list of all patients currently stored in the repository belonging to the doctor.
+     */
+    public List<Patient> getAllDoctorsPatients(Doctor doctor) {
+        List<Patient> patients = new ArrayList<>();
+        List<Patient> docPatients = new ArrayList<>();
+        patientRepository.findAll().forEach(patients::add);
+        for(Patient p : patients){
+            if(p.getDoctor() == doctor) docPatients.add(p);
+        }
+        return docPatients;
+    }
+
+    /**
      * Sort the given list of patients by their first name, alphabetically.
      * @param list The list of patients.
      * @return A sorted list of patients, by first name.

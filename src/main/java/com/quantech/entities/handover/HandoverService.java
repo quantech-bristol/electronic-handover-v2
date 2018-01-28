@@ -39,16 +39,26 @@ public class HandoverService {
      * @return A list of handovers that the input doctor has sent.
      */
     public List<Handover> getAllFromDoctor(Doctor doctor) {
-        return handoverRepository.findByOriginDoctor(doctor);
+        List<Handover> handovers = handoverRepository.findByOriginDoctor(doctor);
+        List<Handover> pendingHandovers = new ArrayList<>();
+        for(Handover handover:handovers){
+            if(handover.getAccepted() == false) pendingHandovers.add(handover);
+        }
+        return pendingHandovers;
     }
 
     /**
-     * Finds a list of all handovers that have been sent to a specific doctor.
+     * Finds a list of all handovers that have been sent to a specific doctor that haven't been accepted.
      * @param doctor The doctor to which the handover was sent.
      * @return A list of handovers with the input doctor as the recipient.
      */
     public List<Handover> getAllToDoctor(Doctor doctor) {
-        return handoverRepository.findByRecipientDoctor(doctor);
+        List<Handover> handovers = handoverRepository.findByRecipientDoctor(doctor);
+        List<Handover> pendingHandovers = new ArrayList<>();
+        for(Handover handover:handovers){
+            if(handover.getAccepted() == false) pendingHandovers.add(handover);
+        }
+        return pendingHandovers;
     }
 
     /**
@@ -68,6 +78,19 @@ public class HandoverService {
         return handoverRepository.findByPatient(patient);
     }
 
+    /**
+     * Finds a list of handovers that concern a specific patient that are active.
+     * @param patient The patient for which the handovers concern.
+     * @return A list of active handovers that involve the input patient.
+     */
+    public List<Handover> getAllActiveForPatient(Patient patient) {
+        List<Handover> handovers = handoverRepository.findByPatient(patient);
+        List<Handover> activeHandovers = new ArrayList<>();
+        for(Handover handover:handovers){
+            if(handover.getAccepted() == false) activeHandovers.add(handover);
+        }
+        return activeHandovers;
+    }
     /**
      * Saves the given handover into the repository.
      * @param handover The handover to be saved.

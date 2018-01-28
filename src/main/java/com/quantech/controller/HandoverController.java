@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -36,8 +36,15 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     // Go to view to create new handover.
     @GetMapping("/createHandover")
     public String createHandover(Model model) {
-        //TODO: Need to refine this to only the doctors patients, not all patients.
-        model.addAttribute("patients",patientService.getAllPatients());
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
+        model.addAttribute("currentDr",currentDoctor);
+        List<Patient> ps = patientService.getAllDoctorsPatients(currentDoctor);
+        List<Patient> patients = new ArrayList<>();
+        for(Patient p : ps){
+            if(handoverService.getAllActiveForPatient(p).isEmpty()) patients.add(p);
+        }
+        model.addAttribute("patients",patients);
         model.addAttribute("handover", new Handover());
         model.addAttribute("doctors", doctorService.getAllDoctors());
         return "createHandover";
@@ -47,8 +54,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     @PostMapping("/handover")
     public String submitHandover(@ModelAttribute Handover handover, Model model) {
         handoverService.saveHandover(handover);
-        model.addAttribute("handovers", handoverService.getAllHandovers());
-        return "viewHandovers";
+        return "redirect:/viewHandovers";
     }
 
     // View all handovers, uses the viewPatients template
@@ -71,6 +77,19 @@ public class HandoverController extends WebMvcConfigurerAdapter {
 
         return "viewHandovers";
     }
+
+    //Accept Pending Handover Requests
+    @RequestMapping("/handover/accept")
+    public String viewAllPatients(@RequestParam(value = "id", required=true) Long id, Model model) {
+        Handover handover = handoverService.getHandover(id);
+        handover.getPatient().setDoctor(handover.getRecipientDoctor());
+        handover.setAccepted(true);
+        handoverService.saveHandover(handover);
+        return "redirect:/patient/all";
+    }
+
+
+
 
     // View all handovers given NHS, hospital, name etc ...
 

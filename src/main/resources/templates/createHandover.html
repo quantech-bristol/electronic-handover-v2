@@ -25,24 +25,18 @@
                 </select></td>
             </div></tr><br/>
 
-            <tr><div class="form-group">
-                <td><label for="originDoctor">Step 2: Originating Doctor</label></td>
-                <td><select id="originDoctor" class="form-control" th:field="${handover.originDoctor}">
-                    <option value="default">Select a Doctor</option>
-                    <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
-                </select></td>
-            </div><br/></tr>
+            <input type="hidden" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
 
             <tr><div class="form-group">
-                <td><label for="recipientDoctor">Step 3: Receiving Doctor</label></td>
+                <td><label for="recipientDoctor">Step 2: Receiving Doctor</label></td>
                 <td><select id="recipientDoctor" class="form-control" th:field="${handover.recipientDoctor}">
                     <option value="default">Select a Doctor</option>
-                    <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
+                    <option th:each="doctor: ${doctors}" th:if="${currentDr.id} != ${doctor.id}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
                 </select></td>
             </div><br/></tr>
 
             <tr><div class="form-group">
-                <td><label for="patientNote">Step 4: Notes</label></td>
+                <td><label for="patientNote">Step 3: Notes</label></td>
                 <td><input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter Patient Notes"/></td>
             </div><br/></tr>
 
