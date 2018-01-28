@@ -90,7 +90,7 @@ public class DoctorTest {
     // Making sure the service sorts the list of doctors properly; alphabetically by last name.
     public void sortByLastNameTest() {
         List<Doctor> l1 = getDoctorsFromRepository(new long[]{5L,2L,3L,4L,1L});
-        List<Doctor> l2 = doctorService.sortDoctorsByFirstName(doctorService.getAllDoctors());
+        List<Doctor> l2 = doctorService.sortDoctorsByLastName(doctorService.getAllDoctors());
         Assert.assertEquals(l1,l2);
     }
 

@@ -300,7 +300,7 @@ public class Patient {
     // Throws NullPointerException with custom error message.
     private void nullCheck(Object obj, String name) throws NullPointerException {
         if (obj == null)
-            throw new NullPointerException("Error: " + name + " cannot be assigned null value.");
+            throw new NullPointerException("Error: " + name + " in patient cannot be assigned null value.");
 
     }
 }

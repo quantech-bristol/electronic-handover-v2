@@ -1,5 +1,6 @@
 package com.quantech.entities.doctor;
 
+import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.team.Team;
 import com.quantech.entities.user.UserCore;
 import com.quantech.misc.Title;
@@ -89,7 +90,8 @@ public class Doctor {
         this.receivedHandovers = receivedHandovers;
     }
 
-    public void addPatient(Patient patient) {
+    public void addPatient(Patient patient) throws NullPointerException {
+        nullCheck(patient, "patient");
         this.patients.add(patient);
     }
 
@@ -97,6 +99,7 @@ public class Doctor {
         return id;
     }
 
+    // Should this really be here?
     public void setId(Long id) {
         this.id = id;
     }
@@ -105,7 +108,8 @@ public class Doctor {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(Title title) throws NullPointerException {
+        nullCheck(title,"title");
         this.title = title;
     }
 
@@ -113,7 +117,8 @@ public class Doctor {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws NullPointerException{
+        nullCheck(firstName, "first name");
         this.firstName = firstName;
     }
 
@@ -121,7 +126,8 @@ public class Doctor {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws NullPointerException {
+        nullCheck(lastName,"last name");
         this.lastName = lastName;
     }
 
@@ -129,7 +135,8 @@ public class Doctor {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws NullPointerException {
+        nullCheck(email,"email");
         this.email = email;
     }
 
@@ -137,7 +144,8 @@ public class Doctor {
         return patients;
     }
 
-    public void setPatients(List<Patient> patients) {
+    public void setPatients(List<Patient> patients) throws NullPointerException {
+        nullCheck(patients,"patients list");
         this.patients = patients;
     }
 
@@ -145,7 +153,8 @@ public class Doctor {
         return lastRenewed;
     }
 
-    public void setLastRenewed(Calendar lastRenewed) {
+    public void setLastRenewed(Calendar lastRenewed) throws NullPointerException {
+        nullCheck(lastRenewed,"date last renewed");
         this.lastRenewed = lastRenewed;
     }
 
@@ -153,7 +162,8 @@ public class Doctor {
         return teams;
     }
 
-    public void setTeams(List<Team> teams) {
+    public void setTeams(List<Team> teams) throws NullPointerException {
+        nullCheck(teams,"teams list");
         this.teams = teams;
     }
 
@@ -161,6 +171,7 @@ public class Doctor {
         return sentHandovers;
     }
 
+    // Should this be here? Maybe "add" and "flush" methods are better?
     public void setSentHandovers(List<Handover> sentHandovers) {
         this.sentHandovers = sentHandovers;
     }
@@ -169,6 +180,7 @@ public class Doctor {
         return receivedHandovers;
     }
 
+    // Should this be here? Maybe "add" and "flush" methods are better?
     public void setReceivedHandovers(List<Handover> receivedHandovers) {
         this.receivedHandovers = receivedHandovers;
     }
@@ -178,8 +190,24 @@ public class Doctor {
         return user;
     }
 
-    public void setUser(UserCore user)
+    /**
+     * Set the user that corresponds to the doctor object.
+     * @param user The user to set
+     * @throws NullPointerException If user is null.
+     * @throws IllegalArgumentException If the user does not have Doctor privileges.
+     */
+    public void setUser(UserCore user) throws NullPointerException, IllegalArgumentException
     {
+        nullCheck(user,"user");
+        if (!user.getAuthorities().contains(SecurityRoles.Doctor))
+            throw new IllegalArgumentException("Error: user assigned to doctor has not got Doctor privileges").
         this.user = user;
+    }
+
+    // Throws NullPointerException with custom error message.
+    private void nullCheck(Object obj, String name) throws NullPointerException {
+        if (obj == null)
+            throw new NullPointerException("Error: " + name + " in doctor cannot be assigned null value.");
+
     }
 }
