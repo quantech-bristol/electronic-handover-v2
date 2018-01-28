@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,6 +29,23 @@ public class DoctorService {
         return doctors;
     }
 
+    /**
+     * Sort the given list of doctors by their last date of renewal, most recent first.
+     * @param list The list of doctors.
+     * @return A sorted list of doctors, by first name.
+     */
+    public List<Doctor> sortDoctorsByDateRenewedMostRecentFirst(List<Doctor> list) {
+        return sortList(list,dateRenewedMostRecentFirstComparator());
+    }
+
+    /**
+     * Sort the given list of doctors by their last date of renewal, most recent last.
+     * @param list The list of doctors.
+     * @return A sorted list of doctors, by first name.
+     */
+    public List<Doctor> sortDoctorsByDateRenewedMostRecentLast(List<Doctor> list) {
+        return sortList(list,dateRenewedMostRecentLastComparator());
+    }
 
     // A comparator used to sort doctors by their date renewed, most recent first.
     private Comparator<Doctor> dateRenewedMostRecentFirstComparator() {
@@ -54,14 +72,14 @@ public class DoctorService {
      * @param list The list of doctors.
      * @return A sorted list of doctors, by first name.
      */
-    public List<Doctor> sortPatientsByFirstName(List<Doctor> list) {
+    public List<Doctor> sortDoctorsByFirstName(List<Doctor> list) {
         return sortList(list,firstNameAlphabeticalComparator());
     }
 
     // A comparator that can be used to sort the doctors by their first name, alphabetically.
     private Comparator<Doctor> firstNameAlphabeticalComparator() {
         return (o1, o2) -> {
-            if(o1.getFirstName() != null && o2.getFirstName() != null){
+            if(!(o1.getFirstName() == null || o2.getFirstName() == null)){
                 if (o1.getFirstName().compareTo(o2.getFirstName()) == 0)
                     return lastNameAlphabeticalComparator().compare(o1,o2);
                 else
@@ -107,9 +125,64 @@ public class DoctorService {
 
     /**
      * Saves the given doctor object into the repository.
-     * @param doctor
+     * @param doctor The doctor object to save.
+     * @throws NullPointerException If the:
+     *                                     - user,
+     *                                     - title,
+     *                                     - first name,
+     *                                     - last name,
+     *                                     - email.
+     *                               has not been set, that is, is null.
+     * @throws IllegalArgumentException If the user object is already associated with a user.
      */
-    public void saveDoctor(Doctor doctor) {
+    public void saveDoctor(Doctor doctor) throws NullPointerException {
+        List<String> fields = Arrays.asList("user",
+                "title",
+                "first name",
+                "last name",
+                "email");
+        List<Object> actualValues = Arrays.asList(doctor.getUser(),
+                doctor.getTitle(),
+                doctor.getFirstName(),
+                doctor.getLastName(),
+                doctor.getEmail());
+
+        List<Integer> nullValues = new ArrayList<>();
+
+        //Check for null fields.
+        for (int i = 0; i < actualValues.size(); i++) {
+            if (actualValues.get(i) == null)
+                nullValues.add(i);
+        }
+
+        // Throwing a null pointer exception.
+        if (!nullValues.isEmpty()) {
+            // Generate a custom error message (useful to put on page)
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(fields.get(nullValues.get(0)));
+            if (!(nullValues.size() == 1)) {
+                for (int i = 1; i < nullValues.size() - 1; i++) {
+                    errorMessage.append(", ").append(fields.get(nullValues.get(i)));
+                }
+                errorMessage.append(" and ").append(fields.get(nullValues.get(nullValues.size() - 1))).append(" have");
+            }
+            else
+                errorMessage.append(" has");
+            errorMessage.append(" not been set for the doctor.");
+
+            String e = errorMessage.toString();
+            throw new NullPointerException(e);
+        }
+
+        // Now check if there's already a doctor associated with the user object.
+        if (doctorRepository.findById(doctor.getUser().getId()) != null ) {
+            throw new IllegalArgumentException("Error; "
+                    + doctor.getUser().getUsername()
+                    + " already associated with doctor "
+                    + doctor.getFirstName() + " " + doctor.getLastName() + ".");
+        }
+
+        // Now that there are no errors, save.
         doctorRepository.save(doctor);
     }
 
@@ -126,7 +199,7 @@ public class DoctorService {
      * @param team The team for which the doctor should be added to.
      * @param id The id corresponding to the doctor in the repository.
      */
-    public void addTeamToDoctor(Team team, Long id) {
+    public void addTeamToDoctor (Team team, Long id) {
         // Add the team to the doctor's list of teams
         //     The doctor needs to be added to the Team's list of doctors over in the Team package
         Doctor doctor = doctorRepository.findOne(id);
@@ -173,5 +246,15 @@ public class DoctorService {
         - should we just look at the Teams the Doctor is in, and then call team.getPatients(), rather than
           overlapping ?
 
+     */
+
+    /*
+     * // TODO Filtering doctor list:
+     *          - Renewed after
+     *          - Renewed before
+     *          - First name starts with
+     *          - Last name starts with
+     *          - In given team
+     *          - In set of given teams.
      */
 }
