@@ -1,12 +1,10 @@
 package com.quantech.Configurations;
 
-import javax.sql.DataSource;
 
 import com.quantech.entities.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,14 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/Admin", "/Admin/**", "/addWard", "/addDoctor").hasAuthority(SecurityRoles.Admin.toString())
-                .antMatchers("/doctor","/createHandover","/viewHandovers", "/viewPatient*","/quantech").hasAuthority(SecurityRoles.Doctor.toString())
+                .antMatchers("/doctor","/createHandover","/viewHandovers", "/viewPatient*","/quantech", "/patient").hasAuthority(SecurityRoles.Doctor.toString())
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .anyRequest().authenticated().anyRequest().denyAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
         http.exceptionHandling().accessDeniedPage("/403");
-        http.formLogin().defaultSuccessUrl("/quantech", true);
+        http.formLogin().defaultSuccessUrl("/", true);
     }
 
 }

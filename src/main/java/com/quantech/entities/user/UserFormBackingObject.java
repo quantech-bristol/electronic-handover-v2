@@ -5,17 +5,19 @@ import com.quantech.misc.StringEnumValidation.ValidateEnumValues;
 import com.quantech.misc.StringEnumValidation.ValidateListEnumValues;
 import com.quantech.misc.Title;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
-@Entity
-public class UserCore implements UserDetails, UserInfo{
+@Component
+public class UserFormBackingObject implements UserInfo
+{
     @Size(min = 1)
     @NotNull
     private String firstName;
@@ -24,52 +26,49 @@ public class UserCore implements UserDetails, UserInfo{
     @NotNull
     private String lastName;
 
-    @Column(unique = true)
     @Email
     @NotNull
     private String email;
 
-    //@ValidateEnumValues(enumClazz = Title.class)
     @NotNull
     private Title title;
 
     @Size(min = 4, max = 20)
-    @Column(unique = true, nullable = false)
     @NotNull
     private String username;
 
-    @Id
-    @GeneratedValue
     private Long id;
 
-    @Column
-    @NotNull
     private boolean enabled = true;
 
-    @Size(min = 4, max = 20)
-    @Column
-    @NotNull
+    //@Size(min = 4, max = 20)
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @NotNull
     private Set<SecurityRoles> authorityStrings;
 
-    public UserCore(String username, String password, SecurityRoles baseAuth, Title title, String firstName, String surname, String email) {
+    public UserFormBackingObject(UserInfo core)
+    {
+        this.username = core.getUsername();
+        this.password = core.getPassword();
+        this.authorityStrings = core.getAuthorityStrings();
+        this.id = core.getId();
+        this.email = core.getEmail();
+        this.title= core.getTitle();
+        this.firstName=core.getFirstName();
+        this.lastName = core.getLastName();
+
+    }
+    public UserFormBackingObject(String username, String password, SecurityRoles baseAuth) {
 
         this.username = username;
         this.password = password;
         authorityStrings = new LinkedHashSet<>();
         authorityStrings.add(baseAuth);
         enabled = true;
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = surname;
-        this.email = email;
 
     }
 
-    public UserCore() {
+    public UserFormBackingObject() {
         enabled = true;
         authorityStrings = new LinkedHashSet<>();
     }
@@ -77,37 +76,6 @@ public class UserCore implements UserDetails, UserInfo{
     public String getUsername()
     {
         return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authoritiesToReturn  = new ArrayList<GrantedAuthority>();
-        for(SecurityRoles auth : authorityStrings)
-        {
-            authoritiesToReturn.add(new SimpleGrantedAuthority(auth.toString()));
-        }
-        return authoritiesToReturn;
     }
 
 
@@ -127,15 +95,15 @@ public class UserCore implements UserDetails, UserInfo{
     }
 
     public void addAuth(SecurityRoles auth) {
-    authorityStrings.add(auth);
+            authorityStrings.add(auth);
     }
 
     public void removeAuth(SecurityRoles auth) {
-       authorityStrings.remove(auth);
+        authorityStrings.remove(auth);
     }
 
     public boolean hasAuth(SecurityRoles auth) {
-     return authorityStrings.contains(auth);
+        return authorityStrings.contains(auth);
     }
 
     public boolean getEnabled()
@@ -153,10 +121,6 @@ public class UserCore implements UserDetails, UserInfo{
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Set<SecurityRoles> getAuthorityStrings() {
         return authorityStrings;
     }
@@ -165,16 +129,8 @@ public class UserCore implements UserDetails, UserInfo{
         this.authorityStrings = authorityStrings;
     }
 
-    public void updateValues(UserInfo user) {
-        this.authorityStrings = user.getAuthorityStrings();
-        this.username = user.getUsername();
-        if (user.getPassword().length() != 0) {
-            this.password = user.getPassword();
-        }
-        this.title= user.getTitle();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
@@ -196,7 +152,6 @@ public class UserCore implements UserDetails, UserInfo{
     @Override
     public void setLastName(String lastName) {
         this.lastName = lastName;
-
     }
 
     @Override
@@ -219,11 +174,32 @@ public class UserCore implements UserDetails, UserInfo{
         this.title = title;
     }
 
-    public String getFullName()
+
+    public UserCore ToUserCore()
     {
-        return title.toString() + " " + firstName + " " + lastName;
+        UserCore newUser = new UserCore();
+        newUser.updateValues(this);
+        return newUser;
     }
 
+    public void CheckValidity(UserService service,BindingResult result, boolean creating)
+    {
+        if(!service.nameIsValid(getUsername(),getId()))//If Username is already in use (but not by us)
+        {
+            result.rejectValue("username","error.usercore","That username is already in use!");//Add an error
+        }
+        if(!service.emailIsValid(getEmail(),getId()))//If Username is already in use (but not by us)
+        {
+            result.rejectValue("email","email.usercore","That email is already in use!");//Add an error
+        }
+        if ((creating) && (4 > password.length()|| password.length()>20))
+        {
+            result.rejectValue("password","password.usercore","Passwords should be between 4 and 20 characters!");//Add an error
+        }
+        if (authorityStrings.size() == 0)
+        {
+            result.rejectValue("authorityStrings","authorityStrings.usercore","Surely they have some role in this hospital!");//Add an error
+        }
 
-
+    }
 }

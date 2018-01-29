@@ -11,4 +11,6 @@ public interface UserRepository extends CrudRepository<UserCore, Long> {
     public void deleteUserCoreByUsername(String username);
 
     public int countByUsername(String username);
+
+    public UserCore findUserCoreByEmail(String email);
 }

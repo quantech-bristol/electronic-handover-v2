@@ -1,6 +1,7 @@
 package com.quantech.entities.user;
 
 import com.quantech.Configurations.SecurityRoles;
+import com.quantech.misc.Title;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -67,13 +68,20 @@ public class UserService implements UserDetailsService {
     }
 
     private UserCore rootUser() {
-        UserCore rootUser = new UserCore("quantech","quantech", SecurityRoles.Admin.toString());
+        UserCore rootUser = new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com");
         return rootUser;
     }
 
-    public boolean nameIsValid(String s)
+    public boolean nameIsValid(String s, Long id)
     {
-        if (userRepository.countByUsername(s) == 0){return true;}
+        UserCore user = userRepository.findUserCoreByUsername(s);
+        if ((user == null)||(user.getId() == id)){return true;}
+        return false;
+    }
+    public boolean emailIsValid(String s, Long id)
+    {
+        UserCore user = userRepository.findUserCoreByEmail(s);
+        if ((user == null)||(user.getId() == id)){return true;}
         return false;
     }
 }

@@ -5,65 +5,65 @@
             enabled="true"
             password="pass"
             username="doctor1"
+            title="0"
+            first_name="Abigail"
+            last_name="Tucker"
+            email="doctor1@doctor.com"
     />
     <user_core
             id="2"
             enabled="true"
             password="pass"
             username="doctor2"
+            title="0"
+            first_name="Cameron"
+            last_name="Cook"
+            email="doctor2@doctor.com"
     />
     <user_core
             id="3"
             enabled="true"
             password="pass"
             username="doctor3"
+            title="0"
+            first_name="Amira"
+            last_name="Karim"
+            email="doctor3@doctor.com"
     />
     <user_core
             id="4"
             enabled="true"
             password="pass"
             username="doctor4"
+            title="0"
+            first_name="Andrew"
+            last_name="Smith"
+            email="doctor4@doctor.com"
     />
     <user_core
             id="5"
             enabled="true"
             password="pass"
             username="doctor5"
-    />
-
-    <doctor
-            title="0"
-            first_name="Abigail"
-            last_name="Tucker"
-            email="doctor1@doctor.com"
-            user_id="1"
-            last_renewed="2017-05-04"/>
-    <doctor
-            title="0"
-            first_name="Cameron"
-            last_name="Cook"
-            email="doctor2@doctor.com"
-            user_id="2"
-            last_renewed="2017-05-05"/>
-    <doctor
-            title="0"
-            first_name="Amira"
-            last_name="Karim"
-            email="doctor3@doctor.com"
-            user_id="3"
-            last_renewed="2017-05-02"/>
-    <doctor
-            title="0"
-            first_name="Andrew"
-            last_name="Smith"
-            email="doctor4@doctor.com"
-            user_id="4"
-            last_renewed="2017-05-03"/>
-    <doctor
             title="0"
             first_name="Qi Qi"
             last_name="Chen"
             email="doctor5@doctor.com"
+    />
+
+    <doctor
+            user_id="1"
+            last_renewed="2017-05-04"/>
+    <doctor
+            user_id="2"
+            last_renewed="2017-05-05"/>
+    <doctor
+            user_id="3"
+            last_renewed="2017-05-02"/>
+    <doctor
+            user_id="4"
+            last_renewed="2017-05-03"/>
+    <doctor
             user_id="5"
             last_renewed="2017-05-01"/>
 </dataset>

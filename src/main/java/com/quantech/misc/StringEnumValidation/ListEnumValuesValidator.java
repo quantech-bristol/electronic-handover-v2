@@ -5,8 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
 
-//This class defines how to validate a list contains only enum values for @ValidateString
-public class ListStringValidator implements ConstraintValidator<ValidateString, List<String>> {
+//This class defines how to validate a list contains only enum values for @ValidateListEnumValues
+public class ListEnumValuesValidator implements ConstraintValidator<ValidateListEnumValues, List<String>>  {
     private List<String> acceptedVals;
 
     @Override
@@ -20,9 +20,8 @@ public class ListStringValidator implements ConstraintValidator<ValidateString, 
     }
 
 
-
     @Override
-    public void initialize(ValidateString constraintAnnotation)
+    public void initialize(ValidateListEnumValues constraintAnnotation)
     {
         acceptedVals = new ArrayList<String>();
         Class<? extends Enum<?>> enumClass = constraintAnnotation.enumClazz();

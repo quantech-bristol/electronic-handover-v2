@@ -25,12 +25,12 @@ public class MainController {
     @GetMapping("/")
     public String viewHome(HttpServletRequest request) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-            if (userInfo.hasAuth(SecurityRoles.Admin)){
-                return "/Admin/adminScreen";
-            }
-            else if (userInfo.hasAuth(SecurityRoles.Doctor)) {
-                return "/quantech";
-            }
+        if (userInfo.hasAuth(SecurityRoles.Doctor)) {
+            return "/quantech";
+        }
+        else if (userInfo.hasAuth(SecurityRoles.Admin)){
+            return "/Admin/adminScreen";
+        }
 
         return "redirect:/login";
     }

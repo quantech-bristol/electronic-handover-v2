@@ -9,7 +9,7 @@
 
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
-        <h1 th:text="${#authentication.principal.username}">test</h1>
+        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">
@@ -21,6 +21,7 @@
         <a th:href="@{/viewHandovers}"><h3>My Handovers</h3></a>
         <h3>To Do</h3>
         <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <a th:href="@{/Admin}" th:if="${#authentication.principal.hasAuth(T(com.quantech.Configurations.SecurityRoles).Admin)}"><h3>Go To Admin Page</h3></a>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
@@ -29,7 +30,7 @@
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
-        <h1 th:text="${#authentication.principal.username}">test</h1>
+        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">

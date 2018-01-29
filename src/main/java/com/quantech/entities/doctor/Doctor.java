@@ -19,22 +19,11 @@ public class Doctor {
     @Id
     private Long id;
 
+
     @OneToOne(fetch = FetchType.LAZY) // Matches ID with UserCore
     @MapsId
     private UserCore user;
 
-    @NotNull
-    private Title title;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
-
-    @NotNull
-    @Column(unique = true)
-    private String email;
 
     @OneToMany
     @NotNull
@@ -63,12 +52,8 @@ public class Doctor {
         this.receivedHandovers = new ArrayList<>();
     }
 
-    public Doctor(UserCore user, Title title, String firstName, String lastName, String email) {
+    public Doctor(UserCore user) {
         this.user = user;
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
         this.teams = new ArrayList<>();
         this.patients = new ArrayList<>();
         this.lastRenewed = java.util.Calendar.getInstance();
@@ -79,10 +64,10 @@ public class Doctor {
     public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams,
                   List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers,
                   List<Handover> receivedHandovers) {
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        user.setTitle(title);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
         this.teams = teams;
         this.patients = patients;
         this.lastRenewed = lastRenewed;
@@ -96,48 +81,43 @@ public class Doctor {
     }
 
     public Long getId() {
-        return id;
-    }
-
-    // Should this really be here?
-    public void setId(Long id) {
-        this.id = id;
+        return user.getId();
     }
 
     public Title getTitle() {
-        return title;
+        return user.getTitle();
     }
 
     public void setTitle(Title title) throws NullPointerException {
         nullCheck(title,"title");
-        this.title = title;
+       user.setTitle(title);
     }
 
     public String getFirstName() {
-        return firstName;
+        return user.getFirstName();
     }
 
     public void setFirstName(String firstName) throws NullPointerException{
         nullCheck(firstName, "first name");
-        this.firstName = firstName;
+        user.setFirstName(firstName);;
     }
 
     public String getLastName() {
-        return lastName;
+       return user.getLastName();
     }
 
     public void setLastName(String lastName) throws NullPointerException {
         nullCheck(lastName,"last name");
-        this.lastName = lastName;
+        user.setLastName(lastName);
     }
 
     public String getEmail() {
-        return email;
+       return user.getEmail();
     }
 
     public void setEmail(String email) throws NullPointerException {
         nullCheck(email,"email");
-        this.email = email;
+        user.setEmail(email);
     }
 
     public List<Patient> getPatients() {

@@ -1,6 +1,4 @@
-package com.quantech.misc.UniqueNameValidation;
-
-import com.quantech.entities.user.UserRepository;
+package com.quantech.misc.StringEnumValidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -12,16 +10,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-//Allows us to use @ValidateString(enum) to ensure lists only contain enum values
-@Constraint(validatedBy = UniqueStringValidator.class)
+//Allows us to use @ValidateListEnumValues(enum) to ensure lists only contain enum values
+@Constraint(validatedBy = EnumValuesValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @NotNull(message = "Value cannot be null")
 @ReportAsSingleViolation
-public @interface ValidateStringUnique {
+public @interface ValidateEnumValues {
+    Class<? extends Enum<?>> enumClazz();
 
-
-    String message() default "Entry is already taken";
+    String message() default "String does not match any known enum";
 
     Class<?>[] groups() default { };
 

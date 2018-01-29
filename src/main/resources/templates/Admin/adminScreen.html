@@ -14,8 +14,14 @@
         Admin Page
     </div>
     <div id="bodywrap">
-        <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [CREATE ADMINS]</a></p>
-        <p> <a style="color:blue" th:href="@{/addDoctor}">Go to Doctor Creation Page! [CREATE DOCTORS]</a></p>
+        <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
+            <div class="form-group"><tr>
+                <td><label for="Id">User Id To Edit</label></td>
+                <td>  <input type="number" name = "Id" id = "Id"/></td>
+                <td><input type="submit" value="Edit User" th:for="Id"/></td>
+            </tr></div>
+        </form>
+        <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [Works for both now]</a></p>
         <p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>

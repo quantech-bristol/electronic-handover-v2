@@ -120,7 +120,8 @@ public class DoctorService {
      * @return The doctor object that corresponds to the id if it exists, null if a doctor with the given id doesn't exist.
      */
     public Doctor getDoctor(Long id) {
-        return doctorRepository.findOne(id);
+        return doctorRepository.findById(id);
+      //  return doctorRepository.findOne(id);
     }
 
     /**
@@ -191,7 +192,7 @@ public class DoctorService {
      * @param id The id corresponding to the doctor to be deleted.
      */
     public void deleteDoctor(Long id) {
-        doctorRepository.delete(id);
+        doctorRepository.deleteByUser_id(id);
     }
 
     /**
@@ -202,7 +203,7 @@ public class DoctorService {
     public void addTeamToDoctor (Team team, Long id) {
         // Add the team to the doctor's list of teams
         //     The doctor needs to be added to the Team's list of doctors over in the Team package
-        Doctor doctor = doctorRepository.findOne(id);
+        Doctor doctor = doctorRepository.findById(id);
         List<Team> teams = doctor.getTeams();
         teams.add(team);
         doctor.setTeams(teams);
@@ -215,7 +216,7 @@ public class DoctorService {
      * @param id The id corresponding to the doctor in the repository.
      */
     public void removeTeamFromDoctor(Team team, Long id) {
-        Doctor doctor = doctorRepository.findOne(id);
+        Doctor doctor = doctorRepository.findById(id);
         List<Team> teams = doctor.getTeams();
         teams.remove(team);
         doctor.setTeams(teams);

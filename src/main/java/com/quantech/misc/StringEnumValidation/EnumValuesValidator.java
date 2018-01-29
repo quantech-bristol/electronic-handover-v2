@@ -7,7 +7,7 @@ import java.util.List;
 
 //This class can define how to validate a string is an enum value. Needs its a duplicate (in code but with dif name)
 //of Interface validateString where its validated by tag points here
-public class StringValidator implements ConstraintValidator<ValidateString, String> {
+public class EnumValuesValidator implements ConstraintValidator<ValidateEnumValues, String> {
     private List<String> acceptedVals;
 
     @Override
@@ -23,7 +23,7 @@ public class StringValidator implements ConstraintValidator<ValidateString, Stri
 
 
     @Override
-    public void initialize(ValidateString constraintAnnotation)
+    public void initialize(ValidateEnumValues constraintAnnotation)
     {
         acceptedVals = new ArrayList<String>();
         Class<? extends Enum<?>> enumClass = constraintAnnotation.enumClazz();

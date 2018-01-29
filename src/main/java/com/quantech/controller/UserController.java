@@ -1,6 +1,10 @@
 package com.quantech.controller;
 
+import com.quantech.Configurations.SecurityRoles;
+import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.user.UserCore;
+import com.quantech.entities.user.UserFormBackingObject;
 import com.quantech.entities.user.UserService;
 import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +30,34 @@ public class UserController  extends WebMvcConfigurerAdapter {
     @Autowired
     UserService userService;
 
+    @Autowired
+    DoctorService doctorService;
+
     // Go to view to create new handover.
     @GetMapping("/Admin/createUser")
     public String createUser(Model model) {
-        model.addAttribute("usercore", new UserCore());
+        model.addAttribute("usercore", new UserFormBackingObject());
         model.addAttribute("postUrl", "/Admin/createUser");
         model.addAttribute("title", "CreateUser");
+        model.addAttribute("ShowRoles", true);
         return "/Admin/createUser";
     }
 
     @PostMapping("/Admin/createUser")
-    public String createUser(@Valid @ModelAttribute("usercore") UserCore user, BindingResult result, Model model, Errors errors) {
+    public String createUser(@Valid @ModelAttribute("usercore") UserFormBackingObject user, BindingResult result, Model model, Errors errors) {
+        user.CheckValidity(userService,result,true);
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/Admin/createUser");
             model.addAttribute("title", "CreateUser");
+            model.addAttribute("ShowRoles", true);
             return "/Admin/createUser";
         }
         else {
-            userService.saveUser(user);
-
+            UserCore newUser = user.ToUserCore();
+            userService.saveUser(newUser);
+            Doctor newDoc = new Doctor(newUser);
+            doctorService.saveDoctor(newDoc);
             return "redirect:/Admin";
         }
     }
@@ -63,51 +75,65 @@ public class UserController  extends WebMvcConfigurerAdapter {
     {
        UserCore user  =  (UserCore) authenticator.getAuthentication().getPrincipal();
        model.addAttribute("postUrl", "/MyUser");
-       model.addAttribute("usercore",user);
+       model.addAttribute("usercore",new UserFormBackingObject(user));
        model.addAttribute("title", "Edit My Settings");
+        model.addAttribute("ShowRoles", false);
        return "/Admin/createUser";
     }
 
     @PostMapping(value = "/MyUser")
-    public String editSelfSettings(@Valid @ModelAttribute("usercore") UserCore user, BindingResult result, RedirectAttributes model, Errors errors)
+    public String editSelfSettings(@Valid @ModelAttribute("usercore") UserFormBackingObject userFormBackingObject, BindingResult result, RedirectAttributes model, Errors errors)
     {
-        if (errors.hasErrors())
+        userFormBackingObject.CheckValidity(userService,result, false);
+        if (errors.hasErrors())//If we have any errors, send them back to the page. result + model stays with them.
         {
             model.addAttribute("postUrl", "/MyUser");
             model.addAttribute("title", "Edit My Settings");
+            model.addAttribute("ShowRoles", false);
             return "/Admin/createUser";
         }
-        else {
-            ((UserCore) authenticator.getAuthentication().getPrincipal()).updateValues(user);
-            userService.saveUser(user);
-            return "redirect:/Admin";
+
+        else {//Otherwise
+            UserCore activeUser = (UserCore) authenticator.getAuthentication().getPrincipal();//Get the current users usercore
+            userFormBackingObject.setAuthorityStrings(activeUser.getAuthorityStrings());
+            activeUser.updateValues(userFormBackingObject);//give it the new values
+            userService.saveUser(activeUser);//Save it to database
+            return "redirect:/";//Redirect them.
         }
     }
 
-    @GetMapping(value = "/Admin/EditUser/{id}")
-    public String editUserSettings(Model model, @PathVariable("id")long id)
+    @GetMapping(value = "/Admin/EditUser")
+    public String editUserSettings(Model model, @RequestParam("Id")long id)
     {
+        UserCore requestingUser = (UserCore) authenticator.getAuthentication().getPrincipal();
+        if (requestingUser.getId() == id){return "redirect:/MyUser";}
+
         UserCore user  =  userService.findUserById(id);
-        if (user == null){return "";}
-        else
-        model.addAttribute("postUrl", "/Admin/EditUser");
-        model.addAttribute("usercore",user);
-        model.addAttribute("title", "Edit " + user.getUsername() + " settings");
+        if (user == null){return "/403";}
+        else {
+            model.addAttribute("usercore", new UserFormBackingObject(user));
+            model.addAttribute("postUrl", "/Admin/EditUser");
+            model.addAttribute("title", "Edit " + user.getUsername() + " settings");
+            model.addAttribute("ShowRoles", true);
+        }
         return "/Admin/createUser";
     }
 
     @PostMapping(value = "/Admin/EditUser")
-    public String editUserSettings(@Valid @ModelAttribute("usercore") UserCore userReturned, BindingResult result, RedirectAttributes model, Errors errors)
+    public String editUserSettings(@Valid @ModelAttribute("usercore") UserFormBackingObject userFormBackingObject, BindingResult result, RedirectAttributes model, Errors errors)
     {
-        UserCore user  =  userService.findUserById(userReturned.getId());
+        UserCore user  =  userService.findUserById(userFormBackingObject.getId());
+        userFormBackingObject.CheckValidity(userService,result, false);
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/Admin/EditUser");
             model.addAttribute("title", "Edit " + user.getUsername() + " settings");
+            model.addAttribute("ShowRoles", true);
             return "/Admin/createUser";
         }
         else {
-            userService.saveUser(userReturned);
+            user.updateValues(userFormBackingObject);
+            userService.saveUser(user);
             return "redirect:/Admin";
         }
     }

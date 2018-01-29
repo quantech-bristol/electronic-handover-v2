@@ -5,31 +5,35 @@
             enabled="true"
             password="pass"
             username="doctor1"
+            title="0"
+            first_name="Doctor"
+            last_name="One"
+            email="doctor1@doctor.com"
     />
     <user_core
             id="2"
             enabled="true"
             password="pass"
             username="doctor2"
+            title="0"
+            first_name="Doctor"
+            last_name="Two"
+            email="doctor2@doctor.com"
     />
     <user_core
             id="3"
             enabled="true"
             password="pass"
             username="admin3"
+            title="0"
+            first_name="Admin"
+            last_name="Three"
+            email="admin3@admin.com"
     />
 
     <doctor
-            title="0"
-            first_name="Doctor"
-            last_name="One"
-            email="doctor1@doctor.com"
             user_id="1"/>
     <doctor
-            title="0"
-            first_name="Doctor"
-            last_name="Two"
-            email="doctor2@doctor.com"
             user_id="2"/>
 
     <ward id="6"

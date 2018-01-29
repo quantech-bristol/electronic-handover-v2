@@ -1,8 +1,11 @@
 package com.quantech.entities.patient;
 
 import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.user.UserCore;
 import com.quantech.misc.Title;
 import com.quantech.entities.ward.Ward;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -126,7 +129,6 @@ public class Patient {
         nullCheck(doctor,"doctor");
         this.doctor = doctor;
     }
-
     public Title getTitle() {
         return title;
     }
