@@ -303,6 +303,16 @@ public class DoctorService {
         };
     }
 
+    // Checks if a doctor is part of a given team.
+    public Predicate<Doctor> doctorIsInTeam(Team team) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getTeams().contains(team);
+            }
+        };
+    }
+
     // Checks if a doctor's first name starts with the given string.
     public Predicate<Doctor> doctorsFirstNameStartsWith(String str) {
         return new Predicate<Doctor>() {
