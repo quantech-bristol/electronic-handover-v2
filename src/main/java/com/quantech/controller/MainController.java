@@ -1,7 +1,9 @@
 package com.quantech.controller;
 
 import com.quantech.Configurations.SecurityRoles;
+import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.patient.PatientService;
 import com.quantech.entities.user.UserCore;
@@ -31,6 +33,8 @@ public class MainController {
     private PatientService patientService;
     @Autowired
     private WardService wardService;
+    @Autowired
+    private HandoverService handoverService;
 
     @Autowired
     IAuthenticationFacade authenticator;
@@ -51,9 +55,12 @@ public class MainController {
     @RequestMapping(value="/quantech")
     public String docHome(Model model) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         List<Patient> patients;
         patients = doctorService.getPatients(userInfo.getId());
         model.addAttribute("patients",patients);
+        model.addAttribute("doctor",currentDoctor);
+        model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
         return "quantech";
     }
 
