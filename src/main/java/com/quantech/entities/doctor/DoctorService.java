@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DoctorService {
@@ -258,4 +258,93 @@ public class DoctorService {
      *          - In given team
      *          - In set of given teams.
      */
+
+    /**
+     * Filter list of a doctors by a given predicate.
+     * @param list A list of doctors.
+     * @param predicate A predicate to test the doctors against.
+     * @return A list of doctors filtered by the given predicate.
+     */
+    public List<Doctor> filterDoctorsBy(List<Doctor> list, Predicate<Doctor> predicate) {
+        return list.stream().filter(predicate).collect(Collectors.toList());
+    }
+
+    /**
+     * Filter list of a doctors by a given predicate.
+     * @param list A list of doctors.
+     * @param predicates A collection of predicates to test the doctors against.
+     * @return A list of doctors filtered by the given predicate.
+     */
+    public List<Doctor> filterDoctorsBy(List<Doctor> list, Iterable<Predicate<Doctor>> predicates) {
+        Stream<Doctor> stream = list.stream();
+        for (Predicate<Doctor> p : predicates) {
+            stream = stream.filter(p);
+        }
+        return stream.collect(Collectors.toList());
+    }
+
+    // Checks if a doctor's account has been renewed after a given date.
+    public Predicate<Doctor> doctorRenewedAfter(Date date) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getLastRenewed().after(date);
+            }
+        };
+    }
+
+    // Checks if a doctor's account has been renewed before a given date.
+    public Predicate<Doctor> doctorRenewedBefore(Date date) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getLastRenewed().before(date);
+            }
+        };
+    }
+
+    // Checks if a doctor is part of a given team.
+    public Predicate<Doctor> doctorIsInTeam(Iterable<Team> team) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                boolean in = true;
+                for (Team t : team) {
+                    in = in && doctor.getTeams().contains(t);
+                }
+                return in;
+            }
+        };
+    }
+
+    // Checks if a doctor is part of a given set of teams.
+    public Predicate<Doctor> doctorIsInTeam(Team team) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getTeams().contains(team);
+            }
+        };
+    }
+
+    // Checks if a doctor's first name starts with the given string.
+    public Predicate<Doctor> doctorsFirstNameStartsWith(String str) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getFirstName().startsWith(str);
+            }
+        };
+    }
+
+    // Checks if a doctor's last name starts with a given string.
+    public Predicate<Doctor> doctorsLastNameStartsWith(String str) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getLastName().startsWith(str);
+            }
+        };
+    }
+
 }
