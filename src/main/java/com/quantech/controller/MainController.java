@@ -36,7 +36,10 @@ public class MainController {
     }
 
     @RequestMapping(value="/quantech")
-    public String docHome() { return "redirect:/quantech"; }
+    public String docHome() {
+
+        return "quantech";
+    }
 
     @RequestMapping(value={"/login"})
     public String login()
