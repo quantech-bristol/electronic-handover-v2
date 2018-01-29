@@ -118,16 +118,13 @@ body{
 	margin-right:3vw;
     border-bottom: 0px; /*overrides inheritance */
 }
-#boxleft{
-	float: left;
-}
-#boxright{
-	float: right;
-}
-.overviewbox{
-	width: 44%;
+#overviewbox{
+	width: 90%;
 	min-height: 10vh;
-	margin: 3%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	margin-top: 1%;
 	background: #E8EDEE;
 }
 
