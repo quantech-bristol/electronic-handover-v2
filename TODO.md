@@ -20,6 +20,7 @@ Patients:
 - Are patients meant to be able to be filtered by team?
 - Patient input error handling for getters and setters
 - Finalise what attributes Patient should have
+- Sort date format, currently needs inputting 1998/01/13 instead of 13/01/1998
 
 Teams.
 - Team input error handling for getters and setters 
