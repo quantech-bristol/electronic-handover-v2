@@ -51,6 +51,15 @@
             email="doctor5@doctor.com"
     />
 
+    <team
+           id="10"
+           department="Cardiology"
+    />
+    <team
+            id="11"
+            department="Intensive"
+    />
+
     <doctor
             user_id="1"
             last_renewed="2017-05-04"/>

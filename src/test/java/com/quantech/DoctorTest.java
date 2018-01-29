@@ -8,10 +8,13 @@ import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.patient.PatientRepository;
 import com.quantech.entities.patient.PatientService;
+import com.quantech.entities.team.Team;
+import com.quantech.entities.team.TeamRepository;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.user.UserRepository;
 import com.quantech.entities.ward.Ward;
 import com.quantech.misc.Title;
+import org.apache.catalina.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,10 +27,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 @RunWith(SpringRunner.class)  // junit test runner
@@ -43,6 +43,10 @@ public class DoctorTest {
     DoctorService doctorService;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    TeamRepository teamRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     @DatabaseSetup("/dataSet3.xml")
@@ -91,6 +95,83 @@ public class DoctorTest {
     public void sortByLastNameTest() {
         List<Doctor> l1 = getDoctorsFromRepository(new long[]{5L,2L,3L,4L,1L});
         List<Doctor> l2 = doctorService.sortDoctorsByLastName(doctorService.getAllDoctors());
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - start of first name.
+    public void filterDoctorsByStartOfFirstNameTest() {
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{1L,3L,4L});
+        List<Doctor> l2 = doctorService.filterDoctorsBy(doctorService.getAllDoctors(),doctorService.doctorsFirstNameStartsWith("A"));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - start of last name.
+    public void filterDoctorsByStartOfLastNameTest() {
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{2L,5L});
+        List<Doctor> l2 = doctorService.filterDoctorsBy(doctorService.getAllDoctors(),doctorService.doctorsLastNameStartsWith("C"));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - renewed after date.
+    public void filterDoctorsByRenewedAfterTest() {
+        Calendar date = doctorRepository.findById(3L).getLastRenewed();
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{1L,2L,4L});
+        List<Doctor> l2 = doctorService.filterDoctorsBy(doctorService.getAllDoctors(),doctorService.doctorRenewedAfter(date));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - renewed before date.
+    public void filterDoctorsByRenewedBeforeTest() {
+        Calendar date = doctorRepository.findById(4L).getLastRenewed();
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{3L,5L});
+        List<Doctor> l2 = doctorService.filterDoctorsBy(doctorService.getAllDoctors(),doctorService.doctorRenewedBefore(date));
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - doctor team.
+    public void filterDoctorsByTeamTest() {
+        Team team = teamRepository.findById(10L);
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{1L,2L,3L,4L,5L});
+        for (int i = 0; i < 3; i++) {
+            Doctor d = l1.get(i);
+            List<Team> t = d.getTeams();
+            t.add(team);
+            d.setTeams(t);
+        }
+        l1 = doctorService.filterDoctorsBy(l1,doctorService.doctorIsInTeam(team));
+        List<Doctor> l2 = getDoctorsFromRepository(new long[]{1L,2L,3L});
+        Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    @DatabaseSetup("/dataSet3.xml")
+    // Making sure filtering works - doctor teams.
+    public void filterDoctorsByTeamsTest() {
+        Team team1 = teamRepository.findById(10L);
+        Team team2 = teamRepository.findById(11L);
+        List<Doctor> l1 = getDoctorsFromRepository(new long[]{1L,2L,3L,4L,5L});
+        for (int i = 0; i < 3; i++) {
+            Doctor d = l1.get(i);
+            List<Team> t = d.getTeams();
+            t.add(team1);
+            if (i == 2)
+                t.add(team2);
+            d.setTeams(t);
+        }
+        List<Team> t = new ArrayList<>();
+        t.add(team1); t.add(team2);
+        l1 = doctorService.filterDoctorsBy(l1,doctorService.doctorIsInTeam(t));
+        List<Doctor> l2 = getDoctorsFromRepository(new long[]{3L});
         Assert.assertEquals(l1,l2);
     }
 

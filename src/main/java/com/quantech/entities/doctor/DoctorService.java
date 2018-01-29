@@ -249,16 +249,6 @@ public class DoctorService {
 
      */
 
-    /*
-     * // TODO Filtering doctor list:
-     *          - Renewed after
-     *          - Renewed before
-     *          - First name starts with
-     *          - Last name starts with
-     *          - In given team
-     *          - In set of given teams.
-     */
-
     /**
      * Filter list of a doctors by a given predicate.
      * @param list A list of doctors.
@@ -284,7 +274,7 @@ public class DoctorService {
     }
 
     // Checks if a doctor's account has been renewed after a given date.
-    public Predicate<Doctor> doctorRenewedAfter(Date date) {
+    public Predicate<Doctor> doctorRenewedAfter(Calendar date) {
         return new Predicate<Doctor>() {
             @Override
             public boolean test(Doctor doctor) {
@@ -294,7 +284,7 @@ public class DoctorService {
     }
 
     // Checks if a doctor's account has been renewed before a given date.
-    public Predicate<Doctor> doctorRenewedBefore(Date date) {
+    public Predicate<Doctor> doctorRenewedBefore(Calendar date) {
         return new Predicate<Doctor>() {
             @Override
             public boolean test(Doctor doctor) {
