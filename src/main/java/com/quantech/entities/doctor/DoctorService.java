@@ -304,6 +304,20 @@ public class DoctorService {
     }
 
     // Checks if a doctor is part of a given team.
+    public Predicate<Doctor> doctorIsInTeam(Iterable<Team> team) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                boolean in = true;
+                for (Team t : team) {
+                    in = in && doctor.getTeams().contains(t);
+                }
+                return in;
+            }
+        };
+    }
+
+    // Checks if a doctor is part of a given set of teams.
     public Predicate<Doctor> doctorIsInTeam(Team team) {
         return new Predicate<Doctor>() {
             @Override
