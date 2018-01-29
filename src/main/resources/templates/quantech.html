@@ -16,7 +16,8 @@
     </div>
     <!-- Accordion -->
     <div id="bodywrap">
-        <div id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept</h5></a><br/>
+        <div id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept</h5></a>
+            <div class="line"></div>
             <!-- Accordion -->
             <div class="ac-container agileits w3layouts">
                 <div  th:each="handover,iterStat : ${handovers}">
@@ -40,7 +41,8 @@
             <!-- //Accordion -->
 
         </div>
-        <div id="overviewbox"> <a th:href="@{/patient/all}"><h5>My Patients</h5></a><br/>
+        <div id="overviewbox"> <a th:href="@{/patient/all}"><h5>My Patients</h5></a>
+            <div class="line"></div>
             <!-- Accordion -->
             <div class="ac-container agileits w3layouts">
                 <div  th:each="patient,iterStat : ${patients}">
