@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -284,6 +281,26 @@ public class DoctorService {
             stream = stream.filter(p);
         }
         return stream.collect(Collectors.toList());
+    }
+
+    // Checks if a doctor's account has been renewed after a given date.
+    public Predicate<Doctor> doctorRenewedAfter(Date date) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getLastRenewed().after(date);
+            }
+        };
+    }
+
+    // Checks if a doctor's account has been renewed before a given date.
+    public Predicate<Doctor> doctorRenewedBefore(Date date) {
+        return new Predicate<Doctor>() {
+            @Override
+            public boolean test(Doctor doctor) {
+                return doctor.getLastRenewed().before(date);
+            }
+        };
     }
 
     // Checks if a doctor's first name starts with the given string.
