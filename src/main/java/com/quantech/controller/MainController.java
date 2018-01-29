@@ -26,7 +26,7 @@ public class MainController {
     public String viewHome(HttpServletRequest request) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         if (userInfo.hasAuth(SecurityRoles.Doctor)) {
-            return "/quantech";
+            return "redirect:/quantech";
         }
         else if (userInfo.hasAuth(SecurityRoles.Admin)){
             return "/Admin/adminScreen";
