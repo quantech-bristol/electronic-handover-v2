@@ -56,6 +56,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
         else {
             UserCore newUser = user.ToUserCore();
             userService.saveUser(newUser);
+            //fix this here - add conditional
             Doctor newDoc = new Doctor(newUser);
             doctorService.saveDoctor(newDoc);
             return "redirect:/Admin";
