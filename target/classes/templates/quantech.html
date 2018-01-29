@@ -16,7 +16,7 @@
     </div>
     <!-- Accordion -->
     <div id="bodywrap">
-        <div id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept</h5></a>
+        <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
             <div class="line"></div>
             <!-- Accordion -->
             <div class="ac-container agileits w3layouts">
@@ -30,9 +30,9 @@
                                 <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
                                 <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
                                 <li>Risks: <span th:text="${handover.patient.risks}"/></li>
-                                <div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                                <li><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
                                     <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
-                                </div>
+                                </div></li>
                             </ul>
                         </div>
                     </article>
@@ -41,7 +41,7 @@
             <!-- //Accordion -->
 
         </div>
-        <div id="overviewbox"> <a th:href="@{/patient/all}"><h5>My Patients</h5></a>
+        <div id="overviewbox"> <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
             <div class="line"></div>
             <!-- Accordion -->
             <div class="ac-container agileits w3layouts">
