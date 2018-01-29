@@ -21,7 +21,6 @@
         <a th:href="@{/viewHandovers}"><h3>My Handovers</h3></a>
         <h3>To Do</h3>
         <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
-        <a th:href="@{/Admin}" th:if="${#authentication.principal.hasAuth(T(com.quantech.Configurations.SecurityRoles).Admin)}"><h3>Go To Admin Page</h3></a>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
@@ -52,3 +51,5 @@
 
 </body>
 </html>
+
+<!--      <a th:href="@{/Admin}" th:if="${#authentication.principal.hasAuth(T(com.quantech.Configurations.SecurityRoles).Admin)}"><h3>Go To Admin Page</h3></a> -->
