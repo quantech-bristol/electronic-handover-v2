@@ -20,18 +20,23 @@ Patients:
 - Are patients meant to be able to be filtered by team?
 - Patient input error handling for getters and setters
 - Finalise what attributes Patient should have
+- Sort date format, currently needs inputting 1998/01/13 instead of 13/01/1998
 
 Teams.
 - Team input error handling for getters and setters 
 - Finalise what attributes Team should have
 - Ward input error handling for getters and setters
 
+Departments.
+- Consider structure of hospital
+- possible need for multiple admins per department to handle issues if not on shift?
+- Implement (likely) tree structure.
+
 Wards:
 - Finalise what attributes Ward should have
 
 Users:
 - Add Validation to data coming from forms [FIXED USERS]
-- Create tools to modify users + allow multiple authorities.
 
 Security/Authentication:
 - (Future) Set security to hash passwords (plain atm for ease of sec debug)
@@ -46,3 +51,4 @@ View/Cosmetic Changes:
 - Maybe find a way to remember whether sidebar is shown or hidden when changing pages
 - Add pending and sent handovers to UI.
 - Maybe come up with a good dashboard layout for the "Overview" tab (probably optional at this stage)
+- Create internationlization file to allow enum error messages to be overwritten and handled gracefully

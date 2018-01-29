@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +25,18 @@ public class UserService implements UserDetailsService {
     public UserService() {
 
     }
+    @PostConstruct
+    public void test()
+    {
+        if( userRepository.count() == 0)
+        {
+            userRepository.save(new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com"));
+
+        }
+    }
 
     public void delUser(String user) {
-        userRepository.deleteUserCoreByUsername(user);
+        userRepository.deleteUserCoreByUsername(user);test();
     }
 
     public void editPassword(String user, String newPass)
@@ -57,9 +67,6 @@ public class UserService implements UserDetailsService {
     //Enables userService to authenticate its users for the Security config.
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        if (s.matches("quantech")) {
-            return rootUser();
-        }
         UserCore newUser = userRepository.findUserCoreByUsername(s);
         if (newUser==null) {
             throw new UsernameNotFoundException(s);
@@ -68,6 +75,7 @@ public class UserService implements UserDetailsService {
     }
 
     private UserCore rootUser() {
+
         UserCore rootUser = new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com");
         return rootUser;
     }

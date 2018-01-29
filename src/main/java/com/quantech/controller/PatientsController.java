@@ -8,6 +8,7 @@ import com.quantech.entities.user.UserCore;
 import com.quantech.entities.ward.WardService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.misc.AuthFacade.IAuthenticationFacade;
+import com.quantech.misc.PdfGenerator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -109,6 +110,14 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientByHospitalNumber(id));
         return "viewPatient";
+    }
+
+    @GetMapping("/print/patientId={id}")
+    public String printPatient(@PathVariable Long id) throws Exception {
+        Patient patient = patientService.getPatientById(id);
+        PdfGenerator pdfGen = new PdfGenerator();
+        pdfGen.patientAsPdf(patient);
+        return "viewPatients";
     }
 
     // Methods to edit patient's information/flag them.

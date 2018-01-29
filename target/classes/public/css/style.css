@@ -15,8 +15,10 @@ h4{
 }
 h5{
 	color:#005EB8;
-	font-size:40px;
-	margin:0;
+	font-size:2.4vw;
+	margin-left:1vw;
+    margin-top: 4vh;
+    margin-bottom: 1px;
 }
 body{
 	background-color:#FFF;
@@ -96,7 +98,7 @@ body{
 
 .handoverbutton{
 	width:80%;
-	margin: 5vh;
+	margin: 1vh;
 }
 #sidebar input{
 	background-color:#f0f2f4;
@@ -120,14 +122,22 @@ body{
 }
 #overviewbox{
 	width: 90%;
-	min-height: 10vh;
+	min-height: 15vh;
 	margin-right: 5%;
 	margin-left: 5%;
-	margin-bottom: 5%;
+	padding-bottom: 1%;
+    margin-bottom: 5%;
 	margin-top: 1%;
 	background: #E8EDEE;
+    border-radius: 15px;
 }
-
+.line {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #425563;
+    padding: 0;
+}
 /*-- //My Code --*/
 .roundedbutton {
     padding: 10px 0;
