@@ -24,6 +24,19 @@ public class PdfGenerator {
         context.setVariable("doctorTitle", patient.getDoctor().getTitle().toString());
         context.setVariable("doctorFirstName", patient.getDoctor().getFirstName());
         context.setVariable("doctorLastName", patient.getDoctor().getLastName());
+        context.setVariable("birthDate", patient.getBirthDate().toString());
+        context.setVariable("nHSNumber", patient.getNHSNumber().toString());
+        context.setVariable("hospitalNumber", patient.getHospitalNumber().toString());
+        context.setVariable("wardName", patient.getWard().getName());
+
+        context.setVariable("bed", patient.getBed());
+        context.setVariable("dateOfAdmission", patient.getDateOfAdmission().toString());
+        context.setVariable("relevantHistory", patient.getRelevantHistory());
+        context.setVariable("socialIssues", patient.getSocialIssues());
+        context.setVariable("risks", patient.getRisks());
+        context.setVariable("recommendations", patient.getRecommendations());
+        context.setVariable("diagnosis", patient.getDiagnosis());
+
 
         return context;
     }
