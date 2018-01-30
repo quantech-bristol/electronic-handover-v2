@@ -11,11 +11,14 @@ import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import com.quantech.misc.PdfGenerator;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -112,12 +115,13 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         return "viewPatient";
     }
 
-    @GetMapping("/print/patientId={id}")
-    public String printPatient(@PathVariable Long id) throws Exception {
+    @RequestMapping(value="/print/patientId={id}", method=RequestMethod.GET, produces="application/pdf")
+    @ResponseBody
+    public FileSystemResource patientPdf(@PathVariable("id") Long id) throws Exception {
         Patient patient = patientService.getPatientById(id);
         PdfGenerator pdfGen = new PdfGenerator();
         pdfGen.patientAsPdf(patient);
-        return "redirect:/patient/all";
+        return new FileSystemResource("pdfout.pdf");
     }
 
     // Methods to edit patient's information/flag them.
