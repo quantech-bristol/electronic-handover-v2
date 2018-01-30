@@ -21,6 +21,7 @@ Patients:
 - Patient input error handling for getters and setters
 - Finalise what attributes Patient should have
 - Sort date format, currently needs inputting 1998/01/13 instead of 13/01/1998
+- Adjust formatting on add patient as recommendations touches input box
 
 Teams.
 - Team input error handling for getters and setters 
