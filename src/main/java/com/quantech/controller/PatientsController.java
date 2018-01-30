@@ -117,7 +117,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         Patient patient = patientService.getPatientById(id);
         PdfGenerator pdfGen = new PdfGenerator();
         pdfGen.patientAsPdf(patient);
-        return "viewPatients";
+        return "redirect:/patient/all";
     }
 
     // Methods to edit patient's information/flag them.

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            table { width: 100%; }
+            th, td { border-bottom: 1px solid #ddd; }
+        </style>
+    </head>
+    <body>
+        <h1>Patient Details</h1>
+        <table>
+            <tr>
+                <td>Patient</td>
+                <td><span th:text="${patientTitle}"/>  <span th:text="${patientFirstName}"/> <span th:text="${patientLastName}"/></td>
+            </tr>
+            <tr>
+                <td>Doctor</td>
+                <td><span th:text="${doctorTitle}"/> <span th:text="${doctorFirstName}"/> <span th:text="${doctorLastName}"/></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>DOB</td>-->
+                <!--<td><span th:text="${patient.birthDate}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>NHS Number</td>-->
+                <!--<td><span th:text="${patient.nHSNumber}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Hospital Number</td>-->
+                <!--<td><span th:text="${patient.hospitalNumber}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Ward</td>-->
+                <!--<td><span th:text="${patient.ward.getName()}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Bed Number</td>-->
+                <!--<td><span th:text="${patient.bed}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Date of Admission</td>-->
+                <!--<td><span th:text="${patient.dateOfAdmission}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Relevant History</td>-->
+                <!--<td><span th:text="${patient.relevantHistory}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Social Issues</td>-->
+                <!--<td><span th:text="${patient.socialIssues}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Risks</td>-->
+                <!--<td><span th:text="${patient.risks}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Recommendations</td>-->
+                <!--<td><span th:text="${patient.recommendations}"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Diagnosis</td>-->
+                <!--<td><span th:text="${patient.diagnosis}"/></td>-->
+            <!--</tr>-->
+
+        </table>
+    </body>
+</html>
