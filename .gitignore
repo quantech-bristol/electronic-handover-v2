@@ -1,5 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+pdfout.pdf
 
 ### STS ###
 .apt_generated

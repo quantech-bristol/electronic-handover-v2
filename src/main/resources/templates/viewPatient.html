@@ -69,7 +69,7 @@
                 </tr>
 
             </table>
-            <form th:action="@{/print/patientId=} + ${patient.id}" method="get">
+            <form th:action="@{/pdf/patientId=} + ${patient.id}" method="get">
                 <input type="submit" value="View as PDF"/>
             </form>
     </div>

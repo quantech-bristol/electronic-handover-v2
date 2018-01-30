@@ -9,16 +9,13 @@ import com.quantech.entities.ward.WardService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import com.quantech.misc.PdfGenerator;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -115,12 +112,11 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         return "viewPatient";
     }
 
-    @RequestMapping(value="/print/patientId={id}", method=RequestMethod.GET, produces="application/pdf")
+    @RequestMapping(value="/pdf/patientId={id}", method=RequestMethod.GET, produces="application/pdf")
     @ResponseBody
     public FileSystemResource patientPdf(@PathVariable("id") Long id) throws Exception {
-        Patient patient = patientService.getPatientById(id);
         PdfGenerator pdfGen = new PdfGenerator();
-        pdfGen.patientAsPdf(patient);
+        pdfGen.patientAsPdf(patientService.getPatientById(id));
         return new FileSystemResource("pdfout.pdf");
     }
 

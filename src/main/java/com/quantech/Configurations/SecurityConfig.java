@@ -17,6 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserService userService;
+    @Autowired
+    CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -31,10 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .anyRequest().authenticated().anyRequest().denyAll()
-                .and().formLogin().loginPage("/login").permitAll()
-                .and().logout().permitAll();
-        http.exceptionHandling().accessDeniedPage("/403");
-        http.formLogin().defaultSuccessUrl("/", true);
+                .and()
+            .formLogin()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/", true)
+                .and()
+            .logout()
+                .logoutSuccessHandler(customLogoutSuccessHandler).permitAll()
+                .and()
+            .exceptionHandling()
+                .accessDeniedPage("/403");
     }
-
 }
