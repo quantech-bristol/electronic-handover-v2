@@ -15,55 +15,55 @@
         <table>
             <tr>
                 <td class="name">Patient</td>
-                <td><span th:text="${patientTitle}"/>  <span th:text="${patientFirstName}"/> <span th:text="${patientLastName}"/></td>
+                <td><span th:text="${patient.getTitle().toString()}"/>  <span th:text="${patient.getFirstName()}"/> <span th:text="${patient.getLastName()}"/></td>
             </tr>
             <tr>
                 <td class="name">Doctor</td>
-                <td><span th:text="${doctorTitle}"/> <span th:text="${doctorFirstName}"/> <span th:text="${doctorLastName}"/></td>
+                <td><span th:text="${patient.getDoctor().getTitle().toString()}"/> <span th:text="${patient.getDoctor().getFirstName()}"/> <span th:text="${patient.getDoctor().getLastName()}"/></td>
             </tr>
             <tr>
                 <td class="name">D.O.B</td>
-                <td><span th:text="${birthDate}"/></td>
+                <td><span th:text="${patient.getBirthDate().toString()}"/></td>
             </tr>
             <tr>
                 <td class="name">NHS Number</td>
-                <td><span th:text="${nHSNumber}"/></td>
+                <td><span th:text="${patient.getNHSNumber().toString()}"/></td>
             </tr>
             <tr>
                 <td class="name">Hospital Number</td>
-                <td><span th:text="${hospitalNumber}"/></td>
+                <td><span th:text="${patient.getHospitalNumber().toString()}"/></td>
             </tr>
             <tr>
                 <td class="name">Ward Name</td>
-                <td><span th:text="${wardName}"/></td>
+                <td><span th:text="${patient.getWard().getName()}"/></td>
             </tr>
             <tr>
                 <td class="name">Bed Number</td>
-                <td><span th:text="${bed}"/></td>
+                <td><span th:text="${patient.getBed()}"/></td>
             </tr>
             <tr>
                 <td class="name">Date of Admission</td>
-                <td><span th:text="${dateOfAdmission}"/></td>
+                <td><span th:text="${patient.getDateOfAdmission().toString()}"/></td>
             </tr>
             <tr>
                 <td class="name">Relevant History</td>
-                <td><span th:text="${relevantHistory}"/></td>
+                <td><span th:text="${patient.getRelevantHistory()}"/></td>
             </tr>
             <tr>
                 <td class="name">Social Issues</td>
-                <td><span th:text="${socialIssues}"/></td>
+                <td><span th:text="${patient.getSocialIssues()}"/></td>
             </tr>
             <tr>
                 <td class="name">Risks</td>
-                <td><span th:text="${risks}"/></td>
+                <td><span th:text="${patient.getRisks()}"/></td>
             </tr>
             <tr>
                 <td class="name">Recommendations</td>
-                <td><span th:text="${recommendations}"/></td>
+                <td><span th:text="${patient.getRecommendations()}"/></td>
             </tr>
             <tr>
                 <td class="name">Diagnosis</td>
-                <td><span th:text="${diagnosis}"/></td>
+                <td><span th:text="${patient.getDiagnosis()}"/></td>
             </tr>
 
         </table>

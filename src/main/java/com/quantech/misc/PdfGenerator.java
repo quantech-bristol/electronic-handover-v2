@@ -15,32 +15,6 @@ import static com.lowagie.text.html.HtmlTags.HTML;
 
 public class PdfGenerator {
 
-    public Context setPatientContext(Patient patient) {
-        Context context = new Context();
-
-        context.setVariable("patientTitle", patient.getTitle().toString());
-        context.setVariable("patientFirstName", patient.getFirstName());
-        context.setVariable("patientLastName", patient.getLastName());
-        context.setVariable("doctorTitle", patient.getDoctor().getTitle().toString());
-        context.setVariable("doctorFirstName", patient.getDoctor().getFirstName());
-        context.setVariable("doctorLastName", patient.getDoctor().getLastName());
-        context.setVariable("birthDate", patient.getBirthDate().toString());
-        context.setVariable("nHSNumber", patient.getNHSNumber().toString());
-        context.setVariable("hospitalNumber", patient.getHospitalNumber().toString());
-        context.setVariable("wardName", patient.getWard().getName());
-
-        context.setVariable("bed", patient.getBed());
-        context.setVariable("dateOfAdmission", patient.getDateOfAdmission().toString());
-        context.setVariable("relevantHistory", patient.getRelevantHistory());
-        context.setVariable("socialIssues", patient.getSocialIssues());
-        context.setVariable("risks", patient.getRisks());
-        context.setVariable("recommendations", patient.getRecommendations());
-        context.setVariable("diagnosis", patient.getDiagnosis());
-
-
-        return context;
-    }
-
     public void patientAsPdf(Patient patient) throws Exception {
 
         // set up thymeleaf rendering engine
@@ -56,7 +30,8 @@ public class PdfGenerator {
 
         // the context data is used to fill the thymeleaf template
 
-        Context context = setPatientContext(patient);
+        Context context = new Context();
+        context.setVariable("patient", patient);
 
         // make html file
         String html = templateEngine.process("templates/print/template", context);
