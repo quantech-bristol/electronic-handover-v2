@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
     @PostConstruct
     public void insertRootUser()
     {
-        if (!activeProfile.matches("test") && (userRepository.count() == 0))
+        if ((!activeProfile.matches("test")) && (userRepository.count() == 0))
         {
             userRepository.save(new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com"));
         }
