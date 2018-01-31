@@ -47,7 +47,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         model.addAttribute("patients",patients);
         model.addAttribute("handover", new Handover());
         model.addAttribute("doctors", doctorService.getAllDoctors());
-        return "createHandover";
+        return "Doctor/createHandover";
     }
 
     // Submit the new handover
@@ -64,7 +64,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         model.addAttribute("doctor",currentDoctor);
         model.addAttribute("handovers", handoverService.getAllFromDoctor(currentDoctor));
-        return "viewHandovers";
+        return "Doctor/viewHandovers";
     }
 
     // View pending handovers, uses the viewPatients template
@@ -75,7 +75,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         model.addAttribute("doctor",currentDoctor);
         model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
 
-        return "viewHandovers";
+        return "Doctor/viewHandovers";
     }
 
     //Accept Pending Handover Requests

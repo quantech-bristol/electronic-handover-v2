@@ -28,7 +28,7 @@ public class DoctorController extends WebMvcConfigurerAdapter {
     public String addDoctor(Model model) {
         model.addAttribute("usercore", new UserCore());
         model.addAttribute("doctor", new Doctor());
-        return "addDoctor";
+        return "Admin/addDoctor";
     }
 
     // Submit the new doctor.

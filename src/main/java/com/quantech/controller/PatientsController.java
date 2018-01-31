@@ -41,7 +41,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         model.addAttribute("doctors",doctorService.getAllDoctors());
         model.addAttribute("patient", new Patient());
         model.addAttribute("wards", wardService.getAllWards());
-        return "addPatient";
+        return "Doctor/addPatient";
     }
 
     // Submit a new patient.
@@ -55,7 +55,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // Send to homepage - should we get rid of this?
     @GetMapping("/patient")
     public String patient() {
-        return "viewPatients";
+        return "Doctor/viewPatients";
     }
 
     // View all patients in the system.
@@ -101,7 +101,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         patients = patientService.filterPatientsBy(patients,predicates);
 
         model.addAttribute("patients",patients);
-        return "viewPatients";
+        return "Doctor/viewPatients";
     }
 
     // TODO: Figure out how each patient maps to their own URL (ID? NHS number? etc - probably ID is best.)
@@ -109,7 +109,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @GetMapping("/patient/hospitalNumber={id}")
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientByHospitalNumber(id));
-        return "viewPatient";
+        return "Doctor/viewPatient";
     }
 
     @RequestMapping(value="/pdf/patientId={id}", method=RequestMethod.GET, produces="application/pdf")

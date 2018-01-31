@@ -64,13 +64,13 @@ public class MainController {
         model.addAttribute("patients",patients);
         model.addAttribute("doctor",currentDoctor);
         model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
-        return "quantech";
+        return "Doctor/quantech";
     }
 
     @RequestMapping(value={"/login"})
     public String login()
     {
-        return "login";
+        return "Misc/login";
     }
 
     // this method catches only when you manually navigate to /logout
@@ -93,7 +93,7 @@ public class MainController {
     @RequestMapping(value="/403")
     public String Error403()
     {
-        return "403";
+        return "Error/403";
     }
 
     // Create new team.
