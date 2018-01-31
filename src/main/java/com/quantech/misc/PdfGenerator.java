@@ -30,7 +30,7 @@ public class PdfGenerator {
         context.setVariable("patient", patient);
 
         // make html file
-        String html = templateEngine.process("templates/print/template", context);
+        String html = templateEngine.process("templates/Print/template", context);
 
         ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(html);
