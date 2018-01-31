@@ -16,9 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Controller
@@ -116,7 +114,25 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @ResponseBody
     public FileSystemResource patientPdf(@PathVariable("id") Long id) throws Exception {
         PdfGenerator pdfGen = new PdfGenerator();
-        pdfGen.patientAsPdf(patientService.getPatientById(id));
+
+        List<Patient> patients = Arrays.asList(patientService.getPatientById(id));
+        pdfGen.patientAsPdf(patients);
+
+        return new FileSystemResource("pdfout.pdf");
+    }
+
+    @RequestMapping(value="/pdf/all", method=RequestMethod.GET, produces="application/pdf")
+    @ResponseBody
+    public FileSystemResource patientPdf() throws Exception {
+        PdfGenerator pdfGen = new PdfGenerator();
+        UserCore userInfo =  (UserCore) authenticator.getAuthentication().getPrincipal();
+
+        List<Patient> patients = new ArrayList<>();
+        if (userInfo.hasAuth(SecurityRoles.Doctor)){
+            patients = doctorService.getPatients(userInfo.getId());
+        }
+
+        pdfGen.patientAsPdf(patients);
         return new FileSystemResource("pdfout.pdf");
     }
 

@@ -9,10 +9,11 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class PdfGenerator {
 
-    public void patientAsPdf(Patient patient) throws Exception {
+    public void patientAsPdf(List<Patient> patients) throws Exception {
 
         // set up thymeleaf rendering engine
         //
@@ -25,20 +26,20 @@ public class PdfGenerator {
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
 
+        // prepare file and renderer
+        File out = new File("pdfout.pdf" );
+        ITextRenderer renderer = new ITextRenderer();
+
+        OutputStream outputStream = new FileOutputStream(out);
         // the context data is used to fill the thymeleaf template
         Context context = new Context();
-        context.setVariable("patient", patient);
+        context.setVariable("patients", patients);
 
         // make html file
         String html = templateEngine.process("templates/Print/template", context);
 
-        ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(html);
         renderer.layout();
-
-        // create pdf
-        File out = new File("pdfout.pdf" );
-        OutputStream outputStream = new FileOutputStream(out);
         renderer.createPDF(outputStream);
         outputStream.close();
 
