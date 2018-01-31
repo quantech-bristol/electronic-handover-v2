@@ -3,6 +3,8 @@ package com.quantech.entities.user;
 import com.quantech.Configurations.SecurityRoles;
 import com.quantech.misc.Title;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -10,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,18 +26,22 @@ public class UserService implements UserDetailsService {
     public UserService() {
 
     }
+
+
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+
     @PostConstruct
-    public void test()
+    public void insertRootUser()
     {
-        if( userRepository.count() == 0)
+        if (!activeProfile.matches("test") && (userRepository.count() == 0))
         {
             userRepository.save(new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com"));
-
         }
     }
 
     public void delUser(String user) {
-        userRepository.deleteUserCoreByUsername(user);test();
+        userRepository.deleteUserCoreByUsername(user);insertRootUser();
     }
 
     public void editPassword(String user, String newPass)
