@@ -34,7 +34,7 @@ import java.util.function.Predicate;
                          DbUnitTestExecutionListener.class})       // to read data sets from file
 @ActiveProfiles("test")       // use application-test.yml properties (in-memory DB)
 @Transactional                // rollback DB in between tests
-public class PatientServiceTest {
+public class PatientTest {
     @Autowired
     PatientService patientService;
     @Autowired
@@ -297,6 +297,16 @@ public class PatientServiceTest {
         List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
         Assert.assertEquals(l1,l2);
     }
+
+    /*
+    @Test
+    // Test that the check digit generated from a valid NHS number is in fact correct.
+    public void checkDigitCorrectTest() {
+        Patient p = new Patient();
+        Long nhsNumber1 = 1328725170L;
+        int cd = p.checkDigit(nhsNumber1);
+        Assert.assertEquals(0,cd);
+    }*/
 
     // Use this to create a list of patients with a certain sequence of IDs.
     private List<Patient> getPatientsFromRepository(long[] ids) {

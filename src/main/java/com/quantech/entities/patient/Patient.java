@@ -186,7 +186,7 @@ public class Patient {
     public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
         nullCheck(NHSNumber,"NHS number");
 
-        /* TODO: complete this; have not uncommented yet because changes to validity checks may cause errors in existing databases.
+        // TODO: complete this; have not uncommented yet because changes to validity checks may cause errors in existing databases.
         int digits = NHSNumber.toString().length();
 
         if (digits < 10)
@@ -195,17 +195,16 @@ public class Patient {
             throw new NullPointerException("Error: NHS number has too many digits.");
 
         // Check that the checksum is correct.
-        if ( checksumCorrect(digits) )
+        if ( checksumCorrect(NHSNumber) )
             throw new NullPointerException("Error: NHS number is not valid (checksum does not match)");
-        */
+
 
         this.nHSNumber = NHSNumber;
     }
 
     // Checks that the checksum of the NHS number is correct.
-    private boolean checksumCorrect(Long n) {
+    public int checkDigit(Long n) {
         String digits = n.toString();
-        int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
 
         // Applying Modulus 11 algorithm:
         // Source: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
@@ -222,11 +221,18 @@ public class Patient {
         int checkDigit = 11 - r;
         // 4- If the value is 10 then the check digit used is 0. If it is 0, then the number is invalid.
         if (checkDigit == 0)
-            return false;
+            return -1;
         if (checkDigit == 10)
             checkDigit = 0;
         // 5- Check the remainder matches the check digit.
-        return (checkSum == checkDigit);
+        return checkDigit;
+    }
+
+    private boolean checksumCorrect(Long n) {
+        String digits = n.toString();
+        int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
+        int checkDigit = checkDigit(n);
+        return (checkSum == checkDigit && checkDigit != -1);
     }
 
     public Long getHospitalNumber() {
