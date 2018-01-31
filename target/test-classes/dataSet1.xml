@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <user_core
+            id="1"
+            enabled="true"
+            password="pass"
+            username="doctor1"
+            title="0"
+            first_name="Doctor"
+            last_name="One"
+            email="doctor1@doctor.com"
+    />
+    <user_core
+            id="2"
+            enabled="true"
+            password="pass"
+            username="doctor2"
+            title="0"
+            first_name="Doctor"
+            last_name="Two"
+            email="doctor2@doctor.com"
+    />
+    <user_core
+            id="3"
+            enabled="true"
+            password="pass"
+            username="admin3"
+            title="0"
+            first_name="Admin"
+            last_name="Three"
+            email="admin3@admin.com"
+    />
+
+    <doctor
+            user_id="1"/>
+    <doctor
+            user_id="2"/>
+
+    <ward id="6"
+          name="ward"
+          capacity="10"
+          department="department"/>
+
+    <patient id="3"
+             doctor_user_id="1"
+             title="0"
+             first_name="A"
+             last_name="Z"
+             birth_date="2017-12-03"
+             nhsnumber="1000000"
+             hospital_number="100000000"
+             ward_id="6"
+             bed="bed1"
+             date_of_admission="2017-12-03"
+             relevant_history="ill"
+             social_issues="none"
+             risks="none"
+             recommendations="medicine"
+             diagnosis="ill"/>
+    <patient id="5"
+             doctor_user_id="1"
+             title="0"
+             first_name="Ab"
+             last_name="A"
+             birth_date="2017-12-03"
+             nhsnumber="1000003"
+             hospital_number="100000003"
+             ward_id="6"
+             bed="bed1"
+             date_of_admission="2017-12-03"
+             relevant_history="ill"
+             social_issues="none"
+             risks="none"
+             recommendations="medicine"
+             diagnosis="ill"/>
+    <patient id="4"
+             doctor_user_id="1"
+             title="0"
+             first_name="C"
+             last_name="H"
+             birth_date="2017-12-03"
+             nhsnumber="1000001"
+             hospital_number="100000001"
+             ward_id="6"
+             bed="bed1"
+             date_of_admission="2017-12-03"
+             relevant_history="ill"
+             social_issues="none"
+             risks="none"
+             recommendations="medicine"
+             diagnosis="ill"/>
+    <patient id="6"
+             doctor_user_id="1"
+             title="0"
+             first_name="A"
+             last_name="H"
+             birth_date="2017-12-03"
+             nhsnumber="1000004"
+             hospital_number="100000004"
+             ward_id="6"
+             bed="bed1"
+             date_of_admission="2017-12-03"
+             relevant_history="ill"
+             social_issues="none"
+             risks="none"
+             recommendations="medicine"
+             diagnosis="ill"/>
+
+</dataset>

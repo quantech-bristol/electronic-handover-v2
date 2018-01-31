@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header :: head (title='Handovers')">
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
+<div id="mainwindow" class="mainwindow">
+    <div id="topbar">
+        Handovers
+    </div>
+    <div id="bodywrap">
+        <!-- Accordion -->
+        <div class="ac-container agileits w3layouts">
+            <div  th:each="handover,iterStat : ${handovers}">
+                <input th:id="'ac-' + ${iterStat.count}" name="accordion-1" type="checkbox" />
+                <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">Bed <span th:text="${handover.patient.bed}"/> , <span th:text="${handover.patient.title}"/>  <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
+                <article class="ac-small agileits w3layouts">
+                    <div style="float: left;">
+                        <ul>
+                            <li>Doctors: <span th:text="${handover.originDoctor.firstName}"/> ---> <span th:text="${handover.recipientDoctor.firstName}"/></li>
+                            <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
+                            <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
+                            <li>Risks: <span th:text="${handover.patient.risks}"/></li>
+                            <div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                                <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
+                            </div>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <!-- //Accordion -->
+        <a class="btn btn-default" href="/createHandover">Create New Handover</a>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>

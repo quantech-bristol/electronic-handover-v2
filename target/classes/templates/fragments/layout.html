@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
+<head>
+</head>
+<body>
+
+
+<div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
+    <div id="sidebarwrap">
+        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
+        <h2>Cardiology</h2>
+        <h2>Bristol Royal Infirmary</h2>
+        <div class="headshot">
+            <a th:href="@{/patient/all}"><img th:src="@{/images/headshot.jpg}" alt="" class="img-responsive"/></a>
+        </div>
+        <a th:href="@{/}"><h3>Overview</h3></a>
+        <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
+        <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+
+<div id="sidebar" class="sidebar" th:fragment="sidebar">
+    <div id="sidebarwrap">
+        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
+        <h2>Cardiology</h2>
+        <h2>Bristol Royal Infirmary</h2>
+        <div class="headshot">
+            <a th:href="@{/patient/all}"><img th:src="@{/images/headshot.jpg}" alt="" class="img-responsive"/></a>
+        </div>
+        <a th:href="@{/}"><h3>Overview</h3></a>
+        <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
+        <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
+<!--      <a th:href="@{/Admin}" th:if="${#authentication.principal.hasAuth(T(com.quantech.Configurations.SecurityRoles).Admin)}"><h3>Go To Admin Page</h3></a> -->
