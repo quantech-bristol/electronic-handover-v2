@@ -206,6 +206,14 @@ public class Patient {
     public int checkDigit(Long n) {
         String digits = n.toString();
 
+        if (digits.length() < 10) {
+            StringBuffer zeros = new StringBuffer();
+            for (int i = 0; i < 10 - digits.length(); i++) {
+                zeros.append('0');
+            }
+            digits = zeros.toString() + digits;
+        }
+
         // Applying Modulus 11 algorithm:
         // Source: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
         // 1- Apply factors:
@@ -220,9 +228,9 @@ public class Patient {
         // 3- Take the remainder away from 11 to get the check digit.
         int checkDigit = 11 - r;
         // 4- If the value is 10 then the check digit used is 0. If it is 0, then the number is invalid.
-        if (checkDigit == 0)
-            return -1;
         if (checkDigit == 10)
+            return -1;
+        if (checkDigit == 11)
             checkDigit = 0;
         // 5- Check the remainder matches the check digit.
         return checkDigit;

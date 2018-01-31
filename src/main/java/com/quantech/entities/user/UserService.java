@@ -30,7 +30,8 @@ public class UserService implements UserDetailsService {
     {
         if( userRepository.count() == 0)
         {
-            userRepository.save(new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com"));
+            // Commented out for unit testing:
+            // userRepository.save(new UserCore("quantech","quantech", SecurityRoles.Admin, Title.Mx, "quan", "tech", "quantech@gmail.com"));
 
         }
     }
