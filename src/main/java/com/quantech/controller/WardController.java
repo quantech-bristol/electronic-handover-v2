@@ -20,7 +20,7 @@ public class WardController extends WebMvcConfigurerAdapter {
     @GetMapping("/addWard")
     public String addWard(Model model) {
         model.addAttribute("ward", new Ward());
-        return "addWard";
+        return "Admin/addWard";
     }
 
     // Submit the new ward.
