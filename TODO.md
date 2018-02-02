@@ -1,4 +1,18 @@
 # TODO LIST
+
+Before Friday:
+- Fix whitelabel error page to show generic error page
+- add link to admin stuff for doctor/admin users
+- Sort out scrolling of patient's notes
+- Remove or organise yellow warning error on accordion
+- Internationalization file
+- Make input dates drop down/calendar/different input format
+- Display form error messages or each entry
+- Ability to delete patient from your handovers, given discharge etc. 
+- Make new patient doctor automatically current doctor
+- Make admission date the current date
+- Any UI changes
+
 Testing:
 - Unit test all services made so far.
 - Figure out how to carry out unit tests using URLs.
@@ -8,6 +22,7 @@ Handovers:
 - Work out where to store completed handovers
 - Handover input error handling for getters and setters (e.g. cannot create a new handover for a patient that is currently already part of one)
 - Finalise what attributes Handover should have.
+- Long term storage of handovers?
 
 Doctors:
 - Doctor input error handling for getters and setters
@@ -22,6 +37,7 @@ Patients:
 - Finalise what attributes Patient should have
 - Sort date format, currently needs inputting 1998/01/13 instead of 13/01/1998
 - Adjust formatting on add patient as recommendations touches input box
+- Long term storage of patients details?
 
 Teams.
 - Team input error handling for getters and setters 
@@ -53,5 +69,4 @@ View/Cosmetic Changes:
 - Maybe find a way to remember whether sidebar is shown or hidden when changing pages
 - Add pending and sent handovers to UI.
 - Maybe come up with a good dashboard layout for the "Overview" tab (probably optional at this stage)
-- Create internationlization file to allow enum error messages to be overwritten and handled gracefully
-- Sort out warning signs on the accordion
+
