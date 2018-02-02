@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -94,21 +95,21 @@ public class Patient {
                    String risks,
                    String recommendations,
                    String diagnosis) {
-        this.doctor = doctor;
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.nHSNumber = nHSNumber;
-        this.hospitalNumber = hospitalNumber;
-        this.ward = ward;
-        this.bed = bed;
-        this.dateOfAdmission = dateOfAdmission;
-        this.relevantHistory = relevantHistory;
-        this.socialIssues = socialIssues;
-        this.risks = risks;
-        this.recommendations = recommendations;
-        this.diagnosis = diagnosis;
+        this.doctor = (Doctor) nullCheck(doctor,"doctor");
+        this.title = (Title) nullCheck(title,"title");;
+        this.firstName = putNameIntoCorrectForm( (String) nullCheck(firstName,"first name") );
+        this.lastName = putNameIntoCorrectForm( (String) nullCheck(lastName,"last name") );
+        this.birthDate = birthDateValidityChecker(birthDate);
+        this.nHSNumber = NHSNumberValidityCheck(nHSNumber);
+        this.hospitalNumber = (Long) nullCheck(hospitalNumber,"hospital number");
+        this.ward = (Ward) nullCheck(ward,"ward");
+        this.bed = (String) nullCheck(bed,"bed");
+        this.dateOfAdmission =  dateOfAdmissionValidityCheck(dateOfAdmission);
+        this.relevantHistory = (String) nullCheck(relevantHistory,"relevant history");
+        this.socialIssues = (String) nullCheck(socialIssues,"social issues");
+        this.risks = (String) nullCheck(risks,"risks");
+        this.recommendations = (String) nullCheck(recommendations,"recommendations");
+        this.diagnosis = (String) nullCheck(diagnosis,"diagnosis");
     }
 
     // TODO: Carry out error detection/prevention on these getters and setters.
@@ -144,7 +145,7 @@ public class Patient {
 
     public void setFirstName(String firstName) {
         nullCheck(firstName, "first name");
-        this.firstName = firstName;
+        this.firstName = putNameIntoCorrectForm(firstName);
     }
 
     public String getLastName() {
@@ -153,7 +154,7 @@ public class Patient {
 
     public void setLastName(String lastName) {
         nullCheck(lastName,"last name");
-        this.lastName = lastName;
+        this.lastName = putNameIntoCorrectForm(lastName);
     }
 
     public Date getBirthDate() {
@@ -167,10 +168,15 @@ public class Patient {
      * @throws IllegalArgumentException if birth date after patient's date of admission.
      */
     public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDateValidityChecker(birthDate);
+    }
+
+    // Use this to check if birth date is valid before setting an attribute with it.
+    private Date birthDateValidityChecker(Date birthDate) {
         nullCheck(birthDate,"date of birth");
         if (this.dateOfAdmission != null && dateOfAdmission.before(birthDate))
             throw new IllegalArgumentException("Error: patient's date of admission cannot be before birth date");
-        this.birthDate = birthDate;
+        return birthDate;
     }
 
     public Long getNHSNumber() {
@@ -184,22 +190,23 @@ public class Patient {
      * @throws IllegalArgumentException If either the number doesn't have 10 digits, or the checksum doesn't match.
      */
     public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
+        this.nHSNumber = NHSNumberValidityCheck(NHSNumber);
+    }
+
+    // Used to check that an NHS number is valid before setting an attribute to be equal to it.
+    private Long NHSNumberValidityCheck(Long NHSNumber) {
         nullCheck(NHSNumber,"NHS number");
 
-        // TODO: complete this; have not uncommented yet because changes to validity checks may cause errors in existing databases.
         int digits = NHSNumber.toString().length();
 
-        if (digits < 10)
-            throw new NullPointerException("Error: NHS number has too few digits.");
         if (digits > 10)
             throw new NullPointerException("Error: NHS number has too many digits.");
 
         // Check that the checksum is correct.
-        if ( checksumCorrect(NHSNumber) )
+        if ( !checksumCorrect(NHSNumber) )
             throw new NullPointerException("Error: NHS number is not valid (checksum does not match)");
 
-
-        this.nHSNumber = NHSNumber;
+        return NHSNumber;
     }
 
     // Checks that the checksum of the NHS number is correct.
@@ -236,6 +243,7 @@ public class Patient {
         return checkDigit;
     }
 
+    // Checks if the check digit generated from an NHS number matches the checksum provided in the number.
     private boolean checksumCorrect(Long n) {
         String digits = n.toString();
         int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
@@ -281,10 +289,14 @@ public class Patient {
      * @throws IllegalArgumentException if the date of admission is before the patient's date of birth.
      */
     public void setDateOfAdmission(Date dateOfAdmission) throws NullPointerException, IllegalArgumentException {
+        this.dateOfAdmission = dateOfAdmissionValidityCheck(dateOfAdmission);
+    }
+
+    private Date dateOfAdmissionValidityCheck(Date dateOfAdmission) {
         nullCheck(dateOfAdmission, "date of admission");
         if (birthDate != null && birthDate.after(dateOfAdmission))
             throw new IllegalArgumentException("Error: date of admission cannot be after patient's date of birth.");
-        this.dateOfAdmission = dateOfAdmission;
+        return dateOfAdmission;
     }
 
     public String getRelevantHistory() {
@@ -333,9 +345,27 @@ public class Patient {
     }
 
     // Throws NullPointerException with custom error message.
-    private void nullCheck(Object obj, String name) throws NullPointerException {
+    private Object nullCheck(Object obj, String name) throws NullPointerException {
         if (obj == null)
             throw new NullPointerException("Error: " + name + " in patient cannot be assigned null value.");
+        return obj;
+    }
 
+    // Places the given name into the correct form
+    // e.g. nuha tumia -> Nuha Tumia
+    // e.g. hARRy o'doNNel -> Harry O'Donnel etc..
+    private String putNameIntoCorrectForm(String name) {
+        // Look at spaces.
+        name = name.toLowerCase();
+        return formatIntoNameAroundString(formatIntoNameAroundString(formatIntoNameAroundString(name," "),"-"),"'");
+    }
+
+    private String formatIntoNameAroundString(String name, String regex) {
+        String[] s = name.split(" ");
+        for (int i = 0; i < s.length; i++) {
+            String x = s[i].substring(0,1).toUpperCase();
+            s[i] = x + s[i].substring(1);
+        }
+        return Arrays.stream(s).reduce("", String::concat);
     }
 }
