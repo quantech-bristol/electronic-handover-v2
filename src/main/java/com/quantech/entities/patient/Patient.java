@@ -84,8 +84,6 @@ public class Patient {
     public Patient() {
     }
 
-    // Constructor to create new patient based on existing values.
-    // TODO: Error checking.
     public Patient(Doctor doctor,
                    Title title,
                    String firstName,
@@ -148,7 +146,13 @@ public class Patient {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    /**
+     * Sets the first name of the patient, formatted in the correct way.
+     * @param firstName The first name to use.
+     * @throws NullPointerException If the given first name is null
+     * @throws IllegalArgumentException If the first name takes the form " *".
+     */
+    public void setFirstName(String firstName) throws NullPointerException, IllegalArgumentException {
         nameValidityCheck(firstName);
         this.firstName = putNameIntoCorrectForm(firstName);
     }
@@ -157,7 +161,13 @@ public class Patient {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    /**
+     * Sets the last name of the patient, formatted in the correct way.
+     * @param lastName The first name to use.
+     * @throws NullPointerException If the given first name is null
+     * @throws IllegalArgumentException If the first name takes the form " *".
+     */
+    public void setLastName(String lastName) throws NullPointerException, IllegalArgumentException {
         nameValidityCheck(lastName);
         this.lastName = putNameIntoCorrectForm(lastName);
     }
@@ -205,11 +215,11 @@ public class Patient {
         int digits = NHSNumber.toString().length();
 
         if (digits > 10)
-            throw new NullPointerException("Error: NHS number has too many digits.");
+            throw new IllegalArgumentException("Error: NHS number has too many digits.");
 
         // Check that the checksum is correct.
         if ( !checksumCorrect(NHSNumber) )
-            throw new NullPointerException("Error: NHS number is not valid (checksum does not match)");
+            throw new IllegalArgumentException("Error: NHS number is not valid (checksum does not match)");
 
         return NHSNumber;
     }
@@ -219,7 +229,7 @@ public class Patient {
         String digits = n.toString();
 
         if (digits.length() < 10) {
-            StringBuffer zeros = new StringBuffer();
+            StringBuilder zeros = new StringBuilder();
             for (int i = 0; i < 10 - digits.length(); i++) {
                 zeros.append('0');
             }

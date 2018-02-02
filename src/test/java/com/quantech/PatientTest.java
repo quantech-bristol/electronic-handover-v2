@@ -328,7 +328,49 @@ public class PatientTest {
         Assert.assertEquals(7,cd);
     }
 
-    //TODO: Check that NHS numbers that are invalid are flagged as such (look for edge cases)
+    @Test
+    // Check that NHS numbers that are invalid are flagged as such.
+    public void nhsNumbersInvalidTest() {
+        Patient p = new Patient();
+
+        long test1 = 19999999991919L;
+        long test2 = 7665993754L;
+        long test3 = 27L;
+        long test4 = 1328725170L;
+
+        boolean thrown = false;
+
+        try {
+            p.setNHSNumber(test1);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+        thrown = false;
+
+        try {
+            p.setNHSNumber(test2);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+        thrown = false;
+
+        try {
+            p.setNHSNumber(test3);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertFalse(thrown);
+        thrown = false;
+
+        try {
+            p.setNHSNumber(test4);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertFalse(thrown);
+    }
 
     @Test
     // Checking that first names and last names are being formatted in the correct way.
