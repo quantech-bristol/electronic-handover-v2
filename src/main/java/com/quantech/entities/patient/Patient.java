@@ -5,6 +5,7 @@ import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.user.UserCore;
 import com.quantech.misc.Title;
 import com.quantech.entities.ward.Ward;
+import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -59,19 +60,24 @@ public class Patient {
     private Date dateOfAdmission;
 
     @NotNull
+    @Type(type="text")
     private String relevantHistory;
 
     @NotNull
+    @Type(type="text")
     private String socialIssues;
 
     // TODO: Maybe change this to be a List of enums depending on the team the doctor belongs to.
     @NotNull
+    @Type(type="text")
     private String risks;
 
     @NotNull
+    @Type(type="text")
     private String recommendations;
 
     @NotNull
+    @Type(type="text")
     private String diagnosis;
 
     // Empty constructor.
