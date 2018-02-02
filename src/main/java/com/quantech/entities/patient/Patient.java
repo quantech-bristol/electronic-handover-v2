@@ -97,8 +97,8 @@ public class Patient {
                    String diagnosis) {
         this.doctor = (Doctor) nullCheck(doctor,"doctor");
         this.title = (Title) nullCheck(title,"title");;
-        this.firstName = putNameIntoCorrectForm( (String) nullCheck(firstName,"first name") );
-        this.lastName = putNameIntoCorrectForm( (String) nullCheck(lastName,"last name") );
+        this.firstName = putNameIntoCorrectForm( nameValidityCheck(firstName) );
+        this.lastName = putNameIntoCorrectForm( nameValidityCheck(lastName) );
         this.birthDate = birthDateValidityChecker(birthDate);
         this.nHSNumber = NHSNumberValidityCheck(nHSNumber);
         this.hospitalNumber = (Long) nullCheck(hospitalNumber,"hospital number");
@@ -112,7 +112,6 @@ public class Patient {
         this.diagnosis = (String) nullCheck(diagnosis,"diagnosis");
     }
 
-    // TODO: Carry out error detection/prevention on these getters and setters.
     public Long getId() {
         return id;
     }
@@ -144,7 +143,7 @@ public class Patient {
     }
 
     public void setFirstName(String firstName) {
-        nullCheck(firstName, "first name");
+        nameValidityCheck(firstName);
         this.firstName = putNameIntoCorrectForm(firstName);
     }
 
@@ -153,7 +152,7 @@ public class Patient {
     }
 
     public void setLastName(String lastName) {
-        nullCheck(lastName,"last name");
+        nameValidityCheck(lastName);
         this.lastName = putNameIntoCorrectForm(lastName);
     }
 
@@ -351,20 +350,34 @@ public class Patient {
         return obj;
     }
 
+    // Checks if a given name is valid.
+    private String nameValidityCheck(String name) {
+        nullCheck(name,"name");
+        if (name.matches(" *")) {
+            throw new IllegalArgumentException("Error: Name cannot take the given form (empty string)");
+        }
+        return name;
+    }
+
     // Places the given name into the correct form
     // e.g. nuha tumia -> Nuha Tumia
     // e.g. hARRy o'doNNel -> Harry O'Donnel etc..
     private String putNameIntoCorrectForm(String name) {
         // Look at spaces.
-        name = name.toLowerCase();
+        name = name.toLowerCase().trim();
         return formatIntoNameAroundString(formatIntoNameAroundString(formatIntoNameAroundString(name," "),"-"),"'");
     }
 
     private String formatIntoNameAroundString(String name, String regex) {
-        String[] s = name.split(" ");
+        String[] s = name.split(regex+"+");
         for (int i = 0; i < s.length; i++) {
+            s[i] = s[i].trim();
             String x = s[i].substring(0,1).toUpperCase();
             s[i] = x + s[i].substring(1);
+
+            if (i < s.length - 1) {
+                s[i] = s[i] + regex;
+            }
         }
         return Arrays.stream(s).reduce("", String::concat);
     }

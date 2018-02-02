@@ -328,6 +328,73 @@ public class PatientTest {
         Assert.assertEquals(7,cd);
     }
 
+    //TODO: Check that NHS numbers that are invalid are flagged as such (look for edge cases)
+
+    @Test
+    // Checking that first names and last names are being formatted in the correct way.
+    public void patientNameFormattedCorrectlyTest() {
+        Patient p = new Patient();
+
+        p.setFirstName("nUHa");
+        p.setLastName("TumIA");
+        Assert.assertEquals("Nuha",p.getFirstName());
+        Assert.assertEquals("Tumia",p.getLastName());
+
+        p.setFirstName("      sally-anne       ");
+        p.setLastName("tyson");
+        Assert.assertEquals("Sally-Anne",p.getFirstName());
+        Assert.assertEquals("Tyson",p.getLastName());
+
+        p.setFirstName("sally-anne");
+        p.setLastName("tyson");
+        Assert.assertEquals("Sally-Anne",p.getFirstName());
+        Assert.assertEquals("Tyson",p.getLastName());
+
+        p.setFirstName("sally   -  anne");
+        p.setLastName("tyson");
+        Assert.assertEquals("Sally-Anne",p.getFirstName());
+        Assert.assertEquals("Tyson",p.getLastName());
+
+        p.setFirstName("CAMERON");
+        p.setLastName("O'HARA");
+        Assert.assertEquals("Cameron",p.getFirstName());
+        Assert.assertEquals("O'Hara",p.getLastName());
+
+        p.setFirstName("            Nabil    Suliman            ");
+        p.setLastName("Tumia        ");
+        Assert.assertEquals("Nabil Suliman",p.getFirstName());
+        Assert.assertEquals("Tumia",p.getLastName());
+    }
+
+    @Test
+    // Errors thrown when an empty name field is attempted.
+    public void emptyNameThrowsErrorTest() {
+        boolean thrown = false;
+        Patient p = new Patient();
+        try {
+            p.setFirstName("");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+        thrown = false;
+
+        try {
+            p.setFirstName("     ");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+        thrown = false;
+
+        try {
+            p.setFirstName(" ");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        Assert.assertTrue(thrown);
+    }
+
     // Use this to create a list of patients with a certain sequence of IDs.
     private List<Patient> getPatientsFromRepository(long[] ids) {
         List<Patient> l1 = new ArrayList<>();
