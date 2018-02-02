@@ -27,6 +27,7 @@ Teams.
 - Team input error handling for getters and setters 
 - Finalise what attributes Team should have
 - Ward input error handling for getters and setters
+- Make teams departments?
 
 Departments.
 - Consider structure of hospital
@@ -53,3 +54,4 @@ View/Cosmetic Changes:
 - Add pending and sent handovers to UI.
 - Maybe come up with a good dashboard layout for the "Overview" tab (probably optional at this stage)
 - Create internationlization file to allow enum error messages to be overwritten and handled gracefully
+- Sort out warning signs on the accordion
