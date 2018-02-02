@@ -36,7 +36,6 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // Go to page to add patient.
     @GetMapping("/addPatient")
     public String addPatient(Model model) {
-        model.addAttribute("doctors",doctorService.getAllDoctors());
         model.addAttribute("patient", new Patient());
         model.addAttribute("wards", wardService.getAllWards());
         return "Doctor/addPatient";
@@ -45,6 +44,9 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // Submit a new patient.
     @PostMapping("/patient")
     public String submitPatient(@ModelAttribute Patient patient, Model model) {
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        Doctor doc = doctorService.getDoctor(userInfo.getId());
+        patient.setDoctor(doc);
         patientService.savePatient(patient);
         doctorService.addPatient(patient, patient.getDoctor());
         return ("redirect:/patient/all");

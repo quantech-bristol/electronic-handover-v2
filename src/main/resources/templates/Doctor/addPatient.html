@@ -30,13 +30,6 @@
             </tr></div>
 
             <div class="form-group"><tr>
-                <td><label for="doctor">Doctor</label></td>
-                <td><select id="doctor" class="form-control" th:field="*{doctor}">
-                    <option th:each="dr: ${doctors}" th:value="${dr.id}" th:text="${dr.title}+' '+${dr.firstName}+' '+${dr.lastName}"></option>
-                </select></td>
-            </tr></div>
-
-            <div class="form-group"><tr>
                 <td><label for="patientBirthdate">Birthdate</label></td>
                 <td><input type="datetime" th:field="*{birthDate}" class="form-control" id="patientBirthdate" placeholder="Enter BirthDate"/></td>
             </tr></div>
