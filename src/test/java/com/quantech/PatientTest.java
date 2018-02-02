@@ -34,7 +34,7 @@ import java.util.function.Predicate;
                          DbUnitTestExecutionListener.class})       // to read data sets from file
 @ActiveProfiles("test")       // use application-test.yml properties (in-memory DB)
 @Transactional                // rollback DB in between tests
-public class PatientServiceTest {
+public class PatientTest {
     @Autowired
     PatientService patientService;
     @Autowired
@@ -123,7 +123,7 @@ public class PatientServiceTest {
         p.setTitle(Title.Mr);
         p.setFirstName("Name");
         p.setLastName("Name");
-        p.setNHSNumber(111L);
+        p.setNHSNumber(9943197897L);
         p.setHospitalNumber(111L);
         p.setWard(new Ward());
         p.setBed("1");
@@ -296,6 +296,36 @@ public class PatientServiceTest {
 
         List<Patient> l2 = patientService.filterPatientsBy(patientService.getAllPatients(),p);
         Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    // Test that the check digit generated from a valid NHS number is in fact correct.
+    public void checkDigitCorrectTest() {
+        Patient p = new Patient();
+        Long nhsNumber1 = 1328725170L;
+        Long nhsNumber2 = 3721005252L;
+        Long nhsNumber3 = 0L;
+        Long nhsNumber4 = 7665993753L;
+        Long nhsNumber5 = 9943197897L;
+        Long nhsNumber6 = 27L;
+
+        int cd = p.checkDigit(nhsNumber1);
+        Assert.assertEquals(0,cd);
+
+        cd = p.checkDigit(nhsNumber2);
+        Assert.assertEquals(2,cd);
+
+        cd = p.checkDigit(nhsNumber3);
+        Assert.assertEquals(0,cd);
+
+        cd = p.checkDigit(nhsNumber4);
+        Assert.assertEquals(3,cd);
+
+        cd = p.checkDigit(nhsNumber5);
+        Assert.assertEquals(7,cd);
+
+        cd = p.checkDigit(nhsNumber6);
+        Assert.assertEquals(7,cd);
     }
 
     // Use this to create a list of patients with a certain sequence of IDs.
