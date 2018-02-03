@@ -4,6 +4,7 @@
 >
 
 <head th:include="fragments/header :: head (title='Overview')">
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
 
@@ -41,7 +42,11 @@
             <!-- //Accordion -->
 
         </div>
-        <div id="overviewbox"> <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
+        <div id="overviewbox">
+            <span style="float:right;">
+                <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;font-size:25px;padding-top:5px;padding-right:5px;"></i></a>
+            </span>
+            <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
             <div class="line"></div>
             <!-- Accordion -->
             <div class="ac-container agileits w3layouts">
