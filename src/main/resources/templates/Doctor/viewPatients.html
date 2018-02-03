@@ -43,9 +43,10 @@
             </div>
         </div>
         <!-- //Accordion -->
-        <a class="btn btn-default" href="/addPatient">Add a new patient</a>
+        <a style="width: 10vw;" class="btn btn-default" href="/addPatient">Add a new patient</a>
+        <br/><br/>
         <form th:action="@{/pdf/all}" method="get">
-            <input type="submit" value="View all as PDF"/>
+            <input class="btn" style="width: 10vw;" type="submit" value="View all as PDF"/>
         </form>
     </div>
 </div>
