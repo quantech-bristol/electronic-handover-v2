@@ -9,7 +9,6 @@ Before Friday:
 - Make input dates drop down/calendar/different input format
 - Display form error messages or each entry
 - Ability to delete patient from your handovers, given discharge etc. 
-- Make new patient doctor automatically current doctor
 - Make admission date the current date
 - Any UI changes
 
