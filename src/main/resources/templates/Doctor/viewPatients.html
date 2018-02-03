@@ -23,22 +23,18 @@
                 <input th:id="'ac-' + ${iterStat.count}" name="accordion-1" type="checkbox" />
                 <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">Bed <span th:text="${patient.bed}"/> , <span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
                 <article class="ac-small agileits w3layouts">
-                    <div style="float: left;">
-                        <ul>
-                            <li>Diagnosis: <span th:text="${patient.diagnosis}"/></li>
-                            <li>Relevant History: <span th:text="${patient.relevantHistory}"/></li>
-                            <li>Recommendations: <span th:text="${patient.recommendations}"/></li>
-                            <li>Risks: <span th:text="${patient.risks}"/></li>
-                        </ul>
-                    </div>
-                    <div style="float: right; padding-right: 20vw;">
-                        <ul>
-                            <li>Date of Birth: <span th:text="${patient.birthDate}"/></li>
-                            <li>NHS Number: <span th:text="${patient.nHSNumber}"/></li>
-                            <li>Hospital Number: <span th:text="${patient.hospitalNumber}"/></li>
-                            <li><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></li>
-                        </ul>
-                    </div>
+                    <table class="patient-info-table">
+                        <tr>
+                            <td>Date of Birth: <span th:text="${patient.birthDate}"/></td>
+                            <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
+                            <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
+                        </tr>
+                        <tr><td colspan="3">Diagnosis: <span th:text="${patient.diagnosis}"/></td></tr>
+                        <tr><td colspan="3">Relevant History: <span th:text="${patient.relevantHistory}"/></td></tr>
+                        <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
+                        <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
+                        <tr><td colspan="3"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td></tr>
+                    </table>
                 </article>
             </div>
         </div>
