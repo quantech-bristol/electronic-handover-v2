@@ -3,13 +3,17 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 >
 <head>
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
-<body>
 
+<body>
 
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
-        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
+        <span style="float:right;">
+            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:40px;"></i></a>
+        </span>
+        <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">
@@ -27,7 +31,10 @@
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
-        <a th:href="@{/MyUser}"> <h1 th:text="${#authentication.principal.getFullName()}">test</h1></a>
+        <span style="float:right;">
+            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:40px;"></i></a>
+        </span>
+        <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
         <h2>Cardiology</h2>
         <h2>Bristol Royal Infirmary</h2>
         <div class="headshot">
