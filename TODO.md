@@ -2,14 +2,12 @@
 
 Before Friday:
 - Fix whitelabel error page to show generic error page
-- add link to admin stuff for doctor/admin users
+- add link to admin stuff for doctor/admin users <- implemented by nuha but appears to be a bug in the code concerning user creation.
 - Sort out scrolling of patient's notes
 - Remove or organise yellow warning error on accordion
 - Internationalization file
-- Make input dates drop down/calendar/different input format
 - Display form error messages or each entry
-- Ability to delete patient from your handovers, given discharge etc. 
-- Make admission date the current date
+- Ability to delete patient from your handovers, given discharge etc.
 - Any UI changes
 
 Testing:
@@ -24,11 +22,10 @@ Handovers:
 - Long term storage of handovers?
 
 Doctors:
-- Doctor input error handling for getters and setters
-- Finalise what attributes Doctor should have
-- Move first name / last name / email attributes to the user object?
-- Filtering doctor objects in service (and update controller/views)
 - User team functionality (e.g. "view team" in controller)
+
+Admin:
+- Team admin notified when a patient is discharged?
 
 Patients:
 - Are patients meant to be able to be filtered by team?
