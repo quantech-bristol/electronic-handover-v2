@@ -13,6 +13,7 @@ import com.quantech.entities.team.TeamRepository;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.user.UserRepository;
 import com.quantech.entities.ward.Ward;
+import com.quantech.misc.EntityFieldHandler;
 import com.quantech.misc.Title;
 import org.apache.catalina.User;
 import org.junit.Assert;
@@ -173,6 +174,52 @@ public class DoctorTest {
         l1 = doctorService.filterDoctorsBy(l1,doctorService.doctorIsInTeam(t));
         List<Doctor> l2 = getDoctorsFromRepository(new long[]{3L});
         Assert.assertEquals(l1,l2);
+    }
+
+    @Test
+    // Check if invalid email addresses are detected.
+    public void invalidEmailCheckTest() {
+        String e1 = "nuhat@bristol.com";
+        String e2 = "nuhat@bristol.ac.uk";
+        String e3 = "nuha-t@bristol.co.uk";
+        String e4 = "nuhat@bri.st.ol.com";
+        String e5 = "nuhat@bristol.c";
+        String e6 = "nuhat@bristol.";
+        String e7 = "nuha t@bristol.com";
+        String e8 = "@bristol.com";
+        String e9 = "nuhat@bristol";
+        String e10 = "@";
+        String e11 = "";
+        String e12 = "nuhat";
+        String e13 = "nuha-t@bristol.co.uk.";
+        String e14 = "nuha-t@bristol.co..uk";
+
+        boolean thrown = false;
+
+        // These strings should be identified as valid.
+        for (String s : new String[]{e1,e2,e3,e4}) {
+            try {
+                EntityFieldHandler.emailValidityCheck(s);
+            } catch (IllegalArgumentException e) {
+                thrown = true;
+            }
+            Assert.assertFalse(thrown);
+            thrown = false;
+        }
+
+        // And these strings should be identified as invalid.
+        for (String s : new String[]{e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}) {
+            try {
+                EntityFieldHandler.emailValidityCheck(s);
+            } catch (Exception e) {
+                thrown = true;
+            }
+            Assert.assertTrue(thrown);
+            thrown = false;
+        }
+
+
+
     }
 
     // Use this to create a list of patients with a certain sequence of IDs.

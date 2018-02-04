@@ -1,6 +1,7 @@
 package com.quantech.entities.user;
 
 import com.quantech.Configurations.SecurityRoles;
+import com.quantech.misc.EntityFieldHandler;
 import com.quantech.misc.StringEnumValidation.ValidateEnumValues;
 import com.quantech.misc.StringEnumValidation.ValidateListEnumValues;
 import com.quantech.misc.Title;
@@ -57,15 +58,15 @@ public class UserCore implements UserDetails, UserInfo{
 
     public UserCore(String username, String password, SecurityRoles baseAuth, Title title, String firstName, String surname, String email) {
 
-        this.username = username;
-        this.password = password;
+        this.username = (String) EntityFieldHandler.nullCheck(username,"username");
+        this.password = (String) EntityFieldHandler.nullCheck(password,"password");
         authorityStrings = new LinkedHashSet<>();
-        authorityStrings.add(baseAuth);
+        authorityStrings.add((SecurityRoles) EntityFieldHandler.nullCheck(baseAuth, "authorisation"));
         enabled = true;
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = surname;
-        this.email = email;
+        this.title = (Title) EntityFieldHandler.nullCheck(title,"title");
+        this.firstName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(firstName) );
+        this.lastName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(surname) );
+        this.email = EntityFieldHandler.emailValidityCheck(email);
 
     }
 
@@ -113,6 +114,7 @@ public class UserCore implements UserDetails, UserInfo{
 
     public void setUsername(String username)
     {
+        EntityFieldHandler.nullCheck(username,"username");
         this.username = username;
     }
 
@@ -123,11 +125,16 @@ public class UserCore implements UserDetails, UserInfo{
 
     public void setPassword(String password)
     {
+        EntityFieldHandler.nullCheck(password,"password");
+        int length = password.length();
+        if (length < 4 || length > 20)
+            throw new IllegalArgumentException("Error: password needs to be between 4 and 20 characters long.");
         this.password = password;
     }
 
     public void addAuth(SecurityRoles auth) {
-    authorityStrings.add(auth);
+        EntityFieldHandler.nullCheck(auth,"authorisation");
+        authorityStrings.add(auth);
     }
 
     public void removeAuth(SecurityRoles auth) {
@@ -162,10 +169,12 @@ public class UserCore implements UserDetails, UserInfo{
     }
 
     public void setAuthorityStrings(Set<SecurityRoles> authorityStrings) {
+        EntityFieldHandler.nullCheck(authorityStrings,"authority strings");
         this.authorityStrings = authorityStrings;
     }
 
     public void updateValues(UserInfo user) {
+        EntityFieldHandler.nullCheck(user,"user info");
         this.authorityStrings = user.getAuthorityStrings();
         this.username = user.getUsername();
         if (user.getPassword().length() != 0) {
@@ -185,7 +194,8 @@ public class UserCore implements UserDetails, UserInfo{
 
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        EntityFieldHandler.nameValidityCheck(firstName);
+        this.firstName = EntityFieldHandler.putNameIntoCorrectForm(firstName);
     }
 
     @Override
@@ -195,8 +205,8 @@ public class UserCore implements UserDetails, UserInfo{
 
     @Override
     public void setLastName(String lastName) {
-        this.lastName = lastName;
-
+        EntityFieldHandler.nameValidityCheck(lastName);
+        this.lastName = EntityFieldHandler.putNameIntoCorrectForm(lastName);
     }
 
     @Override
@@ -206,7 +216,7 @@ public class UserCore implements UserDetails, UserInfo{
 
     @Override
     public void setEmail(String email) {
-        this.email = email;
+        this.email = EntityFieldHandler.emailValidityCheck(email);
     }
 
     @Override
@@ -216,6 +226,7 @@ public class UserCore implements UserDetails, UserInfo{
 
     @Override
     public void setTitle(Title title) {
+        EntityFieldHandler.nullCheck(title,"title");
         this.title = title;
     }
 

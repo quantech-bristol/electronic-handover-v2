@@ -3,6 +3,7 @@ package com.quantech.entities.patient;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.user.UserCore;
+import com.quantech.misc.EntityFieldHandler;
 import com.quantech.misc.Title;
 import com.quantech.entities.ward.Ward;
 import org.hibernate.annotations.Type;
@@ -12,6 +13,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Date;
+
+import static com.quantech.misc.EntityFieldHandler.nullCheck;
 
 @Entity
 public class Patient {
@@ -99,10 +102,10 @@ public class Patient {
                    String risks,
                    String recommendations,
                    String diagnosis) {
-        this.doctor = (Doctor) nullCheck(doctor,"doctor");
-        this.title = (Title) nullCheck(title,"title");;
-        this.firstName = putNameIntoCorrectForm( nameValidityCheck(firstName) );
-        this.lastName = putNameIntoCorrectForm( nameValidityCheck(lastName) );
+        this.doctor = (Doctor) EntityFieldHandler.nullCheck(doctor,"doctor");
+        this.title = (Title) EntityFieldHandler.nullCheck(title,"title");;
+        this.firstName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(firstName) );
+        this.lastName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(lastName) );
         this.birthDate = birthDateValidityChecker(birthDate);
         this.nHSNumber = NHSNumberValidityCheck(nHSNumber);
         this.hospitalNumber = (Long) nullCheck(hospitalNumber,"hospital number");
@@ -153,8 +156,8 @@ public class Patient {
      * @throws IllegalArgumentException If the first name takes the form " *".
      */
     public void setFirstName(String firstName) throws NullPointerException, IllegalArgumentException {
-        nameValidityCheck(firstName);
-        this.firstName = putNameIntoCorrectForm(firstName);
+        EntityFieldHandler.nameValidityCheck(firstName);
+        this.firstName = EntityFieldHandler.putNameIntoCorrectForm(firstName);
     }
 
     public String getLastName() {
@@ -168,8 +171,8 @@ public class Patient {
      * @throws IllegalArgumentException If the first name takes the form " *".
      */
     public void setLastName(String lastName) throws NullPointerException, IllegalArgumentException {
-        nameValidityCheck(lastName);
-        this.lastName = putNameIntoCorrectForm(lastName);
+        EntityFieldHandler.nameValidityCheck(lastName);
+        this.lastName = EntityFieldHandler.putNameIntoCorrectForm(lastName);
     }
 
     public Date getBirthDate() {
@@ -188,7 +191,7 @@ public class Patient {
 
     // Use this to check if birth date is valid before setting an attribute with it.
     private Date birthDateValidityChecker(Date birthDate) {
-        nullCheck(birthDate,"date of birth");
+        EntityFieldHandler.nullCheck(birthDate,"date of birth");
         if (this.dateOfAdmission != null && dateOfAdmission.before(birthDate))
             throw new IllegalArgumentException("Error: patient's date of admission cannot be before birth date");
         return birthDate;
@@ -210,7 +213,7 @@ public class Patient {
 
     // Used to check that an NHS number is valid before setting an attribute to be equal to it.
     private Long NHSNumberValidityCheck(Long NHSNumber) {
-        nullCheck(NHSNumber,"NHS number");
+        EntityFieldHandler.nullCheck(NHSNumber,"NHS number");
 
         int digits = NHSNumber.toString().length();
 
@@ -271,7 +274,7 @@ public class Patient {
     }
 
     public void setHospitalNumber(Long hospitalNumber) {
-        nullCheck(hospitalNumber,"hospital number");
+        EntityFieldHandler.nullCheck(hospitalNumber,"hospital number");
         this.hospitalNumber = hospitalNumber;
     }
 
@@ -280,7 +283,7 @@ public class Patient {
     }
 
     public void setWard(Ward ward) {
-        nullCheck(ward,"ward");
+        EntityFieldHandler.nullCheck(ward,"ward");
         this.ward = ward;
     }
 
@@ -289,7 +292,7 @@ public class Patient {
     }
 
     public void setBed(String bed) {
-        nullCheck(bed,"bed");
+        EntityFieldHandler.nullCheck(bed,"bed");
         this.bed = bed;
     }
 
@@ -308,7 +311,7 @@ public class Patient {
     }
 
     private Date dateOfAdmissionValidityCheck(Date dateOfAdmission) {
-        nullCheck(dateOfAdmission, "date of admission");
+        EntityFieldHandler.nullCheck(dateOfAdmission, "date of admission");
         if (birthDate != null && birthDate.after(dateOfAdmission))
             throw new IllegalArgumentException("Error: date of admission cannot be after patient's date of birth.");
         return dateOfAdmission;
@@ -319,7 +322,7 @@ public class Patient {
     }
 
     public void setRelevantHistory(String relevantHistory) {
-        nullCheck(relevantHistory,"relevantHistory");
+        EntityFieldHandler.nullCheck(relevantHistory,"relevantHistory");
         this.relevantHistory = relevantHistory;
     }
 
@@ -328,7 +331,7 @@ public class Patient {
     }
 
     public void setSocialIssues(String socialIssues) {
-        nullCheck(socialIssues,"socialIssues");
+        EntityFieldHandler.nullCheck(socialIssues,"socialIssues");
         this.socialIssues = socialIssues;
     }
 
@@ -337,7 +340,7 @@ public class Patient {
     }
 
     public void setRisks(String risks) {
-        nullCheck(risks,"risks");
+        EntityFieldHandler.nullCheck(risks,"risks");
         this.risks = risks;
     }
 
@@ -346,7 +349,7 @@ public class Patient {
     }
 
     public void setRecommendations(String recommendations) {
-        nullCheck(recommendations,"recommendations");
+        EntityFieldHandler.nullCheck(recommendations,"recommendations");
         this.recommendations = recommendations;
     }
 
@@ -355,46 +358,7 @@ public class Patient {
     }
 
     public void setDiagnosis(String diagnosis) {
-        nullCheck(diagnosis,"diagnosis");
+        EntityFieldHandler.nullCheck(diagnosis,"diagnosis");
         this.diagnosis = diagnosis;
-    }
-
-    // Throws NullPointerException with custom error message.
-    private Object nullCheck(Object obj, String name) throws NullPointerException {
-        if (obj == null)
-            throw new NullPointerException("Error: " + name + " in patient cannot be assigned null value.");
-        return obj;
-    }
-
-    // Checks if a given name is valid.
-    private String nameValidityCheck(String name) {
-        nullCheck(name,"name");
-        if (name.matches(" *")) {
-            throw new IllegalArgumentException("Error: Name cannot take the given form (empty string)");
-        }
-        return name;
-    }
-
-    // Places the given name into the correct form
-    // e.g. nuha tumia -> Nuha Tumia
-    // e.g. hARRy o'doNNel -> Harry O'Donnel etc..
-    private String putNameIntoCorrectForm(String name) {
-        // Look at spaces.
-        name = name.toLowerCase().trim();
-        return formatIntoNameAroundString(formatIntoNameAroundString(formatIntoNameAroundString(name," "),"-"),"'");
-    }
-
-    private String formatIntoNameAroundString(String name, String regex) {
-        String[] s = name.split(regex+"+");
-        for (int i = 0; i < s.length; i++) {
-            s[i] = s[i].trim();
-            String x = s[i].substring(0,1).toUpperCase();
-            s[i] = x + s[i].substring(1);
-
-            if (i < s.length - 1) {
-                s[i] = s[i] + regex;
-            }
-        }
-        return Arrays.stream(s).reduce("", String::concat);
     }
 }
