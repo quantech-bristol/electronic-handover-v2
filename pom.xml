@@ -139,6 +139,7 @@
             <artifactId>thymeleaf</artifactId>
             <version>2.1.4.RELEASE</version>
         </dependency>
+
     </dependencies>
 
     <build>

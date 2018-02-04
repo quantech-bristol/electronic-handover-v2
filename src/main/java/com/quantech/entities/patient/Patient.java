@@ -8,6 +8,7 @@ import com.quantech.misc.Title;
 import com.quantech.entities.ward.Ward;
 import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,6 +39,7 @@ public class Patient {
 
     // TODO: sort date format as it's currently going in wrong
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private Date birthDate;
 
@@ -59,6 +61,7 @@ public class Patient {
 
     // TODO: sort date format as it's currently inputting wrong
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private Date dateOfAdmission;
 

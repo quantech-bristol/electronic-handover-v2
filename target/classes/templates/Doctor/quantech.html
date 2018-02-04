@@ -16,60 +16,91 @@
         Overview
     </div>
     <!-- Accordion -->
-    <div id="bodywrap">
-        <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
-            <div class="line"></div>
-            <!-- Accordion -->
-            <div class="ac-container agileits w3layouts">
-                <div  th:each="handover,iterStat : ${handovers}">
-                    <input th:id="'ac-' + ${iterStat.count}" name="accordion-3" type="checkbox" />
-                    <label th:for="'ac-' + ${iterStat.count}" th:class="'grid3'  + ${iterStat.count}">Bed <span th:text="${handover.patient.bed}"/> , <span th:text="${handover.patient.title}"/>  <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
-                    <article class="ac-small agileits w3layouts">
-                        <div style="float: left;">
-                            <ul>
-                                <li>Doctors: <span th:text="${handover.originDoctor.firstName}"/> ---> <span th:text="${handover.recipientDoctor.firstName}"/></li>
-                                <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
-                                <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
-                                <li>Risks: <span th:text="${handover.patient.risks}"/></li>
-                                <li><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
-                                    <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
-                                </div></li>
-                            </ul>
-                        </div>
-                    </article>
+    <!-- If the user currently logged in is a doctor, add this box to their overview dashboard -->
+    <div th:if="${#authentication.principal.isDoctor()}">
+        <div id="bodywrap">
+            <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
+                <div class="line"></div>
+                <!-- Accordion -->
+                <div class="ac-container agileits w3layouts">
+                    <div  th:each="handover,iterStat : ${handovers}">
+                        <input th:id="'ac-' + ${iterStat.count}" name="accordion-3" type="checkbox" />
+                        <label th:for="'ac-' + ${iterStat.count}" th:class="'grid3'  + ${iterStat.count}">Bed <span th:text="${handover.patient.bed}"/> , <span th:text="${handover.patient.title}"/>  <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
+                        <article class="ac-small agileits w3layouts">
+                            <div style="float: left;">
+                                <ul>
+                                    <li>Doctors: <span th:text="${handover.originDoctor.firstName}"/> ---> <span th:text="${handover.recipientDoctor.firstName}"/></li>
+                                    <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
+                                    <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
+                                    <li>Risks: <span th:text="${handover.patient.risks}"/></li>
+                                    <li><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                                        <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
+                                    </div></li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-            </div>
-            <!-- //Accordion -->
+                <!-- //Accordion -->
 
-        </div>
-        <div id="overviewbox">
-            <span style="float:right;">
-                <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;font-size:25px;padding-top:5px;padding-right:5px;"></i></a>
-            </span>
-            <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
-            <div class="line"></div>
-            <!-- Accordion -->
-            <div class="ac-container agileits w3layouts">
-                <div  th:each="patient,iterStat : ${patients}">
-                    <input th:id="'ac-2' + ${iterStat.count}" name="accordion-2" type="checkbox" />
-                    <label th:for="'ac-2' + ${iterStat.count}" th:class="'grid2'  + ${iterStat.count}">Bed <span th:text="${patient.bed}"/> , <span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
-                    <article class="ac-small agileits w3layouts">
-                        <table class="patient-info-table">
-                            <tr>
-                                <td>Date of Birth: <span th:text="${patient.birthDate}"/></td>
-                                <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
-                                <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
-                            </tr>
-                            <tr><td colspan="3">Diagnosis: <span th:text="${patient.diagnosis}"/></td></tr>
-                            <tr><td colspan="3">Relevant History: <span th:text="${patient.relevantHistory}"/></td></tr>
-                            <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
-                            <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
-                            <tr><td colspan="3"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td></tr>
-                        </table>
-                    </article>
-                </div>
             </div>
-            <!-- //Accordion -->
+            <div id="overviewbox">
+                <span style="float:right;">
+                    <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;font-size:25px;padding-top:5px;padding-right:5px;"></i></a>
+                </span>
+                <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
+                <div class="line"></div>
+                <!-- Accordion -->
+                <div class="ac-container agileits w3layouts">
+                    <div  th:each="patient,iterStat : ${patients}">
+                        <input th:id="'ac-2' + ${iterStat.count}" name="accordion-2" type="checkbox" />
+                        <label th:for="'ac-2' + ${iterStat.count}" th:class="'grid2'  + ${iterStat.count}">Bed <span th:text="${patient.bed}"/> , <span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/> <div id="rightalign"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;font-size:1.8vw;text-decoration: none;"></i></div></label>
+                        <article class="ac-small agileits w3layouts">
+                            <table class="patient-info-table">
+                                <tr>
+                                    <td>Date of Birth: <span th:text="${patient.birthDate}"/></td>
+                                    <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
+                                    <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
+                                </tr>
+                                <tr><td colspan="3">Diagnosis: <span th:text="${patient.diagnosis}"/></td></tr>
+                                <tr><td colspan="3">Relevant History: <span th:text="${patient.relevantHistory}"/></td></tr>
+                                <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
+                                <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
+                                <tr><td colspan="3"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td></tr>
+                            </table>
+                        </article>
+                    </div>
+                </div>
+                <!-- //Accordion -->
+            </div>
+        </div>
+    </div>
+    <!-- //Accordion -->
+
+    <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
+    <div th:if="${#authentication.principal.isAdmin()}">
+        <div id="bodywrap">
+            <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
+                <div class="form-group"><tr>
+                    <td><label for="Id">User Id To Edit</label></td>
+                    <td>  <input type="number" name = "Id" id = "Id"/></td>
+                    <td><input type="submit" value="Edit User" th:for="Id"/></td>
+                </tr></div>
+            </form>
+            <div id="overviewbox">
+                <h5>Admin Box</h5>
+                <div class="line"></div>
+                <!-- Accordion -->
+                <div class="ac-container agileits w3layouts">
+                    <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [Works for both now]</a></p>
+                    <p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+                </div>
+                <!-- //Accordion -->
+
+            </div>
         </div>
     </div>
     <!-- //Accordion -->

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -47,6 +48,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         Doctor doc = doctorService.getDoctor(userInfo.getId());
         patient.setDoctor(doc);
+        patient.setDateOfAdmission(new Date());
         patientService.savePatient(patient);
         doctorService.addPatient(patient, patient.getDoctor());
         return ("redirect:/patient/all");

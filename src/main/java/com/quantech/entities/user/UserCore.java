@@ -173,6 +173,16 @@ public class UserCore implements UserDetails, UserInfo{
         this.authorityStrings = authorityStrings;
     }
 
+    // Check if a given user has doctor status.
+    public boolean isDoctor(){
+        return this.authorityStrings.contains(SecurityRoles.Doctor);
+    }
+
+    // Check if a given user has admin status.
+    public boolean isAdmin(){
+        return this.authorityStrings.contains(SecurityRoles.Admin);
+    }
+
     public void updateValues(UserInfo user) {
         EntityFieldHandler.nullCheck(user,"user info");
         this.authorityStrings = user.getAuthorityStrings();

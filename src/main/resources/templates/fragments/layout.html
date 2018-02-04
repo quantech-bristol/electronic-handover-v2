@@ -21,8 +21,15 @@
         </div>
         <a th:href="@{/}"><h3>Overview</h3></a>
         <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
-        <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <div th:if="${#authentication.principal.isDoctor()}">
+            <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+            <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
+            <a th:href="@{/createHandover}">
+                <div id="handover-button">
+                    + Create Handover
+                </div>
+            </a>
+        </div>
         <form th:action="@{/logout}" method="get">
             <input type="submit" value="Sign Out"/>
         </form>
@@ -42,8 +49,11 @@
         </div>
         <a th:href="@{/}"><h3>Overview</h3></a>
         <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
-        <a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a>
+        <div th:if="${#authentication.principal.isDoctor()}">
+            <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+            <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
+            <a th:href="@{/createHandover}"><div id="handover-button">Create Handover</div></a>
+        </div>
         <form th:action="@{/logout}" method="get">
             <input type="submit" value="Sign Out"/>
         </form>

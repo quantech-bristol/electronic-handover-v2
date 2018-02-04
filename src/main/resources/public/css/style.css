@@ -27,6 +27,26 @@ body{
  	margin-bottom: 0px;
  	margin-left: 0px
 }
+
+#handover-button {
+    display: block;
+    background-color: orange;
+    width: 100%;
+    height: /*85px;*/ auto;
+    margin: 20px auto;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 42px;
+    border-top-left-radius: 42px;
+    color: white;
+    font-size: 30px;
+    text-align: right;
+    vertical-align: middle;
+    text-decoration: none;
+    border: none;
+}
+
 #mainwindow{
 	background-color:#FFFFFF;
 	min-height:84vh;

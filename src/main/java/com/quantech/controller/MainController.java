@@ -43,28 +43,21 @@ public class MainController {
     IAuthenticationFacade authenticator;
 
     @GetMapping("/")
-    public String viewHome(HttpServletRequest request) {
-        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        if (userInfo.hasAuth(SecurityRoles.Doctor)) {
-            return "redirect:/quantech";
-        }
-        else if (userInfo.hasAuth(SecurityRoles.Admin)){
-            return "/Admin/adminScreen";
+    public String viewHome(HttpServletRequest request, Model model) {
+        UserCore user =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        if (user.isDoctor()) {
+            Doctor currentDoctor = doctorService.getDoctor(user.getId());
+            List<Patient> patients;
+            patients = doctorService.getPatients(user.getId());
+            model.addAttribute("patients",patients);
+            model.addAttribute("doctor",currentDoctor);
+            model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
         }
 
-        return "redirect:/login";
-    }
-
-    @RequestMapping(value="/quantech")
-    public String docHome(Model model) {
-        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
-        Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
-        List<Patient> patients;
-        patients = doctorService.getPatients(userInfo.getId());
-        model.addAttribute("patients",patients);
-        model.addAttribute("doctor",currentDoctor);
-        model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
-        return "Doctor/quantech";
+        if (!user.isDoctor() && !user.isAdmin())
+            return "redirect:/login";
+        else
+            return "Doctor/quantech";
     }
 
     @RequestMapping(value={"/login"})
