@@ -15,9 +15,10 @@ h4{
 }
 h5{
 	color:#005EB8;
-	font-size:2.3vw;
+	font-size:2.5vh;
+    line-height: 3.5vh;
+    vertical-align: middle;
 	margin-left:1vw;
-    margin-top: 4vh;
     margin-bottom: 1px;
 }
 body{
@@ -62,18 +63,22 @@ body{
 }
 #header{
     background-color:#005EB8;
-    height:8vh;
+    height:auto;
     width:100%;
 }
 #topbar{
 	background-color:#0072CE;
-	height:8vh;
-	font-size:2.4vw;
+	height:5vh;
+	font-size:2.8vh;
+    line-height: 5vh;
+    vertical-align: middle;
 	color:#FFF;
-    padding-left: 3vw;
+    padding-left: 1.2vw;
+    font-style: italic;
 }
+
 #bodywrap{
-	padding:3vw;
+	padding:2.4vw;
 	min-height: 84vh;
 }
 #bodywrap input{
@@ -141,16 +146,15 @@ body{
     border-bottom: 0px; /*overrides inheritance */
 }
 #overviewbox{
-	width: 90%;
+	width: 100%;
 	min-height: 15vh;
-	margin-right: 5%;
-	margin-left: 5%;
+    padding-top: 0.3%;
 	padding-bottom: 1%;
-    margin-bottom: 5%;
-	margin-top: 1%;
+    margin-bottom: 3%;
 	background: #E8EDEE;
-    border-radius: 15px;
+    border-radius: 10px;
 }
+
 .line {
     display: block;
     height: 1px;
