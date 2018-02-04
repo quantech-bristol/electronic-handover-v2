@@ -16,9 +16,9 @@
         Overview
     </div>
     <!-- Accordion -->
-    <!-- If the user currently logged in is a doctor, add this box to their overview dashboard -->
-    <div th:if="${#authentication.principal.isDoctor()}">
-        <div id="bodywrap">
+    <div id="bodywrap">
+        <!-- If the user currently logged in is a doctor, add this box to their overview dashboard -->
+        <div th:if="${#authentication.principal.isDoctor()}">
             <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
                 <div class="line"></div>
                 <!-- Accordion -->
@@ -74,12 +74,9 @@
                 <!-- //Accordion -->
             </div>
         </div>
-    </div>
-    <!-- //Accordion -->
 
-    <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
-    <div th:if="${#authentication.principal.isAdmin()}">
-        <div id="bodywrap">
+        <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
+        <div th:if="${#authentication.principal.isAdmin()}">
             <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
                 <div class="form-group"><tr>
                     <td><label for="Id">User Id To Edit</label></td>
@@ -103,7 +100,7 @@
             </div>
         </div>
     </div>
-    <!-- //Accordion -->
+
 </div>
 <div th:replace="fragments/footer :: footer">...</div>
 </body>
