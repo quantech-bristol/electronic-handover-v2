@@ -80,6 +80,11 @@ public class Doctor {
         this.patients.add(patient);
     }
 
+    public void removePatient(Patient patient) throws NullPointerException {
+        nullCheck(patient, "patient");
+        this.patients.remove(patient);
+    }
+
     public Long getId() {
         return user.getId();
     }

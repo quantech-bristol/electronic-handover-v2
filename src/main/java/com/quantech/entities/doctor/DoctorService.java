@@ -233,6 +233,14 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
+    public void removePatient(Patient patient, Doctor doctor) {
+        doctor.removePatient(patient);
+        doctorRepository.save(doctor);
+
+        for (Patient p : doctorRepository.findOne(doctor.getId()).getPatients())
+            System.out.println(p.getFirstName());
+    }
+
     /**
      * Returns a list of patients under the doctor's care.
      * @param id The id of the given doctor.
@@ -240,7 +248,7 @@ public class DoctorService {
      * @throws NullPointerException When the given id doesn't exist in the database.
      */
     public List<Patient> getPatients(Long id) {
-        return doctorRepository.findById(id).getPatients();
+        return doctorRepository.findOne(id).getPatients();
     }
     /*
     RE: maintaining a list of patients

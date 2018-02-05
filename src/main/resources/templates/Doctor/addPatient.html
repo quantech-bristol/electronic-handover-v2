@@ -45,7 +45,7 @@
             </tr></div>
 
             <div class="form-group"><tr>
-                <td><label for="patientWard">Ward</label></td>
+                <td><label for="ward">Ward</label></td>
                 <td><select id="ward" class="form-control" th:field="*{ward}">
                     <option th:each="ward: ${wards}" th:value="${ward.id}" th:text="${ward.name}"></option>
                 </select></td>

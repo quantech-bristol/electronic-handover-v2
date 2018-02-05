@@ -217,6 +217,14 @@ public class PatientService {
     }
 
     /**
+     * Deletes a given patient from the repository.
+     * @param id The patient to be removed from the repository.
+     */
+    public void deletePatient(Long id) {
+        patientRepository.delete(id);
+    }
+
+    /**
      * Filter list of a patients by a given predicate.
      * @param list A list of patients.
      * @param predicate A predicate to test the patients against.
@@ -313,6 +321,11 @@ public class PatientService {
                 return has;
             }
         };
+    }
+
+    public void setDischarged(Patient p, Boolean d) {
+        p.setDischarged(d);
+        patientRepository.save(p);
     }
 
 }

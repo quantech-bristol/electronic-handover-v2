@@ -86,6 +86,9 @@ public class Patient {
     @Type(type="text")
     private String diagnosis;
 
+    @NotNull
+    private Boolean discharged;
+
     // Empty constructor.
     public Patient() {
     }
@@ -104,7 +107,8 @@ public class Patient {
                    String socialIssues,
                    String risks,
                    String recommendations,
-                   String diagnosis) {
+                   String diagnosis,
+                   Boolean discharged) {
         this.doctor = (Doctor) EntityFieldHandler.nullCheck(doctor,"doctor");
         this.title = (Title) EntityFieldHandler.nullCheck(title,"title");;
         this.firstName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(firstName) );
@@ -120,6 +124,7 @@ public class Patient {
         this.risks = (String) nullCheck(risks,"risks");
         this.recommendations = (String) nullCheck(recommendations,"recommendations");
         this.diagnosis = (String) nullCheck(diagnosis,"diagnosis");
+        this.discharged = discharged;
     }
 
     public Long getId() {
@@ -363,5 +368,13 @@ public class Patient {
     public void setDiagnosis(String diagnosis) {
         EntityFieldHandler.nullCheck(diagnosis,"diagnosis");
         this.diagnosis = diagnosis;
+    }
+
+    public Boolean getDischarged() {
+        return discharged;
+    }
+
+    public void setDischarged(Boolean discharged) {
+        this.discharged = discharged;
     }
 }

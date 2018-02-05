@@ -49,6 +49,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         Doctor doc = doctorService.getDoctor(userInfo.getId());
         patient.setDoctor(doc);
         patient.setDateOfAdmission(new Date());
+        patient.setDischarged(false);
         patientService.savePatient(patient);
         doctorService.addPatient(patient, patient.getDoctor());
         return ("redirect:/patient/all");
@@ -138,6 +139,16 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
         pdfGen.patientAsPdf(patients);
         return new FileSystemResource("pdfout.pdf");
+    }
+
+    //Discharge patient
+    @RequestMapping("/patient/discharge")
+    public String dischargePatient(@RequestParam(value = "id", required=true) Long id, Model model) {
+        Patient patient = patientService.getPatientById(id);
+        doctorService.removePatient(patient, patient.getDoctor());
+        patientService.setDischarged(patient, true);
+
+        return "redirect:/";
     }
 
     // Methods to edit patient's information/flag them.
