@@ -30,9 +30,7 @@
                 </div>
             </a>
         </div>
-        <form th:action="@{/logout}" method="get">
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <a th:href="@{/logout}">Sign Out</a>
     </div>
 </div>
 
@@ -54,9 +52,7 @@
             <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
             <a th:href="@{/createHandover}"><div id="handover-button">Create Handover</div></a>
         </div>
-        <form th:action="@{/logout}" method="get">
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <a th:href="@{/logout}">Sign Out</a>
     </div>
 </div>
 
