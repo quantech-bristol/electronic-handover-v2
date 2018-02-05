@@ -85,7 +85,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         handover.getPatient().setDoctor(handover.getRecipientDoctor());
         handover.setAccepted(true);
         handoverService.saveHandover(handover);
-        return "redirect:/quantech";
+        return "redirect:/";
     }
 
 
