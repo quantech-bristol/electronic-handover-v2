@@ -18,7 +18,11 @@ public class ErrorController implements org.springframework.boot.autoconfigure.w
         return "redirect:/error";
     }
     @RequestMapping(value = "/error")
-    public String error() {
+    public String error(HttpServletResponse response) {
+        if (response.getStatus() == 404)
+            return "Error/404";
+        if (response.getStatus() == 403)
+            return "Error/403";
         return "Error/error";
     }
 }
