@@ -29,7 +29,7 @@ body{
  	margin-left: 0px
 }
 
-#handover-button {
+.handover-button {
     display: block;
     background-color: orange;
     width: 100%;
@@ -44,6 +44,19 @@ body{
     vertical-align: middle;
     text-decoration: none;
     border: none;
+    -webkit-transition:background-color .15s ease-in-out;
+    -moz-transition:background-color .15s ease-in-out;
+    -o-transition:background-color .15s ease-in-out;
+    transition:background-color .15s ease-in-out;
+}
+
+.handover-button:hover {
+    text-decoration: none;
+    background-color: #ff9000;
+}
+
+.handover-link:hover {
+    text-decoration: none;
 }
 
 #mainwindow{
