@@ -11,7 +11,7 @@
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
         <span style="float:right;">
-            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:40px;"></i></a>
+            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:6vh;"></i></a>
         </span>
         <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
         <h2>Cardiology</h2>
@@ -21,22 +21,22 @@
         <div th:if="${#authentication.principal.isDoctor()}">
             <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
             <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
-            <a th:href="@{/createHandover}">
-                <div id="handover-button">
-                    + Create Handover
-                </div>
-            </a>
+            <div class="sidebar-footer-wrapper">
+                <a class="handover-link" th:href="@{/createHandover}">
+                    <div class="handover-button">
+                        + Create Handover
+                    </div>
+                </a>
+                <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+            </div>
         </div>
-        <form th:action="@{/logout}" method="get">
-            <input type="submit" value="Sign Out"/>
-        </form>
     </div>
 </div>
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
         <span style="float:right;">
-            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:40px;"></i></a>
+            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:6vh;"></i></a>
         </span>
         <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
         <h2>Cardiology</h2>
@@ -46,11 +46,15 @@
         <div th:if="${#authentication.principal.isDoctor()}">
             <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
             <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
-            <a th:href="@{/createHandover}"><div id="handover-button">Create Handover</div></a>
+            <div class="sidebar-footer-wrapper">
+                <a class="handover-link" th:href="@{/createHandover}">
+                    <div class="handover-button">
+                        Create Handover
+                    </div>
+                </a>
+                <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+            </div>
         </div>
-        <form th:action="@{/logout}" method="get">
-            <input type="submit" value="Sign Out"/>
-        </form>
     </div>
 </div>
 

@@ -29,12 +29,12 @@ body{
  	margin-left: 0px
 }
 
-#handover-button {
+.handover-button {
     display: block;
     background-color: orange;
     width: 100%;
     height: /*85px;*/ auto;
-    margin: 1vw auto;
+    margin: 1vw auto 0.1vw auto;
     padding: 0.5vh 1vw;
     border-bottom-left-radius: 42px;
     border-top-left-radius: 42px;
@@ -44,6 +44,24 @@ body{
     vertical-align: middle;
     text-decoration: none;
     border: none;
+    -webkit-transition:background-color .15s ease-in-out;
+    -moz-transition:background-color .15s ease-in-out;
+    -o-transition:background-color .15s ease-in-out;
+    transition:background-color .15s ease-in-out;
+}
+
+.handover-button:hover {
+    text-decoration: none;
+    background-color: #ff9000;
+}
+
+.handover-link:hover {
+    text-decoration: none;
+}
+
+.sidebar-footer-wrapper {
+    position: absolute;
+    bottom: 7vh;
 }
 
 #mainwindow{
@@ -61,10 +79,15 @@ body{
 }
 #header{
     background-color:#005EB8;
-    height:auto;
+    height:5vh;
     width:100%;
+    position: fixed;
+	top: 0px;
+    z-index: 999999;
 }
 #topbar{
+    top: 5vh;
+    position: absolute;
 	background-color:#0072CE;
 	height:5vh;
 	font-size:2.8vh;
@@ -74,10 +97,17 @@ body{
     padding-left: 1.2vw;
     font-style: italic;
 }
-
+.topbar{
+    width: 100vw;
+}
+.topbar-open{
+    width: 80vw;
+}
 #bodywrap{
+    position: absolute;
+    top: 10vh;
 	padding:2.4vw;
-	min-height: 84vh;
+	min-height: 90vh;
 }
 #bodywrap input{
 	background-color:#f0f2f4;
@@ -85,10 +115,11 @@ body{
 	height:40px;
 }
 #sidebar{
+    top: 5vh;
 	background-color: #E8EDEE;
 	float: left;
 	width: 20%;
-    height: 92vh;
+    height: 100vh;
 	position: fixed;
 }
 .sidebar {
@@ -97,8 +128,9 @@ body{
 .sidebar-open { /* These classes are to control menu opening in and out for the sidebar*/
 	left: 0px;
 }
+
 /* Makes it a smooth transition */
-#sidebar,#mainwindow{
+#sidebar,#mainwindow,#topbar{
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
@@ -323,3 +355,20 @@ body{
     padding-right: 0;
 }
 /*-- //Accordion --*/
+
+
+.sign-out {
+    float: right;
+    color: darkgray;
+    font-style: italic;
+    font-size: 0.8vw;
+    -webkit-transition:color .15s ease-in-out;
+    -moz-transition:color .15s ease-in-out;
+    -o-transition:color .15s ease-in-out;
+    transition:color .15s ease-in-out;
+}
+
+.sign-out:hover {
+    text-decoration: none;
+    color: #797b7f;
+}
