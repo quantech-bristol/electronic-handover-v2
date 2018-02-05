@@ -21,13 +21,15 @@
         <div th:if="${#authentication.principal.isDoctor()}">
             <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
             <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
-            <a class="handover-link" th:href="@{/createHandover}">
-                <div class="handover-button">
-                    + Create Handover
-                </div>
-            </a>
+            <div class="sidebar-footer-wrapper">
+                <a class="handover-link" th:href="@{/createHandover}">
+                    <div class="handover-button">
+                        + Create Handover
+                    </div>
+                </a>
+                <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+            </div>
         </div>
-        <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
     </div>
 </div>
 
@@ -44,13 +46,15 @@
         <div th:if="${#authentication.principal.isDoctor()}">
             <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
             <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
-            <a class="handover-link" th:href="@{/createHandover}">
-                <div class="handover-button">
-                    Create Handover
-                </div>
-            </a>
+            <div class="sidebar-footer-wrapper">
+                <a class="handover-link" th:href="@{/createHandover}">
+                    <div class="handover-button">
+                        Create Handover
+                    </div>
+                </a>
+                <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+            </div>
         </div>
-        <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
     </div>
 </div>
 

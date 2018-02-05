@@ -59,6 +59,11 @@ body{
     text-decoration: none;
 }
 
+.sidebar-footer-wrapper {
+    position: absolute;
+    bottom: 7vh;
+}
+
 #mainwindow{
 	background-color:#FFFFFF;
 	min-height:84vh;
