@@ -144,6 +144,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     //Discharge patient
     @RequestMapping("/patient/discharge")
     public String dischargePatient(@RequestParam(value = "id", required=true) Long id, Model model) {
+        UserCore user =  (UserCore)authenticator.getAuthentication().getPrincipal();
         Patient patient = patientService.getPatientById(id);
         doctorService.removePatient(patient, patient.getDoctor());
         patientService.setDischarged(patient, true);

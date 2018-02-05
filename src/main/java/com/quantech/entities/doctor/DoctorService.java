@@ -248,7 +248,9 @@ public class DoctorService {
      * @throws NullPointerException When the given id doesn't exist in the database.
      */
     public List<Patient> getPatients(Long id) {
-        return doctorRepository.findOne(id).getPatients();
+        List<Patient> list = doctorRepository.findOne(id).getPatients();
+        list.removeIf(patient -> patient.getDischarged());
+        return list;
     }
     /*
     RE: maintaining a list of patients

@@ -358,7 +358,7 @@ body{
 
 
 .sign-out {
-    float: right;
+    float: left;
     color: darkgray;
     font-style: italic;
     font-size: 0.8vw;

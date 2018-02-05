@@ -82,7 +82,8 @@ public class Doctor {
 
     public void removePatient(Patient patient) throws NullPointerException {
         nullCheck(patient, "patient");
-        this.patients.remove(patient);
+        while (this.patients.contains(patient))
+            this.patients.remove(patient);
     }
 
     public Long getId() {
