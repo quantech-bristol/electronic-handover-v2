@@ -323,3 +323,10 @@ body{
     padding-right: 0;
 }
 /*-- //Accordion --*/
+
+
+.sign-out {
+    float: right;
+    color: grey;
+    font-style: italic;
+}
