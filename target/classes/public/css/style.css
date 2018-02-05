@@ -16,7 +16,7 @@ h4{
 h5{
 	color:#005EB8;
 	font-size:2.5vh;
-    line-height: 3.5vh;
+    line-height: 2vh;
     vertical-align: middle;
 	margin-left:1vw;
     margin-bottom: 1px;
@@ -34,14 +34,12 @@ body{
     background-color: orange;
     width: 100%;
     height: /*85px;*/ auto;
-    margin: 20px auto;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin: 1vw auto;
+    padding: 0.5vh 1vw;
     border-bottom-left-radius: 42px;
     border-top-left-radius: 42px;
     color: white;
-    font-size: 30px;
+    font-size: 1.5vw;
     text-align: right;
     vertical-align: middle;
     text-decoration: none;
@@ -150,7 +148,7 @@ body{
 	min-height: 15vh;
     padding-top: 0.3%;
 	padding-bottom: 1%;
-    margin-bottom: 3%;
+    margin-bottom: 4.5vh;
 	background: #E8EDEE;
     border-radius: 10px;
 }
