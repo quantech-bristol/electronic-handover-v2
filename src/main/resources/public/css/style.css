@@ -340,8 +340,17 @@ body{
 
 
 .sign-out {
-    float: left;
-    color: grey;
+    float: right;
+    color: darkgray;
     font-style: italic;
     font-size: 0.8vw;
+    -webkit-transition:color .1s ease-in;
+    -moz-transition:color .1s ease-in;
+    -o-transition:color .1s ease-in;
+    transition:color .1s ease-in;
+}
+
+.sign-out:hover {
+    text-decoration: none;
+    color: #797b7f;
 }
