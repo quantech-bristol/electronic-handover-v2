@@ -344,10 +344,10 @@ body{
     color: darkgray;
     font-style: italic;
     font-size: 0.8vw;
-    -webkit-transition:color .1s ease-in;
-    -moz-transition:color .1s ease-in;
-    -o-transition:color .1s ease-in;
-    transition:color .1s ease-in;
+    -webkit-transition:color .15s ease-in-out;
+    -moz-transition:color .15s ease-in-out;
+    -o-transition:color .15s ease-in-out;
+    transition:color .15s ease-in-out;
 }
 
 .sign-out:hover {
