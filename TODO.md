@@ -3,12 +3,11 @@
 Before Friday:
 - Fix whitelabel error page to show generic error page
 - add link to admin stuff for doctor/admin users <- implemented by nuha but appears to be a bug in the code concerning user creation.
-- Sort out scrolling of patient's notes
-- Remove or organise yellow warning error on accordion
 - Internationalization file
 - Display form error messages or each entry
 - Ability to delete patient from your handovers, given discharge etc.
 - Any UI changes
+- Notes visable on handovers
 
 Testing:
 - Unit test all services made so far.
