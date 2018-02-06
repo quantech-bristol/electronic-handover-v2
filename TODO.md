@@ -10,6 +10,7 @@ Before Friday:
 - Notes visable on handovers
 - Add patient text doesn't fit inside the button
 - Change the ---> arrow added to handovers to nicer symbol or something?
+- Sent handover link only appears on viewPatients
 
 Testing:
 - Unit test all services made so far.

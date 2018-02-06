@@ -24,6 +24,7 @@ public class PatientService {
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();
         patientRepository.findAll().forEach(patients::add);
+        patients.removeIf(patient -> patient.getDischarged());
         return patients;
     }
 

@@ -5,13 +5,14 @@
 </head>
 
 <body>
-<div id="mainwindow" class="mainwindow">
+<div>
+    <!-- quick and rough inline formatting for now; redo this page in the future -->
+    <div id="topbar" style="width:98.8%; top:0;">
+        <center>Login</center>
+    </div>
     <!-- just to add some space at the top, since the div below is relative, not absolute-->
     <div id="spacer" style="height: 10vh;"></div>
-    <div id="topbar" class="topbar">
-       <center>Login</center>
-    </div>
-    <div id="bodywrap">
+    <div>
         <center>
         <form th:action="@{/login}" method="post">
             <table>
