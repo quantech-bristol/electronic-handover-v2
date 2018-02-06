@@ -63,6 +63,13 @@
                     <td>Diagnosis</td>
                     <td><span th:text="${patient.diagnosis}"/></td>
                 </tr>
+                <tr>
+                    <td>Handover Notes</td>
+                    <td>
+                        <div th:if="${#lists.isEmpty(handovers)}">No handovers</div>
+                        <div th:each="handover,iterStat : ${handovers}" th:text="${handover.note}"/>
+                    </td>
+                </tr>
 
             </table>
             <form th:action="@{/pdf/patientId=} + ${patient.id}" method="get">
