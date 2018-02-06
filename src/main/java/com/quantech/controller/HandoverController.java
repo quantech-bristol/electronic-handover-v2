@@ -42,7 +42,7 @@ public class HandoverController extends WebMvcConfigurerAdapter {
         List<Patient> ps = patientService.getAllDoctorsPatients(currentDoctor);
         List<Patient> patients = new ArrayList<>();
         for(Patient p : ps){
-            if(handoverService.getAllActiveForPatient(p).isEmpty()) patients.add(p);
+            if(handoverService.getAllActiveForPatient(p).isEmpty() && !p.getDischarged()) patients.add(p);
         }
         model.addAttribute("patients",patients);
         model.addAttribute("handover", new Handover());
