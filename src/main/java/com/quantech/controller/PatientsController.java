@@ -3,6 +3,7 @@ package com.quantech.controller;
 import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.PatientService;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.ward.WardService;
@@ -30,6 +31,8 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     private PatientService patientService;
     @Autowired
     private WardService wardService;
+    @Autowired
+    private HandoverService handoverService;
 
     @Autowired
     IAuthenticationFacade authenticator;
@@ -112,6 +115,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @GetMapping("/patient/hospitalNumber={id}")
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientByHospitalNumber(id));
+        model.addAttribute("handovers",handoverService.getAllForPatient(patientService.getPatientByHospitalNumber(id)));
         return "Doctor/viewPatient";
     }
 
