@@ -16,9 +16,9 @@
         Overview
     </div>
     <!-- Accordion -->
-    <div id="bodywrap">
+    <div id="bodywrap" >
 
-        <div th:if="${#authentication.principal.isDoctor()}">
+        <div th:if="${#authentication.principal.isDoctor()}" class="overviewbox-wrapper">
             <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
                 <div class="line"></div>
                 <!-- Accordion -->
@@ -84,7 +84,7 @@
         </div>
 
         <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
-        <div th:if="${#authentication.principal.isAdmin()}">
+        <div th:if="${#authentication.principal.isAdmin()}" class="overviewbox-wrapper">
             <div id="overviewbox">
                 <h5>Admin Box</h5>
                 <div class="line"></div>
