@@ -88,26 +88,29 @@
             <div id="overviewbox">
                 <h5>Admin Box</h5>
                 <div class="line"></div>
-                <!-- Accordion -->
                 <div class="ac-container agileits w3layouts">
-                    <p><a style="color:blue" th:href="@{/Admin/createUser}">Go to User Creation Page [Works for both now]</a></p>
-                    <p> <a style="color:blue" th:href="@{/addWard}">Go to Ward Creation Page.</a></p>
                     <form th:action="@{/logout}" method="post">
                         <input type="submit" value="Sign Out"/>
                     </form>
                 </div>
-                <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
-                    <table>
-                        <tr><div class="form-group">
-                            <td><label for="Id">Select a User to Edit</label></td>
-                            <td><select id="Id" name="Id">
-                                <option value="default">Select a User</option>
-                                <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.firstName}+' '+${user.lastName}"></option>
-                            </select></td>
-                            <td><input type="submit" value="Edit User" th:for="Id"/></td>
-                        </div><br/></tr>
-                    </table>
-                </form>
+                <div id="adminbox">
+                    <a th:href="@{/Admin/createUser}"><p>Create Users</p></a><br/>
+                    <a th:href="@{/addWard}"><p>Create Wards</p></a><br/>
+                    <p>Edit Users</p>
+                    <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
+                        <table style="margin-left:30px;">
+                            <tr><div class="form-group">
+                                <td><select id="Id" name="Id">
+                                    <option value="default">Select a User</option>
+                                    <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.firstName}+' '+${user.lastName}"></option>
+                                </select></td>
+                                <td><input type="submit" value="Edit User" th:for="Id"/></td>
+                            </div></tr>
+                        </table>
+                    </form>
+                </div>
+
+
             </div>
         </div>
     </div>

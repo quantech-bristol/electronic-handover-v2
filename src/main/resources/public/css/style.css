@@ -184,6 +184,13 @@ body{
 	background: #E8EDEE;
     border-radius: 10px;
 }
+#adminbox{
+	padding: 20px;
+}
+#adminbox p{
+	color: #005EB8;
+	font-size: 2vh;
+}
 
 .line {
     display: block;
