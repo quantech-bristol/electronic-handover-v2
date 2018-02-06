@@ -7,6 +7,7 @@ import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.patient.PatientService;
 import com.quantech.entities.user.UserCore;
+import com.quantech.entities.user.UserService;
 import com.quantech.entities.ward.WardService;
 import com.quantech.misc.AuthFacade.IAuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,8 @@ public class MainController {
     private WardService wardService;
     @Autowired
     private HandoverService handoverService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     IAuthenticationFacade authenticator;
@@ -53,7 +56,11 @@ public class MainController {
             model.addAttribute("doctor",currentDoctor);
             model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
         }
-
+        if (user.isAdmin()) {
+            List<UserCore> users;
+            users = userService.getAllUsers();
+            model.addAttribute("users",users);
+        }
         if (!user.isDoctor() && !user.isAdmin())
             return "redirect:/login";
         else

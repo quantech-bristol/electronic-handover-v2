@@ -60,6 +60,12 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public List<UserCore> getAllUsers() {
+        List<UserCore> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add);
+        return users;
+    }
+
     public UserCore findUserById(long id) {
         UserCore newUser = userRepository.getUserCoreByIdEquals(id);
         return newUser;

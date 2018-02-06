@@ -85,13 +85,6 @@
 
         <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
         <div th:if="${#authentication.principal.isAdmin()}">
-            <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
-                <div class="form-group"><tr>
-                    <td><label for="Id">User Id To Edit</label></td>
-                    <td>  <input type="number" name = "Id" id = "Id"/></td>
-                    <td><input type="submit" value="Edit User" th:for="Id"/></td>
-                </tr></div>
-            </form>
             <div id="overviewbox">
                 <h5>Admin Box</h5>
                 <div class="line"></div>
@@ -103,8 +96,18 @@
                         <input type="submit" value="Sign Out"/>
                     </form>
                 </div>
-                <!-- //Accordion -->
-
+                <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
+                    <table>
+                        <tr><div class="form-group">
+                            <td><label for="Id">Select a User to Edit</label></td>
+                            <td><select id="Id" name="Id">
+                                <option value="default">Select a User</option>
+                                <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.firstName}+' '+${user.lastName}"></option>
+                            </select></td>
+                            <td><input type="submit" value="Edit User" th:for="Id"/></td>
+                        </div><br/></tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
