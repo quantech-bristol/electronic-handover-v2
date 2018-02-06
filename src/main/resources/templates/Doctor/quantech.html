@@ -46,7 +46,7 @@
             </div>
             <div id="overviewbox">
                 <span style="float:right;">
-                    <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;display: inline-block; font-size:2.5vh;padding-top:5px;margin-right:5px;"></i></a>
+                    <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;display: inline-block; font-size:3vh;padding-top:5px;margin-right:8px;"></i></a>
                 </span>
                 <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
                 <div class="line"></div>
@@ -67,10 +67,14 @@
                                 <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
                                 <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
                                 <tr>
-                                    <td colspan="3"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td>
-                                    <td th:if="${doctor.id} == ${patient.doctor.id}" colspan="3" style="text-align: right">
-                                        <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a></td>
-                                </tr>
+                                    <td colspan="3">
+                                        <span style="float:left;">
+                                            <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a>
+                                        </span>
+                                        <span th:if="${doctor.id} == ${patient.doctor.id}" colspan="3" style="float:right;">
+                                            <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a>
+                                        </span>
+                                    </td></tr>
                             </table>
                         </article>
                     </div>
