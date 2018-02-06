@@ -97,15 +97,16 @@
                     <a th:href="@{/Admin/createUser}"><p>Create Users</p></a><br/>
                     <a th:href="@{/addWard}"><p>Create Wards</p></a><br/>
                     <p>Edit Users</p>
+
                     <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
                         <table style="margin-left:30px;">
-                            <tr><div class="form-group">
-                                <td><select id="Id" name="Id">
+                            <div class="form-group">
+                                <tr><td><select id="Id" name="Id">
                                     <option value="default">Select a User</option>
                                     <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.firstName}+' '+${user.lastName}"></option>
-                                </select></td>
-                                <td><input type="submit" value="Edit User" th:for="Id"/></td>
-                            </div></tr>
+                                </select></td></tr>
+                                <tr><td><button type="submit" class="btn btn-primary">Edit User</button></td></tr>
+                            </div>
                         </table>
                     </form>
                 </div>
