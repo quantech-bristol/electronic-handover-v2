@@ -90,12 +90,6 @@ public class MainController {
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value="/403")
-    public String Error403()
-    {
-        return "Error/403";
-    }
-
     // Create new team.
 
     // Add doctors to existing team.

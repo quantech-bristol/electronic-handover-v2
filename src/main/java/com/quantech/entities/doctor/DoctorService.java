@@ -236,9 +236,6 @@ public class DoctorService {
     public void removePatient(Patient patient, Doctor doctor) {
         doctor.removePatient(patient);
         doctorRepository.save(doctor);
-
-        for (Patient p : doctorRepository.findOne(doctor.getId()).getPatients())
-            System.out.println(p.getFirstName());
     }
 
     /**
