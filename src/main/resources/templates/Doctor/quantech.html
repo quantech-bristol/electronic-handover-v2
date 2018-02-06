@@ -28,8 +28,8 @@
                         <label th:for="'ac-' + ${iterStat.count}" th:class="'grid3'  + ${iterStat.count}">
                             <table class="patient-title-table">
                                 <tr>
-                                    <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
-                                    <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                                    <td class="patient-title-table-bed">Bed <span th:text="${handover.patient.bed}"/></td>
+                                    <td><span th:text="${handover.patient.title}"/> <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/></td>
                                 </tr>
                             </table>
                         </label>
