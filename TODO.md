@@ -8,6 +8,8 @@ Before Friday:
 - Ability to delete patient from your handovers, given discharge etc.
 - Any UI changes
 - Notes visable on handovers
+- Add patient text doesn't fit inside the button
+- Change the ---> arrow added to handovers to nicer symbol or something?
 
 Testing:
 - Unit test all services made so far.
