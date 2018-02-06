@@ -55,7 +55,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         patient.setDischarged(false);
         patientService.savePatient(patient);
         doctorService.addPatient(patient, patient.getDoctor());
-        return ("redirect:/patient/all");
+        return ("redirect:/");
     }
 
     // Send to homepage - should we get rid of this?
