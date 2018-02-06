@@ -21,7 +21,14 @@
         <div class="ac-container agileits w3layouts">
             <div  th:each="patient,iterStat : ${patients}">
                 <input th:id="'ac-' + ${iterStat.count}" name="accordion-1" type="checkbox" />
-                <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">Bed <span th:text="${patient.bed}"/> , <span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></label>
+                <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">
+                    <table class="patient-title-table">
+                        <tr>
+                            <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
+                            <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                        </tr>
+                    </table>
+                </label>
                 <article class="ac-small agileits w3layouts">
                     <table class="patient-info-table">
                         <tr>

@@ -37,7 +37,10 @@ body{
     margin: 1vw auto 0.1vw -1vw;
     padding: 0.5vh 1vw;
     border-bottom-left-radius: 42px;
+    border-bottom-right-radius: 42px;
     border-top-left-radius: 42px;
+    border-top-right-radius: 42px;
+
     color: white;
     font-size: 2.5vw;
     text-align: center;
@@ -183,6 +186,13 @@ body{
     margin-bottom: 4.5vh;
 	background: #E8EDEE;
     border-radius: 10px;
+}
+#adminbox{
+	padding: 20px;
+}
+#adminbox p{
+	color: #005EB8;
+	font-size: 2vh;
 }
 
 .line {
@@ -346,6 +356,17 @@ body{
 }
 .patient-info-table tr td {
 	padding: 10px;
+}
+
+.patient-title-table {
+    color: #555555;
+}
+.patient-title-table tr td {
+    padding: 0 1vw 0 1vw;
+}
+
+.patient-title-table-bed {
+    width: 6vw;
 }
 
 .ac-small ul li a:hover {
