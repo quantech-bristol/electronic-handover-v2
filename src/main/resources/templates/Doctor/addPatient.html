@@ -41,7 +41,7 @@
             <div class="form-group"><tr>
                 <td><label for="patientNHSNumber">NHSNumber</label></td>
                 <td><input type="number" th:field="*{NHSNumber}" class="form-control" id="patientNHSNumber" placeholder="Enter NHS Number"/></td>
-                <td> <span class="error" th:if="${#fields.hasErrors('NHSNumber')}" th:errors="*{NHSNumber}"></span></td>
+                <td> <span class="error" th:errors="*{NHSNumber}"></span></td>
             </tr></div>
             
             <div class="form-group"><tr>

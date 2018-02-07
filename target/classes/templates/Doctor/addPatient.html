@@ -19,29 +19,35 @@
             <div class="form-group"><tr>
                 <td><label for="patienttitle">Title(s)</label></td>
                 <td><input type="text" th:field="*{title}" class="form-control" id="patienttitle" placeholder="Enter title(s)"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span></td>
             </tr></div>
             <div class="form-group"><tr>
                 <td><label for="patientFirstName">First Name(s)</label></td>
                 <td><input type="text" th:field="*{firstName}" class="form-control" id="patientFirstName" placeholder="Enter first name(s)"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span></td>
             </tr></div>
             <div class="form-group"><tr>
                 <td><label for="patientlastName">Last Name(s)</label></td>
                 <td><input type="text" th:field="*{lastName}" class="form-control" id="patientLastName" placeholder="Enter Last name(s)"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></td>
             </tr></div>
 
             <div class="form-group"><tr>
                 <td><label for="patientBirthdate">Birthdate</label></td>
                 <td><input type="date" th:field="*{birthDate}" class="form-control" id="patientBirthdate" placeholder="Enter BirthDate"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span></td>
             </tr></div>
     
             <div class="form-group"><tr>
                 <td><label for="patientNHSNumber">NHSNumber</label></td>
                 <td><input type="number" th:field="*{NHSNumber}" class="form-control" id="patientNHSNumber" placeholder="Enter NHS Number"/></td>
+                <td> <span class="error" th:errors="*{NHSNumber}"></span></td>
             </tr></div>
             
             <div class="form-group"><tr>
                 <td><label for="patientHospitalNumber">HospitalNumber</label></td>
                 <td><input type="number" th:field="*{hospitalNumber}" class="form-control" id="patientHospitalNumber" placeholder="Enter Hospital Number"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('hospitalNumber')}" th:errors="*{hospitalNumber}"></span></td>
             </tr></div>
 
             <div class="form-group"><tr>
@@ -49,12 +55,14 @@
                 <td><select id="ward" class="form-control" th:field="*{ward}">
                     <option th:each="ward: ${wards}" th:value="${ward.id}" th:text="${ward.name}"></option>
                 </select></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('ward')}" th:errors="*{ward}"></span></td>
             </tr></div>
     
     
             <div class="form-group"><tr>
                 <td><label for="patientBed">Bed</label></td>
                 <td><input type="text" th:field="*{bed}" class="form-control" id="patientBed" placeholder="Enter Bed"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('bed')}" th:errors="*{bed}"></span></td>
             </tr></div>
     
     
@@ -67,29 +75,34 @@
             <div class="form-group"><tr>
                 <td><label for="patientRelevantHistory">Relevant History</label></td>
                 <td><input type="text" th:field="*{relevantHistory}" class="form-control" id="patientRelevantHistory" placeholder="Enter Relevant History"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('relevantHistory')}" th:errors="*{relevantHistory}"></span></td>
             </tr></div>
     
     
             <div class="form-group"><tr>
                 <td><label for="patientSocialIssues">Social Issues</label></td>
                 <td><input type="text" th:field="*{socialIssues}" class="form-control" id="patientSocialIssues" placeholder="Enter Social Issues"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('socialIssues')}" th:errors="*{socialIssues}"></span></td>
             </tr></div>
     
             
             <div class="form-group"><tr>
                 <td><label for="patientRisks">Risks</label></td>
                 <td><input type="text" th:field="*{risks}" class="form-control" id="patientRisks" placeholder="Enter Risks"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('risks')}" th:errors="*{risks}"></span></td>
             </tr></div>
 
             <div class="form-group"><tr>
                 <td><label for="patientRecommendations">Recommendations</label></td>
                 <td><input type="text" th:field="*{recommendations}" class="form-control" id="patientRecommendations" placeholder="Enter Recommendations"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('recommendations')}" th:errors="*{recommendations}"></span></td>
             </tr></div>
     
     
             <div class="form-group"><tr>
                 <td><label for="patientDiagnosis">Diagnosis</label></td>
                 <td><input type="text" th:field="*{diagnosis}" class="form-control" id="patientDiagnosis" placeholder="Enter Diagnosis"/></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('diagnosis')}" th:errors="*{diagnosis}"></span></td>
             </tr></div>
     
             <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>

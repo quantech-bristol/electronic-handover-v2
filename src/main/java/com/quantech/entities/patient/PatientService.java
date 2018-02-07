@@ -341,13 +341,16 @@ public class PatientService {
         // Checking the validity of the set NHS number.
         // 1. Check that it has the correct number of digits.
         if (!patient.NHSNumberCorrectLength())
-            result.rejectValue("NHSNumber","NHS number has too many digits.");
+            result.rejectValue("NHSNumber","NHSNumber.patient","NHS number has too many digits.");
         // 2. Check that the NHS number is valid.
-        if (!patient.NHSNumberIsValid())
-            result.rejectValue("NHSNumber", "Number given is not a valid NHS number.");
+        else if (!patient.NHSNumberIsValid()) {
+
+            System.out.println("it works");
+            result.rejectValue("NHSNumber", "nhsnumbervalid.patient", "Number given is not a valid NHS number.");
+        }
         // 3. Check that the NHS number is unique.
-        if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
-            result.rejectValue("NHSNumber", "Patient with given NHS number already exists.");
+        else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
+            result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
 
         // Check that the title has been set.
         if (patient.getTitle() == null)

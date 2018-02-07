@@ -89,6 +89,11 @@ public class Patient {
 
     // Empty constructor.
     public Patient() {
+        this.discharged = false;
+        this.dateOfAdmission = new Date();
+
+        // TODO - review: Placeholder field set here; not sure if this is the best thing to do.
+        this.doctor = new Doctor();
     }
 
     public Patient(Doctor doctor,
@@ -214,7 +219,7 @@ public class Patient {
      * @throws IllegalArgumentException If either the number doesn't have 10 digits, or the checksum doesn't match.
      */
     public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
-        this.nHSNumber = NHSNumberValidityCheck(NHSNumber);
+        this.nHSNumber = NHSNumber;
     }
 
     // Used to check that an NHS number is valid before setting an attribute to be equal to it.

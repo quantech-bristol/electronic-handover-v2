@@ -14,9 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Predicate;
@@ -47,15 +50,27 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // Submit a new patient.
     @PostMapping("/patient")
-    public String submitPatient(@ModelAttribute Patient patient, Model model) {
-        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+    public String submitPatient(@Valid @ModelAttribute("patient") Patient patient, Model model, BindingResult result, Errors errors) {
+        UserCore userInfo = (UserCore) authenticator.getAuthentication().getPrincipal();
         Doctor doc = doctorService.getDoctor(userInfo.getId());
         patient.setDoctor(doc);
         patient.setDateOfAdmission(new Date());
         patient.setDischarged(false);
-        patientService.savePatient(patient);
-        doctorService.addPatient(patient, patient.getDoctor());
-        return ("redirect:/");
+
+        patientService.CheckValidity(result,patient);
+        if (errors.hasErrors()) {
+            System.out.println("okok");
+            model.addAttribute("patient", patient);
+            model.addAttribute("wards", wardService.getAllWards());
+            return "Doctor/addPatient";
+        }
+        else {
+            System.out.println("okokkkkk");
+
+            patientService.savePatient(patient);
+            doctorService.addPatient(patient, patient.getDoctor());
+            return ("redirect:/");
+        }
     }
 
     // Send to homepage - should we get rid of this?
