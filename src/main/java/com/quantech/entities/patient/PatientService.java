@@ -1,10 +1,13 @@
 package com.quantech.entities.patient;
 
 import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.user.UserService;
 import com.quantech.entities.ward.Ward;
+import com.quantech.misc.EntityFieldHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -329,4 +332,68 @@ public class PatientService {
         patientRepository.save(p);
     }
 
+    /**
+     * Checks the validity of a patient's fields, and rejects the result value accordingly.
+     * @param result The binding result formed from the view template.
+     * @param patient The patient object created through the form.
+     */
+    public void CheckValidity(BindingResult result, Patient patient) {
+        // Checking the validity of the set NHS number.
+        // 1. Check that it has the correct number of digits.
+        if (!patient.NHSNumberCorrectLength())
+            result.rejectValue("NHSNumber","NHS number has too many digits.");
+        // 2. Check that the NHS number is valid.
+        if (!patient.NHSNumberIsValid())
+            result.rejectValue("NHSNumber", "Number given is not a valid NHS number.");
+        // 3. Check that the NHS number is unique.
+        if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
+            result.rejectValue("NHSNumber", "Patient with given NHS number already exists.");
+
+        // Check that the title has been set.
+        if (patient.getTitle() == null)
+            result.rejectValue("title","Please set title.");
+
+        // Check that no empty strings have been set as the names.
+        try {
+            EntityFieldHandler.nameValidityCheck(patient.getFirstName());
+        } catch (Exception e) {
+            result.rejectValue("firstName","Please set valid first name(s)");
+        }
+        try {
+            EntityFieldHandler.nameValidityCheck(patient.getLastName());
+        } catch (Exception e) {
+            result.rejectValue("lastName","Please set valid last name(s)");
+        }
+
+        // Check provided birth date.
+        if (patient.getHospitalNumber() == null)
+            result.rejectValue("hospitalNumber","Please set a valid hospital number.");
+        if (patientRepository.findByHospitalNumber(patient.getHospitalNumber()) != null)
+            result.rejectValue("hospitalNumber","Patient with given hospital number already exists.");
+
+        // Check wards and beds.
+        if (patient.getBed() == null)
+            result.rejectValue("bed","Please set a bed for the patient.");
+        if (patient.getWard() == null)
+            result.rejectValue("ward","Please set a ward for the patient.");
+        if (patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()) != null)
+            result.rejectValue("bed","Given bed is already occupied by another patient.");
+
+        // Check birth date.
+        if (patient.getBirthDate() == null)
+            result.rejectValue("birthDate","Please set patient's date of birth.");
+        if (patient.getBirthDate().after(patient.getDateOfAdmission()))
+            result.rejectValue("birthDate","Patient's date of birth cannot be in the future.");
+
+        if (patient.getRelevantHistory() == null)
+            result.rejectValue("relevantHistory","Please provide some form of relevant history.");
+        if (patient.getSocialIssues() == null)
+            result.rejectValue("socialIssues","Please provide any relevant information (or type \"none\").");
+        if (patient.getRisks() == null)
+            result.rejectValue("risks","Please provide any relevant risks to the patient.");
+        if (patient.getRecommendations() == null)
+            result.rejectValue("recommendations","Please provide recommendations for treatment.");
+        if (patient.getDiagnosis() == null)
+            result.rejectValue("diagnosis","Please provide a diagnosis.");
+    }
 }

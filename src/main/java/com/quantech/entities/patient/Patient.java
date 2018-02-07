@@ -1,21 +1,19 @@
 package com.quantech.entities.patient;
 
 import com.quantech.entities.doctor.Doctor;
-import com.quantech.entities.doctor.DoctorService;
-import com.quantech.entities.user.UserCore;
 import com.quantech.misc.EntityFieldHandler;
 import com.quantech.misc.Title;
 import com.quantech.entities.ward.Ward;
 import org.hibernate.annotations.Type;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.BindingResult;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 import java.util.Date;
 
 import static com.quantech.misc.EntityFieldHandler.nullCheck;
+import static com.quantech.misc.EntityFieldHandler.putNameIntoCorrectForm;
 
 @Entity
 public class Patient {
@@ -109,10 +107,10 @@ public class Patient {
                    String recommendations,
                    String diagnosis,
                    Boolean discharged) {
-        this.doctor = (Doctor) EntityFieldHandler.nullCheck(doctor,"doctor");
-        this.title = (Title) EntityFieldHandler.nullCheck(title,"title");;
-        this.firstName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(firstName) );
-        this.lastName = EntityFieldHandler.putNameIntoCorrectForm( EntityFieldHandler.nameValidityCheck(lastName) );
+        this.doctor = (Doctor) nullCheck(doctor,"doctor");
+        this.title = (Title) nullCheck(title,"title");;
+        this.firstName = putNameIntoCorrectForm( (String) nullCheck(firstName,"first name") );
+        this.lastName = putNameIntoCorrectForm( (String) nullCheck(lastName,"last name") );
         this.birthDate = birthDateValidityChecker(birthDate);
         this.nHSNumber = NHSNumberValidityCheck(nHSNumber);
         this.hospitalNumber = (Long) nullCheck(hospitalNumber,"hospital number");
@@ -165,7 +163,7 @@ public class Patient {
      */
     public void setFirstName(String firstName) throws NullPointerException, IllegalArgumentException {
         EntityFieldHandler.nameValidityCheck(firstName);
-        this.firstName = EntityFieldHandler.putNameIntoCorrectForm(firstName);
+        this.firstName = putNameIntoCorrectForm(firstName);
     }
 
     public String getLastName() {
@@ -180,7 +178,7 @@ public class Patient {
      */
     public void setLastName(String lastName) throws NullPointerException, IllegalArgumentException {
         EntityFieldHandler.nameValidityCheck(lastName);
-        this.lastName = EntityFieldHandler.putNameIntoCorrectForm(lastName);
+        this.lastName = putNameIntoCorrectForm(lastName);
     }
 
     public Date getBirthDate() {
@@ -275,6 +273,23 @@ public class Patient {
         int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
         int checkDigit = checkDigit(n);
         return (checkSum == checkDigit && checkDigit != -1);
+    }
+
+    /**
+     * Returns if the currently set NHS number has valid length.
+     * @return true if the currently set NHS number has valid length (10 digits).
+     */
+    boolean NHSNumberCorrectLength() {
+        int digits = this.nHSNumber.toString().length();
+        return (digits <= 10);
+    }
+
+    /**
+     * Checks that the set NHS number is valid, on the basis of the checksum.
+     * @return true if the NHS number is valid.
+     */
+    boolean NHSNumberIsValid() {
+        return checksumCorrect(this.nHSNumber);
     }
 
     public Long getHospitalNumber() {
