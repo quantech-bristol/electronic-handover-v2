@@ -50,7 +50,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // Submit a new patient.
     @PostMapping("/patient")
-    public String submitPatient(@Valid @ModelAttribute("patient") Patient patient, Model model, BindingResult result, Errors errors) {
+    public String submitPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model, Errors errors) {
         UserCore userInfo = (UserCore) authenticator.getAuthentication().getPrincipal();
         Doctor doc = doctorService.getDoctor(userInfo.getId());
         patient.setDoctor(doc);
@@ -60,7 +60,6 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         patientService.CheckValidity(result,patient);
         if (errors.hasErrors()) {
             System.out.println("okok");
-            model.addAttribute("patient", patient);
             model.addAttribute("wards", wardService.getAllWards());
             return "Doctor/addPatient";
         }

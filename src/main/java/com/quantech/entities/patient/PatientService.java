@@ -339,9 +339,11 @@ public class PatientService {
      */
     public void CheckValidity(BindingResult result, Patient patient) {
         // Checking the validity of the set NHS number.
+        if (patient.getNHSNumber() == null)
+            result.rejectValue("NHSNumber","patient.NHSNumber","This field cannot be empty.");
         // 1. Check that it has the correct number of digits.
-        if (!patient.NHSNumberCorrectLength())
-            result.rejectValue("NHSNumber","NHSNumber.patient","NHS number has too many digits.");
+        else if (!patient.NHSNumberCorrectLength())
+            result.rejectValue("NHSNumber","patient.NHSNumber","NHS number has too many digits.");
         // 2. Check that the NHS number is valid.
         else if (!patient.NHSNumberIsValid()) {
 
@@ -354,49 +356,49 @@ public class PatientService {
 
         // Check that the title has been set.
         if (patient.getTitle() == null)
-            result.rejectValue("title","Please set title.");
+            result.rejectValue("title","patient.title","Please set title.");
 
         // Check that no empty strings have been set as the names.
         try {
             EntityFieldHandler.nameValidityCheck(patient.getFirstName());
         } catch (Exception e) {
-            result.rejectValue("firstName","Please set valid first name(s)");
+            result.rejectValue("firstName","patient.firstName","Please set valid first name(s)");
         }
         try {
             EntityFieldHandler.nameValidityCheck(patient.getLastName());
         } catch (Exception e) {
-            result.rejectValue("lastName","Please set valid last name(s)");
+            result.rejectValue("lastName","patient.lastName","Please set valid last name(s)");
         }
 
         // Check provided birth date.
         if (patient.getHospitalNumber() == null)
-            result.rejectValue("hospitalNumber","Please set a valid hospital number.");
-        if (patientRepository.findByHospitalNumber(patient.getHospitalNumber()) != null)
-            result.rejectValue("hospitalNumber","Patient with given hospital number already exists.");
+            result.rejectValue("hospitalNumber","patient.hospitalNumber","Please set a valid hospital number.");
+        else if (patientRepository.findByHospitalNumber(patient.getHospitalNumber()) != null)
+            result.rejectValue("hospitalNumber","hospitalNumber.patient","Patient with given hospital number already exists.");
 
         // Check wards and beds.
-        if (patient.getBed() == null)
-            result.rejectValue("bed","Please set a bed for the patient.");
+        if (patient.getBed() == null || patient.getBed().equals(""))
+            result.rejectValue("bed","patient.bed","Please set a bed for the patient.");
         if (patient.getWard() == null)
-            result.rejectValue("ward","Please set a ward for the patient.");
-        if (patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()) != null)
-            result.rejectValue("bed","Given bed is already occupied by another patient.");
+            result.rejectValue("ward","patient.ward","Please set a ward for the patient.");
+        else if (patient.getBed() != null && patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()) != null)
+            result.rejectValue("bed","patient.bedWard","Given bed is already occupied by another patient.");
 
         // Check birth date.
         if (patient.getBirthDate() == null)
-            result.rejectValue("birthDate","Please set patient's date of birth.");
-        if (patient.getBirthDate().after(patient.getDateOfAdmission()))
-            result.rejectValue("birthDate","Patient's date of birth cannot be in the future.");
+            result.rejectValue("birthDate","patient.birthDate","Please set patient's date of birth.");
+        else if (patient.getBirthDate().after(patient.getDateOfAdmission()))
+            result.rejectValue("birthDate","patient.birthDate","Patient's date of birth cannot be in the future.");
 
         if (patient.getRelevantHistory() == null)
-            result.rejectValue("relevantHistory","Please provide some form of relevant history.");
+            result.rejectValue("relevantHistory","patient.relevantHistory","Please provide some form of relevant history.");
         if (patient.getSocialIssues() == null)
-            result.rejectValue("socialIssues","Please provide any relevant information (or type \"none\").");
+            result.rejectValue("socialIssues","patient.socialIssues","Please provide any relevant information (or type \"none\").");
         if (patient.getRisks() == null)
-            result.rejectValue("risks","Please provide any relevant risks to the patient.");
+            result.rejectValue("risks","patient.risks","Please provide any relevant risks to the patient.");
         if (patient.getRecommendations() == null)
-            result.rejectValue("recommendations","Please provide recommendations for treatment.");
-        if (patient.getDiagnosis() == null)
-            result.rejectValue("diagnosis","Please provide a diagnosis.");
+            result.rejectValue("recommendations","patient.recommendations","Please provide recommendations for treatment.");
+        if (patient.getDiagnosis() == null || patient.getDiagnosis().equals(""))
+            result.rejectValue("diagnosis","patient.diagnosis","Please provide a diagnosis.");
     }
 }

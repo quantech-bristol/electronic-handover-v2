@@ -144,7 +144,6 @@ public class Patient {
     }
 
     public void setDoctor(Doctor doctor) {
-        nullCheck(doctor,"doctor");
         this.doctor = doctor;
     }
     public Title getTitle() {
@@ -152,7 +151,6 @@ public class Patient {
     }
 
     public void setTitle(Title title) {
-        nullCheck(title,"title");
         this.title = title;
     }
 
@@ -167,8 +165,7 @@ public class Patient {
      * @throws IllegalArgumentException If the first name takes the form " *".
      */
     public void setFirstName(String firstName) throws NullPointerException, IllegalArgumentException {
-        EntityFieldHandler.nameValidityCheck(firstName);
-        this.firstName = putNameIntoCorrectForm(firstName);
+        this.firstName = (firstName == null || firstName.equals("") ) ? null : putNameIntoCorrectForm(firstName);
     }
 
     public String getLastName() {
@@ -182,8 +179,7 @@ public class Patient {
      * @throws IllegalArgumentException If the first name takes the form " *".
      */
     public void setLastName(String lastName) throws NullPointerException, IllegalArgumentException {
-        EntityFieldHandler.nameValidityCheck(lastName);
-        this.lastName = putNameIntoCorrectForm(lastName);
+        this.lastName = (lastName == null || lastName.equals("")) ? null : putNameIntoCorrectForm(lastName);
     }
 
     public Date getBirthDate() {
@@ -197,7 +193,7 @@ public class Patient {
      * @throws IllegalArgumentException if birth date after patient's date of admission.
      */
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDateValidityChecker(birthDate);
+        this.birthDate = birthDate;
     }
 
     // Use this to check if birth date is valid before setting an attribute with it.
@@ -302,7 +298,6 @@ public class Patient {
     }
 
     public void setHospitalNumber(Long hospitalNumber) {
-        EntityFieldHandler.nullCheck(hospitalNumber,"hospital number");
         this.hospitalNumber = hospitalNumber;
     }
 
@@ -311,7 +306,6 @@ public class Patient {
     }
 
     public void setWard(Ward ward) {
-        EntityFieldHandler.nullCheck(ward,"ward");
         this.ward = ward;
     }
 
@@ -320,7 +314,6 @@ public class Patient {
     }
 
     public void setBed(String bed) {
-        EntityFieldHandler.nullCheck(bed,"bed");
         this.bed = bed;
     }
 
@@ -339,7 +332,6 @@ public class Patient {
     }
 
     private Date dateOfAdmissionValidityCheck(Date dateOfAdmission) {
-        EntityFieldHandler.nullCheck(dateOfAdmission, "date of admission");
         if (birthDate != null && birthDate.after(dateOfAdmission))
             throw new IllegalArgumentException("Error: date of admission cannot be after patient's date of birth.");
         return dateOfAdmission;
@@ -350,7 +342,6 @@ public class Patient {
     }
 
     public void setRelevantHistory(String relevantHistory) {
-        EntityFieldHandler.nullCheck(relevantHistory,"relevantHistory");
         this.relevantHistory = relevantHistory;
     }
 
@@ -359,7 +350,6 @@ public class Patient {
     }
 
     public void setSocialIssues(String socialIssues) {
-        EntityFieldHandler.nullCheck(socialIssues,"socialIssues");
         this.socialIssues = socialIssues;
     }
 
@@ -368,7 +358,6 @@ public class Patient {
     }
 
     public void setRisks(String risks) {
-        EntityFieldHandler.nullCheck(risks,"risks");
         this.risks = risks;
     }
 
@@ -377,7 +366,6 @@ public class Patient {
     }
 
     public void setRecommendations(String recommendations) {
-        EntityFieldHandler.nullCheck(recommendations,"recommendations");
         this.recommendations = recommendations;
     }
 
@@ -386,7 +374,6 @@ public class Patient {
     }
 
     public void setDiagnosis(String diagnosis) {
-        EntityFieldHandler.nullCheck(diagnosis,"diagnosis");
         this.diagnosis = diagnosis;
     }
 
