@@ -60,7 +60,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
                 Doctor newDoc = new Doctor(newUser);
                 doctorService.saveDoctor(newDoc);
             }
-            return "redirect:/Admin";
+            return "redirect:/";
         }
     }
 
