@@ -7,7 +7,6 @@
     <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
-
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
@@ -15,9 +14,7 @@
     <div id="topbar" class="topbar topbar-open">
         Overview
     </div>
-    <!-- Accordion -->
     <div id="bodywrap" >
-
         <div th:if="${#authentication.principal.isDoctor()}" class="overviewbox-wrapper">
             <div th:if="${not #lists.isEmpty(pending)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(pending)}"/>)</h5></a>
                 <div class="line"></div>

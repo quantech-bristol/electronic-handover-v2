@@ -1,204 +1,230 @@
-/*-- My Code --*/
 h1 {
-	color:#005EB8;
+    color:#005EB8;
+    font-size: 2.1vw;
 }
 h2 {
-	color:#005EB8;
+    color:#005EB8;
+    font-size: 1.9vw;
 }
 h3 {
-	color:#005EB8;
+    color:#005EB8;
+    font-size: 1.4vw;
 }
-h4{
-	color:#FFF;
-	font-size:40px;
-	margin:0;
+h4 {
+    color:#FFF;
+    font-size:40px;
+    margin:0;
 }
-h5{
-	color:#005EB8;
-	font-size:2.5vh;
+h5 {
+    color:#005EB8;
+    font-size:2.5vh;
     line-height: 2vh;
     vertical-align: middle;
-	margin-left:1vw;
+    margin-left:1vw;
     margin-bottom: 1px;
 }
-body{
-	background-color:#FFF;
-	margin-top: 0px;
- 	margin-right: 0px;
- 	margin-bottom: 0px;
- 	margin-left: 0px
+body {
+    background-color:#FFF;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px
 }
 
-.handover-button {
-    display: block;
-    background-color: orange;
-    width: 100%;
-    height: /*85px;*/ auto;
-    margin: 1vw auto 0.1vw -1vw;
-    padding: 0.5vh 1vw;
-    border-bottom-left-radius: 42px;
-    border-bottom-right-radius: 42px;
-    border-top-left-radius: 42px;
-    border-top-right-radius: 42px;
+/**********************************************************************************************************************/
+/* Header bar */
+/**********************************************************************************************************************/
+#header {
+    background-color:#005EB8;
+    height:50px;
+    width:100%;
+    position: fixed;
+    top: 0px;
+    z-index: 999999;
+    -moz-box-shadow:    0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+    box-shadow:         0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+}
 
+#header-table {
+    height: 100%;
+    width: 100%;
+}
+
+#sidebar-button-container {
+    /*border: 1px solid black;*/
+    width: 50px;
+    padding-left: 10px;
+}
+
+#menu-container {
+    /*border: 1px solid black;*/
+    width: auto;
+    text-align: right;
+    padding-right: 5px;
+}
+
+#user-buttons-container {
+    /*border: 1px solid black;*/
+    width: 250px;
+    padding: 0px 10px 0px 0px;
+    text-align: right;
+}
+
+.header-button {
+    background: none;
+    height: 100%;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 20px;
+    vertical-align: middle;
+    padding: 0px 10px 0px 10px;
+}
+
+.header-button:hover {
+    color: rgba(255,255,255,1);
+}
+
+.handover-button-text {
+    display: inline;
+    background-color: #ED8B00;
+    width: 100%;
+    height: 80%;
+    padding: 5px 10px 5px 10px;
+    margin-right: 10px;
+    border-radius: 42px;
     color: white;
-    font-size: 2.5vw;
+    font-size: 13px;
     text-align: center;
     vertical-align: middle;
     text-decoration: none;
     border: none;
-    -webkit-transition:background-color .15s ease-in-out;
-    -moz-transition:background-color .15s ease-in-out;
-    -o-transition:background-color .15s ease-in-out;
-    transition:background-color .15s ease-in-out;
 }
 
-.handover-button:hover {
+.handover-button-text:hover {
     text-decoration: none;
-    background-color: #ff9000;
+    background-color: #FFB81C;
 }
 
-.handover-link:hover {
+
+.handover-button-shape:hover {
     text-decoration: none;
 }
 
-.sidebar-footer-wrapper {
-    position: absolute;
-    bottom: 7vh;
-}
+/**********************************************************************************************************************/
+/* Sidebar */
+/**********************************************************************************************************************/
 
-#mainwindow{
-	background-color:#FFFFFF;
-	min-height:84vh;
-	height: 100%;
-}
-.mainwindow{ /* These classes are to control menu opening in and out for the main window*/
-	float:right;
-	width:100%;
-    height: 100%;
-}
-.sidebar-mainwindow{
-	width:80%;
-}
-#header{
-    background-color:#005EB8;
-    height:5vh;
-    width:100%;
-    position: fixed;
-	top: 0px;
-    z-index: 999999;
-}
-#topbar{
-    top: 5vh;
-    position: absolute;
-	background-color:#0072CE;
-	height:5vh;
-	font-size:2.8vh;
-    line-height: 5vh;
-    vertical-align: middle;
-	color:#FFF;
-    padding-left: 1.2vw;
-    font-style: italic;
-}
-.topbar{
-    width: 100vw;
-}
-.topbar-open{
-    width: 80vw;
-}
-#bodywrap{
-    /*position: absolute;
-    top: 10vh;*/
-	padding:2.4vw;
-	min-height: 90vh;
-    width: 100%;
-}
-#bodywrap input{
-	background-color:#f0f2f4;
-	width:100%;
-	height:40px;
-}
 #sidebar{
-    top: 5vh;
-	background-color: #E8EDEE;
-	float: left;
-	width: 20%;
-    height: 100vh;
-	position: fixed;
+    top: 50px;
+    background-color: #E8EDEE;
+    float: left;
+    width: 20%;
+    height: 100%;
+    position: fixed;
 }
+
 .sidebar {
-	left: -20%;
-}
-.sidebar-open { /* These classes are to control menu opening in and out for the sidebar*/
-	left: 0px;
+    left: -20%;
 }
 
-/* Makes it a smooth transition */
-#sidebar,#mainwindow,#topbar{
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+.sidebar-open {
+    left: 0px;
 }
 
-#sidebarwrap{
-	padding-left:10%;
-	padding-right: 10%;
+#sidebarwrap {
+    padding-left:10%;
+    padding-right: 10%;
     font-size: 1vw;
 }
-#sidebarwrap h1{
-    font-size: 2.1vw;
-}
-#sidebarwrap h2{
-    font-size: 1.9vw;
-}
-#sidebarwrap h3{
-    font-size: 1.4vw;
+
+#sidebar input {
+    background-color:#f0f2f4;
+    width:80%;
 }
 
-.handoverbutton{
-	width:80%;
-	margin: 1vh;
+#sidebar,#mainwindow,#topbar{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
-#sidebar input{
-	background-color:#f0f2f4;
-	width:80%;
+
+/**********************************************************************************************************************/
+/* Top/title bar */
+/**********************************************************************************************************************/
+
+#topbar {
+    background-color:#0072CE;
+    height:50px;
+    font-size:18px;
+    line-height: 50px;
+    color:#FFFFFF;
+    padding-left: 15px;
 }
-.headshot{
-	padding:5%;
+
+.topbar {
+    width: 100%;
 }
-.headshot img {
-  width: 7vw;
-  border-radius: 80%;
-  cursor:pointer;
-  -webkit-border-radius: 80%;
-  -moz-border-radius: 80%;
-  -o-border-radius: 80%;
+
+.topbar-open {
+    width: 80vw;
 }
-#rightalign{
-	float:right;
-	margin-right:3vw;
-    border-bottom: 0px; /*overrides inheritance */
+
+/**********************************************************************************************************************/
+/* Main window */
+/**********************************************************************************************************************/
+
+#mainwindow {
+    background-color: #FFFFFF;
+    height: 100%;
+    position: relative;
 }
+
+.mainwindow {
+    float: right;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-mainwindow {
+    width: 80%;
+}
+
+#bodywrap {
+    padding: 3.5vh 2vw;
+    width: 100%;
+}
+
+#bodywrap input {
+    background-color: #F0F2F4;
+    width: 100%;
+    height: 40px;
+}
+
+/**********************************************************************************************************************/
+/* Overview and admin boxes */
+/**********************************************************************************************************************/
+
 #overviewbox{
-	width: 100%;
-	min-height: 15vh;
-    padding-top: 0.3%;
-	padding-bottom: 1%;
+    width: 100%;
+    min-height: 15vh;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-bottom: 4.5vh;
-	background: #E8EDEE;
+    background: #E8EDEE;
     border-radius: 10px;
 }
 
 .overviewbox-wrapper {
-	width: 100%;
+    width: 100%;
 }
 
 #adminbox{
-	padding: 20px;
+    padding: 20px;
 }
 #adminbox p{
-	color: #005EB8;
-	font-size: 2vh;
+    color: #005EB8;
+    font-size: 2vh;
 }
 
 .line {
@@ -207,9 +233,217 @@ body{
     border: 0;
     border-top: 1px solid #425563;
     padding: 0;
-	margin-top:2vh;
+    margin-top:2vh;
 }
-/*-- //My Code --*/
+
+/**********************************************************************************************************************/
+/* Accordion */
+/**********************************************************************************************************************/
+
+.ac-container label {
+    padding: .7em 2em;
+    position: relative;
+    z-index: 20;
+    display: block;
+    cursor: pointer;
+    color:#555555;
+    letter-spacing: 1px;
+    line-height: 33px;
+    font-size: 1em;
+    background: #E8EDEE;
+}
+
+.ac-container label:hover {
+    background: #bdc1c2;
+    color: #000;
+}
+
+.ac-container input:checked + label, .ac-container input:checked + label:hover {
+    color: #000;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 2px 2px rgba(0,0,0,0.1);
+    background: #f0f2f4;
+}
+
+.ac-container label:after, .ac-container input:checked + label:hover:after {
+    content: '';
+    position: absolute;
+    right: 25px;
+    top: 22px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+}
+
+.ac-container input:checked + label:after {
+    content: '';
+    position: absolute;
+    right: 25px;
+    top: 22px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+}
+
+.ac-container input {
+    display: none;
+}
+
+.ac-container article {
+    background: #FFFFFF;
+    margin-top: -1px;
+    overflow: hidden;
+    height: 0px;
+    position: relative;
+    z-index: 10;
+    -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+}
+
+.ac-container article p {
+    line-height: 23px;
+    font-size: 14px;
+    padding: 15px 20px;
+    color: #999;
+    background-color: #E8EDEE;
+}
+
+.ac-container input:checked ~ article {
+    -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+}
+
+.ac-container input:checked ~ article.ac-small {
+    height: auto;
+}
+
+.ac-container input:checked ~ article.ac-medium {
+    height: 180px;
+}
+
+.ac-container input:checked ~ article.ac-large {
+    height: 230px;
+}
+
+.ac-small ul {
+    padding: 0;
+    /*-- border-bottom: 2px solid #272b2d; --*/
+}
+
+.ac-small ul li {
+    list-style-type: none;
+    font-size: 14px;
+    color: #555555;
+    text-decoration: none;
+    text-transform: capitalize;
+    display: block;
+    padding: 0.9em 0 0.9em 2em;
+    background: #FFFFFF;
+}
+
+.ac-small ul li a:hover {
+    background: #bdc1c2;
+    color: #fff;
+}
+
+.w3l-accordion-mk {
+    padding-right: 0;
+}
+
+/**********************************************************************************************************************/
+/* Viewing patient details */
+/**********************************************************************************************************************/
+
+.patient-title-table {
+    color: #555555;
+    font-size: 1vw;
+    width: 100%;
+}
+.patient-title-table tr td {
+    padding: 0 1vw 0 1vw;
+}
+.patient-title-table-bed {
+    width: 6vw;
+    font-size: 1vw;
+}
+
+.patient-info-table {
+    table-layout: fixed;
+    border: none;
+    font-size: 14px;
+    margin: auto;
+    width: calc(100% - 50px);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+.patient-info-table tr td {
+    padding: 0 1vw 0 1vw;
+}
+
+.patient-info-table tr td:first-child {
+    padding: 10px;
+    font-weight: bold;
+    width: 15em;
+    color: #666666;
+}
+
+.patient-button {
+    padding:5px;
+    color: #555555;
+}
+
+.patient-button:hover {
+    padding:5px;
+    color: #222222;
+}
+
+/**********************************************************************************************************************/
+/* Other */
+/**********************************************************************************************************************/
+
+/*#rightalign{
+	float:right;
+	margin-right:3vw;
+    border-bottom: 0px;
+}*/
+
+.login-form p {
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 1.9em;
+    color: #fff;
+    margin-top: 1em;
+}
+
+.agileits_signin_form input[type="submit"]:hover {
+    background:#4cd4b0;
+}
+
 .roundedbutton {
     padding: 10px 0;
     width: 36%;
@@ -225,199 +459,4 @@ body{
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
-}
-.agileits_signin_form input[type="submit"]:hover {
-    background:#4cd4b0;
-}
-/*-- Accordion --*/
-.ac-container div {
-	/*--  border-bottom: 2px ridge #272b2d; --*/
-}
-.ac-container label {
-	padding: .7em 2em;
-	position: relative;
-	z-index: 20;
-	display: block;
-	cursor: pointer;
-	color:#555555;
-	letter-spacing: 1px;
-	line-height: 33px;
-	font-size: 1em;
-	background: #E8EDEE;
-}
-.ac-container label:hover {
-	background: #bdc1c2;
-	color: #000;
-}
-.ac-container input:checked + label, .ac-container input:checked + label:hover {
-	color: #000;
-	text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
-	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 2px 2px rgba(0,0,0,0.1);
-	background: #f0f2f4;
-}
-.ac-container label:after, .ac-container input:checked + label:hover:after {
-	content: '';
-	position: absolute;
-	right: 25px;
-	top: 22px;
-	display: inline-block;
-	width: 0;
-	height: 0;
-	border-top: 6px dashed;
-	border-right: 6px solid transparent;
-	border-left: 6px solid transparent;
-	transition: .5s all;
-	-webkit-transition: .5s all;
-	-moz-transition: .5s all;
-	-o-transition: .5s all;
-	-ms-transition: .5s all;
-}
-.ac-container input:checked + label:after {
-	content: '';
-	position: absolute;
-	right: 25px;
-	top: 22px;
-	display: inline-block;
-	width: 0;
-	height: 0;
-	border-top: 6px dashed;
-	border-right: 6px solid transparent;
-	border-left: 6px solid transparent;
-	transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-}
-.ac-container input {
-	display: none;
-}
-.ac-container article {
-	background: #FFFFFF;
-	margin-top: -1px;
-	overflow: hidden;
-	height: 0px;
-	position: relative;
-	z-index: 10;
-	-webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-}
-.ac-container article p {
-	line-height: 23px;
-	font-size: 14px;
-	padding: 15px 20px;
-	color: #999;
-	background-color: #E8EDEE;
-}
-.ac-container input:checked ~ article {
-	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
-}
-.ac-container input:checked ~ article.ac-small {
-	height: auto;
-}
-.ac-container input:checked ~ article.ac-medium {
-	height: 180px;
-}
-.ac-container input:checked ~ article.ac-large {
-	height: 230px;
-}
-.login-form p {
-	font-size: 0.9em;
-	text-align: center;
-	line-height: 1.9em;
-	color: #fff;
-	margin-top: 1em;
-}
-.ac-small ul {
-	padding: 0;
-	/*-- border-bottom: 2px solid #272b2d; --*/
-}
-.ac-small ul li {
-	list-style-type: none;
-	font-size: 14px;
-	color: #555555;
-	text-decoration: none;
-	text-transform: capitalize;
-	display: block;
-	padding: 0.9em 0 0.9em 2em;
-	background: #FFFFFF;
-}
-
-.patient-title-table {
-    color: #555555;
-	font-size: 1vw;
-	width: 100%;
-}
-.patient-title-table tr td {
-	padding: 0 1vw 0 1vw;
-}
-.patient-title-table-bed {
-    width: 6vw;
-	font-size: 1vw;
-}
-
-.ac-small ul li a:hover {
-	background: #bdc1c2;
-	color: #fff;
-}
-.w3l-accordion-mk {
-    padding-right: 0;
-}
-/*-- //Accordion --*/
-
-
-.sign-out {
-    float: left;
-    color: darkgray;
-    font-style: italic;
-    font-size: 3vw;
-    -webkit-transition:color .15s ease-in-out;
-    -moz-transition:color .15s ease-in-out;
-    -o-transition:color .15s ease-in-out;
-    transition:color .15s ease-in-out;
-}
-
-.sign-out:hover {
-    text-decoration: none;
-    color: #797b7f;
-}
-
-.patient-button {
-	padding:5px;
-	color: #555555;
-}
-
-.patient-button:hover {
-	padding:5px;
-	color: #222222;
-}
-
-.patient-info-table {
-	table-layout: fixed;
-	border: none;
-	font-size: 14px;
-	margin: auto;
-	width: calc(100% - 50px);
-	margin-top: 20px;
-	margin-bottom: 20px;
-	color: #555555;
-}
-
-.patient-info-table tr td {
-	padding: 0 1vw 0 1vw;
-}
-
-.patient-info-table tr td:first-child {
-	padding: 10px;
-	font-weight: bold;
-	width: 15em;
-	color: #666666;
 }
