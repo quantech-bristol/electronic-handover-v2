@@ -2,7 +2,6 @@
 
 Before Friday:
 - Fix whitelabel error page to show generic error page
-- add link to admin stuff for doctor/admin users <- implemented by nuha but appears to be a bug in the code concerning user creation.
 - Internationalization file
 - Display form error messages or each entry
 - Ability to delete patient from your handovers, given discharge etc.
@@ -11,6 +10,7 @@ Before Friday:
 - Add patient text doesn't fit inside the button
 - Change the ---> arrow added to handovers to nicer symbol or something?
 - Sent handover link only appears on viewPatients
+- Add method to each repository that carries out final validity check before saving.
 
 Testing:
 - Unit test all services made so far.
