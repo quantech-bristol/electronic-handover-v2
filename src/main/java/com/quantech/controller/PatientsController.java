@@ -60,6 +60,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
         patientService.CheckValidity(result,patient);
         if (errors.hasErrors()) {
+            System.out.println(errors.getAllErrors());
             model.addAttribute("doctors", doctorService.getAllDoctors());
             model.addAttribute("wards", wardService.getAllWards());
             return "Doctor/addPatient";

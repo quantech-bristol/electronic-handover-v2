@@ -90,6 +90,9 @@ public class Patient {
     public Patient() {
         this.discharged = false;
         this.dateOfAdmission = new Date();
+
+        // TODO - review: this was a quick fix for a problem and I'm sure there's a better way to initialise a patient.
+        this.doctor = new Doctor();
     }
 
     public Patient(Doctor doctor,
