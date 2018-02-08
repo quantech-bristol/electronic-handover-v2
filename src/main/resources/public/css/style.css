@@ -350,29 +350,18 @@ body{
 	padding: 0.9em 0 0.9em 2em;
 	background: #FFFFFF;
 }
-.patient-info-table {
-	table-layout: fixed;
-	border: none;
-	font-size: 14px;
-	margin: auto;
-	width: calc(100% - 50px);
-	margin-top: 20px;
-	margin-bottom: 20px;
-	color: #555555;
-}
-.patient-info-table tr td {
-	padding: 10px;
-}
 
 .patient-title-table {
     color: #555555;
+	font-size: 1vw;
+	width: 100%;
 }
 .patient-title-table tr td {
-    padding: 0 1vw 0 1vw;
+	padding: 0 1vw 0 1vw;
 }
-
 .patient-title-table-bed {
     width: 6vw;
+	font-size: 1vw;
 }
 
 .ac-small ul li a:hover {
@@ -399,4 +388,36 @@ body{
 .sign-out:hover {
     text-decoration: none;
     color: #797b7f;
+}
+
+.patient-button {
+	padding:5px;
+	color: #555555;
+}
+
+.patient-button:hover {
+	padding:5px;
+	color: #222222;
+}
+
+.patient-info-table {
+	table-layout: fixed;
+	border: none;
+	font-size: 14px;
+	margin: auto;
+	width: calc(100% - 50px);
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #555555;
+}
+
+.patient-info-table tr td {
+	padding: 0 1vw 0 1vw;
+}
+
+.patient-info-table tr td:first-child {
+	padding: 10px;
+	font-weight: bold;
+	width: 15em;
+	color: #666666;
 }
