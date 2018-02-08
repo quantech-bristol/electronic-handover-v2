@@ -7,6 +7,7 @@ h2 {
 }
 h3 {
 	color:#005EB8;
+	border: 1px black solid;
 }
 h4{
 	color:#FFF;
@@ -127,6 +128,7 @@ body{
     height: 100vh;
 	position: fixed;
 }
+
 .sidebar {
 	left: -20%;
 }
@@ -142,17 +144,24 @@ body{
 }
 
 #sidebarwrap{
-	padding-left:10%;
-	padding-right: 10%;
     font-size: 1vw;
 }
 #sidebarwrap h1{
-    font-size: 2.1vw;
+	display: inline;
+    font-size: 3.5vh;
+	vertical-align: middle;
+	border: solid 1px black;
 }
 #sidebarwrap h2{
-    font-size: 1.9vw;
+	display: inline;
+    font-size: 2vh;
+	font-weight: 300;
+	font-style: italic;
+
+	border: solid 1px black;
 }
 #sidebarwrap h3{
+	display: inline;
     font-size: 1.4vw;
 }
 
@@ -421,4 +430,11 @@ body{
 	font-weight: bold;
 	width: 15em;
 	color: #666666;
+}
+
+.sidebar-row {
+	display: block;
+	padding: 0.8vh;
+	border: solid 1px black;
+	font-size: 3.5vh;
 }

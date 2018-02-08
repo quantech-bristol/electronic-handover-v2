@@ -11,16 +11,23 @@
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
         <div class="sidebar-row">
+            <h1 th:text="${#authentication.principal.getFullName()}" style="display: inline;">test</h1>
             <span style="float:right;">
-                <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:3vw;"></i></a>
+                <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:3.5vh;"></i></a>
             </span>
-            <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
+            <div class="sidebar-details-row">
+                <h2>Cardiology: Bristol Royal Infirmary</h2>
+            </div>
         </div>
-        <h2>Cardiology</h2>
-        <h2>Bristol Royal Infirmary</h2>
-        <a th:href="@{/}"><h3>Overview</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <div class="sidebar-row">
+            <a th:href="@{/}"><h3>Overview</h3></a>
+        </div>
+        <div th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
+        </div>
+        <div th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        </div>
         <div class="sidebar-footer-wrapper">
             <div th:if="${#authentication.principal.isDoctor()}">
                 <a class="handover-link" th:href="@{/createHandover}">
@@ -36,15 +43,24 @@
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
-        <span style="float:right;">
-            <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:3vw;"></i></a>
-        </span>
-        <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
-        <h2>Cardiology</h2>
-        <h2>Bristol Royal Infirmary</h2>
-        <a th:href="@{/}"><h3>Overview</h3></a>
-        <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <div class="sidebar-row">
+            <h1 th:text="${#authentication.principal.getFullName()}" style="display: inline;">test</h1>
+            <span style="float:right;">
+                <a th:href="@{/MyUser}"> <i class="fa fa-cog" style="color:#005EB8;font-size:3.5vh;"></i></a>
+            </span>
+            <div class="sidebar-details-row">
+                <h2>Cardiology: Bristol Royal Infirmary</h2>
+            </div>
+        </div>
+        <div class="sidebar-row">
+            <a th:href="@{/}"><h3>Overview</h3></a>
+        </div>
+        <div th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
+        </div>
+        <div th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <a th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        </div>
         <!--a th:href="@{/createHandover}"><img th:src="@{/images/handoverbutton.png}" class="handoverbutton"/></a-->
         <div class="sidebar-footer-wrapper">
             <div th:if="${#authentication.principal.isDoctor()}">
