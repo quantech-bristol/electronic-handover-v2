@@ -34,9 +34,9 @@ body{
 .handover-button {
     display: block;
     background-color: orange;
-    width: 100%;
+    width: auto;
     height: /*85px;*/ auto;
-    margin: 1vw auto 0.1vw -1vw;
+    margin: 1vw 1vw 0.1vw 0.8vw;
     padding: 0.5vh 1vw;
     border-bottom-left-radius: 42px;
     border-bottom-right-radius: 42px;
@@ -44,20 +44,24 @@ body{
     border-top-right-radius: 42px;
 
     color: white;
-    font-size: 2.5vw;
+    font-size: 1.8vw;
     text-align: center;
     vertical-align: middle;
     text-decoration: none;
     border: none;
-    -webkit-transition:background-color .15s ease-in-out;
-    -moz-transition:background-color .15s ease-in-out;
-    -o-transition:background-color .15s ease-in-out;
-    transition:background-color .15s ease-in-out;
+    -webkit-transition:background-color .25s ease-out;
+    -moz-transition:background-color .25s ease-out;
+    -o-transition:background-color .25s ease-out;
+    transition:background-color .25s ease-out;
 }
 
 .handover-button:hover {
     text-decoration: none;
-    background-color: #ff9000;
+    background-color: #ff7700;
+	-webkit-transition:background-color .25s ease-out;
+	-moz-transition:background-color .25s ease-out;
+	-o-transition:background-color .25s ease-out;
+	transition:background-color .25s ease-out;
 }
 
 .handover-link:hover {
@@ -65,6 +69,7 @@ body{
 }
 
 .sidebar-footer-wrapper {
+	width: 100%;
     position: absolute;
     bottom: 7vh;
 }
@@ -379,19 +384,40 @@ body{
 
 
 .sign-out {
-    float: left;
-    color: darkgray;
-    font-style: italic;
-    font-size: 3vw;
-    -webkit-transition:color .15s ease-in-out;
-    -moz-transition:color .15s ease-in-out;
-    -o-transition:color .15s ease-in-out;
-    transition:color .15s ease-in-out;
+	display: block;
+	color: #bcbcbc;
+	font-style: italic;
+	font-size: 1vw;
+	font-weight: 300;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: auto;
+	height: /*85px;*/ auto;
+	margin: 1vw 1vw 0.1vw 0.8vw;
+	padding: 0.5vh 1vw;
+	border-bottom-left-radius: 42px;
+	border-bottom-right-radius: 42px;
+	border-top-left-radius: 42px;
+	border-top-right-radius: 42px;
+	border: 1px solid #bcbcbc;
+
+    -webkit-transition:color .25s ease-in,background-color .25s ease-in;
+    -moz-transition:color .25s ease-in, background-color .25s ease-in;
+    -o-transition:color .25s ease-in, background-color .25s ease-in;
+    transition:color .25s ease-in, background-color .25s ease-in;
 }
 
 .sign-out:hover {
     text-decoration: none;
-    color: #797b7f;
+    color: #E8EDEE;
+	border: 1px solid #cecece;
+	background-color: #cecece;
+
+	-webkit-transition:color .25s ease-in,background-color .25s ease-in;
+	-moz-transition:color .25s ease-in, background-color .25s ease-in;
+	-o-transition:color .25s ease-in, background-color .25s ease-in;
+	transition:color .25s ease-in, background-color .25s ease-in;
 }
 
 .patient-button {
@@ -430,15 +456,20 @@ body{
 	display: block;
 	padding: 0.95vh 0.8vw 0.7vh 1vw;
 	font-size: 3.5vh;
+
+	-webkit-transition:background-color .25s ease-in-out;
+	-moz-transition:background-color .25s ease-in-out;
+	-o-transition:background-color .25s ease-in-out;
+	transition:background-color .25s ease-in-out;
 }
 
 a.sidebar-row:hover {
 	text-decoration: none;
 	background-color: #dee4ed;
-	-webkit-transition:background-color .15s ease-in-out;
-	-moz-transition:background-color .15s ease-in-out;
-	-o-transition:background-color .15s ease-in-out;
-	transition:background-color .15s ease-in-out;
+	-webkit-transition:background-color .25s ease-in-out;
+	-moz-transition:background-color .25s ease-in-out;
+	-o-transition:background-color .25s ease-in-out;
+	transition:background-color .25s ease-in-out;
 }
 
 a.sidebar-row:active {
@@ -451,16 +482,16 @@ a.sidebar-row:active {
 }
 
 .fa-cog {
-	-webkit-transition:transform .7s ease-in-out;
-	-moz-transition:transform .7s ease-in-out;
-	-o-transition:transform .7s ease-in-out;
-	transition:transform .7s ease-in-out;
+	-webkit-transition:transform .7s ease-out;
+	-moz-transition:transform .7s ease-out;
+	-o-transition:transform .7s ease-out;
+	transition:transform .7s ease-out;
 }
 
 .fa-cog:hover {
 	transform: rotate(90deg);
-	-webkit-transition:transform .7s ease-in-out;
-	-moz-transition:transform .7s ease-in-out;
-	-o-transition:transform .7s ease-in-out;
-	transition:transform .7s ease-in-out;
+	-webkit-transition:transform .7s ease-out;
+	-moz-transition:transform .7s ease-out;
+	-o-transition:transform .7s ease-out;
+	transition:transform .7s ease-out;
 }

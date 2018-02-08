@@ -30,11 +30,11 @@
             <div th:if="${#authentication.principal.isDoctor()}">
                 <a class="handover-link" th:href="@{/createHandover}">
                     <div class="handover-button">
-                        Create Handover
+                        + Create Handover
                     </div>
                 </a>
             </div>
-            <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a>
+            <a class="sign-out" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
         </div>
     </div>
 </div>
