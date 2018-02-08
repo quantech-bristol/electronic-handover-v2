@@ -3,6 +3,7 @@ package com.quantech.controller;
 import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.handover.Handover;
 import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.PatientService;
 import com.quantech.entities.user.UserCore;
@@ -58,17 +59,17 @@ public class PatientsController extends WebMvcConfigurerAdapter {
             patient.setDoctor(doc);
         }
 
-        patientService.CheckValidity(result,patient);
+        /*patientService.CheckValidity(result,patient);
         if (errors.hasErrors()) {
             model.addAttribute("doctors", doctorService.getAllDoctors());
             model.addAttribute("wards", wardService.getAllWards());
             return "Doctor/addPatient";
         }
-        else {
+        else {*/
             patientService.savePatient(patient);
             doctorService.addPatient(patient, patient.getDoctor());
             return ("redirect:/");
-        }
+        //}
     }
 
     // Send to homepage - should we get rid of this?
@@ -120,6 +121,13 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         patients = patientService.filterPatientsBy(patients,predicates);
 
         model.addAttribute("patients",patients);
+        List<Handover> handovers= new ArrayList<>();
+        for (Patient patient : patients) {
+            for (Handover handover : handoverService.getAllForPatient(patient)) {
+                handovers.add(handover);
+            }
+        }
+        model.addAttribute("handovers",handovers);
         return "Doctor/viewPatients";
     }
 

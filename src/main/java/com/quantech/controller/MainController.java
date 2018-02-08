@@ -3,6 +3,7 @@ package com.quantech.controller;
 import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
+import com.quantech.entities.handover.Handover;
 import com.quantech.entities.handover.HandoverService;
 import com.quantech.entities.patient.Patient;
 import com.quantech.entities.patient.PatientService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.ui.Model;
 
@@ -54,7 +56,14 @@ public class MainController {
             patients = doctorService.getPatients(user.getId());
             model.addAttribute("patients",patients);
             model.addAttribute("doctor",currentDoctor);
-            model.addAttribute("handovers",handoverService.getAllToDoctor(currentDoctor));
+            model.addAttribute("pending",handoverService.getAllToDoctor(currentDoctor));
+            List<Handover> handovers = new ArrayList<>();
+            for (Patient patient : patients) {
+                for (Handover handover : handoverService.getAllForPatient(patient)) {
+                    handovers.add(handover);
+                }
+            }
+            model.addAttribute("handovers",handovers);
         }
         if (user.isAdmin()) {
             List<UserCore> users;

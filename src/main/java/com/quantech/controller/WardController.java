@@ -27,7 +27,7 @@ public class WardController extends WebMvcConfigurerAdapter {
     @PostMapping("/addWard")
     public String submitWard(@ModelAttribute Ward ward) {
         wardService.saveWard(ward);
-        return "redirect:/Admin";
+        return "redirect:/";
     }
 
     // View all wards
