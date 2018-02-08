@@ -7,7 +7,6 @@ h2 {
 }
 h3 {
 	color:#005EB8;
-	border: 1px black solid;
 }
 h4{
 	color:#FFF;
@@ -149,20 +148,15 @@ body{
 #sidebarwrap h1{
 	display: inline;
     font-size: 3.5vh;
-	vertical-align: middle;
-	border: solid 1px black;
 }
 #sidebarwrap h2{
-	display: inline;
     font-size: 2vh;
 	font-weight: 300;
 	font-style: italic;
-
-	border: solid 1px black;
 }
 #sidebarwrap h3{
 	display: inline;
-    font-size: 1.4vw;
+    font-size: 2.8vh;
 }
 
 .handoverbutton{
@@ -434,7 +428,6 @@ body{
 
 .sidebar-row {
 	display: block;
-	padding: 0.8vh;
-	border: solid 1px black;
+	padding: 0.95vh 0.8vw 0 1vw;
 	font-size: 3.5vh;
 }
