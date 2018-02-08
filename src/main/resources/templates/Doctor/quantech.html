@@ -67,47 +67,59 @@
                                 <tr>
                                     <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
                                     <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                                    <td><span style="font-size:1.5vw;float:right;">
+                                        <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-button"><i class="fa fa-id-card"></i></a>
+                                        <a th:href="@{/patient/discharge(id=${patient.id})}" class="patient-button"><i class="fa fa-minus-circle" style="padding:5px;"></i></a>
+                                    </span></td>
                                 </tr>
                             </table>
                         </label>
                         <article class="ac-small agileits w3layouts">
+
+                            <!--TABLE WIDE-->
                             <table class="patient-info-table">
                                 <tr>
-                                    <td>Date of Birth: <span th:text="${patient.birthDate}"/></td>
-                                    <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
-                                    <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
+                                    <td><span>Date of Birth change</span></td>
+                                    <td><span th:text="${patient.birthDate}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Diagnosis:</td>
-                                    <td colspan="2"><span th:text="${patient.diagnosis}"/></td>
+                                    <td><span>NHS Number</span></td>
+                                    <td><span th:text="${patient.nHSNumber}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Relevant History:</td>
-                                    <td colspan="2"><span th:text="${patient.relevantHistory}"/></td>
+                                    <td><span>Hospital Number</span></td>
+                                    <td><span th:text="${patient.hospitalNumber}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Recommendations:</td>
-                                    <td colspan="2"><span th:text="${patient.recommendations}"/></td>
+                                    <td>Diagnosis</td>
+                                    <td><span th:text="${patient.diagnosis}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Risks:</td>
-                                    <td colspan="2"><span th:text="${patient.risks}"/></td>
+                                    <td>Relevant History</td>
+                                    <td><span th:text="${patient.relevantHistory}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Handover notes:</td>
+                                    <td>Recommendations</td>
+                                    <td><span th:text="${patient.recommendations}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Risks</td>
+                                    <td><span th:text="${patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Handover notes</td>
                                     <td colspan="2">
                                         <div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <span style="float:left;">
-                                            <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a>
-                                        </span>
-                                        <span th:if="${doctor.id} == ${patient.doctor.id}" colspan="3" style="float:right;">
+                                        <div><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></div>
+                                        <div th:if="${doctor.id} == ${patient.doctor.id}" colspan="3">
                                             <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a>
-                                        </span>
-                                    </td></tr>
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                         </article>
                     </div>
