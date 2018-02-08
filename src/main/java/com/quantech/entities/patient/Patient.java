@@ -93,7 +93,8 @@ public class Patient {
         this.dateOfAdmission = new Date();
 
         // TODO - review: Placeholder field set here; not sure if this is the best thing to do.
-        this.doctor = new Doctor();
+        //this.doctor = new Doctor();
+        //this.doctor.
     }
 
     public Patient(Doctor doctor,

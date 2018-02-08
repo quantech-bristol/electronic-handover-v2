@@ -44,6 +44,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @GetMapping("/addPatient")
     public String addPatient(Model model) {
         model.addAttribute("patient", new Patient());
+        model.addAttribute("doctors", doctorService.getAllDoctors());
         model.addAttribute("wards", wardService.getAllWards());
         return "Doctor/addPatient";
     }
@@ -52,20 +53,18 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     @PostMapping("/patient")
     public String submitPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model, Errors errors) {
         UserCore userInfo = (UserCore) authenticator.getAuthentication().getPrincipal();
-        Doctor doc = doctorService.getDoctor(userInfo.getId());
-        patient.setDoctor(doc);
-        patient.setDateOfAdmission(new Date());
-        patient.setDischarged(false);
+        if (userInfo.isDoctor()) {
+            Doctor doc = doctorService.getDoctor(userInfo.getId());
+            patient.setDoctor(doc);
+        }
 
         patientService.CheckValidity(result,patient);
         if (errors.hasErrors()) {
-            System.out.println("okok");
+            model.addAttribute("doctors", doctorService.getAllDoctors());
             model.addAttribute("wards", wardService.getAllWards());
             return "Doctor/addPatient";
         }
         else {
-            System.out.println("okokkkkk");
-
             patientService.savePatient(patient);
             doctorService.addPatient(patient, patient.getDoctor());
             return ("redirect:/");

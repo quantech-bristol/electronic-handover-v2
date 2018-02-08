@@ -50,6 +50,14 @@
                 <td> <span class="error" th:if="${#fields.hasErrors('hospitalNumber')}" th:errors="*{hospitalNumber}"></span></td>
             </tr></div>
 
+            <div th:if="${#authentication.principal.isAdmin()}" class="form-group"><tr>
+                <td><label for="doctor">Doctor</label></td>
+                <td><select id="doctor" class="form-control" th:field="*{doctor}">
+                    <option th:each="dr: ${doctors}" th:value="${dr.id}" th:text="${dr.title}+' '+${dr.firstName}+' '+${dr.lastName}"></option>
+                </select></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></span></td>
+            </tr></div>
+
             <div class="form-group"><tr>
                 <td><label for="ward">Ward</label></td>
                 <td><select id="ward" class="form-control" th:field="*{ward}">
@@ -64,14 +72,7 @@
                 <td><input type="text" th:field="*{bed}" class="form-control" id="patientBed" placeholder="Enter Bed"/></td>
                 <td> <span class="error" th:if="${#fields.hasErrors('bed')}" th:errors="*{bed}"></span></td>
             </tr></div>
-    
-    
-            <!--div class="form-group"><tr>
-                <td><label for="patientDateofadmission">Date of Admission</label></td>
-                <td><input type="datetime" th:field="*{dateOfAdmission}" class="form-control" id="patientDateofadmission" placeholder="Enter Date of Admission"/></td>
-            </tr></div-->
-    
-    
+
             <div class="form-group"><tr>
                 <td><label for="patientRelevantHistory">Relevant History</label></td>
                 <td><input type="text" th:field="*{relevantHistory}" class="form-control" id="patientRelevantHistory" placeholder="Enter Relevant History"/></td>

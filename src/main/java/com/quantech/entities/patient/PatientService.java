@@ -354,6 +354,10 @@ public class PatientService {
         else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
             result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
 
+        // Check that the patient has a patient responsible for them.
+        if (patient.getDoctor() == null)
+            result.rejectValue("doctor","patient.doctor","Please assign the patient of a doctor.");
+
         // Check that the title has been set.
         if (patient.getTitle() == null)
             result.rejectValue("title","patient.title","Please set title.");
