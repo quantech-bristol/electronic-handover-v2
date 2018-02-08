@@ -428,6 +428,39 @@ body{
 
 .sidebar-row {
 	display: block;
-	padding: 0.95vh 0.8vw 0 1vw;
+	padding: 0.95vh 0.8vw 0.7vh 1vw;
 	font-size: 3.5vh;
+}
+
+a.sidebar-row:hover {
+	text-decoration: none;
+	background-color: #dee4ed;
+	-webkit-transition:background-color .15s ease-in-out;
+	-moz-transition:background-color .15s ease-in-out;
+	-o-transition:background-color .15s ease-in-out;
+	transition:background-color .15s ease-in-out;
+}
+
+a.sidebar-row:active {
+	text-decoration: none;
+	background-color: #d7dee8;
+	-webkit-transition:background-color .15s ease-in-out;
+	-moz-transition:background-color .15s ease-in-out;
+	-o-transition:background-color .15s ease-in-out;
+	transition:background-color .15s ease-in-out;
+}
+
+.fa-cog {
+	-webkit-transition:transform .7s ease-in-out;
+	-moz-transition:transform .7s ease-in-out;
+	-o-transition:transform .7s ease-in-out;
+	transition:transform .7s ease-in-out;
+}
+
+.fa-cog:hover {
+	transform: rotate(90deg);
+	-webkit-transition:transform .7s ease-in-out;
+	-moz-transition:transform .7s ease-in-out;
+	-o-transition:transform .7s ease-in-out;
+	transition:transform .7s ease-in-out;
 }
