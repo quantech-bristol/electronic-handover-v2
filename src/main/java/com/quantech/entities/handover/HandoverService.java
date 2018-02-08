@@ -4,6 +4,7 @@ import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,4 +103,18 @@ public class HandoverService {
      * @param id The id of the handover for which should be deleted.
      */
     public void deleteHandover(Long id) { handoverRepository.delete(id); }
+
+    /**
+     * Checks the validity of a patient's fields, and rejects the result value accordingly.
+     * @param result The binding result formed from the view template.
+     * @param handover The handover object created through the form.
+     */
+    public void CheckValidity(BindingResult result, Handover handover) {
+        if (handover.getPatient() == null)
+            result.rejectValue("patient","handover.patient","Please select a patient to hand over.");
+        if (!getAllActiveForPatient(handover.getPatient()).isEmpty())
+            result.rejectValue("patient","handover.patient","Patient is already part of an active handover.");
+        if (handover.getRecipientDoctor() == null)
+            result.rejectValue("recipientDoctor","handover.recipientDoctor","Please select a professional to send the handover to.");
+    }
 }

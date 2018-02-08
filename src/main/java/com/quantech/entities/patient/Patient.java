@@ -87,14 +87,9 @@ public class Patient {
     @NotNull
     private Boolean discharged;
 
-    // Empty constructor.
     public Patient() {
         this.discharged = false;
         this.dateOfAdmission = new Date();
-
-        // TODO - review: Placeholder field set here; not sure if this is the best thing to do.
-        //this.doctor = new Doctor();
-        //this.doctor.
     }
 
     public Patient(Doctor doctor,
@@ -151,6 +146,10 @@ public class Patient {
         return title;
     }
 
+    /**
+     * Title setter
+     * @param title the title to set.
+     */
     public void setTitle(Title title) {
         this.title = title;
     }
@@ -190,8 +189,6 @@ public class Patient {
     /**
      * Setter for DOB
      * @param birthDate Date of birth.
-     * @throws NullPointerException if null.
-     * @throws IllegalArgumentException if birth date after patient's date of admission.
      */
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
@@ -212,8 +209,6 @@ public class Patient {
     /**
      * Sets the NHS number of the patient.
      * @param NHSNumber The NHS number to provide the patient.
-     * @throws NullPointerException If the NHS number provided is null.
-     * @throws IllegalArgumentException If either the number doesn't have 10 digits, or the checksum doesn't match.
      */
     public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
         this.nHSNumber = NHSNumber;

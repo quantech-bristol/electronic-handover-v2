@@ -13,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,10 @@ public class HandoverController extends WebMvcConfigurerAdapter {
     // Go to view to create new handover.
     @GetMapping("/createHandover")
     public String createHandover(Model model) {
+        return createHandover(model,new Handover());
+    }
+
+    private String createHandover(Model model, Handover handover) {
         UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
         Doctor currentDoctor = doctorService.getDoctor(userInfo.getId());
         model.addAttribute("currentDr",currentDoctor);
@@ -45,16 +52,22 @@ public class HandoverController extends WebMvcConfigurerAdapter {
             if(handoverService.getAllActiveForPatient(p).isEmpty() && !p.getDischarged()) patients.add(p);
         }
         model.addAttribute("patients",patients);
-        model.addAttribute("handover", new Handover());
+        model.addAttribute("handover", handover);
         model.addAttribute("doctors", doctorService.getAllDoctors());
         return "Doctor/createHandover";
     }
 
     // Submit the new handover
     @PostMapping("/handover")
-    public String submitHandover(@ModelAttribute Handover handover, Model model) {
-        handoverService.saveHandover(handover);
-        return "redirect:/viewHandovers";
+    public String submitHandover(@Valid @ModelAttribute("handover") Handover handover, BindingResult result, Model model, Errors errors) {
+        handoverService.CheckValidity(result,handover);
+        if (errors.hasErrors()) {
+            return createHandover(model,handover);
+        }
+        else {
+            handoverService.saveHandover(handover);
+            return "redirect:/viewHandovers";
+        }
     }
 
     // View all handovers, uses the viewPatients template

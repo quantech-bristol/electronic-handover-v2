@@ -20,9 +20,10 @@
             <tr><div class="form-group">
                 <td><label for="patient">Step 1: Patient</label></td>
                 <td><select id="patient" class="form-control" th:field="${handover.patient}">
-                    <option value="default">Select a Patient</option>
+                    <!-- option value="default">Select a Patient</option -->
                     <option th:each="patient: ${patients}" th:value="${patient.id}" th:text="${patient.firstName}+' '+${patient.lastName}"></option>
                 </select></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></span></td>
             </div></tr><br/>
 
             <input type="hidden" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
@@ -30,9 +31,10 @@
             <tr><div class="form-group">
                 <td><label for="recipientDoctor">Step 2: Receiving Doctor</label></td>
                 <td><select id="recipientDoctor" class="form-control" th:field="${handover.recipientDoctor}">
-                    <option value="default">Select a Doctor</option>
+                    <!-- option value="default">Select a Doctor</option -->
                     <option th:each="doctor: ${doctors}" th:if="${currentDr.id} != ${doctor.id}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
                 </select></td>
+                <td> <span class="error" th:if="${#fields.hasErrors('recipientDoctor')}" th:errors="*{recipientDoctor}"></span></td>
             </div><br/></tr>
 
             <tr><div class="form-group">
