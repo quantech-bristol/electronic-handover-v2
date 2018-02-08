@@ -11,26 +11,30 @@
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
         <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
-        <h2>Cardiology</h2>
-        <h2>Bristol Royal Infirmary</h2>
-        <a th:href="@{/}"><h3>Overview</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <h2>Cardiology: Bristol Royal Infirmary</h2>
+        <a class="sidebar-row" th:href="@{/}"><h3>Overview</h3></a>
+        <a th:href="@{/patient/all}" th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <h3>My Patients</h3>
+        </a>
+        <a th:href="@{/viewHandovers}" th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <h3>Sent Handovers</h3>
+        </a>
     </div>
 </div>
 
 <div id="sidebar" class="sidebar" th:fragment="sidebar">
     <div id="sidebarwrap">
         <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
-        <h2>Cardiology</h2>
-        <h2>Bristol Royal Infirmary</h2>
-        <a th:href="@{/}"><h3>Overview</h3></a>
-        <a th:href="@{/patient/all}"><h3>My Patients</h3></a>
-        <a th:if="${#authentication.principal.isDoctor()}" th:href="@{/viewHandovers}"><h3>Sent Handovers</h3></a>
+        <h2>Cardiology: Bristol Royal Infirmary</h2>
+        <a class="sidebar-row" th:href="@{/}"><h3>Overview</h3></a>
+        <a th:href="@{/patient/all}" th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <h3>My Patients</h3>
+        </a>
+        <a th:href="@{/viewHandovers}" th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
+            <h3>Sent Handovers</h3>
+        </a>
     </div>
 </div>
-
-
 
 </body>
 </html>

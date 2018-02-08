@@ -32,21 +32,46 @@
                 <article class="ac-small agileits w3layouts">
                     <table class="patient-info-table">
                         <tr>
-                            <td>Date of Birth: <span th:text="${patient.birthDate}"/></td>
-                            <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
-                            <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
+                            <td><span>Date of Birth</span></td>
+                            <td><span th:text="${patient.birthDate}"/></td>
                         </tr>
-                        <tr><td colspan="3">Diagnosis: <span th:text="${patient.diagnosis}"/></td></tr>
-                        <tr><td colspan="3">Relevant History: <span th:text="${patient.relevantHistory}"/></td></tr>
-                        <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
-                        <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
-                        <tr><td colspan="3"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td></tr>
+                        <tr>
+                            <td><span>NHS Number</span></td>
+                            <td><span th:text="${patient.nHSNumber}"/></td>
+                        </tr>
+                        <tr>
+                            <td><span>Hospital Number</span></td>
+                            <td><span th:text="${patient.hospitalNumber}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Diagnosis</td>
+                            <td><span th:text="${patient.diagnosis}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Relevant History</td>
+                            <td><span th:text="${patient.relevantHistory}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Recommendations</td>
+                            <td><span th:text="${patient.recommendations}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Risks</td>
+                            <td><span th:text="${patient.risks}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Handover notes</td>
+                            <td><div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></td>
+                        </tr>
                     </table>
                 </article>
             </div>
         </div>
         <!-- //Accordion -->
-        <a style="width: 10vw;" class="btn btn-default" href="/addPatient">Add a new patient</a>
+        <a class="btn btn-default" href="/addPatient">Add a new patient</a>
         <br/><br/>
         <form th:action="@{/pdf/all}" method="get">
             <input class="btn" style="width: 10vw;" type="submit" value="View all as PDF"/>
