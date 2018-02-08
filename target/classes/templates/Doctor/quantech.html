@@ -12,18 +12,18 @@
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
 <div id="mainwindow" class="mainwindow sidebar-mainwindow">
-    <div id="topbar" class="topbar topbar-open">
+    <div id="topbar" class="topbar topbar-open heading">
         Overview
     </div>
     <!-- Accordion -->
     <div id="bodywrap" >
 
         <div th:if="${#authentication.principal.isDoctor()}" class="overviewbox-wrapper">
-            <div th:if="${not #lists.isEmpty(handovers)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(handovers)}"/>)</h5></a>
+            <div th:if="${not #lists.isEmpty(pending)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(pending)}"/>)</h5></a>
                 <div class="line"></div>
                 <!-- Accordion -->
                 <div class="ac-container agileits w3layouts">
-                    <div  th:each="handover,iterStat : ${handovers}">
+                    <div  th:each="handover,iterStat : ${pending}">
                         <input th:id="'ac-' + ${iterStat.count}" name="accordion-3" type="checkbox" />
                         <label th:for="'ac-' + ${iterStat.count}" th:class="'grid3'  + ${iterStat.count}">
                             <table class="patient-title-table">
@@ -77,10 +77,28 @@
                                     <td>NHS Number: <span th:text="${patient.nHSNumber}"/></td>
                                     <td>Hospital Number: <span th:text="${patient.hospitalNumber}"/></td>
                                 </tr>
-                                <tr><td colspan="3">Diagnosis: <span th:text="${patient.diagnosis}"/></td></tr>
-                                <tr><td colspan="3">Relevant History: <span th:text="${patient.relevantHistory}"/></td></tr>
-                                <tr><td colspan="3">Recommendations: <span th:text="${patient.recommendations}"/></td></tr>
-                                <tr><td colspan="3">Risks: <span th:text="${patient.risks}"/></td></tr>
+                                <tr>
+                                    <td>Diagnosis:</td>
+                                    <td colspan="2"><span th:text="${patient.diagnosis}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Relevant History:</td>
+                                    <td colspan="2"><span th:text="${patient.relevantHistory}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Recommendations:</td>
+                                    <td colspan="2"><span th:text="${patient.recommendations}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Risks:</td>
+                                    <td colspan="2"><span th:text="${patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Handover notes:</td>
+                                    <td colspan="2">
+                                        <div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td colspan="3">
                                         <span style="float:left;">
