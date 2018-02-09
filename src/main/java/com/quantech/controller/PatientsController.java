@@ -5,6 +5,7 @@ import com.quantech.entities.doctor.Doctor;
 import com.quantech.entities.doctor.DoctorService;
 import com.quantech.entities.handover.Handover;
 import com.quantech.entities.handover.HandoverService;
+import com.quantech.entities.patient.PatientFormBackingObject;
 import com.quantech.entities.patient.PatientService;
 import com.quantech.entities.user.UserCore;
 import com.quantech.entities.ward.WardService;
@@ -44,7 +45,7 @@ public class PatientsController extends WebMvcConfigurerAdapter {
     // Go to page to add patient.
     @GetMapping("/addPatient")
     public String addPatient(Model model) {
-        model.addAttribute("patient", new Patient());
+        model.addAttribute("patient", new PatientFormBackingObject());
         model.addAttribute("doctors", doctorService.getAllDoctors());
         model.addAttribute("wards", wardService.getAllWards());
         return "Doctor/addPatient";
@@ -52,25 +53,27 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     // Submit a new patient.
     @PostMapping("/patient")
-    public String submitPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model, Errors errors) {
+    public String submitPatient(@Valid @ModelAttribute("patient") PatientFormBackingObject patientObject, BindingResult result, Model model, Errors errors) {
         UserCore userInfo = (UserCore) authenticator.getAuthentication().getPrincipal();
         if (userInfo.isDoctor()) {
             Doctor doc = doctorService.getDoctor(userInfo.getId());
-            patient.setDoctor(doc);
+            patientObject.setDoctor(doc);
         }
 
-        /*patientService.CheckValidity(result,patient);
+        patientService.CheckValidity(result,patientObject);
         if (errors.hasErrors()) {
             System.out.println(errors.getAllErrors());
             model.addAttribute("doctors", doctorService.getAllDoctors());
             model.addAttribute("wards", wardService.getAllWards());
             return "Doctor/addPatient";
         }
-        else {*/
+        else {
+            Patient patient = new Patient(patientObject);
             patientService.savePatient(patient);
             doctorService.addPatient(patient, patient.getDoctor());
             return ("redirect:/");
-        //}
+        }
+
     }
 
     // Send to homepage - should we get rid of this?

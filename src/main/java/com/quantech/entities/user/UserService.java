@@ -97,6 +97,7 @@ public class UserService implements UserDetailsService {
         if ((user == null)||(user.getId() == id)){return true;}
         return false;
     }
+
     public boolean emailIsValid(String s, Long id)
     {
         UserCore user = userRepository.findUserCoreByEmail(s);

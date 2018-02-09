@@ -25,6 +25,7 @@
                             <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
                             <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
                             <li>Risks: <span th:text="${handover.patient.risks}"/></li>
+                            <li>Handover Notes: <span th:text="${handover.note}"/></li>
                             <div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
                                 <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
                             </div>

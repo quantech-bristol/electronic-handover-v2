@@ -337,7 +337,7 @@ public class PatientService {
      * @param result The binding result formed from the view template.
      * @param patient The patient object created through the form.
      */
-    public void CheckValidity(BindingResult result, Patient patient) {
+    public void CheckValidity(BindingResult result, PatientFormBackingObject patient) {
         // Checking the validity of the set NHS number.
         if (patient.getNHSNumber() == null)
             result.rejectValue("NHSNumber","patient.NHSNumber","This field cannot be empty.");

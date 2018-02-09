@@ -16,11 +16,17 @@
         <h1>New Patient</h1>
         <table>
         <form action="#" th:action="@{/patient}" th:object="${patient}" method="post" class="form-inline">
-            <div class="form-group"><tr>
-                <td><label for="patienttitle">Title(s)</label></td>
-                <td><input type="text" th:field="*{title}" class="form-control" id="patienttitle" placeholder="Enter title(s)"/></td>
+            <div class="form-group" ><tr>
+                <td><label for="Titles">Title</label></td>
+                <td>  <select class = "form-control" id = "Titles" name = "Titles" th:field = "*{title}" >
+
+                    <option th:each="state : ${T(com.quantech.misc.Title).values()}"
+                            th:value="${state}"
+                            th:text="${state}">
+                    </option>
+                </select></td>
                 <td> <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span></td>
-            </tr></div>
+            </tr> </div>
             <div class="form-group"><tr>
                 <td><label for="patientFirstName">First Name(s)</label></td>
                 <td><input type="text" th:field="*{firstName}" class="form-control" id="patientFirstName" placeholder="Enter first name(s)"/></td>

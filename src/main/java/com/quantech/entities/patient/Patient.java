@@ -95,6 +95,26 @@ public class Patient {
         this.doctor = new Doctor();
     }
 
+    public Patient(PatientFormBackingObject ob)
+    {
+        this.doctor = ob.getDoctor();
+        this.title = ob.getTitle();
+        this.firstName = putNameIntoCorrectForm(ob.getFirstName());
+        this.lastName = putNameIntoCorrectForm(ob.getLastName());
+        this.birthDate = ob.getBirthDate();
+        this.nHSNumber = ob.getNHSNumber();
+        this.hospitalNumber = ob.getHospitalNumber();
+        this.ward = ob.getWard();
+        this.bed = ob.getBed();
+        this.dateOfAdmission =  ob.getDateOfAdmission();
+        this.relevantHistory = ob.getRelevantHistory();
+        this.socialIssues = ob.getSocialIssues();
+        this.risks = ob.getRisks();
+        this.recommendations = ob.getRecommendations();
+        this.diagnosis = ob.getDiagnosis();
+        this.discharged = ob.getDischarged();
+    }
+
     public Patient(Doctor doctor,
                    Title title,
                    String firstName,

@@ -136,7 +136,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
         else {
             user.updateValues(userFormBackingObject);
             userService.saveUser(user);
-            return "redirect:/Admin";
+            return "redirect:/";
         }
     }
 

@@ -196,7 +196,7 @@ public class UserFormBackingObject implements UserInfo
         {
             result.rejectValue("password","password.usercore","Passwords should be between 4 and 20 characters!");//Add an error
         }
-        if (authorityStrings.size() == 0)
+        if ((authorityStrings.size() == 0)&&(creating))
         {
             result.rejectValue("authorityStrings","authorityStrings.usercore","Surely they have some role in this hospital!");//Add an error
         }
