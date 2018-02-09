@@ -46,9 +46,9 @@ body{
     position: fixed;
     top: 0px;
     z-index: 999999;
-    -moz-box-shadow:    0px 0px 4px 2px rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.4);
-    box-shadow:         0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow:    0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+    box-shadow:         0px 0px 4px 1px rgba(0, 0, 0, 0.3);
 }
 
 #header-table {
@@ -193,7 +193,7 @@ body{
 .sidebar-row {
     display: block;
     /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
-    padding: 5px 10px 5px 15px;
+    padding: 5px 10px 5px 20px;
     /*padding-left: 10px;*/
     font-size: 3.5vh;
     -webkit-transition:background-color .25s ease-in-out;
@@ -230,7 +230,7 @@ a.sidebar-row:active {
     font-size:20px;
     line-height: 50px;
     color:#FFFFFF;
-    padding-left: 15px;
+    padding-left: 34px;
 }
 
 .topbar {
@@ -353,7 +353,7 @@ a.sidebar-row:active {
 }
 
 .ac-container label:hover {
-    background: #bdc1c2;
+    background: #d2d7d8;
     color: #000;
 }
 
@@ -518,7 +518,7 @@ a.sidebar-row:active {
 
 .patient-button:hover {
     padding:5px;
-    color: #222222;
+    color: #555555;
 }
 
 /**********************************************************************************************************************/
@@ -554,3 +554,19 @@ a.sidebar-row:active {
             transition: all 0.5s;
 
         }
+
+* {
+    -webkit-transition: all .35s ease-out;
+    -moz-transition: all .35s ease-out;
+    -ms-transition: all .35s ease-out;
+    -o-transition: all .35s ease-out;
+    transition: all .35s ease-out;
+}
+
+*:hover {
+    -webkit-transition: all .18s ease-out;
+    -moz-transition: all .18s ease-out;
+    -ms-transition: all .18s ease-out;
+    -o-transition: all .18s ease-out;
+    transition: all .18s ease-out;
+}
