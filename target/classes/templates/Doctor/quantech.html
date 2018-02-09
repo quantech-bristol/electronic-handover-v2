@@ -7,7 +7,6 @@
     <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
-
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
@@ -15,11 +14,10 @@
     <div id="topbar" class="topbar topbar-open heading">
         Overview
     </div>
-    <!-- Accordion -->
     <div id="bodywrap" >
-
         <div th:if="${#authentication.principal.isDoctor()}" class="overviewbox-wrapper">
-            <div th:if="${not #lists.isEmpty(pending)}" id="overviewbox"><a th:href="@{/viewPendingHandovers}"><h5>Handovers To Accept (<span th:text="${#lists.size(pending)}"/>)</h5></a>
+            <div th:if="${not #lists.isEmpty(pending)}" class="overviewbox">
+                <a th:href="@{/viewPendingHandovers}" class="overview-box-title">Handovers To Accept (<span th:text="${#lists.size(pending)}"/>)</a>
                 <div class="line"></div>
                 <!-- Accordion -->
                 <div class="ac-container agileits w3layouts">
@@ -50,13 +48,12 @@
                     </div>
                 </div>
                 <!-- //Accordion -->
-
             </div>
-            <div id="overviewbox">
+            <div class="overviewbox">
                 <span style="float:right;">
-                    <a href="/addPatient"><i class="fa fa-user-plus" style="color:#005EB8;display: inline-block; font-size:3vh;padding-top:7px;margin-right:15px;"></i></a>
+                    <a href="/addPatient"><i class="fa fa-user-plus" id="add-patient-icon"></i></a>
                 </span>
-                <a th:href="@{/patient/all}"><h5>My Patients (<span th:text="${#lists.size(patients)}"/>)</h5></a>
+                <a th:href="@{/patient/all}" class="overview-box-title">My Patients (<span th:text="${#lists.size(patients)}"/>)</a>
                 <div class="line"></div>
                 <!-- Accordion -->
                 <div class="ac-container agileits w3layouts">
@@ -130,19 +127,13 @@
 
         <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
         <div th:if="${#authentication.principal.isAdmin()}" class="overviewbox-wrapper">
-            <div id="overviewbox">
-                <h5>Admin Box</h5>
+            <div class="overviewbox">
+                <a th:href="@{/Admin}" class="overview-box-title">Admin</a>
                 <div class="line"></div>
-                <div class="ac-container agileits w3layouts">
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" value="Sign Out"/>
-                    </form>
-                </div>
-                <div id="adminbox">
-                    <a th:href="@{/Admin/createUser}"><p>Create Users</p></a><br/>
-                    <a th:href="@{/addWard}"><p>Create Wards</p></a><br/>
-                    <p>Edit Users</p>
-
+                <div id="admin-box">
+                    <a th:href="@{/Admin/createUser}">Create Users</a><br/>
+                    <a th:href="@{/addWard}">Create Wards</a><br/>
+                    Edit Users
                     <form th:action="@{/Admin/EditUser{test}(test = ${Id})}" method="get" class="form-group">
                         <table style="margin-left:30px;">
                             <div class="form-group">
