@@ -45,13 +45,13 @@
             </tr></div>
     
             <div class="form-group"><tr>
-                <td><label for="patientNHSNumber">NHSNumber</label></td>
+                <td><label for="patientNHSNumber">NHS Number</label></td>
                 <td><input type="number" th:field="*{NHSNumber}" class="form-control" id="patientNHSNumber" placeholder="Enter NHS Number"/></td>
                 <td> <span class="error" th:errors="*{NHSNumber}"></span></td>
             </tr></div>
             
             <div class="form-group"><tr>
-                <td><label for="patientHospitalNumber">HospitalNumber</label></td>
+                <td><label for="patientHospitalNumber">Hospital Number</label></td>
                 <td><input type="number" th:field="*{hospitalNumber}" class="form-control" id="patientHospitalNumber" placeholder="Enter Hospital Number"/></td>
                 <td> <span class="error" th:if="${#fields.hasErrors('hospitalNumber')}" th:errors="*{hospitalNumber}"></span></td>
             </tr></div>

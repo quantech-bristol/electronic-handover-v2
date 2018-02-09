@@ -1,3 +1,8 @@
+## TO ASK
+
+- Is hospital number the same when a patient is readmitted?
+- Which patient details are mandatory?
+
 # TODO LIST
 
 Before Friday:
