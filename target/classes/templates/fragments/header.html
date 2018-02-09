@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head (title)">
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title th:text="${title}">Page Title</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link th:href="@{../css/style.css}" rel="stylesheet" media="screen"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700" rel="stylesheet"/>
+
+    <script src="https://use.fontawesome.com/7c5df3f467.js"></script>
+</head>
+
+<body>
+
+<nav th:fragment="header">
+    <div id="header">
+        <table id="header-table">
+            <tr>
+                <td id="sidebar-button-container">
+                    <button id="showLeft" class="header-button"><i class="fa fa-bars"></i></button>
+                </td>
+                <td id="menu-container">
+                </td>
+                <td id="user-buttons-container">
+                    <a th:if="${#authentication.principal.isDoctor()}" class="handover-button-shape" th:href="@{/createHandover}">
+                        <div class="handover-button-text">Create Handover</div>
+                    </a>
+                    <a th:href="@{/MyUser}" class="header-button"><i class="fa fa-cog"></i></a>
+                    <a th:href="@{/logout}" class="header-button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="spacer" style="height:50px;"></div>
+</nav>
+
+
+</body>
+</html>
