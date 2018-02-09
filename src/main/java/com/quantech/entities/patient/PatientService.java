@@ -134,6 +134,13 @@ public class PatientService {
     }
 
     /**
+     * Returns a patient corresponding to their hospital number.
+     * @param nhsNum The NHS Number corresponding to the patient.
+     * @return The patient corresponding to the hospital number if they exist, null otherwise.
+     */
+    public Patient getPatientByNHSNumber(Long nhsNum) { return patientRepository.findByNHSNumber(nhsNum); }
+
+    /**
      * Saves a given patient to the repository.
      * @param patient The patient to be saved into the repository.
      * @throws NullPointerException If the:
@@ -338,23 +345,8 @@ public class PatientService {
      * @param patient The patient object created through the form.
      */
     public void CheckValidity(BindingResult result, PatientFormBackingObject patient) {
-        // Checking the validity of the set NHS number.
-        if (patient.getNHSNumber() == null)
-            result.rejectValue("NHSNumber","patient.NHSNumber","This field cannot be empty.");
-        // 1. Check that it has the correct number of digits.
-        else if (!patient.NHSNumberCorrectLength())
-            result.rejectValue("NHSNumber","patient.NHSNumber","NHS number has too many digits.");
-        // 2. Check that the NHS number is valid.
-        else if (!patient.NHSNumberIsValid()) {
 
-            System.out.println("it works");
-            result.rejectValue("NHSNumber", "nhsnumbervalid.patient", "Number given is not a valid NHS number.");
-        }
-        // 3. Check that the NHS number is unique.
-        else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
-            result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
-
-        // Check that the patient has a patient responsible for them.
+        // Check that the patient has a doctor responsible for them.
         if (patient.getDoctor() == null)
             result.rejectValue("doctor","patient.doctor","Please assign the patient of a doctor.");
 
@@ -362,7 +354,7 @@ public class PatientService {
         if (patient.getTitle() == null)
             result.rejectValue("title","patient.title","Please set title.");
 
-        // Check that no empty strings have been set as the names.
+        // Check that names have been set.
         try {
             EntityFieldHandler.nameValidityCheck(patient.getFirstName());
         } catch (Exception e) {
@@ -374,35 +366,59 @@ public class PatientService {
             result.rejectValue("lastName","patient.lastName","Please set valid last name(s)");
         }
 
-        // Check provided birth date.
+        // Check birth date.
+        if (patient.getBirthDate() == null)
+            result.rejectValue("birthDate","patient.birthDate","Please set patient's date of birth.");
+        else if (patient.getBirthDate().after(patient.getDateOfAdmission()))
+            result.rejectValue("birthDate","patient.birthDate","Patient's date of birth cannot be in the future.");
+        // if readmitting a patient their birthday has to be consistent
+        if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null) {
+            if (!patient.getBirthDate().equals(patientRepository.findByNHSNumber(patient.getNHSNumber()).getBirthDate())) {
+                result.rejectValue("birthDate","patient.birthDate","Patient birthdate does not match data found in system");
+            }
+        }
+
+        // Checking the validity of the set NHS number.
+        if (patient.getNHSNumber() == null)
+            result.rejectValue("NHSNumber","patient.NHSNumber","This field cannot be empty.");
+        // 1. Check that it has the correct number of digits.
+        else if (!patient.NHSNumberCorrectLength())
+            result.rejectValue("NHSNumber","patient.NHSNumber","NHS number has too many digits.");
+        // 2. Check that the NHS number is valid.
+        else if (!patient.NHSNumberIsValid()) {
+            System.out.println("it works");
+            result.rejectValue("NHSNumber", "nhsnumbervalid.patient", "Number given is not a valid NHS number.");
+        }
+        // 3. Check that the NHS number is unique / patient is currently in hospital.
+        else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null
+                && patientRepository.findByNHSNumber(patient.getNHSNumber()).getDischarged().equals(false))
+            result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
+
+        // Check provided hospital number.
         if (patient.getHospitalNumber() == null)
             result.rejectValue("hospitalNumber","patient.hospitalNumber","Please set a valid hospital number.");
         else if (patientRepository.findByHospitalNumber(patient.getHospitalNumber()) != null)
             result.rejectValue("hospitalNumber","hospitalNumber.patient","Patient with given hospital number already exists.");
 
         // Check wards and beds.
-        if (patient.getBed() == null || patient.getBed().equals(""))
-            result.rejectValue("bed","patient.bed","Please set a bed for the patient.");
         if (patient.getWard() == null)
             result.rejectValue("ward","patient.ward","Please set a ward for the patient.");
-        else if (patient.getBed() != null && patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()) != null)
+        if (patient.getBed() == null || patient.getBed().equals(""))
+            result.rejectValue("bed","patient.bed","Please set a bed for the patient.");
+        else if (patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()) != null
+                && patientRepository.findByWardAndBed(patient.getWard(),patient.getBed()).getDischarged().equals(false))
             result.rejectValue("bed","patient.bedWard","Given bed is already occupied by another patient.");
 
-        // Check birth date.
-        if (patient.getBirthDate() == null)
-            result.rejectValue("birthDate","patient.birthDate","Please set patient's date of birth.");
-        else if (patient.getBirthDate().after(patient.getDateOfAdmission()))
-            result.rejectValue("birthDate","patient.birthDate","Patient's date of birth cannot be in the future.");
-
-        if (patient.getRelevantHistory() == null)
+        if (patient.getRelevantHistory() == null || patient.getRelevantHistory().equals(""))
             result.rejectValue("relevantHistory","patient.relevantHistory","Please provide some form of relevant history.");
-        if (patient.getSocialIssues() == null)
-            result.rejectValue("socialIssues","patient.socialIssues","Please provide any relevant information (or type \"none\").");
-        if (patient.getRisks() == null)
-            result.rejectValue("risks","patient.risks","Please provide any relevant risks to the patient.");
-        if (patient.getRecommendations() == null)
-            result.rejectValue("recommendations","patient.recommendations","Please provide recommendations for treatment.");
-        if (patient.getDiagnosis() == null || patient.getDiagnosis().equals(""))
-            result.rejectValue("diagnosis","patient.diagnosis","Please provide a diagnosis.");
+//        if (patient.getSocialIssues() == null || patient.getSocialIssues().equals(""))
+//            result.rejectValue("socialIssues","patient.socialIssues","Please provide any relevant information (or type \"none\").");
+//        if (patient.getRisks() == null || patient.getRisks().equals(""))
+//            result.rejectValue("risks","patient.risks","Please provide any relevant risks to the patient.");
+//        if (patient.getRecommendations() == null || patient.getRecommendations().equals(""))
+//            result.rejectValue("recommendations","patient.recommendations","Please provide recommendations for treatment.");
+//        if (patient.getDiagnosis() == null || patient.getDiagnosis().equals(""))
+//            result.rejectValue("diagnosis","patient.diagnosis","Please provide a diagnosis.");
+
     }
 }

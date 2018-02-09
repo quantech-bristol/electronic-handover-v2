@@ -69,6 +69,10 @@ public class PatientsController extends WebMvcConfigurerAdapter {
         }
         else {
             Patient patient = new Patient(patientObject);
+            Long nhsNum = patientObject.getNHSNumber();
+            if (patientService.getPatientByNHSNumber(nhsNum) != null) {
+                patient.setId(patientService.getPatientByNHSNumber(nhsNum).getId());
+            }
             patientService.savePatient(patient);
             doctorService.addPatient(patient, patient.getDoctor());
             return ("redirect:/");

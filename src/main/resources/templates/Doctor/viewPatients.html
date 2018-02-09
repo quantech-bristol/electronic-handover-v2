@@ -7,9 +7,9 @@
 
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
-<div th:replace="fragments/layout :: sidebar">&nbsp;</div>
-<div id="mainwindow" class="mainwindow">
-    <div id="topbar" class="topbar">
+<div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
+<div id="mainwindow" class="mainwindow sidebar-mainwindow">
+    <div id="topbar" class="topbar topbar-open heading">
         My Patients
     </div>
 
@@ -24,7 +24,7 @@
                 <label th:for="'ac-' + ${iterStat.count}" th:class="'grid1'  + ${iterStat.count}">
                     <table class="patient-title-table">
                         <tr>
-                            <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
+                            <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/>, <span th:text="${patient.ward.name}"/></td>
                             <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
                         </tr>
                     </table>

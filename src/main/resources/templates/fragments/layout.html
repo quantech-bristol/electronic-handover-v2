@@ -10,8 +10,10 @@
 
 <div id="sidebar" class="sidebar sidebar-open" th:fragment="sidebarstartopen">
     <div id="sidebarwrap">
-        <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
-        <h2 style="margin:0;">Cardiology: Bristol Royal Infirmary</h2>
+        <div class="sidebar-row">
+            <h1 th:text="${#authentication.principal.getFullName()}">test</h1>
+            <h2 style="margin:0;">Cardiology: Bristol Royal Infirmary</h2>
+        </div>
         <a class="sidebar-row" th:href="@{/}"><h3>Overview</h3></a>
         <a th:href="@{/patient/all}" th:if="${#authentication.principal.isDoctor()}" class="sidebar-row">
             <h3>My Patients</h3>

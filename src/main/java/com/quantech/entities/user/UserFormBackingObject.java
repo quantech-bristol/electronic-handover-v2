@@ -182,24 +182,4 @@ public class UserFormBackingObject implements UserInfo
         return newUser;
     }
 
-    public void CheckValidity(UserService service,BindingResult result, boolean creating)
-    {
-        if(!service.nameIsValid(getUsername(),getId()))//If Username is already in use (but not by us)
-        {
-            result.rejectValue("username","error.usercore","That username is already in use!");//Add an error
-        }
-        if(!service.emailIsValid(getEmail(),getId()))//If Username is already in use (but not by us)
-        {
-            result.rejectValue("email","email.usercore","That email is already in use!");//Add an error
-        }
-        if ((creating) && (4 > password.length()|| password.length()>20))
-        {
-            result.rejectValue("password","password.usercore","Passwords should be between 4 and 20 characters!");//Add an error
-        }
-        if ((authorityStrings.size() == 0)&&(creating))
-        {
-            result.rejectValue("authorityStrings","authorityStrings.usercore","Surely they have some role in this hospital!");//Add an error
-        }
-
-    }
 }
