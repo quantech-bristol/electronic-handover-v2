@@ -5,30 +5,43 @@
 </head>
 
 <body>
-<div>
-    <!-- quick and rough inline formatting for now; redo this page in the future -->
-    <div id="topbar" style="width:98.8%; top:0;">
-        <center>Login</center>
-    </div>
-    <!-- just to add some space at the top, since the div below is relative, not absolute-->
-    <div id="spacer" style="height: 10vh;"></div>
-    <div>
-        <center>
-        <form th:action="@{/login}" method="post">
-            <table>
-                <tr><td><label> User Name :  </label></td><td><input type="text" name="username"/></td></tr>
-                <tr><td><label> Password:  </label></td><td><input type="password" name="password"/></td></tr>
-                <tr><td></td><td><input type="submit" value="Sign In"/></td></tr>
+    <div id="login-background">
+        <nav id="login-header">
+            <table id="header-table">
+                <tr>
+                    <td id="menu-container">
+                        <span th:if="${param.error}">
+                            Incorrect username or password
+                        </span>
+                    </td>
+                    <td id="login-form-container">
+                        <form th:action="@{/login}" method="post">
+                            <input type="text" name="username" placeholder="Username"/>
+                            <input type="password" name="password" placeholder="Password"/>
+                            <input class="handover-button-shape" type="submit" value="Go"/>
+                        </form>
+                    </td>
+                </tr>
             </table>
-        </form>
-        </center>
-        <div th:if="${param.error}">
-            Username or Password is wrong. Please check again
-        </div>
-        <div th:if="${param.logout}">
-            Logged out
+
+        </nav>
+        <div id="login-main">
+            <table id="electronic-handover"><tr><td>electronic<br/>handover</td></tr></table>
+            <!--
+            <form th:action="@{/login}" method="post">
+
+            </form>
+
+
+            <div th:if="${param.error}">
+                Username or Password is wrong. Please check again
+            </div>
+            <div th:if="${param.logout}">
+                Logged out
+            </div>
+            -->
+
         </div>
     </div>
-</div>
 </body>
 </html>

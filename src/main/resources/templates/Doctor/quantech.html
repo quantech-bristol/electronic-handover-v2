@@ -66,7 +66,7 @@
                                     <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
                                     <td><span style="font-size:1.5vw;float:right;">
                                         <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-button"><i class="fa fa-id-card"></i></a>
-                                        <a th:href="@{/patient/discharge(id=${patient.id})}" class="patient-button"><i class="fa fa-minus-circle" style="padding:5px;"></i></a>
+                                        <!--<a th:href="@{/patient/discharge(id=${patient.id})}" class="patient-button"><i class="fa fa-minus-circle" style="padding:5px;"></i></a>-->
                                     </span></td>
                                 </tr>
                             </table>
