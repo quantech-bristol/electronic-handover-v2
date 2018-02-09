@@ -41,7 +41,8 @@
                 </td>
                 <td id="user-buttons-container">
                     <a th:if="${#authentication.principal.isDoctor()}" class="handover-button-shape" th:href="@{/createHandover}">
-                        <div class="handover-button-text">Create Handover</div>
+                        <div class="handover-button-text" id="handover-button-text">Create Handover</div>
+                        <div class="handover-button-text" id="handover-button-icon">+</div>
                     </a>
                     <a th:href="@{/MyUser}" class="header-button"><i class="fa fa-cog"></i></a>
                     <a th:href="@{/logout}" class="header-button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>

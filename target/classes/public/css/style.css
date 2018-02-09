@@ -199,6 +199,22 @@ body {
     transition:transform .7s ease-out;
 }
 
+@media (min-width: 601px) {
+
+    #handover-button-icon {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #handover-button-text {
+        display: none;
+    }
+
+}
+
 /**********************************************************************************************************************/
 /* Sidebar */
 /**********************************************************************************************************************/
@@ -359,7 +375,7 @@ a.sidebar-row:active {
     margin-bottom: 1px;
 }
 
-.overview-box-title:hover {
+.overview-box-title a:hover {
     text-decoration: none;
     color: rgba(0, 94, 184, 0.8);
 }
@@ -538,30 +554,116 @@ a.sidebar-row:active {
 }
 
 /**********************************************************************************************************************/
-/* Patient details */
+/* Patient titles */
 /**********************************************************************************************************************/
+
+@media (min-width: 601px) {
+    #patient-title-table-name {
+        display: none;
+    }
+
+    #handover-patient-title-table-name {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    #patient-title-table-name-bed {
+        display: none;
+    }
+
+    #handover-patient-title-table-name-bed {
+        display: none;
+    }
+}
+
+@media (min-width: 701px) {
+    #patient-title-table-name-bed {
+        display: none;
+    }
+
+    #handover-patient-title-table-name-bed {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    #patient-title-table-name-bed-ward {
+        display: none;
+    }
+
+    #handover-patient-title-table-name-bed-ward {
+        display: none;
+    }
+}
 
 .patient-title-table {
     color: #555555;
-    font-size: 1vw;
+    font-size: 14px;
     width: 100%;
 }
 .patient-title-table tr td {
     padding: 0 1vw 0 1vw;
 }
 .patient-title-table-bed {
-    width: 6vw;
-    font-size: 1vw;
+    width:1px;
+    white-space:nowrap;
+    font-size: 14px;
 }
 .patient-title-table-ward {
-    width: 10vw;
-    font-size: 1vw;
+    width:1px;
+    white-space:nowrap;
+    font-size: 14px;
+}
+
+/**********************************************************************************************************************/
+/* Patient details */
+/**********************************************************************************************************************/
+
+@media (min-width: 801px) {
+    #patient-info-table-1-col {
+        display: none;
+    }
+
+    #handover-patient-info-table-1-col {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    #patient-info-table-2-cols {
+        display: none;
+    }
+
+    #handover-patient-info-table-2-cols {
+        display: none;
+    }
+}
+
+@media (min-width: 1101px) {
+    #patient-info-table-2-cols {
+        display: none;
+    }
+
+    #handover-patient-info-table-2-cols {
+        display: none;
+    }
+}
+
+@media (max-width: 1100px) {
+    #patient-info-table-3-cols {
+        display: none;
+    }
+
+    #handover-patient-info-table-3-cols {
+        display: none;
+    }
 }
 
 .patient-info-table {
     table-layout: fixed;
     border: none;
-    font-size: 14px;
+    font-size: 13px;
     margin: auto;
     width: calc(100% - 50px);
     margin-top: 20px;
@@ -570,70 +672,37 @@ a.sidebar-row:active {
 }
 
 .patient-info-table tr td {
-    padding: 0 1vw 0 1vw;
+    padding: 0.5vw;
 }
 
-.patient-info-table tr td:first-child {
-    padding: 10px;
+.patient-info-table h1 {
     font-weight: bold;
-    width: 15em;
-    color: #666666;
+    font-size: 13px;
+    padding: 0px;
+    margin: 0px;
+    color: #555555;
 }
 
-.patient-button {
-    padding:5px;
+.patient-info-table a {
+    color: #005EB8;
+}
+
+.patient-info-table a:hover {
+    color: #005EB8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.patient-info-icon {
+    font-size: 20px;
+    padding-right: 5px;
     color: rgba(85, 85, 85, 0.7);
 }
 
-.patient-button:hover {
-    padding:5px;
+.patient-info-icon:hover {
+    padding-right: 5px;
     color: rgba(85, 85, 85, 1);
 }
-
-/**********************************************************************************************************************/
-/* Hover text */
-/**********************************************************************************************************************/
-
-/*
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-*/
 
 /**********************************************************************************************************************/
 /* Other */
