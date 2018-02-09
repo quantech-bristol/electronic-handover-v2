@@ -64,7 +64,7 @@
                             <table class="patient-title-table">
                                 <tr>
                                     <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
-                                    <td class="patient-title-table-ward">Ward<span th:text="${patient.ward.name}"/></td>
+                                    <td class="patient-title-table-ward">Ward <span th:text="${patient.ward.name}"/></td>
                                     <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
                                     <td><span style="font-size:1.5vw;float:right;">
                                         <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-button"><i class="fa fa-id-card"></i></a>

@@ -587,12 +587,12 @@ a.sidebar-row:active {
 
 .patient-button {
     padding:5px;
-    color: #555555;
+    color: rgba(85, 85, 85, 0.7);
 }
 
 .patient-button:hover {
     padding:5px;
-    color: #555555;
+    color: rgba(85, 85, 85, 1);
 }
 
 /**********************************************************************************************************************/
