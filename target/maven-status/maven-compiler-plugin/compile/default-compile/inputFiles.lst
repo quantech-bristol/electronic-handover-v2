@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\misc\AuthFacade\Authenticationfacade.java
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\Configurations\SecurityConfig.java
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\entities\patient\PatientFormBackingObject.java
@@ -40,46 +39,3 @@ C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\entit
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\entities\user\UserService.java
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\controller\UserController.java
 C:\Users\pc\Documents\CS Y2\electronic-handover\src\main\java\com\quantech\entities\user\UserFormBackingObject.java
-=======
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/SpringBootWebApplication.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/patient/Patient.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/patient/PatientFormBackingObject.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/handover/Handover.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/user/UserService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/StringEnumValidation/EnumValuesValidator.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/handover/HandoverRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/user/UserInfo.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/HandoverController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/user/UserFormBackingObject.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/ward/Ward.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/user/UserCore.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/ward/WardRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/AuthFacade/Authenticationfacade.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/handover/HandoverService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/team/TeamRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/PdfGenerator.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/patient/PatientRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/ErrorController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/user/UserRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/doctor/DoctorService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/UserController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/StringEnumValidation/ValidateEnumValues.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/DoctorController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/doctor/Doctor.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/MainController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/Configurations/SecurityRoles.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/ward/WardService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/EntityFieldHandler.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/doctor/DoctorRepository.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/team/TeamService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/Configurations/SecurityConfig.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/StringEnumValidation/ListEnumValuesValidator.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/WardController.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/team/Team.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/Title.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/StringEnumValidation/ValidateListEnumValues.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/entities/patient/PatientService.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/Configurations/CustomLogoutSuccessHandler.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/misc/AuthFacade/IAuthenticationFacade.java
-/Users/tillywoodfield/Documents/Uni/Y2/SPE/electronic-handover/src/main/java/com/quantech/controller/PatientsController.java
->>>>>>> fdb1467db57c32eddeec0211face0352c385279f
