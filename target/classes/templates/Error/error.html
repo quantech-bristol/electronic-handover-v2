@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:include="fragments/header :: head (title='Error')">
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+
+<body>
+<div id="mainwindow" class="mainwindow sidebar-mainwindow">
+    <h1>Error: Something went wrong</h1>
+    <h3><a href="/">Go to Home Page</a></h3>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>
+
+
