@@ -558,6 +558,10 @@ a.sidebar-row:active {
     width: 6vw;
     font-size: 1vw;
 }
+.patient-title-table-ward {
+    width: 10vw;
+    font-size: 1vw;
+}
 
 .patient-info-table {
     table-layout: fixed;
