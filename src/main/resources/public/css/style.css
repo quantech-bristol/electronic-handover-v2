@@ -152,9 +152,31 @@ body{
 }
 
 #sidebarwrap {
-    padding-left: 10%;
-    padding-right: 10%;
     font-size: 1vw;
+    /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
+    padding-top: 10px;
+}
+
+#sidebarwrap h1 {
+    display: inline;
+    font-size: 3.5vh;
+    /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
+    padding-left: 10px;
+}
+
+#sidebarwrap h2 {
+    font-size: 2vh;
+    font-weight: 300;
+    font-style: italic;
+    /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#sidebarwrap h3 {
+    display: inline;
+    font-size: 2.8vh;
+    /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
 }
 
 .sidebar {
@@ -173,7 +195,8 @@ body{
 
 .sidebar-row {
     display: block;
-    padding: 0.95vh 0.8vw 0.7vh 1vw;
+    /*padding: 0.95vh 0.8vw 0.7vh 1vw;*/
+    padding-left: 10px;
     font-size: 3.5vh;
     -webkit-transition:background-color .25s ease-in-out;
     -moz-transition:background-color .25s ease-in-out;
