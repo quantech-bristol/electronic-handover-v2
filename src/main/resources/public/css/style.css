@@ -206,7 +206,7 @@ a.sidebar-row:active {
 #topbar {
     background-color:#0072CE;
     height:50px;
-    font-size:18px;
+    font-size:20px;
     line-height: 50px;
     color:#FFFFFF;
     padding-left: 15px;
@@ -241,7 +241,7 @@ a.sidebar-row:active {
 }
 
 #bodywrap {
-    padding: 3.5vh 2vw;
+    padding: 2.5vh 1.5vw;
     width: 100%;
 }
 
@@ -255,35 +255,63 @@ a.sidebar-row:active {
 /* Overview and admin boxes */
 /**********************************************************************************************************************/
 
-#overviewbox{
+.overviewbox {
     width: 100%;
     min-height: 15vh;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 4.5vh;
+    padding: 8px 0px 8px 0px;
+    margin-bottom: 20px;
     background: #E8EDEE;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .overviewbox-wrapper {
     width: 100%;
 }
 
-#adminbox{
-    padding: 20px;
+.overview-box-title {
+    font-size: 17px;
+    color: rgba(0, 94, 184, 1);
+    line-height: 17px;
+    vertical-align: middle;
+    margin-left:1vw;
+    margin-bottom: 1px;
 }
-#adminbox p{
-    color: #005EB8;
-    font-size: 2vh;
+
+.overview-box-title:hover {
+    text-decoration: none;
+    color: rgba(0, 94, 184, 0.8);
 }
 
 .line {
     display: block;
     height: 1px;
-    border: 0;
-    border-top: 1px solid #425563;
-    padding: 0;
-    margin-top:2vh;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+#admin-box {
+    padding: 15px;
+    color: #005EB8;
+    font-size: 15px;
+}
+
+#admin-box a{
+    color: rgba(0, 94, 184, 1);
+}
+
+#admin-box a:hover{
+    text-decoration: none;
+    color: rgba(0, 94, 184, 0.8);
+}
+
+#add-patient-icon {
+    color: rgba(0, 94, 184, 1);
+    font-size: 19px;
+    padding: 2px 15px 0px 0px;
+}
+
+#add-patient-icon:hover {
+    color: rgba(0, 94, 184, 0.8);
 }
 
 /**********************************************************************************************************************/
