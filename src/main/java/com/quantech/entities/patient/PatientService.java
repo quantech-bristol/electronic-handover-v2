@@ -134,6 +134,13 @@ public class PatientService {
     }
 
     /**
+     * Returns a patient corresponding to their hospital number.
+     * @param nhsNum The NHS Number corresponding to the patient.
+     * @return The patient corresponding to the hospital number if they exist, null otherwise.
+     */
+    public Patient getPatientByNHSNumber(Long nhsNum) { return patientRepository.findByNHSNumber(nhsNum); }
+
+    /**
      * Saves a given patient to the repository.
      * @param patient The patient to be saved into the repository.
      * @throws NullPointerException If the:
@@ -364,6 +371,12 @@ public class PatientService {
             result.rejectValue("birthDate","patient.birthDate","Please set patient's date of birth.");
         else if (patient.getBirthDate().after(patient.getDateOfAdmission()))
             result.rejectValue("birthDate","patient.birthDate","Patient's date of birth cannot be in the future.");
+        // if readmitting a patient their birthday has to be consistent
+        if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null) {
+            if (!patient.getBirthDate().equals(patientRepository.findByNHSNumber(patient.getNHSNumber()).getBirthDate())) {
+                result.rejectValue("birthDate","patient.birthDate","Patient birthdate does not match data found in system");
+            }
+        }
 
         // Checking the validity of the set NHS number.
         if (patient.getNHSNumber() == null)
@@ -377,7 +390,8 @@ public class PatientService {
             result.rejectValue("NHSNumber", "nhsnumbervalid.patient", "Number given is not a valid NHS number.");
         }
         // 3. Check that the NHS number is unique / patient is currently in hospital.
-        else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null)
+        else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null
+                && patientRepository.findByNHSNumber(patient.getNHSNumber()).getDischarged().equals(false))
             result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
 
         // Check provided hospital number.
@@ -405,5 +419,6 @@ public class PatientService {
 //            result.rejectValue("recommendations","patient.recommendations","Please provide recommendations for treatment.");
 //        if (patient.getDiagnosis() == null || patient.getDiagnosis().equals(""))
 //            result.rejectValue("diagnosis","patient.diagnosis","Please provide a diagnosis.");
+
     }
 }
