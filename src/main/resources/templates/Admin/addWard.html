@@ -13,13 +13,13 @@
         Add Ward
     </div>
     <div id="bodywrap">
-        <h1>New Ward</h1>
-        <table>
+        <h1 style="margin:0;">New Ward</h1>
+        <table class="input-form">
             <form action="#" th:action="@{/addWard}" th:object="${ward}" method="post" class="form-inline">
-                <div class="form-group"><tr>
+                <tr class="form-group">
                     <td><label for="patienttitle">Title(s)</label></td>
                     <td><input type="text" th:field="*{name}" class="form-control" id="patienttitle" placeholder="Enter ward name"/></td>
-                </tr></div>
+                </tr>
                 <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
             </form>
         </table>

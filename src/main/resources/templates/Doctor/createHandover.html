@@ -16,33 +16,31 @@
     </div>
     <div id="bodywrap">
         <form action="#" th:action="@{/handover}" th:object="${handover}" method="post" class="form-inline">
-            <table>
-            <tr><div class="form-group">
+            <table class="input-form">
+            <tr class="form-group">
                 <td><label for="patient">Step 1: Patient</label></td>
                 <td><select id="patient" class="form-control" th:field="${handover.patient}">
                     <!-- option value="default">Select a Patient</option -->
                     <option th:each="patient: ${patients}" th:value="${patient.id}" th:text="${patient.firstName}+' '+${patient.lastName}"></option>
                 </select></td>
                 <td> <span class="error" th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></span></td>
-            </div></tr><br/>
+            </tr>
 
             <input type="hidden" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
 
-            <tr><div class="form-group">
+            <tr class="form-group">
                 <td><label for="recipientDoctor">Step 2: Receiving Doctor</label></td>
                 <td><select id="recipientDoctor" class="form-control" th:field="${handover.recipientDoctor}">
                     <!-- option value="default">Select a Doctor</option -->
                     <option th:each="doctor: ${doctors}" th:if="${currentDr.id} != ${doctor.id}" th:value="${doctor.id}" th:text="${doctor.firstName}+' '+${doctor.lastName}"></option>
                 </select></td>
                 <td> <span class="error" th:if="${#fields.hasErrors('recipientDoctor')}" th:errors="*{recipientDoctor}"></span></td>
-            </div><br/></tr>
-
-            <tr><div class="form-group">
+            </tr>
+            <tr class="form-group">
                 <td><label for="patientNote">Step 3: Notes</label></td>
                 <td><input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter Patient Notes"/></td>
-            </div><br/></tr>
-
-                <tr><td><button type="submit" class="btn btn-primary">Submit</button></td><td></td></tr>
+            </tr>
+            <tr><td><button type="submit" class="btn btn-primary">Submit</button></td><td></td></tr>
             </table>
         </form>
     </div>

@@ -13,24 +13,24 @@
        Create User
     </div>
     <div id="bodywrap">
-        <h1 th:text="${title}" >New User</h1>
-        <table>
+        <h1 th:text="${title}" style="margin: 0;">New User</h1>
+        <table class="input-form">
             <form action="#" th:action="${postUrl}" th:object="${usercore}" method="post" class="form-inline">
-                <div class="form-group"><tr>
+                <tr class="form-group">
                     <td><input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control" id="id"/></td>
-                </tr></div>
-                <div class="form-group"><tr>
+                </tr>
+                <tr class="form-group">
                     <td><label for="username">Username</label></td>
                     <td><input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Enter username"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span></td>
 
-                </tr></div>
-                <div class="form-group"><tr>
+                </tr>
+                <tr class="form-group">
                     <td><label for="password">Password</label></td>
                     <td><input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Enter password"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></td>
-                </tr></div>
-                <div class="form-group" ><tr>
+                </tr>
+                <tr class="form-group" >
                     <td><label for="Titles">Title</label></td>
                     <td>  <select class = "form-control" id = "Titles" name = "Titles" th:field = "*{title}" >
 
@@ -40,29 +40,29 @@
                         </option>
                     </select></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span></td>
-                </tr> </div>
-                <div class="form-group" th:if="${ShowRoles}"><tr>
+                </tr>
+                <tr class="form-group" th:if="${ShowRoles}">
                     <td><th:block th:each="role : ${T(com.quantech.Configurations.SecurityRoles).values()}">
                       <td>  <label th:text="${role}" ></label>
                         <input type="checkbox"  id="${role}" name = "roles" th:field ="*{authorityStrings}" th:value="${role}"  /></td>
                     </th:block></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('authorityStrings')}" th:errors="*{authorityStrings}"></span></td>
-                </tr></div>
-                <div class="form-group"><tr>
+                </tr>
+                <tr class="form-group">
                     <td><label for="firstName">First Name</label></td>
                     <td><input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Enter First Name"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span></td>
-                </tr></div>
-                <div class="form-group"><tr>
+                </tr>
+                <tr class="form-group">
                     <td><label for="lastName">Last Name</label></td>
                     <td><input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Enter Last Name"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></td>
-                </tr></div>
-                <div class="form-group"><tr>
+                </tr>
+                <tr class="form-group">
                     <td><label for="email">Email</label></td>
                     <td><input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter email"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
-                </tr></div>
+                </tr>
 
                 <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
             </form>

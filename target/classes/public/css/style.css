@@ -472,6 +472,10 @@ a.sidebar-row:active {
     padding-right: 0;
 }
 
+.bodywrap.h1 {
+    margin: 0;
+}
+
 /**********************************************************************************************************************/
 /* Patient details */
 /**********************************************************************************************************************/
@@ -569,4 +573,8 @@ a.sidebar-row:active {
     -ms-transition: all .18s ease-out;
     -o-transition: all .18s ease-out;
     transition: all .18s ease-out;
+}
+
+.input-form {
+    margin-top: 2.5vh;
 }
