@@ -45,7 +45,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
 
     @PostMapping("/Admin/createUser")
     public String createUser(@Valid @ModelAttribute("usercore") UserFormBackingObject user, BindingResult result, Model model, Errors errors) {
-        user.CheckValidity(userService,result,true);
+        userService.CheckValidity(result,true,user);
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/Admin/createUser");
@@ -86,7 +86,8 @@ public class UserController  extends WebMvcConfigurerAdapter {
     @PostMapping(value = "/MyUser")
     public String editSelfSettings(@Valid @ModelAttribute("usercore") UserFormBackingObject userFormBackingObject, BindingResult result, RedirectAttributes model, Errors errors)
     {
-        userFormBackingObject.CheckValidity(userService,result, false);
+        userService.CheckValidity(result,false,userFormBackingObject);
+
         if (errors.hasErrors())//If we have any errors, send them back to the page. result + model stays with them.
         {
             model.addAttribute("postUrl", "/MyUser");
@@ -125,7 +126,7 @@ public class UserController  extends WebMvcConfigurerAdapter {
     public String editUserSettings(@Valid @ModelAttribute("usercore") UserFormBackingObject userFormBackingObject, BindingResult result, RedirectAttributes model, Errors errors)
     {
         UserCore user  =  userService.findUserById(userFormBackingObject.getId());
-        userFormBackingObject.CheckValidity(userService,result, false);
+        userService.CheckValidity(result,false,userFormBackingObject);
         if (errors.hasErrors())
         {
             model.addAttribute("postUrl", "/Admin/EditUser");

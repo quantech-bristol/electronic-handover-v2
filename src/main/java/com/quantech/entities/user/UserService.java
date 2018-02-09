@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,5 +105,30 @@ public class UserService implements UserDetailsService {
         UserCore user = userRepository.findUserCoreByEmail(s);
         if ((user == null)||(user.getId() == id)){return true;}
         return false;
+    }
+
+    public void CheckValidity(BindingResult result, boolean creating, UserFormBackingObject ob)
+    {
+        if(!nameIsValid(ob.getUsername(),ob.getId()))//If Username is already in use (but not by us)
+        {
+            result.rejectValue("username","error.usercore","That username is already in use!");//Add an error
+        }
+        if(!emailIsValid(ob.getEmail(),ob.getId()))//If Username is already in use (but not by us)
+        {
+            result.rejectValue("email","email.usercore","That email is already in use!");//Add an error
+        }
+        if ((creating) && (4 > ob.getPassword().length()|| ob.getPassword().length()>20))
+        {
+            result.rejectValue("password","password.usercore","Passwords should be between 4 and 20 characters!");//Add an error
+        }
+        if ((ob.getAuthorityStrings().size() == 0)&&(creating))
+        {
+            result.rejectValue("authorityStrings","authorityStrings.usercore","Surely they have some role in this hospital!");//Add an error
+        }
+        if (ob.getEmail().length() == 0)
+        {
+            result.rejectValue("email","email.usercore","You must specify an email.");
+        }
+
     }
 }
