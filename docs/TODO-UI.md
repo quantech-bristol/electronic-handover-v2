@@ -1,4 +1,4 @@
-#UI TODO
+UI TODO
 - Turn patient/handover details into a table/excel format instead of accordion
 - Risks a checklist instead of text input
 - Remove sidebar and put links into header/top bar
