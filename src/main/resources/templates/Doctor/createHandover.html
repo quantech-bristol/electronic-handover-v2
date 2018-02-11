@@ -16,8 +16,8 @@
     </div>
     <div id="bodywrap">
         <table class="input-form">
-            <input type="hidden" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
             <form action="#" th:action="@{/handover}" th:object="${handover}" method="post" class="form-inline">
+                <input type="hidden" th:field="${handover.originDoctor}" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
                 <tr class="form-group">
                     <td><label for="patient">Step 1: Patient</label></td>
                     <td><select id="patient" class="form-control" th:field="${handover.patient}">
