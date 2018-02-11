@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header :: head (title='Edit Patient')">
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
+<div id="mainwindow" class="mainwindow sidebar-mainwindow">
+    <div id="topbar" class="topbar topbar-open heading">
+        Edit Patient
+    </div>
+    <div id="bodywrap">
+        <h1 style="margin:0;">Edit Patient</h1>
+        <table class="input-form">
+            <form action="#" th:action="@{/edit/} + ${patient.hospitalNumber} + @{/} + ${attr}" th:object="${patient}" method="post" class="form-inline">
+                <tr th:if="${attr.equals('recommendations')}" class="form-group">
+                    <td><label for="patientRecommendations">Recommendations</label></td>
+                    <td>
+                        <textarea th:field="*{recommendations}" id="patientRecommendations"
+                                  class="form-control" rows="10" cols="35">
+                        </textarea>
+                    </td>
+                    <td><span class="error" th:if="${#fields.hasErrors('recommendations')}" th:errors="*{recommendations}"></span></td>
+                </tr>
+                <tr th:if="${attr.equals('diagnosis')}" class="form-group">
+                    <td><label for="patientDiagnosis">Diagnosis</label></td>
+                    <td>
+                        <textarea th:field="*{diagnosis}" id="patientDiagnosis"
+                                  class="form-control" rows="10" cols="35">
+                        </textarea>
+                    </td>
+                    <td><span class="error" th:if="${#fields.hasErrors('diagnosis')}" th:errors="*{diagnosis}"></span></td>
+                </tr>
+                <tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+            </form>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>

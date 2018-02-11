@@ -15,62 +15,81 @@
     <div id="bodywrap">
             <a th:href="@{/patient/all}">View All Patients</a>
             <table class="table">
-                <tr>
-                    <td>Name</td>
-                    <td><span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
-                </tr>
-                <tr>
-                    <td>Doctor</td>
-                    <td><span th:text="${patient.doctor.getTitle()}"/> <span th:text="${patient.doctor.getFirstName()}"/> <span th:text="${patient.doctor.getLastName()}"/></td>
-                </tr>
-                <tr>
-                    <td>DOB</td>
-                    <td><span th:text="${patient.birthDate}"/></td>
-                </tr>
-                <tr>
-                    <td>NHS Number</td>
-                    <td><span th:text="${patient.nHSNumber}"/></td>
-                </tr>
-                <tr>
-                    <td>Hospital Number</td>
-                    <td><span th:text="${patient.hospitalNumber}"/></td>
-                </tr>
-                <tr>
-                    <td>Ward</td>
-                    <td><span th:text="${patient.ward.getName()}"/></td>
-                </tr>
-                <tr>
-                    <td>Bed Number</td>
-                    <td><span th:text="${patient.bed}"/></td>
-                </tr>
-                <tr>
-                    <td>Relevant History</td>
-                    <td><span th:text="${patient.relevantHistory}"/></td>
-                </tr>
-                <tr>
-                    <td>Social Issues</td>
-                    <td><span th:text="${patient.socialIssues}"/></td>
-                </tr>
-                <tr>
-                    <td>Risks</td>
-                    <td><span th:text="${patient.risks}"/></td>
-                </tr>
-                <tr>
-                    <td>Recommendations</td>
-                    <td><span th:text="${patient.recommendations}"/></td>
-                </tr>
-                <tr>
-                    <td>Diagnosis</td>
-                    <td><span th:text="${patient.diagnosis}"/></td>
-                </tr>
-                <tr>
-                    <td>Handover Notes</td>
-                    <td>
-                        <div th:if="${#lists.isEmpty(handovers)}">No handovers</div>
-                        <div th:each="handover,iterStat : ${handovers}" th:text="${handover.note}"/>
-                    </td>
-                </tr>
-
+                <colgroup>
+                    <col span="1" style="width: 25%;" />
+                    <col span="1" style="width: 65%;" />
+                    <col span="1" style="width: 10%;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td><span th:text="${patient.title}"/>  <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Doctor</td>
+                        <td><span th:text="${patient.doctor.getTitle()}"/> <span th:text="${patient.doctor.getFirstName()}"/> <span th:text="${patient.doctor.getLastName()}"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>DOB</td>
+                        <td><span th:text="${patient.birthDate}"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>NHS Number</td>
+                        <td><span th:text="${patient.nHSNumber}"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Hospital Number</td>
+                        <td><span th:text="${patient.hospitalNumber}"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Ward</td>
+                        <td><span th:text="${patient.ward.getName()}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/ward}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Bed Number</td>
+                        <td><span th:text="${patient.bed}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/bed}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Relevant History</td>
+                        <td><span th:text="${patient.relevantHistory}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/relevantHistory}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Social Issues</td>
+                        <td><span th:text="${patient.socialIssues}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/socialIssues}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Risks</td>
+                        <td><span th:text="${patient.risks}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/risks}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Recommendations</td>
+                        <td><span th:text="${patient.recommendations}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/recommendations}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Diagnosis</td>
+                        <td><span th:text="${patient.diagnosis}"/></td>
+                        <td><a th:href="@{/edit/} + ${patient.hospitalNumber} + @{/diagnosis}">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>Handover Notes</td>
+                        <td>
+                            <div th:if="${#lists.isEmpty(handovers)}">No handovers</div>
+                            <div th:each="handover,iterStat : ${handovers}" th:text="${handover.note}"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
             </table>
             <form th:action="@{/pdf/patientId=} + ${patient.id}" method="get">
                 <input type="submit" value="View as PDF"/>

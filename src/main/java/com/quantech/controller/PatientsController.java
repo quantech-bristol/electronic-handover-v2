@@ -80,6 +80,24 @@ public class PatientsController extends WebMvcConfigurerAdapter {
 
     }
 
+    // Editing patient details
+    @RequestMapping(value="/edit/{hospNum}/{attr}", method=RequestMethod.GET)
+    public String editPatientSetup(@PathVariable Long hospNum, @PathVariable String attr, Model model) {
+        model.addAttribute("attribute", attr);
+        model.addAttribute("patient", patientService.getPatientByHospitalNumber(hospNum));
+        return "/Doctor/editPatient";
+    }
+    @RequestMapping(value="/edit/{hospNum}/{attr}", method=RequestMethod.POST)
+    public String editPatient(@ModelAttribute Patient patient, @PathVariable Long hospNum, @PathVariable String attr) {
+        UserCore userInfo =  (UserCore)authenticator.getAuthentication().getPrincipal();
+        // do authentication check
+
+        if      (attr.equals("recommendations")) patientService.changeRecommendations(patient.getRecommendations(), hospNum);
+        else if (attr.equals("diagnosis"))       patientService.changeDiagnosis(patient.getDiagnosis(), hospNum);
+
+        return "redirect:/patient/hospitalNumber=" + hospNum.toString();
+    }
+
     // Send to homepage - should we get rid of this?
     @GetMapping("/patient")
     public String patient() {
