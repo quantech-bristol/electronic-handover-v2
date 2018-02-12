@@ -339,6 +339,17 @@ public class PatientService {
         patientRepository.save(p);
     }
 
+    public void changeRecommendations(String rs, Long hospNum) {
+        Patient p = patientRepository.findByHospitalNumber(hospNum);
+        p.setRecommendations(rs);
+        patientRepository.save(p);
+    }
+    public void changeDiagnosis(String rs, Long hospNum) {
+        Patient p = patientRepository.findByHospitalNumber(hospNum);
+        p.setDiagnosis(rs);
+        patientRepository.save(p);
+    }
+
     /**
      * Checks the validity of a patient's fields, and rejects the result value accordingly.
      * @param result The binding result formed from the view template.

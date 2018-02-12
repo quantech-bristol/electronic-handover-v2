@@ -23,7 +23,6 @@
                     <td><label for="username">Username</label></td>
                     <td><input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Enter username"/></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span></td>
-
                 </tr>
                 <tr class="form-group">
                     <td><label for="password">Password</label></td>

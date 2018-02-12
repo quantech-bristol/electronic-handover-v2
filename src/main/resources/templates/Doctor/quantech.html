@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="fragments/header :: head (title='Overview')">
     <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -24,7 +23,21 @@
                     <div  th:each="handover,iterStat : ${pending}">
                         <input th:id="'ac-' + ${iterStat.count}" name="accordion-3" type="checkbox" />
                         <label th:for="'ac-' + ${iterStat.count}" th:class="'grid3'  + ${iterStat.count}">
-                            <table class="patient-title-table">
+                            <!--JUST NAME-->
+                            <table class="patient-title-table" id="handover-patient-title-table-name">
+                                <tr>
+                                    <td><span th:text="${handover.patient.title}"/> <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/></td>
+                                </tr>
+                            </table>
+                            <!--NAME AND BED-->
+                            <table class="patient-title-table" id="handover-patient-title-table-name-bed">
+                                <tr>
+                                    <td class="patient-title-table-bed">Bed <span th:text="${handover.patient.bed}"/></td>
+                                    <td><span th:text="${handover.patient.title}"/> <span th:text="${handover.patient.firstName}"/> <span th:text="${handover.patient.lastName}"/></td>
+                                </tr>
+                            </table>
+                            <!--NAME BED AND WARD-->
+                            <table class="patient-title-table" id="handover-patient-title-table-name-bed-ward">
                                 <tr>
                                     <td class="patient-title-table-bed">Bed <span th:text="${handover.patient.bed}"/></td>
                                     <td class="patient-title-table-ward">Ward <span th:text="${handover.patient.ward.name}"/></td>
@@ -33,18 +46,82 @@
                             </table>
                         </label>
                         <article class="ac-small agileits w3layouts">
-                            <div style="float: left;">
-                                <ul>
-                                    <li>Patient Notes: <span th:text="${handover.note}"/></li>
-                                    <li>Sending Doctor: <span th:text="${handover.originDoctor.title}"/> <span th:text="${handover.originDoctor.firstName}"/> <span th:text="${handover.originDoctor.lastName}"/></li>
-                                    <li>Relevant History: <span th:text="${handover.patient.relevantHistory}"/></li>
-                                    <li>Recommendations: <span th:text="${handover.patient.recommendations}"/></li>
-                                    <li>Risks: <span th:text="${handover.patient.risks}"/></li>
-                                    <li><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                            <table class="patient-info-table" id="handover-patient-info-table-1-col">
+                                <tr>
+                                    <td><h1>Sending Doctor</h1></td>
+                                    <td><span th:text="${handover.originDoctor.title}"/> <span th:text="${handover.originDoctor.firstName}"/> <span th:text="${handover.originDoctor.lastName}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Recommendations</h1></td>
+                                    <td><span th:text="${handover.patient.recommendations}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Risks</h1></td>
+                                    <td><span th:text="${handover.patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Relevant History</h1></td>
+                                    <td><span th:text="${handover.patient.relevantHistory}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Notes</h1></td>
+                                    <td><span th:text="${handover.note}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
                                         <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
-                                    </div></li>
-                                </ul>
-                            </div>
+                                    </div></td>
+                                </tr>
+                            </table>
+                            <table class="patient-info-table" id="handover-patient-info-table-2-cols">
+                                <tr>
+                                    <td><h1>Sending Doctor</h1></td>
+                                    <td><span th:text="${handover.originDoctor.title}"/> <span th:text="${handover.originDoctor.firstName}"/> <span th:text="${handover.originDoctor.lastName}"/></td>
+                                    <td><h1>Recommendations</h1></td>
+                                    <td><span th:text="${handover.patient.recommendations}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Relevant History</h1></td>
+                                    <td><span th:text="${handover.patient.relevantHistory}"/></td>
+                                    <td><h1>Risks</h1></td>
+                                    <td><span th:text="${handover.patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Notes</h1></td>
+                                    <td colspan="3"><span th:text="${handover.note}"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                                        <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
+                                    </div></td>
+                                </tr>
+                            </table>
+                            <table class="patient-info-table" id="handover-patient-info-table-3-cols">
+                                <tr>
+                                    <td><h1>Sending Doctor</h1></td>
+                                    <td><span th:text="${handover.originDoctor.title}"/> <span th:text="${handover.originDoctor.firstName}"/> <span th:text="${handover.originDoctor.lastName}"/></td>
+                                    <td><h1>Recommendations</h1></td>
+                                    <td><span th:text="${handover.patient.recommendations}"/></td>
+                                    <td><h1>Risks</h1></td>
+                                    <td><span th:text="${handover.patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Relevant History</h1></td>
+                                    <td colspan="5"><span th:text="${handover.patient.relevantHistory}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Notes</h1></td>
+                                    <td colspan="5"><span th:text="${handover.note}"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6"><div th:if="${doctor.id} == ${handover.recipientDoctor.id}">
+                                        <a  th:href="@{/handover/accept(id=${handover.id})}">Accept Pending Handover</a>
+                                    </div></td>
+                                </tr>
+                            </table>
+
+
+
                         </article>
                     </div>
                 </div>
@@ -61,60 +138,154 @@
                     <div  th:each="patient,iterStat : ${patients}">
                         <input th:id="'ac-2' + ${iterStat.count}" name="accordion-2" type="checkbox" />
                         <label th:for="'ac-2' + ${iterStat.count}" th:class="'grid2'  + ${iterStat.count}">
-                            <table class="patient-title-table">
+                            <!--JUST NAME-->
+                            <table class="patient-title-table" id="patient-title-table-name">
+                                <tr>
+                                    <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                                    <td><span style="font-size:1.5vw;float:right;">
+                                        <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-info-icon"><i class="fa fa-id-card"></i></a>
+                                    </span></td>
+                                </tr>
+                            </table>
+                            <!--NAME AND BED-->
+                            <table class="patient-title-table" id="patient-title-table-name-bed">
+                                <tr>
+                                    <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
+                                    <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
+                                    <td><span style="font-size:1.5vw;float:right;">
+                                        <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-info-icon"><i class="fa fa-id-card"></i></a>
+                                    </span></td>
+                                </tr>
+                            </table>
+                            <!--NAME BED AND WARD-->
+                            <table class="patient-title-table" id="patient-title-table-name-bed-ward">
                                 <tr>
                                     <td class="patient-title-table-bed">Bed <span th:text="${patient.bed}"/></td>
                                     <td class="patient-title-table-ward">Ward <span th:text="${patient.ward.name}"/></td>
                                     <td><span th:text="${patient.title}"/> <span th:text="${patient.firstName}"/> <span th:text="${patient.lastName}"/></td>
                                     <td><span style="font-size:1.5vw;float:right;">
-                                        <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-button"><i class="fa fa-id-card"></i></a>
-                                        <!--<a th:href="@{/patient/discharge(id=${patient.id})}" class="patient-button"><i class="fa fa-minus-circle" style="padding:5px;"></i></a>-->
+                                        <a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}" class="patient-info-icon"><i class="fa fa-id-card"></i></a>
                                     </span></td>
                                 </tr>
                             </table>
                         </label>
                         <article class="ac-small agileits w3layouts">
-
-                            <!--TABLE WIDE-->
-                            <table class="patient-info-table">
+                            <!--TABLE 1 COL-->
+                            <table class="patient-info-table" id="patient-info-table-1-col">
                                 <tr>
-                                    <td><span>Date of Birth change</span></td>
+                                    <td><h1>Date of Birth</h1></td>
                                     <td><span th:text="${patient.birthDate}"/></td>
                                 </tr>
                                 <tr>
-                                    <td><span>NHS Number</span></td>
+                                    <td><h1>NHS Number</h1></td>
                                     <td><span th:text="${patient.nHSNumber}"/></td>
                                 </tr>
                                 <tr>
-                                    <td><span>Hospital Number</span></td>
+                                    <td><h1>Hospital Number</h1></td>
                                     <td><span th:text="${patient.hospitalNumber}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Diagnosis</td>
+                                    <td><h1>Diagnosis</h1></td>
                                     <td><span th:text="${patient.diagnosis}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Relevant History</td>
+                                    <td><h1>Relevant History</h1></td>
                                     <td><span th:text="${patient.relevantHistory}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Recommendations</td>
+                                    <td><h1>Recommendations</h1></td>
                                     <td><span th:text="${patient.recommendations}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Risks</td>
+                                    <td><h1>Risks</h1></td>
                                     <td><span th:text="${patient.risks}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Handover notes</td>
-                                    <td colspan="2">
+                                    <td><h1>Notes</h1></td>
+                                    <td>
                                         <div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">
+                                    <td colspan="2">
                                         <div><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></div>
-                                        <div th:if="${doctor.id} == ${patient.doctor.id}" colspan="3">
+                                        <div th:if="${doctor.id} == ${patient.doctor.id}">
+                                            <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--TABLE 2 COLS-->
+                            <table class="patient-info-table" id="patient-info-table-2-cols">
+                                <tr>
+                                    <td><h1>Date of Birth</h1></td>
+                                    <td><span th:text="${patient.birthDate}"/></td>
+                                    <td><h1>NHS Number</h1></td>
+                                    <td><span th:text="${patient.nHSNumber}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Hospital Number</h1></td>
+                                    <td><span th:text="${patient.hospitalNumber}"/></td>
+                                    <td><h1>Diagnosis</h1></td>
+                                    <td><span th:text="${patient.diagnosis}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Recommendations</h1></td>
+                                    <td><span th:text="${patient.recommendations}"/></td>
+                                    <td><h1>Risks</h1></td>
+                                    <td><span th:text="${patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Relevant History</h1></td>
+                                    <td colspan="3"><span th:text="${patient.relevantHistory}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Notes</h1></td>
+                                    <td colspan="3">
+                                        <div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <div><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></div>
+                                        <div th:if="${doctor.id} == ${patient.doctor.id}">
+                                            <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--TABLE 3 COLS-->
+                            <table class="patient-info-table" id="patient-info-table-3-cols">
+                                <tr>
+                                    <td><h1>Date of Birth</h1></td>
+                                    <td><span th:text="${patient.birthDate}"/></td>
+                                    <td><h1>NHS Number</h1></td>
+                                    <td><span th:text="${patient.nHSNumber}"/></td>
+                                    <td><h1>Hospital Number</h1></td>
+                                    <td><span th:text="${patient.hospitalNumber}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Diagnosis</h1></td>
+                                    <td><span th:text="${patient.diagnosis}"/></td>
+                                    <td><h1>Recommendations</h1></td>
+                                    <td><span th:text="${patient.recommendations}"/></td>
+                                    <td><h1>Risk</h1></td>
+                                    <td><span th:text="${patient.risks}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Relevant History</h1></td>
+                                    <td colspan="5"><span th:text="${patient.relevantHistory}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><h1>Notes</h1></td>
+                                    <td colspan="5">
+                                        <div th:each="handover,iterStat : ${handovers}" th:if="${handover.patient}==${patient}" th:text="${handover.note}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <div><a th:href="@{/patient/hospitalNumber=} + ${patient.hospitalNumber}">Click For Detail View</a></div>
+                                        <div th:if="${doctor.id} == ${patient.doctor.id}">
                                             <a th:href="@{/patient/discharge(id=${patient.id})}">Discharge Patient</a>
                                         </div>
                                     </td>
@@ -130,7 +301,8 @@
         <!-- If the user currently logged in is an admin, add this box to their overview dashboard -->
         <div th:if="${#authentication.principal.isAdmin()}" class="overviewbox-wrapper">
             <div class="overviewbox">
-                <a th:href="@{/Admin}" class="overview-box-title">Admin</a>
+                <span class="overview-box-title">Admin</span>
+                <!--<a th:href="@{/Admin}" class="overview-box-title">Admin</a>-->
                 <div class="line"></div>
                 <div id="admin-box">
                     <a th:href="@{/Admin/createUser}">Create Users</a><br/>

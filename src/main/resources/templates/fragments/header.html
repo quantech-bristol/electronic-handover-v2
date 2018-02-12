@@ -21,7 +21,7 @@
           th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"
           rel="stylesheet" media="screen"/>
 
-    <link th:href="@{../css/style.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700" rel="stylesheet"/>
 
@@ -41,7 +41,8 @@
                 </td>
                 <td id="user-buttons-container">
                     <a th:if="${#authentication.principal.isDoctor()}" class="handover-button-shape" th:href="@{/createHandover}">
-                        <div class="handover-button-text">Create Handover</div>
+                        <div class="handover-button-text" id="handover-button-text">Create Handover</div>
+                        <div class="handover-button-text" id="handover-button-icon">+</div>
                     </a>
                     <a th:href="@{/MyUser}" class="header-button"><i class="fa fa-cog"></i></a>
                     <a th:href="@{/logout}" class="header-button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
