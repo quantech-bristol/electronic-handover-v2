@@ -1,30 +1,21 @@
 package com.quantech.entities.patient;
 
-import com.quantech.entities.doctor.Doctor;
+import com.quantech.entities.ward.Ward;
 import com.quantech.misc.EntityFieldHandler;
 import com.quantech.misc.Title;
-import com.quantech.entities.ward.Ward;
-import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.validation.BindingResult;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-import static com.quantech.misc.EntityFieldHandler.nullCheck;
 import static com.quantech.misc.EntityFieldHandler.putNameIntoCorrectForm;
 
 @Entity
 public class Patient {
-
     @Id
     @GeneratedValue
     private Long id;
-
-    @NotNull
-    @ManyToOne
-    private Doctor doctor;
 
     @NotNull
     private Title title;
@@ -35,69 +26,27 @@ public class Patient {
     @NotNull
     private String lastName;
 
-    // TODO: sort date format as it's currently going in wrong
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private Date birthDate;
 
     // First character needs to be lower case for this field to work, not a typo.
-    @NotNull
     @Column(unique = true)
     private Long nHSNumber;
 
-    @NotNull
     @Column(unique = true)
     private Long hospitalNumber;
 
-    @NotNull
     @ManyToOne
     private Ward ward;
 
-    @NotNull
     private String bed;
 
-    // TODO: sort date format as it's currently inputting wrong
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull
-    private Date dateOfAdmission;
-
-    @NotNull
-    @Type(type="text")
-    private String relevantHistory;
-
-    @NotNull
-    @Type(type="text")
-    private String socialIssues;
-
-    // TODO: Maybe change this to be a List of enums depending on the team the doctor belongs to.
-    @NotNull
-    @Type(type="text")
-    private String risks;
-
-    @NotNull
-    @Type(type="text")
-    private String recommendations;
-
-    @NotNull
-    @Type(type="text")
-    private String diagnosis;
-
-    @NotNull
-    private Boolean discharged;
-
     public Patient() {
-        this.discharged = false;
-        this.dateOfAdmission = new Date();
-
-        // TODO - review: this was a quick fix for a problem and I'm sure there's a better way to initialise a patient.
-        this.doctor = new Doctor();
     }
 
-    public Patient(PatientFormBackingObject ob)
-    {
-        this.doctor = ob.getDoctor();
+    public Patient(PatientFormBackingObject ob) {
         this.title = ob.getTitle();
         this.firstName = putNameIntoCorrectForm(ob.getFirstName());
         this.lastName = putNameIntoCorrectForm(ob.getLastName());
@@ -106,47 +55,6 @@ public class Patient {
         this.hospitalNumber = ob.getHospitalNumber();
         this.ward = ob.getWard();
         this.bed = ob.getBed();
-        this.dateOfAdmission =  ob.getDateOfAdmission();
-        this.relevantHistory = ob.getRelevantHistory();
-        this.socialIssues = ob.getSocialIssues();
-        this.risks = ob.getRisks();
-        this.recommendations = ob.getRecommendations();
-        this.diagnosis = ob.getDiagnosis();
-        this.discharged = ob.getDischarged();
-    }
-
-    public Patient(Doctor doctor,
-                   Title title,
-                   String firstName,
-                   String lastName,
-                   Date birthDate,
-                   Long nHSNumber,
-                   Long hospitalNumber,
-                   Ward ward,
-                   String bed,
-                   Date dateOfAdmission,
-                   String relevantHistory,
-                   String socialIssues,
-                   String risks,
-                   String recommendations,
-                   String diagnosis,
-                   Boolean discharged) {
-        this.doctor = (Doctor) nullCheck(doctor,"doctor");
-        this.title = (Title) nullCheck(title,"title");;
-        this.firstName = putNameIntoCorrectForm( (String) nullCheck(firstName,"first name") );
-        this.lastName = putNameIntoCorrectForm( (String) nullCheck(lastName,"last name") );
-        this.birthDate = birthDateValidityChecker(birthDate);
-        this.nHSNumber = NHSNumberValidityCheck(nHSNumber);
-        this.hospitalNumber = (Long) nullCheck(hospitalNumber,"hospital number");
-        this.ward = (Ward) nullCheck(ward,"ward");
-        this.bed = (String) nullCheck(bed,"bed");
-        this.dateOfAdmission =  dateOfAdmissionValidityCheck(dateOfAdmission);
-        this.relevantHistory = (String) nullCheck(relevantHistory,"relevant history");
-        this.socialIssues = (String) nullCheck(socialIssues,"social issues");
-        this.risks = (String) nullCheck(risks,"risks");
-        this.recommendations = (String) nullCheck(recommendations,"recommendations");
-        this.diagnosis = (String) nullCheck(diagnosis,"diagnosis");
-        this.discharged = discharged;
     }
 
     public Long getId() {
@@ -158,59 +66,74 @@ public class Patient {
         this.id = id;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+    /**
+     * Title getter.
+     *
+     * @return The title of the patient.
+     */
     public Title getTitle() {
         return title;
     }
 
     /**
      * Title setter
+     *
      * @param title the title to set.
      */
     public void setTitle(Title title) {
         this.title = title;
     }
 
+    /**
+     * First name getter.
+     *
+     * @return The patient's first name.
+     */
     public String getFirstName() {
         return firstName;
     }
 
     /**
      * Sets the first name of the patient, formatted in the correct way.
+     *
      * @param firstName The first name to use.
-     * @throws NullPointerException If the given first name is null
-     * @throws IllegalArgumentException If the first name takes the form " *".
      */
-    public void setFirstName(String firstName) throws NullPointerException, IllegalArgumentException {
-        this.firstName = (firstName == null || firstName.equals("") ) ? null : putNameIntoCorrectForm(firstName);
+    public void setFirstName(String firstName) {
+        this.firstName = (firstName == null || firstName.equals("")) ? null : putNameIntoCorrectForm(firstName);
     }
 
+    /**
+     * Last name getter.
+     *
+     * @return the patient's last name.
+     */
     public String getLastName() {
         return lastName;
     }
 
     /**
      * Sets the last name of the patient, formatted in the correct way.
+     *
      * @param lastName The first name to use.
-     * @throws NullPointerException If the given first name is null
+     * @throws NullPointerException     If the given first name is null
      * @throws IllegalArgumentException If the first name takes the form " *".
      */
     public void setLastName(String lastName) throws NullPointerException, IllegalArgumentException {
         this.lastName = (lastName == null || lastName.equals("")) ? null : putNameIntoCorrectForm(lastName);
     }
 
+    /**
+     * Date of birth getter.
+     *
+     * @return The patient's date of birth.
+     */
     public Date getBirthDate() {
         return birthDate;
     }
 
     /**
      * Setter for DOB
+     *
      * @param birthDate Date of birth.
      */
     public void setBirthDate(Date birthDate) {
@@ -219,27 +142,33 @@ public class Patient {
 
     // Use this to check if birth date is valid before setting an attribute with it.
     private Date birthDateValidityChecker(Date birthDate) {
-        EntityFieldHandler.nullCheck(birthDate,"date of birth");
-        if (this.dateOfAdmission != null && dateOfAdmission.before(birthDate))
-            throw new IllegalArgumentException("Error: patient's date of admission cannot be before birth date");
+        EntityFieldHandler.nullCheck(birthDate, "date of birth");
+        if ((new Date()).before(birthDate))
+            throw new IllegalArgumentException("Error: patient's date of birth cannot be in the future.");
         return birthDate;
     }
 
+    /**
+     * NHS number getter.
+     *
+     * @return The patient's NHS number if it is known, null otherwise.
+     */
     public Long getNHSNumber() {
         return nHSNumber;
     }
 
     /**
      * Sets the NHS number of the patient.
+     *
      * @param NHSNumber The NHS number to provide the patient.
      */
-    public void setNHSNumber (Long NHSNumber) throws NullPointerException, IllegalArgumentException {
+    public void setNHSNumber(Long NHSNumber) throws NullPointerException, IllegalArgumentException {
         this.nHSNumber = NHSNumber;
     }
 
     // Used to check that an NHS number is valid before setting an attribute to be equal to it.
     private Long NHSNumberValidityCheck(Long NHSNumber) {
-        EntityFieldHandler.nullCheck(NHSNumber,"NHS number");
+        EntityFieldHandler.nullCheck(NHSNumber, "NHS number");
 
         int digits = NHSNumber.toString().length();
 
@@ -247,14 +176,14 @@ public class Patient {
             throw new IllegalArgumentException("Error: NHS number has too many digits.");
 
         // Check that the checksum is correct.
-        if ( !checksumCorrect(NHSNumber) )
+        if (!checksumCorrect(NHSNumber))
             throw new IllegalArgumentException("Error: NHS number is not valid (checksum does not match)");
 
         return NHSNumber;
     }
 
     // Checks that the checksum of the NHS number is correct.
-    public int checkDigit(Long n) {
+    private int checkDigit(Long n) {
         String digits = n.toString();
 
         if (digits.length() < 10) {
@@ -268,10 +197,11 @@ public class Patient {
         // Applying Modulus 11 algorithm:
         // Source: http://www.datadictionary.nhs.uk/data_dictionary/attributes/n/nhs/nhs_number_de.asp?shownav=1
         // 1- Apply factors:
-        int sum = 0; int factor = 10;
+        int sum = 0;
+        int factor = 10;
         for (int i = 0; i < 9; i++) {
             int dig = Character.getNumericValue(digits.charAt(i));
-            sum += dig*factor;
+            sum += dig * factor;
             factor--;
         }
         // 2- Find the remainder of dividing by 11.
@@ -290,13 +220,14 @@ public class Patient {
     // Checks if the check digit generated from an NHS number matches the checksum provided in the number.
     private boolean checksumCorrect(Long n) {
         String digits = n.toString();
-        int checkSum = Character.getNumericValue(digits.charAt(digits.length()-1));
+        int checkSum = Character.getNumericValue(digits.charAt(digits.length() - 1));
         int checkDigit = checkDigit(n);
         return (checkSum == checkDigit && checkDigit != -1);
     }
 
     /**
      * Returns if the currently set NHS number has valid length.
+     *
      * @return true if the currently set NHS number has valid length (10 digits).
      */
     boolean NHSNumberCorrectLength() {
@@ -306,101 +237,61 @@ public class Patient {
 
     /**
      * Checks that the set NHS number is valid, on the basis of the checksum.
+     *
      * @return true if the NHS number is valid.
      */
     boolean NHSNumberIsValid() {
         return checksumCorrect(this.nHSNumber);
     }
 
+    /**
+     * Hospital number getter.
+     *
+     * @return The patient's hospital number if it exists, null otherwise.
+     */
     public Long getHospitalNumber() {
         return hospitalNumber;
     }
 
+    /**
+     * Hospital number setter.
+     *
+     * @param hospitalNumber The hospital number to set the patient up with.
+     */
     public void setHospitalNumber(Long hospitalNumber) {
         this.hospitalNumber = hospitalNumber;
     }
 
+    /**
+     * Ward getter.
+     *
+     * @return The ward that the patient is currently staying in; null if they are not currently in a ward.
+     */
     public Ward getWard() {
         return ward;
     }
 
+    /**
+     * Ward setter.
+     * @param ward The ward to currently assign the patient to.
+     */
     public void setWard(Ward ward) {
         this.ward = ward;
     }
 
+    /**
+     * Bed getter
+     * @return The bed that the patient is currently staying in; null otherwise.
+     */
     public String getBed() {
         return bed;
     }
 
+    /**
+     * Bed setter.
+     * @param bed The bed to assign the patient to.
+     */
     public void setBed(String bed) {
         this.bed = bed;
-    }
-
-    public Date getDateOfAdmission() {
-        return dateOfAdmission;
-    }
-
-    /**
-     * Setter for DOA.
-     * @param dateOfAdmission The patient's date of admission.
-     * @throws NullPointerException if the value is null.
-     * @throws IllegalArgumentException if the date of admission is before the patient's date of birth.
-     */
-    public void setDateOfAdmission(Date dateOfAdmission) throws NullPointerException, IllegalArgumentException {
-        this.dateOfAdmission = dateOfAdmissionValidityCheck(dateOfAdmission);
-    }
-
-    private Date dateOfAdmissionValidityCheck(Date dateOfAdmission) {
-        if (birthDate != null && birthDate.after(dateOfAdmission))
-            throw new IllegalArgumentException("Error: date of admission cannot be after patient's date of birth.");
-        return dateOfAdmission;
-    }
-
-    public String getRelevantHistory() {
-        return relevantHistory;
-    }
-
-    public void setRelevantHistory(String relevantHistory) {
-        this.relevantHistory = relevantHistory;
-    }
-
-    public String getSocialIssues() {
-        return socialIssues;
-    }
-
-    public void setSocialIssues(String socialIssues) {
-        this.socialIssues = socialIssues;
-    }
-
-    public String getRisks() {
-        return risks;
-    }
-
-    public void setRisks(String risks) {
-        this.risks = risks;
-    }
-
-    public String getRecommendations() {
-        return recommendations;
-    }
-
-    public void setRecommendations(String recommendations) {
-        this.recommendations = recommendations;
-    }
-
-    public String getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
-    }
-
-    public Boolean getDischarged() {
-        return discharged;
-    }
-
-    public void setDischarged(Boolean discharged) {
-        this.discharged = discharged;
     }
 }
