@@ -1,12 +1,15 @@
 BACK-END TODO
 - (NUHA) Refactor Patient entity.
-- (NUHA) Refactor Patient service.
+- (NUHA) Make a patient service interface.
+- Refactor Patient service.
 - (NUHA) Refactor Doctor entity.
-- (NUHA) Refactor Doctor service.
-****UserCore, Team and Ward appear to be okay, no refactoring needed****
+- (NUHA) Make a doctor service interface.
+- Refactor Doctor service.
+- ****UserCore, Team and Ward appear to be okay, no refactoring needed****
 - (NUHA) Create new job entity.
 - Create new job context entity.
 - Create new Jobs service (with handover functionality included).
+- ****After the above is done, reshuffle package structure****
 - Implement HTTPS
 - Hash passwords
 - Ability to view only by patients in a specific ward
