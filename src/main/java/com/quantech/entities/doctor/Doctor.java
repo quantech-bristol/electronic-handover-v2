@@ -1,176 +1,128 @@
 package com.quantech.entities.doctor;
 
-import com.quantech.Configurations.SecurityRoles;
 import com.quantech.entities.team.Team;
 import com.quantech.entities.user.UserCore;
 import com.quantech.misc.Title;
-import com.quantech.entities.patient.Patient;
-import com.quantech.entities.handover.Handover;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Entity
 public class Doctor {
-
     @Id
     private Long id;
-
 
     @OneToOne(fetch = FetchType.LAZY) // Matches ID with UserCore
     @MapsId
     private UserCore user;
 
-
     @OneToMany
     @NotNull
     private List<Team> teams;
 
-    @OneToMany(mappedBy = "doctor")
-    @NotNull
-    private List<Patient> patients;
-
-    @Temporal(TemporalType.DATE)
-    private java.util.Calendar lastRenewed;
-
-    @OneToMany(mappedBy = "originDoctor")
-    @NotNull
-    private List<Handover> sentHandovers;
-
-    @OneToMany(mappedBy = "recipientDoctor")
-    @NotNull
-    private List<Handover> receivedHandovers;
-
     public Doctor() {
         this.teams = new ArrayList<>();
-        this.patients = new ArrayList<>();
-        this.lastRenewed = java.util.Calendar.getInstance();
-        this.sentHandovers = new ArrayList<>();
-        this.receivedHandovers = new ArrayList<>();
     }
 
     public Doctor(UserCore user) {
         this.user = user;
         this.teams = new ArrayList<>();
-        this.patients = new ArrayList<>();
-        this.lastRenewed = java.util.Calendar.getInstance();
-        this.sentHandovers = new ArrayList<>();
-        this.receivedHandovers = new ArrayList<>();
     }
 
-    public Doctor(Title title, String firstName, String lastName, String email, List<Team> teams,
-                  List<Patient> patients, Calendar lastRenewed, List<Handover> sentHandovers,
-                  List<Handover> receivedHandovers) {
-        user.setTitle(title);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        this.teams = teams;
-        this.patients = patients;
-        this.lastRenewed = lastRenewed;
-        this.sentHandovers = sentHandovers;
-        this.receivedHandovers = receivedHandovers;
-    }
-
-    public void addPatient(Patient patient) throws NullPointerException {
-        nullCheck(patient, "patient");
-        this.patients.add(patient);
-    }
-
-    public void removePatient(Patient patient) throws NullPointerException {
-        nullCheck(patient, "patient");
-        while (this.patients.contains(patient))
-            this.patients.remove(patient);
-    }
-
+    /**
+     * ID getter.
+     * @return The doctor's, i.e. corresponding UserCore's, ID.
+     */
     public Long getId() {
         return user.getId();
     }
 
+    /**
+     * Title getter.
+     * @return The doctor's title.
+     */
     public Title getTitle() {
         return user.getTitle();
     }
 
-    public void setTitle(Title title) throws NullPointerException {
-        nullCheck(title,"title");
+    /**
+     * Title setter.
+     * @param title The doctor's title.
+     */
+    public void setTitle(Title title) {
        user.setTitle(title);
     }
 
+    /**
+     * First name getter.
+     * @return The doctor's first name.
+     */
     public String getFirstName() {
         return user.getFirstName();
     }
 
-    public void setFirstName(String firstName) throws NullPointerException{
-        nullCheck(firstName, "first name");
+    /**
+     * First name setter.
+     * @param firstName The doctor's first name.
+     */
+    public void setFirstName(String firstName) {
         user.setFirstName(firstName);;
     }
 
+    /**
+     * Last name getter.
+     * @return The doctor's last name.
+     */
     public String getLastName() {
        return user.getLastName();
     }
 
-    public void setLastName(String lastName) throws NullPointerException {
-        nullCheck(lastName,"last name");
+    /**
+     * Last name setter.
+     * @param lastName The doctor's last name.
+     */
+    public void setLastName(String lastName) {
         user.setLastName(lastName);
     }
 
+    /**
+     * Email getter.
+     * @return The doctor's email.
+     */
     public String getEmail() {
        return user.getEmail();
     }
 
-    public void setEmail(String email) throws NullPointerException {
-        nullCheck(email,"email");
+    /**
+     * Email setter.
+     * @param email The doctor's email.
+     */
+    public void setEmail(String email) {
         user.setEmail(email);
     }
 
-    public List<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(List<Patient> patients) throws NullPointerException {
-        nullCheck(patients,"patients list");
-        this.patients = patients;
-    }
-
-    public Calendar getLastRenewed() {
-        return lastRenewed;
-    }
-
-    public void setLastRenewed(Calendar lastRenewed) throws NullPointerException {
-        nullCheck(lastRenewed,"date last renewed");
-        this.lastRenewed = lastRenewed;
-    }
-
+    /**
+     * Teams getter.
+     * @return The doctor's teams.
+     */
     public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Team> teams) throws NullPointerException {
-        nullCheck(teams,"teams list");
+    /**
+     * Teams setter.
+     * @param teams The new list of teams.
+     */
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
-    public List<Handover> getSentHandovers() {
-        return sentHandovers;
-    }
-
-    // Should this be here? Maybe "add" and "flush" methods are better?
-    public void setSentHandovers(List<Handover> sentHandovers) {
-        this.sentHandovers = sentHandovers;
-    }
-
-    public List<Handover> getReceivedHandovers() {
-        return receivedHandovers;
-    }
-
-    // Should this be here? Maybe "add" and "flush" methods are better?
-    public void setReceivedHandovers(List<Handover> receivedHandovers) {
-        this.receivedHandovers = receivedHandovers;
-    }
-
+    /**
+     * UserCore getter.
+     * @return The doctor's corresponding UserCore object.
+     */
     public UserCore getUser()
     {
         return user;
@@ -179,21 +131,9 @@ public class Doctor {
     /**
      * Set the user that corresponds to the doctor object.
      * @param user The user to set
-     * @throws NullPointerException If user is null.
-     * @throws IllegalArgumentException If the user does not have Doctor privileges.
      */
-    public void setUser(UserCore user) throws NullPointerException, IllegalArgumentException
+    public void setUser(UserCore user)
     {
-        nullCheck(user,"user");
-        if (!user.getAuthorities().contains(SecurityRoles.Doctor))
-            throw new IllegalArgumentException("Error: user assigned to doctor has not got Doctor privileges");
         this.user = user;
-    }
-
-    // Throws NullPointerException with custom error message.
-    private void nullCheck(Object obj, String name) throws NullPointerException {
-        if (obj == null)
-            throw new NullPointerException("Error: " + name + " in doctor cannot be assigned null value.");
-
     }
 }

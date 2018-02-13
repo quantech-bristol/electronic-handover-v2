@@ -14,7 +14,6 @@ public interface DoctorRepository extends CrudRepository<Doctor,Long> {
 
     public List<Doctor> findByUser_FirstNameAndUser_LastName(String firstName, String lastName);
 
-
     public Doctor findByUser_email(String email);
 
     public void deleteByUser_id(long id);
