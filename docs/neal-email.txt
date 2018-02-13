@@ -1,0 +1,47 @@
+QUESTIONS
+
+1. Can you have multiple jobs being handed over for the same patient?
+2. How do teams of doctors work in a hospital? Are they based around departments, wards etc.
+3. What categories of job are there? Bloods etc
+4. How do current systems handle doctors having the same full name?
+5. If we're going to have a predefined set of risks, what risks should we include? We'll add the ability for the Admin users to add new risks
+6. At what point is a handover marked as completed? When the doctor prints them out, accepts them or when they actually complete the physical job?
+7. How regularly would you expect the user to interact with the system? i.e how often would you print out an entire new sent of handovers, only at the start of your shift etc
+
+ANSWERS
+
+1. Yes - So I have tried to clarify in the column of the left side of the data entry. 1-4 provided patient identifiable and clinical details. 5 then allocates i) Job details ii) Job day allocation iii) Job category allocation
+
+2. Unfortunately another significant challenge and the reason why I felt creating administrator groups to create wards and users. My experience is also only limited to medicine (i.e. not surgery), but generally the flexibility we are provided should cover for these other specialities.
+
+To directly answer your question, I believe the answer is based on the size of the hospital which I will summarise below:
+
+General doctor teams: Department day doctors 9-5 mon-fri, will carry out daily patient reviews and move patient progress forward. Supporting this team doctors will also work 5-9 twilight shifts, 9pm-9am, night shifts and weekend shifts, these are the on-call doctors.  
+
+Small hospital (also known as district general hospital): Typically here each department/speciality is given 1 ward.  Therefore let us take a gastroenterology hazelton ward; respiratory avening ward; geriatrics woodmancote ward; endocrinology woodmancote ward; geriatrics ryeworth ward.
+-Here you can see that certain doctors are based around wards
+-There are also certain wards that have 2 speciality teams
+-And certain specialities are so large that they have 2 teams for 2 wards
+
+Large hospital (university hospitals). Often each ward has more than 1 team and even more than 1 speciality.  Here let us take just a few wards; 7a has two teams of stroke and neurology (but this same neurology team will cover 7a, 6b and 28a). 8a has three teams of gastroenterology, infectious disease and haematology. 9b has two teams of geriatrics. In this above situation there is a neurology and medical on-call teams, so that neurology and stroke would not handover to medicine and none of the others mentioned would handover to medicine.
+
+For initial purposes and testing we can consider that we are developing for a small hospital, but with the appreciation for the need of scalability
+
+3. I would start very simple as we can always add in more if required. So let us start with Bloods, Review and Other.
+
+4. Often systems will allocate a unique user identifier. This could be something like nbm3561. But I would probably recommend that we use their email address (either an nhs.net or nhs.uk account), which have already been pre-allocated.
+
+5. I will probably have to identify this information in a focus group once we have a version that can be tested. Currently I would create risk groups for Sepsis (S), Acute Kidney Injury (AKI), Congestive cardiac failure (CCF), Trauma (T), Perioperative (Op). Until we can generate an effective list I would stick with these and rather than symbols each which would have to be identifiable from the next I think we should just use the letters in the brackets as space holders.
+
+6. Interesting question. Handover is defined as the transfer of responsibilities and care, so it can be argued that it is not complete until you have finished your shift. But for our purposes I think we should have phases of handover:
+-A handover is completed from the sending doctor once it is received by on-call doctor; this will comprise X patients and several jobs per patient
+-Printing a list does not impact on any aspect of the handover, it simply enables the doctor another means of carrying the handover data in the absence of mobile technology
+-A job is completed once it is marked as such by the on-call doctor and I think it should be left to their judgement
+
+7. I think this will depend on the advent of technology, i.e. more tablets = more interaction. But as our basis we should once again just go very simply. Departmental day team doctors will mainly interact with the system at 4-5pm at the end of each day, with significant use on a friday to prepare for the weekend. I think on-call doctors will interact with the system predominately at the start of their shift - this will be to filter the lists into a format that they would find the most effective for them and transfer patients that perhaps overnight have been moved from the ward they are covering to another persons team. I would then expect them to use a printed copy throughout the majority of the day and then update the list where possible in the mid-day. Finally coming towards the end of the shift I would expect the next significant aspect of interaction as the day on-call doctors handover to the night teams. If mid-week the twilight on-call would handover everything of relevance and exclude non important jobs as the day team will be arriving the next day and they will no longer be on-call. If weekend then they would handover everything of importance for the night doctors, but hold onto handover that they would then pick up for themselves on the sunday.
+
+8. One key aspect that I forgot throughout all of this which is actually a very high priority is analytics! As you can see handover is incredibly complicated, but the problem is that it is impossible to monitor. If however data can be gathered so that for each weekend shift we can look at how many jobs were generated. Which wards were generating the most number of jobs. What type of jobs were they generating. We could then address this problem from occurring. For example a cardiology ward has patients whose hearts are failing to pump the blood around the body, they may therefore request for a fluid review. A fluid review is where a doctor comes and examines the patient to determine very simply if they are over, under or just right with their hydration and either given more intravenous fluids or drugs to make them dry. On its own it is a small job but when you are given a ward full that takes up the whole day and is impractical. A system I have heard of use previously is google firebase, could we implement something that would offer analytics? (nb this is why in risks being able to look at a glance if a patient has congestive cardiac failure would mean you would think twice before prescribing our general intravenous fluid regime because you may overload them)
+
+Once again some very detailed points. Throughout this process I have been trying to include flexbility to cover for all scaleable situations, is it easier to work in this fashion? Or would it be better to have a very simplistic hospital model design and then to add scaleability aftewards? Please let me 
+
+The dates you have suggested sound fine!
