@@ -157,8 +157,7 @@ public class PatientService {
      *                                     - social issues,
      *                                     - relevant history
      *                               has not been set, that is, is null.
-     * @throws IllegalArgumentException If there's already a patient in the same bed of the given ward.
-     * // TODO: implement this check.
+     * @throws IllegalArgumentException Other errors exist //TODO
      */
     public void savePatient(Patient patient) throws NullPointerException {
         List<String> fields = Arrays.asList("doctor",
@@ -381,11 +380,11 @@ public class PatientService {
         if (patient.getBirthDate() == null)
             result.rejectValue("birthDate","patient.birthDate","Please set patient's date of birth.");
         else if (patient.getBirthDate().after(patient.getDateOfAdmission()))
-            result.rejectValue("birthDate","patient.birthDate","Patient's date of birth cannot be in the future.");
+            result.rejectValue("birthDate","patient.birthDate","com.quantech.refactoring.Patient's date of birth cannot be in the future.");
         // if readmitting a patient their birthday has to be consistent
         if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null) {
             if (!patient.getBirthDate().equals(patientRepository.findByNHSNumber(patient.getNHSNumber()).getBirthDate())) {
-                result.rejectValue("birthDate","patient.birthDate","Patient birthdate does not match data found in system");
+                result.rejectValue("birthDate","patient.birthDate","com.quantech.refactoring.Patient birthdate does not match data found in system");
             }
         }
 
@@ -403,13 +402,13 @@ public class PatientService {
         // 3. Check that the NHS number is unique / patient is currently in hospital.
         else if (patientRepository.findByNHSNumber(patient.getNHSNumber()) != null
                 && patientRepository.findByNHSNumber(patient.getNHSNumber()).getDischarged().equals(false))
-            result.rejectValue("NHSNumber","nhsnumberunique.patient", "Patient with given NHS number already exists.");
+            result.rejectValue("NHSNumber","nhsnumberunique.patient", "com.quantech.refactoring.Patient with given NHS number already exists.");
 
         // Check provided hospital number.
         if (patient.getHospitalNumber() == null)
             result.rejectValue("hospitalNumber","patient.hospitalNumber","Please set a valid hospital number.");
         else if (patientRepository.findByHospitalNumber(patient.getHospitalNumber()) != null)
-            result.rejectValue("hospitalNumber","hospitalNumber.patient","Patient with given hospital number already exists.");
+            result.rejectValue("hospitalNumber","hospitalNumber.patient","com.quantech.refactoring.Patient with given hospital number already exists.");
 
         // Check wards and beds.
         if (patient.getWard() == null)

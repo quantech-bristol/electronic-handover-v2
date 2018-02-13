@@ -48,26 +48,4 @@ public class WardService {
         wardRepository.delete(id);
     }
 
-    /**
-     * States whether a given ward is empty or not.
-     * @param ward The input ward.
-     * @return True if the ward is currently not empty, false otherwise.
-     */
-    private boolean isWardNonempty(Ward ward) {
-        Integer c = ward.getCapacity();
-        if (c > 0) return true;
-        return false;
-    }
-
-    /**
-     * Compiles a list of wards that are not currently empty.
-     * @return A list of wards that are not currently empty.
-     */
-    public List<Ward> getAllNonemptyWards() {
-        List<Ward> wards = new ArrayList<>();
-        wardRepository.findAll().forEach(wards::add);
-        return wards.stream()
-                    .filter(w -> isWardNonempty(w))
-                    .collect(Collectors.toList());
-    }
 }

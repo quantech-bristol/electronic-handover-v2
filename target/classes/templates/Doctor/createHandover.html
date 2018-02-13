@@ -19,9 +19,9 @@
             <form action="#" th:action="@{/handover}" th:object="${handover}" method="post" class="form-inline">
                 <input type="hidden" th:field="${handover.originDoctor}" th:value="${currentDr.id}" id="originDoctor" name="originDoctor"/>
                 <tr class="form-group">
-                    <td><label for="patient">Step 1: Patient</label></td>
+                    <td><label for="patient">Step 1: com.quantech.refactoring.Patient</label></td>
                     <td><select id="patient" class="form-control" th:field="${handover.patient}">
-                        <!-- option value="default">Select a Patient</option -->
+                        <!-- option value="default">Select a com.quantech.refactoring.Patient</option -->
                         <option th:each="patient: ${patients}" th:value="${patient.id}" th:text="${patient.firstName}+' '+${patient.lastName}"></option>
                     </select></td>
                     <td> <span class="error" th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></span></td>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr class="form-group">
                     <td><label for="patientNote">Step 3: Notes</label></td>
-                    <td><input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter Patient Notes"/></td>
+                    <td><input type="text" th:field="*{note}" class="form-control" id="patientNote" placeholder="Enter com.quantech.refactoring.Patient Notes"/></td>
                 </tr>
                 <tr><td><button type="submit" class="btn btn-primary">Submit</button></td><td></td></tr>
             </form>

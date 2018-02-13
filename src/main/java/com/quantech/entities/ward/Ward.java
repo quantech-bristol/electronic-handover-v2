@@ -20,59 +20,29 @@ public class Ward {
     @NotNull
     private String name;
 
-    @NotNull
-    private Integer capacity;
-
-    @NotNull
-    private String department;
-
-    @NotNull
-    @OneToMany(mappedBy = "ward")
-    private List<Patient> patients;
-
     public Ward() {
-        this.capacity = 0;
-        this.department = "Undefined";
-        this.patients = new ArrayList<>();
+        this.name = "Undefined";
     }
 
-    public Ward(String name, Integer capacity, String department) {
-        this.name = name;
-        this.capacity = capacity;
-        this.department = department;
-        this.patients = new ArrayList<>();
-    }
-
-    public Ward(String name, Integer capacity, String department, List<Patient> patients) {
-        this.name = name;
-        this.capacity = capacity;
-        this.department = department;
-        this.patients = patients;
-    }
-
+    /**
+     * ID getter.
+     * @return The id associated with a given ward.
+     */
     public Long getId() { return id;}
 
+    /**
+     * Name getter.
+     * @return The name associated with a given ward.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Name setter.
+     * @param name The name to set the name field.
+     */
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 }

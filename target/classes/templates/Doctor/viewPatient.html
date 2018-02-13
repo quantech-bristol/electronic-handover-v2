@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments/header :: head (title='Patient')">
+<head th:include="fragments/header :: head (title='com.quantech.refactoring.Patient')">
 </head>
 
 <body>
@@ -10,7 +10,7 @@
 <div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
 <div id="mainwindow" class="mainwindow sidebar-mainwindow">
     <div id="topbar" class="topbar topbar-open heading">
-        View Patient
+        View com.quantech.refactoring.Patient
     </div>
     <div id="bodywrap">
             <a th:href="@{/patient/all}">View All Patients</a>

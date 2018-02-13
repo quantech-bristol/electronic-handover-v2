@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments/header :: head (title='Add Patient')">
+<head th:include="fragments/header :: head (title='Add com.quantech.refactoring.Patient')">
 </head>
 
 <body>
@@ -10,10 +10,10 @@
 <div th:replace="fragments/layout :: sidebarstartopen">&nbsp;</div>
 <div id="mainwindow" class="mainwindow sidebar-mainwindow">
     <div id="topbar" class="topbar topbar-open heading">
-        Add Patient
+        Add com.quantech.refactoring.Patient
     </div>
     <div id="bodywrap">
-        <h1 style="margin:0;">New Patient</h1>
+        <h1 style="margin:0;">New com.quantech.refactoring.Patient</h1>
         <table class="input-form">
         <form action="#" th:action="@{/patient}" th:object="${patient}" method="post" class="form-inline">
             <tr class="form-group" >

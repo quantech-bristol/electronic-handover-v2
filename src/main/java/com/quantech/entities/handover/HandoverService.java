@@ -113,7 +113,7 @@ public class HandoverService {
         if (handover.getPatient() == null)
             result.rejectValue("patient","handover.patient","Please select a patient to hand over.");
         if (!getAllActiveForPatient(handover.getPatient()).isEmpty())
-            result.rejectValue("patient","handover.patient","Patient is already part of an active handover.");
+            result.rejectValue("patient","handover.patient","com.quantech.refactoring.Patient is already part of an active handover.");
         if (handover.getRecipientDoctor() == null)
             result.rejectValue("recipientDoctor","handover.recipientDoctor","Please select a professional to send the handover to.");
     }
