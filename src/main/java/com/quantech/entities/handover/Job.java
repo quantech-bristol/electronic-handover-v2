@@ -34,7 +34,7 @@ public class Job {
 
     @NotNull
     @ManyToOne
-    private Doctor doctor;
+    private Doctor currentDoctor;
 
     @NotNull
     private Boolean inTransit;
@@ -108,20 +108,21 @@ public class Job {
     }
 
     /**
-     * Doctor getter.
+     * Current doctor getter.
      * @return Doctor currently responsible for the job.
      */
-    public Doctor getDoctor() {
-        return doctor;
+    public Doctor getCurrentDoctor() {
+        return this.currentDoctor;
     }
 
     /**
      * Doctor setter.
      * @param doctor
      */
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setCurrentDoctor(Doctor doctor) {
+        this.currentDoctor = doctor;
     }
+
 
     /**
      * In transit getter.

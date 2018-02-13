@@ -1,7 +1,7 @@
-package com.quantech.entities.handover;
+package com.quantech.oldEntities.handover;
 
-import com.quantech.entities.doctor.Doctor;
-import com.quantech.entities.patient.Patient;
+import com.quantech.oldEntities.doctor.Doctor;
+import com.quantech.oldEntities.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
