@@ -3,6 +3,7 @@ BACK-END TODO
 - (NUHA) Refactor Patient service.
 - (NUHA) Refactor Doctor entity.
 - (NUHA) Refactor Doctor service.
+****UserCore, Team and Ward appear to be okay, no refactoring needed****
 - Create new job entity.
 - Create new job context entity.
 - Create new Jobs service (with handover functionality included).
