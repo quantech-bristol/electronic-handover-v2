@@ -1,4 +1,11 @@
 BACK-END TODO
+- (NUHA) Refactor Patient entity.
+- (NUHA) Refactor Patient service.
+- (NUHA) Refactor Doctor entity.
+- (NUHA) Refactor Doctor service.
+- Create new job entity.
+- Create new job context entity.
+- Create new Jobs service (with handover functionality included).
 - Implement HTTPS
 - Hash passwords
 - Risks become predefined database containing id, name and severity
