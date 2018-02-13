@@ -1,8 +1,8 @@
 UI TODO
 - Turn patient/handover details into a table/excel format instead of accordion
 - Risks a checklist instead of text input
-- Remove sidebar and put links into header/top bar
-- Add the quantech logo somewhere
+- (TILLY) Remove sidebar and put links into header/top bar
+- (TILLY) Add the quantech logo somewhere - will add to header
 - Generic TODO list
 - Pop ups to confirm discharge/removal of a patient
 - Display identifying data across top - name, dob, nhs/hospital number
