@@ -20,86 +20,69 @@ public interface JobsService {
     public Handover getJob(Long id);
 
     /**
-     * Gets a list of all handovers sent by a specific doctor.
-     * @param doctor The doctor from which the handover was sent.
-     * @return A list of handovers that the input doctor has sent.
+     * Finds a list of all jobs that are currently the responsibility of a certain doctor.
+     * @param doctor The doctor to which the job was sent.
+     * @return A list of jobs that the doctor is responsible for.
      */
-    public List<Handover> getAllFromDoctor(Doctor doctor) {
-        List<Handover> handovers = handoverRepository.findByOriginDoctor(doctor);
-        List<Handover> pendingHandovers = new ArrayList<>();
-        for(Handover handover:handovers){
-            if(handover.getAccepted() == false) pendingHandovers.add(handover);
-        }
-        return pendingHandovers;
-    }
+    public List<Handover> getAllToDoctor(Doctor doctor);
 
     /**
-     * Finds a list of all handovers that have been sent to a specific doctor that haven't been accepted.
-     * @param doctor The doctor to which the handover was sent.
-     * @return A list of handovers with the input doctor as the recipient.
+     * Returns a list of jobs that still have not been accepted by their recipient doctors.
+     * @return A list of pending jobs.
      */
-    public List<Handover> getAllToDoctor(Doctor doctor) {
-        List<Handover> handovers = handoverRepository.findByRecipientDoctor(doctor);
-        List<Handover> pendingHandovers = new ArrayList<>();
-        for(Handover handover:handovers){
-            if(handover.getAccepted() == false) pendingHandovers.add(handover);
-        }
-        return pendingHandovers;
-    }
+    public List<Job> getAllPending();
 
     /**
-     * Returns a list of handovers that still have not been accepted by their recipient doctors.
-     * @return A list of pending handovers.
+     * Finds a list of jobs that concern a specific patient.
+     * @param patient The patient for which the jobs concern.
+     * @return A list of jobs that involve the input patient.
      */
-    public List<Handover> getAllPending() {
-        return handoverRepository.findByAccepted(Boolean.FALSE);
-    }
+    public List<Job> getAllForPatient(Patient patient);
 
     /**
-     * Finds a list of handovers that concern a specific patient.
-     * @param patient The patient for which the handovers concern.
-     * @return A list of handovers that involve the input patient.
+     * Finds a list of jobs that concern a specific patient that are incomplete.
+     * @param patient The patient for which the jobs concern.
+     * @return A list of incomplete jobs that involve the input patient.
      */
-    public List<Handover> getAllForPatient(Patient patient) {
-        return handoverRepository.findByPatient(patient);
-    }
+    public List<Job> getAllUncompletedForPatient(Patient patient);
 
     /**
-     * Finds a list of handovers that concern a specific patient that are active.
-     * @param patient The patient for which the handovers concern.
-     * @return A list of active handovers that involve the input patient.
+     * Finds a list of jobs that concern a specific patient that are complete.
+     * @param patient The patient for which the jobs concern.
+     * @return A list of complete jobs that involve the input patient.
      */
-    public List<Handover> getAllActiveForPatient(Patient patient) {
-        List<Handover> handovers = handoverRepository.findByPatient(patient);
-        List<Handover> activeHandovers = new ArrayList<>();
-        for(Handover handover:handovers){
-            if(handover.getAccepted() == false) activeHandovers.add(handover);
-        }
-        return activeHandovers;
-    }
-    /**
-     * Saves the given handover into the repository.
-     * @param handover The handover to be saved.
-     */
-    public void saveHandover(Handover handover) { handoverRepository.save(handover); }
+    public List<Job> getAllCompletedForPatient(Patient patient);
 
     /**
-     * Deletes a given handover from the repository.
-     * @param id The id of the handover for which should be deleted.
+     * Saves the given job into the repository.
+     * @param job The handover to be saved.
      */
-    public void deleteHandover(Long id) { handoverRepository.delete(id); }
+    public void saveJob(Job job);
+
+    /**
+     * Send a handover using a given job.
+     * @param job The job to send.
+     * @param doctor The doctor to handover to.
+     */
+    public void handoverJob(Job job, Doctor doctor);
+
+    /**
+     * Send a handover using a given iterable of jobs.
+     * @param job The jobs to send.
+     * @param doctor The doctor to handover to.
+     */
+    public void handoverJob(Iterable<Job> job, Doctor doctor);
+
+    /**
+     * Marks a given job as complete.
+     * @param job The job to complete.
+     */
+    public void completeJob(Job job);
 
     /**
      * Checks the validity of a patient's fields, and rejects the result value accordingly.
      * @param result The binding result formed from the view template.
-     * @param handover The handover object created through the form.
+     * @param job The job object created through the form.
      */
-    public void CheckValidity(BindingResult result, Handover handover) {
-        if (handover.getPatient() == null)
-            result.rejectValue("patient","handover.patient","Please select a patient to hand over.");
-        if (!getAllActiveForPatient(handover.getPatient()).isEmpty())
-            result.rejectValue("patient","handover.patient","com.quantech.refactoring.Patient is already part of an active handover.");
-        if (handover.getRecipientDoctor() == null)
-            result.rejectValue("recipientDoctor","handover.recipientDoctor","Please select a professional to send the handover to.");
-    }
+    public void CheckValidity(BindingResult result, Job job);
 }
