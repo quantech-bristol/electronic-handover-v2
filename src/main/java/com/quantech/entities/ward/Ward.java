@@ -21,9 +21,6 @@ public class Ward {
     private String name;
 
     @NotNull
-    private Integer capacity;
-
-    @NotNull
     private String department;
 
     @NotNull
@@ -31,21 +28,18 @@ public class Ward {
     private List<Patient> patients;
 
     public Ward() {
-        this.capacity = 0;
         this.department = "Undefined";
         this.patients = new ArrayList<>();
     }
 
-    public Ward(String name, Integer capacity, String department) {
+    public Ward(String name, String department) {
         this.name = name;
-        this.capacity = capacity;
         this.department = department;
         this.patients = new ArrayList<>();
     }
 
-    public Ward(String name, Integer capacity, String department, List<Patient> patients) {
+    public Ward(String name, String department, List<Patient> patients) {
         this.name = name;
-        this.capacity = capacity;
         this.department = department;
         this.patients = patients;
     }
@@ -58,14 +52,6 @@ public class Ward {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
     }
 
     public String getDepartment() {
